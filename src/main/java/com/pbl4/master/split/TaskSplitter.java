@@ -127,4 +127,64 @@ public class TaskSplitter {
 
         return tasks;
     }
+
+    /**
+     * Chia dinh thuc theo cac so hang khai trien Laplace tren dong dau tien.
+     */
+    public static List<Task> splitMatrixDeterminant(String jobId, Matrix A, int numWorkers) {
+        if (numWorkers <= 0) numWorkers = 1;
+        int totalCols = A.getCols();
+        int partitions = Math.min(numWorkers, totalCols);
+        int colsPerTask = totalCols / partitions;
+        int remainder = totalCols % partitions;
+
+        List<Task> tasks = new ArrayList<>();
+        int currentCol = 0;
+
+        for (int i = 0; i < partitions; i++) {
+            int currentBatch = colsPerTask + (i < remainder ? 1 : 0);
+            List<Integer> assignedColumns = new ArrayList<>();
+            for (int k = 0; k < currentBatch; k++) {
+                assignedColumns.add(currentCol++);
+            }
+
+            Task task = new Task(String.format("%s-task-%02d", jobId, i + 1), jobId, TaskType.MATRIX_DETERMINANT);
+            task.addPayload("matrixData", A.getData());
+            task.addPayload("assignedColumns", assignedColumns);
+
+            tasks.add(task);
+        }
+
+        return tasks;
+    }
+
+    /**
+     * Chia hang ma tran theo lat cat dong; Worker rut gon lat cat thanh basis cuc bo.
+     */
+    public static List<Task> splitMatrixRank(String jobId, Matrix A, int numWorkers) {
+        if (numWorkers <= 0) numWorkers = 1;
+        int totalRows = A.getRows();
+        int partitions = Math.min(numWorkers, totalRows);
+        int rowsPerTask = totalRows / partitions;
+        int remainder = totalRows % partitions;
+
+        List<Task> tasks = new ArrayList<>();
+        int currentRow = 0;
+
+        for (int i = 0; i < partitions; i++) {
+            int currentBatch = rowsPerTask + (i < remainder ? 1 : 0);
+            int startRow = currentRow;
+            int endRow = startRow + currentBatch;
+
+            Task task = new Task(String.format("%s-task-%02d", jobId, i + 1), jobId, TaskType.MATRIX_RANK);
+            task.addPayload("startRow", startRow);
+            task.addPayload("sliceA", A.sliceRows(startRow, endRow));
+            task.addPayload("cols", A.getCols());
+
+            tasks.add(task);
+            currentRow = endRow;
+        }
+
+        return tasks;
+    }
 }

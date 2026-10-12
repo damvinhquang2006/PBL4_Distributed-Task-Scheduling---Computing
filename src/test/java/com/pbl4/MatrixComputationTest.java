@@ -99,4 +99,37 @@ public class MatrixComputationTest {
         assertEquals(0.0, C.get(1, 1)); // 9 % 3 = 0
         assertEquals(1.0, C.get(1, 2)); // 13 % 4 = 1
     }
+
+    @Test
+    public void testMatrixDeterminant() {
+        Matrix A = new Matrix(new double[][]{
+                {6, 1, 1},
+                {4, -2, 5},
+                {2, 8, 7}
+        });
+
+        assertEquals(-306.0, MatrixOperations.determinant(A), 1e-6);
+    }
+
+    @Test
+    public void testMatrixRank() {
+        Matrix A = new Matrix(new double[][]{
+                {1, 2, 3},
+                {2, 4, 6},
+                {1, 1, 1}
+        });
+
+        assertEquals(2, MatrixOperations.rank(A));
+    }
+
+    @Test
+    public void testMatrixRankForRectangularMatrix() {
+        Matrix A = new Matrix(new double[][]{
+                {1, 2, 3, 4},
+                {2, 4, 6, 8},
+                {0, 1, 0, 1}
+        });
+
+        assertEquals(2, MatrixOperations.rank(A));
+    }
 }

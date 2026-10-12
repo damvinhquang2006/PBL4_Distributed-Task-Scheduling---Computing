@@ -19,6 +19,12 @@ public enum TaskType {
     /** Phep chia lay du phan tu ma tran theo khoi dong (A_slice % B_slice) */
     MATRIX_MOD,
 
+    /** Tinh mot phan tong khai trien Laplace cua dinh thuc ma tran */
+    MATRIX_DETERMINANT,
+
+    /** Rut gon mot lat cat dong de ho tro tinh hang ma tran */
+    MATRIX_RANK,
+
     /** Tim duong di ngan nhat do thi (Parallel Multi-source Dijkstra) */
     GRAPH_SHORTEST_PATH
 }

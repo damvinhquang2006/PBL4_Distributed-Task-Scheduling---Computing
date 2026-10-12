@@ -2,6 +2,7 @@ package com.pbl4.worker.executor;
 
 import com.pbl4.computing.graph.Graph;
 import com.pbl4.computing.graph.ShortestPathAlgorithms;
+import com.pbl4.computing.matrix.Matrix;
 import com.pbl4.computing.matrix.MatrixOperations;
 import com.pbl4.core.model.Task;
 import com.pbl4.core.model.TaskResult;
@@ -26,6 +27,8 @@ public class TaskExecutor {
                 case MATRIX_SUB -> executeMatrixSub(workerId, task, result);
                 case MATRIX_MOD -> executeMatrixMod(workerId, task, result);
                 case MATRIX_MULTIPLY -> executeMatrixMultiply(workerId, task, result);
+                case MATRIX_DETERMINANT -> executeMatrixDeterminant(workerId, task, result);
+                case MATRIX_RANK -> executeMatrixRank(workerId, task, result);
                 case GRAPH_SHORTEST_PATH -> executeGraphShortestPath(workerId, task, result);
                 default -> throw new UnsupportedOperationException("Unknown TaskType: " + task.getTaskType());
             }
@@ -235,6 +238,72 @@ public class TaskExecutor {
     }
 
     /**
+     * Thuc thi mot phan dinh thuc theo khai trien Laplace tren dong dau tien.
+     */
+    private static void executeMatrixDeterminant(String workerId, Task task, TaskResult result) {
+        double[][] matrixData = parse2DArray(task.getPayloadValue("matrixData"));
+        List<?> columnsRaw = (List<?>) task.getPayloadValue("assignedColumns");
+        int n = matrixData.length;
+
+        if (n == 0 || matrixData[0].length != n) {
+            throw new IllegalArgumentException("Determinant task requires a square matrix!");
+        }
+
+        System.out.printf("[%s]  |-- [Buoc 1/4] Giai ma ma tran vuong [%d x %d] va %d cot cofactor... OK%n",
+                workerId, n, n, columnsRaw.size());
+        sleepPacing(30);
+
+        double partialDet = 0.0;
+        System.out.printf("[%s]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:%n", workerId);
+        for (int i = 0; i < columnsRaw.size(); i++) {
+            int col = ((Number) columnsRaw.get(i)).intValue();
+            double coefficient = matrixData[0][col];
+            double cofactorSign = (col % 2 == 0) ? 1.0 : -1.0;
+            double minorDet = (n == 1) ? 1.0 : MatrixOperations.determinant(new Matrix(minor(matrixData, 0, col)));
+            double term = cofactorSign * coefficient * minorDet;
+            partialDet += term;
+
+            int percent = (int) Math.round(((i + 1.0) / columnsRaw.size()) * 100);
+            System.out.printf("[%s]  |    |-- Tien do: %s %3d%% (Cot %d, so hang %.4f)%n",
+                    workerId, getProgressBar(percent), percent, col, term);
+            sleepPacing(30);
+        }
+
+        System.out.printf("[%s]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: %.6f... OK%n", workerId, partialDet);
+        result.addResult("partialDeterminant", partialDet);
+        result.addResult("columnCount", columnsRaw.size());
+
+        System.out.printf("[%s]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK%n", workerId);
+    }
+
+    /**
+     * Thuc thi rut gon lat cat dong de tao basis cuc bo cho bai toan hang ma tran.
+     */
+    private static void executeMatrixRank(String workerId, Task task, TaskResult result) {
+        int startRow = ((Number) task.getPayloadValue("startRow")).intValue();
+        int cols = ((Number) task.getPayloadValue("cols")).intValue();
+        double[][] sliceA = parse2DArray(task.getPayloadValue("sliceA"));
+
+        System.out.printf("[%s]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=%d, so dong=%d, so cot=%d)... OK%n",
+                workerId, startRow, sliceA.length, cols);
+        sleepPacing(30);
+
+        System.out.printf("[%s]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...%n", workerId);
+        double[][] localBasis = MatrixOperations.rowBasis(sliceA, cols);
+        int percent = 100;
+        System.out.printf("[%s]  |    |-- Tien do: %s %3d%% (Basis cuc bo co %d dong doc lap)%n",
+                workerId, getProgressBar(percent), percent, localBasis.length);
+        sleepPacing(30);
+
+        System.out.printf("[%s]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK%n", workerId);
+        result.addResult("startRow", startRow);
+        result.addResult("basisRows", localBasis);
+        result.addResult("localRank", localBasis.length);
+
+        System.out.printf("[%s]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK%n", workerId);
+    }
+
+    /**
      * Thuc thi tim duong di ngan nhat do thi cho danh sach cac dinh nguon duoc giao.
      */
     private static void executeGraphShortestPath(String workerId, Task task, TaskResult result) {
@@ -301,5 +370,25 @@ public class TaskExecutor {
             return (double[][]) obj;
         }
         return JsonUtils.getMapper().convertValue(obj, double[][].class);
+    }
+
+    private static double[][] minor(double[][] matrix, int excludedRow, int excludedCol) {
+        int n = matrix.length;
+        double[][] result = new double[n - 1][n - 1];
+        int r = 0;
+        for (int i = 0; i < n; i++) {
+            if (i == excludedRow) {
+                continue;
+            }
+            int c = 0;
+            for (int j = 0; j < n; j++) {
+                if (j == excludedCol) {
+                    continue;
+                }
+                result[r][c++] = matrix[i][j];
+            }
+            r++;
+        }
+        return result;
     }
 }
