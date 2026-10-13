@@ -94,6 +94,53 @@ public class ResultAggregator {
         return allDist;
     }
 
+    /**
+     * Tong hop cac tong rieng cofactor thanh dinh thuc cuoi cung.
+     */
+    public static double aggregateMatrixDeterminant(Job job) {
+        double determinant = 0.0;
+        for (TaskResult taskResult : job.getResults().values()) {
+            if (!taskResult.isSuccess()) {
+                throw new RuntimeException("Task " + taskResult.getTaskId() + " that bai: " + taskResult.getErrorMessage());
+            }
+            determinant += ((Number) taskResult.getResultValue("partialDeterminant")).doubleValue();
+        }
+
+        job.setFinalOutput(determinant);
+        return determinant;
+    }
+
+    /**
+     * Tong hop basis cuc bo tu cac Worker roi tinh hang toan cuc.
+     */
+    public static int aggregateMatrixRank(Job job, int cols) {
+        int totalBasisRows = 0;
+        List<TaskResult> results = job.getResults().values().stream()
+                .sorted(Comparator.comparing(TaskResult::getTaskId))
+                .toList();
+
+        for (TaskResult taskResult : results) {
+            if (!taskResult.isSuccess()) {
+                throw new RuntimeException("Task " + taskResult.getTaskId() + " that bai: " + taskResult.getErrorMessage());
+            }
+            double[][] basisRows = parse2DArray(taskResult.getResultValue("basisRows"));
+            totalBasisRows += basisRows.length;
+        }
+
+        double[][] combinedBasis = new double[totalBasisRows][cols];
+        int rowOffset = 0;
+        for (TaskResult taskResult : results) {
+            double[][] basisRows = parse2DArray(taskResult.getResultValue("basisRows"));
+            for (double[] basisRow : basisRows) {
+                System.arraycopy(basisRow, 0, combinedBasis[rowOffset++], 0, cols);
+            }
+        }
+
+        int rank = com.pbl4.computing.matrix.MatrixOperations.rank(combinedBasis);
+        job.setFinalOutput(rank);
+        return rank;
+    }
+
     private static double[][] parse2DArray(Object obj) {
         if (obj instanceof double[][]) {
             return (double[][]) obj;

@@ -146,37 +146,73 @@ public class MasterApp {
         String op = "";
 
         // =================================================================
-        // BUOC 1: Chon kich thuoc cho tung ma tran A va B
+        // BUOC 1: Chon kich thuoc ma tran A, sau do chon phep tinh.
         // =================================================================
         while (true) {
-            System.out.println("\n--- BUOC 1: Vui long chon kich thuoc cho tung ma tran A va B ---");
+            System.out.println("\n--- BUOC 1: Vui long chon kich thuoc ma tran A ---");
             rowsA = promptPositiveInt(scanner, "Nhap so dong (rows) ma tran A: ");
             colsA = promptPositiveInt(scanner, "Nhap so cot (cols) ma tran A: ");
-            rowsB = promptPositiveInt(scanner, "Nhap so dong (rows) ma tran B: ");
-            colsB = promptPositiveInt(scanner, "Nhap so cot (cols) ma tran B: ");
+            rowsB = 0;
+            colsB = 0;
 
             // =============================================================
-            // BUOC 2: Chon phep tinh cho bai toan (+, -, x, %)
+            // BUOC 2: Chon phep tinh cho bai toan (+, -, x, %, det, rank)
             // =============================================================
             boolean step2Done = false;
             while (!step2Done) {
-                System.out.println("\n--- BUOC 2: Vui long chon phep tinh cho bai toan (+, -, x, %) ---");
-                System.out.printf("Kich thuoc da chon: Ma tran A [%d x %d], Ma tran B [%d x %d]%n",
-                        rowsA, colsA, rowsB, colsB);
+                System.out.println("\n--- BUOC 2: Vui long chon phep tinh cho bai toan ---");
+                System.out.printf("Kich thuoc da chon: Ma tran A [%d x %d]%n", rowsA, colsA);
                 System.out.println("Cac phep toan ho tro:");
                 System.out.println("  [+] Cong hai ma tran (A + B)");
                 System.out.println("  [-] Tru hai ma tran (A - B)");
                 System.out.println("  [x] Nhan hai ma tran (A x B)");
                 System.out.println("  [%] Chia lay du phan tu ma tran (A % B)");
-                System.out.print("Vui long nhap phep tinh (+, -, x, %): ");
+                System.out.println("  [det] Tinh dinh thuc ma tran A");
+                System.out.println("  [rank] Tinh hang ma tran A");
+                System.out.print("Vui long nhap phep tinh (+, -, x, %, det, rank): ");
 
                 String chosenOp = scanner.nextLine().trim().toLowerCase();
                 if ("*".equals(chosenOp)) chosenOp = "x";
+                if ("d".equals(chosenOp)) chosenOp = "det";
+                if ("r".equals(chosenOp)) chosenOp = "rank";
 
-                if (!"+".equals(chosenOp) && !"-".equals(chosenOp) && !"x".equals(chosenOp) && !"%".equals(chosenOp)) {
-                    System.out.println("Phep toan khong hop le! Vui long chi chon +, -, x, hoac %.");
+                if (!"+".equals(chosenOp) && !"-".equals(chosenOp) && !"x".equals(chosenOp)
+                        && !"%".equals(chosenOp) && !"det".equals(chosenOp) && !"rank".equals(chosenOp)) {
+                    System.out.println("Phep toan khong hop le! Vui long chi chon +, -, x, %, det, hoac rank.");
                     continue;
                 }
+
+                if ("det".equals(chosenOp)) {
+                    if (rowsA != colsA) {
+                        System.out.printf("%n[LOI TUONG THICH] Dinh thuc chi tinh duoc cho ma tran vuong!%n");
+                        System.out.printf("Hien tai: Ma tran A [%d x %d] khong phai ma tran vuong.%n", rowsA, colsA);
+                        System.out.println("1. Chon lai phep toan khac");
+                        System.out.println("2. Nhap lai kich thuoc ma tran A (Quay ve Buoc 1)");
+                        System.out.println("0. Huy bo va quay ve Menu chinh");
+                        System.out.print("Lua chon cua ban (0-2): ");
+                        String resolveChoice = scanner.nextLine().trim();
+                        if ("2".equals(resolveChoice)) {
+                            break;
+                        } else if ("0".equals(resolveChoice)) {
+                            return;
+                        } else {
+                            continue;
+                        }
+                    }
+                    op = chosenOp;
+                    step2Done = true;
+                    continue;
+                }
+
+                if ("rank".equals(chosenOp)) {
+                    op = chosenOp;
+                    step2Done = true;
+                    continue;
+                }
+
+                System.out.println("\n--- Nhap kich thuoc ma tran B cho phep toan nhi phan ---");
+                rowsB = promptPositiveInt(scanner, "Nhap so dong (rows) ma tran B: ");
+                colsB = promptPositiveInt(scanner, "Nhap so cot (cols) ma tran B: ");
 
                 // Kiem tra tinh tuong thich ve kich thuoc
                 if ("+".equals(chosenOp) || "-".equals(chosenOp) || "%".equals(chosenOp)) {
@@ -184,7 +220,7 @@ public class MasterApp {
                         System.out.printf("%n[LOI TUONG THICH] Phep toan '%s' yeu cau 2 ma tran phai co cung kich thuoc!%n", chosenOp);
                         System.out.printf("Hien tai: Ma tran A [%d x %d] != Ma tran B [%d x %d].%n", rowsA, colsA, rowsB, colsB);
                         System.out.println("1. Chon lai phep toan khac");
-                        System.out.println("2. Nhap lai kich thuoc ca 2 ma tran (Quay ve Buoc 1)");
+                        System.out.println("2. Nhap lai kich thuoc ma tran A (Quay ve Buoc 1)");
                         System.out.println("0. Huy bo va quay ve Menu chinh");
                         System.out.print("Lua chon cua ban (0-2): ");
                         String resolveChoice = scanner.nextLine().trim();
@@ -202,7 +238,7 @@ public class MasterApp {
                         System.out.printf("Hien tai: Cot A (%d) != Dong B (%d). Khong the nhan [%d x %d] voi [%d x %d]!%n",
                                 colsA, rowsB, rowsA, colsA, rowsB, colsB);
                         System.out.println("1. Chon lai phep toan khac");
-                        System.out.println("2. Nhap lai kich thuoc ca 2 ma tran (Quay ve Buoc 1)");
+                        System.out.println("2. Nhap lai kich thuoc ma tran A (Quay ve Buoc 1)");
                         System.out.println("0. Huy bo va quay ve Menu chinh");
                         System.out.print("Lua chon cua ban (0-2): ");
                         String resolveChoice = scanner.nextLine().trim();
@@ -229,8 +265,9 @@ public class MasterApp {
         // BUOC 3: Nhap gia tri cho tung phan tu ma tran
         // (Hien thi cung luc 2 khung ma tran mau voi con tro [>?<])
         // =================================================================
+        boolean unaryOperation = isUnaryMatrixOperation(op);
         Double[][] dataA = new Double[rowsA][colsA];
-        Double[][] dataB = new Double[rowsB][colsB];
+        Double[][] dataB = unaryOperation ? new Double[0][0] : new Double[rowsB][colsB];
 
         char activeMatrix = 'A';
         int activeRow = 0;
@@ -238,8 +275,12 @@ public class MasterApp {
 
         while (true) {
             clearScreen();
-            renderTwinMatrixTemplates(rowsA, colsA, dataA, rowsB, colsB, dataB,
-                    activeMatrix, activeRow, activeCol, op);
+            if (unaryOperation) {
+                renderSingleMatrixTemplate(rowsA, colsA, dataA, activeRow, activeCol, op);
+            } else {
+                renderTwinMatrixTemplates(rowsA, colsA, dataA, rowsB, colsB, dataB,
+                        activeMatrix, activeRow, activeCol, op);
+            }
 
             System.out.printf(">> Dang nhap phan tu: MA TRAN %c - Dong %d, Cot %d (Toa do [%d][%d])%n",
                     activeMatrix, (activeRow + 1), (activeCol + 1), activeRow, activeCol);
@@ -255,6 +296,9 @@ public class MasterApp {
                         activeCol = 0;
                         activeRow++;
                         if (activeRow >= rowsA) {
+                            if (unaryOperation) {
+                                break;
+                            }
                             activeMatrix = 'B';
                             activeRow = 0;
                             activeCol = 0;
@@ -288,10 +332,13 @@ public class MasterApp {
             }
         }
 
-        Matrix matrixB = new Matrix(rowsB, colsB);
-        for (int i = 0; i < rowsB; i++) {
-            for (int j = 0; j < colsB; j++) {
-                matrixB.set(i, j, dataB[i][j]);
+        Matrix matrixB = null;
+        if (!unaryOperation) {
+            matrixB = new Matrix(rowsB, colsB);
+            for (int i = 0; i < rowsB; i++) {
+                for (int j = 0; j < colsB; j++) {
+                    matrixB.set(i, j, dataB[i][j]);
+                }
             }
         }
 
@@ -306,19 +353,33 @@ public class MasterApp {
         System.out.println("=====================================================================");
         System.out.printf("Ma tran A [%d x %d]:%n%s%n", rowsA, colsA, matrixA.prettyPrint(6));
         System.out.printf("Phep toan da chon: %s%n%n", op.toUpperCase());
-        System.out.printf("Ma tran B [%d x %d]:%n%s%n", rowsB, colsB, matrixB.prettyPrint(6));
+        if (!unaryOperation) {
+            System.out.printf("Ma tran B [%d x %d]:%n%s%n", rowsB, colsB, matrixB.prettyPrint(6));
+        }
         System.out.println("---------------------------------------------------------------------");
 
-        List<WorkerInfo> onlineWorkers = masterServer.getRegistry().getAvailableWorkers();
-        System.out.printf("[Master] So luong Workers dang truc tuyen: %d%n", onlineWorkers.size());
-        for (WorkerInfo w : onlineWorkers) {
-            System.out.printf("  |-- Worker ID: %-12s | Dia chi: %s:%d | Capacity: %d%n",
-                    w.getWorkerId(), w.getHost(), w.getPort(), w.getCapacity());
+        if (!unaryOperation) {
+            List<WorkerInfo> onlineWorkers = masterServer.getRegistry().getAvailableWorkers();
+            System.out.printf("[Master] So luong Workers dang truc tuyen: %d%n", onlineWorkers.size());
+            for (WorkerInfo w : onlineWorkers) {
+                System.out.printf("  |-- Worker ID: %-12s | Dia chi: %s:%d | Capacity: %d%n",
+                        w.getWorkerId(), w.getHost(), w.getPort(), w.getCapacity());
+            }
+            System.out.println("[Master] Dang chia nho cac lat cat dong va phan phoi task den Workers...\n");
+        } else {
+            List<WorkerInfo> onlineWorkers = masterServer.getRegistry().getAvailableWorkers();
+            System.out.printf("[Master] So luong Workers dang truc tuyen: %d%n", onlineWorkers.size());
+            for (WorkerInfo w : onlineWorkers) {
+                System.out.printf("  |-- Worker ID: %-12s | Dia chi: %s:%d | Capacity: %d%n",
+                        w.getWorkerId(), w.getHost(), w.getPort(), w.getCapacity());
+            }
+            System.out.println("[Master] Dang chia nho bai toan va phan phoi task den Workers...\n");
         }
-        System.out.println("[Master] Dang chia nho cac lat cat dong va phan phoi task den Workers...\n");
 
         Matrix resultMatrix = null;
         Matrix expectedMatrix = null;
+        Double scalarResult = null;
+        Integer rankResult = null;
         long startTime = System.currentTimeMillis();
 
         if ("+".equals(op)) {
@@ -333,6 +394,10 @@ public class MasterApp {
         } else if ("%".equals(op)) {
             resultMatrix = masterServer.runMatrixModulo(matrixA, matrixB);
             expectedMatrix = MatrixOperations.modulo(matrixA, matrixB);
+        } else if ("det".equals(op)) {
+            scalarResult = masterServer.runMatrixDeterminant(matrixA);
+        } else if ("rank".equals(op)) {
+            rankResult = masterServer.runMatrixRank(matrixA);
         }
 
         long totalTime = System.currentTimeMillis() - startTime;
@@ -340,7 +405,17 @@ public class MasterApp {
         System.out.println("\n=====================================================================");
         System.out.println("                      KET QUA TINH TOAN CUOI CUNG                    ");
         System.out.println("=====================================================================");
-        if (resultMatrix != null) {
+        if (scalarResult != null) {
+            System.out.printf("Dinh thuc det(A) = %.6f%n", scalarResult);
+            System.out.printf("Kiem tra tinh chinh xac (So sanh voi ket qua tuan tu): %s%n",
+                    Math.abs(scalarResult - MatrixOperations.determinant(matrixA)) < 1e-6 ? "CHINH XAC (MATCH 100%)" : "SAI LECH!");
+            System.out.printf("Tong thoi gian xu ly: %d ms%n", totalTime);
+        } else if (rankResult != null) {
+            System.out.printf("Hang ma tran rank(A) = %d%n", rankResult);
+            System.out.printf("Kiem tra tinh chinh xac (So sanh voi ket qua tuan tu): %s%n",
+                    rankResult == MatrixOperations.rank(matrixA) ? "CHINH XAC (MATCH 100%)" : "SAI LECH!");
+            System.out.printf("Tong thoi gian xu ly: %d ms%n", totalTime);
+        } else if (resultMatrix != null) {
             System.out.printf("Ket qua Ma tran C = A %s B [%d x %d]:%n%s%n",
                     op, resultMatrix.getRows(), resultMatrix.getCols(), resultMatrix.prettyPrint(6));
             boolean match = (expectedMatrix != null && resultMatrix.equals(expectedMatrix));
@@ -369,6 +444,32 @@ public class MasterApp {
                 System.out.println("Dinh dang so khong hop le! Vui long nhap so nguyen duong.");
             }
         }
+    }
+
+    private static boolean isUnaryMatrixOperation(String op) {
+        return "det".equals(op) || "rank".equals(op);
+    }
+
+    private static void renderSingleMatrixTemplate(int rows, int cols, Double[][] data,
+                                                   int activeRow, int activeCol,
+                                                   String op) {
+        System.out.println("====================== BUOC 3: NHAP GIA TRI MA TRAN ======================");
+        System.out.printf("Phep toan da chon: %s(A) voi A [%d x %d]%n", op.toUpperCase(), rows, cols);
+        System.out.println("Giai thich: [  X  ]: Chua nhap | [>?<]: Con tro dang nhap | [12.0]: Da nhap\n");
+
+        System.out.printf("--- MA TRAN A [%d x %d] ---%n", rows, cols);
+        for (int i = 0; i < rows; i++) {
+            System.out.print("[ ");
+            for (int j = 0; j < cols; j++) {
+                if (i == activeRow && j == activeCol) {
+                    System.out.print(" [>?<] ");
+                } else {
+                    System.out.print(formatCell(data[i][j]));
+                }
+            }
+            System.out.println("]");
+        }
+        System.out.println("---------------------------------------------------------------------------");
     }
 
     private static void renderTwinMatrixTemplates(int rowsA, int colsA, Double[][] dataA,
@@ -482,6 +583,34 @@ public class MasterApp {
         Double result = masterServer.runArithmeticStarter("1+2", "3*2", "+");
         if (result != null) {
             System.out.printf("==> KET QUA TONG HOP XUAT RA: (1 + 2) + (3 * 2) = %.0f%n", result);
+        }
+
+        System.out.println("\n----------------- VI DU DET VA HANG MT -----------------");
+        Matrix squareMatrix = new Matrix(new double[][]{
+                {6, 1, 1},
+                {4, -2, 5},
+                {2, 8, 7}
+        });
+        Matrix rectangularMatrix = new Matrix(new double[][]{
+                {1, 2, 3, 4},
+                {2, 4, 6, 8},
+                {0, 1, 0, 1}
+        });
+
+        System.out.println("Ma tran vuong A:\n" + squareMatrix.prettyPrint(6));
+        Double determinant = masterServer.runMatrixDeterminant(squareMatrix);
+        if (determinant != null) {
+            System.out.printf("==> Dinh thuc det(A) = %.6f%n", determinant);
+        }
+        Integer squareRank = masterServer.runMatrixRank(squareMatrix);
+        if (squareRank != null) {
+            System.out.printf("==> Hang ma tran rank(A) = %d%n", squareRank);
+        }
+
+        System.out.println("\nMa tran chu nhat B:\n" + rectangularMatrix.prettyPrint(6));
+        Integer rectangularRank = masterServer.runMatrixRank(rectangularMatrix);
+        if (rectangularRank != null) {
+            System.out.printf("==> Hang ma tran rank(B) = %d%n", rectangularRank);
         }
     }
 

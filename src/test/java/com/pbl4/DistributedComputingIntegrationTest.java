@@ -116,4 +116,22 @@ public class DistributedComputingIntegrationTest {
         Matrix expected = MatrixOperations.modulo(A, B);
         assertEquals(expected, distributedResult);
     }
+
+    @Test
+    public void testDistributedMatrixDeterminantAndRank() {
+        Matrix squareMatrix = new Matrix(new double[][]{
+                {6, 1, 1},
+                {4, -2, 5},
+                {2, 8, 7}
+        });
+        Matrix rectangularMatrix = new Matrix(new double[][]{
+                {1, 2, 3, 4},
+                {2, 4, 6, 8},
+                {0, 1, 0, 1}
+        });
+
+        assertEquals(-306.0, masterServer.runMatrixDeterminant(squareMatrix), 1e-6);
+        assertEquals(MatrixOperations.rank(squareMatrix), masterServer.runMatrixRank(squareMatrix));
+        assertEquals(MatrixOperations.rank(rectangularMatrix), masterServer.runMatrixRank(rectangularMatrix));
+    }
 }

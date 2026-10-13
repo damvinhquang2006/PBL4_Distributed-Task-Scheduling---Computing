@@ -293,6 +293,58 @@ public class MasterServer {
     }
 
     /**
+     * Tinh dinh thuc ma tran phan tan bang cach chia cac so hang cofactor.
+     */
+    public Double runMatrixDeterminant(Matrix A) {
+        if (A.getRows() != A.getCols()) {
+            throw new IllegalArgumentException("Dinh thuc chi tinh duoc cho ma tran vuong!");
+        }
+
+        String jobId = "mat-det-" + System.currentTimeMillis();
+        int workerCount = Math.max(1, registry.getAvailableWorkers().size());
+
+        Job job = new Job(jobId, String.format("Tinh dinh thuc ma tran [%d x %d]",
+                A.getRows(), A.getCols()), TaskType.MATRIX_DETERMINANT);
+        List<Task> tasks = TaskSplitter.splitMatrixDeterminant(jobId, A, workerCount);
+        job.setTasks(tasks);
+
+        System.out.printf("%n=== BAT DAU JOB TINH DINH THUC MA TRAN [%d x %d] TREN %d WORKERS ===%n",
+                A.getRows(), A.getCols(), tasks.size());
+
+        boolean ok = executeJob(job, 60000);
+        if (ok) {
+            double determinant = ResultAggregator.aggregateMatrixDeterminant(job);
+            System.out.printf(">>> HOAN THANH TINH DINH THUC TRONG %d ms!%n", job.getDurationMs());
+            return determinant;
+        }
+        return null;
+    }
+
+    /**
+     * Tinh hang ma tran phan tan bang cach rut gon tung lat cat dong tren Worker.
+     */
+    public Integer runMatrixRank(Matrix A) {
+        String jobId = "mat-rank-" + System.currentTimeMillis();
+        int workerCount = Math.max(1, registry.getAvailableWorkers().size());
+
+        Job job = new Job(jobId, String.format("Tinh hang ma tran [%d x %d]",
+                A.getRows(), A.getCols()), TaskType.MATRIX_RANK);
+        List<Task> tasks = TaskSplitter.splitMatrixRank(jobId, A, workerCount);
+        job.setTasks(tasks);
+
+        System.out.printf("%n=== BAT DAU JOB TINH HANG MA TRAN [%d x %d] TREN %d WORKERS ===%n",
+                A.getRows(), A.getCols(), tasks.size());
+
+        boolean ok = executeJob(job, 60000);
+        if (ok) {
+            int rank = ResultAggregator.aggregateMatrixRank(job, A.getCols());
+            System.out.printf(">>> HOAN THANH TINH HANG MA TRAN TRONG %d ms!%n", job.getDurationMs());
+            return rank;
+        }
+        return null;
+    }
+
+    /**
      * Phep nhan chuoi nhieu ma tran phan tan M1 * M2 * M3 ...
      */
     public Matrix runMatrixChainMultiplication(List<Matrix> matrices) {
