@@ -8,12 +8,18 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WorkerInfo {
+    public String sessionId;
+    public volatile ResourceMetrics metrics = new ResourceMetrics();
+    public volatile boolean paused;
+    public volatile boolean cpuBlocked, ramBlocked, heapBlocked;
+    public volatile String admissionReason = "READY";
+    public volatile long unavailableUntil;
     private String workerId;
     private String host;
     private int port;
     private int capacity;
-    private WorkerStatus status;
-    private long lastHeartbeatTime;
+    private volatile WorkerStatus status;
+    private volatile long lastHeartbeatTime;
     
     private final AtomicInteger activeTasks = new AtomicInteger(0);
     private final AtomicInteger completedTasks = new AtomicInteger(0);

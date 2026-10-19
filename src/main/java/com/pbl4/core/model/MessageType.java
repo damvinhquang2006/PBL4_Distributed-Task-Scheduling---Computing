@@ -5,6 +5,7 @@ package com.pbl4.core.model;
  */
 public enum MessageType {
     /** Worker gui den Master de dang ky tham gia cum */
+    PING, PONG, REGISTER_REJECTED, REGISTER_REQUIRED, TASK_ACCEPTED, TASK_REJECTED, RESULT_ACK,
     REGISTER_WORKER,
     
     /** Master xac nhan dang ky thanh cong */

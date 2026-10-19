@@ -1,4 +1,13 @@
-com\pbl4\DistributedComputingIntegrationTest.class
-com\pbl4\LoadBalancingTest.class
 com\pbl4\GraphAlgorithmTest.class
+com\pbl4\ResourceSchedulingTest.class
+com\pbl4\LanLifecycleTest$1.class
+com\pbl4\DispatcherRecoveryTest$CaptureScheduler.class
+com\pbl4\ProtocolReliabilityTest.class
+com\pbl4\ProtocolReliabilityTest$1.class
+com\pbl4\LoadBalancingTest.class
+com\pbl4\DispatcherRecoveryTest.class
 com\pbl4\MatrixComputationTest.class
+com\pbl4\DispatcherRecoveryTest$1.class
+com\pbl4\DistributedComputingIntegrationTest.class
+com\pbl4\ProtocolReliabilityTest$Peer.class
+com\pbl4\LanLifecycleTest.class

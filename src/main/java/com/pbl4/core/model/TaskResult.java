@@ -9,6 +9,9 @@ import java.util.Map;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TaskResult {
+    public String attemptId;
+    public String masterSession;
+    public String workerSession;
     private String taskId;
     private String jobId;
     private String workerId;

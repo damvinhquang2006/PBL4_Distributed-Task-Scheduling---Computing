@@ -1,96 +1,59 @@
 package com.pbl4.master;
 
-import com.pbl4.core.model.WorkerInfo;
-import com.pbl4.core.model.WorkerStatus;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import com.pbl4.core.model.*;
+import java.util.*;
+import java.util.concurrent.*;
 import java.util.function.Consumer;
 
-/**
- * Quan ly danh sach cac Worker Node trong cum, theo doi nhip tim (Heartbeat) va phat hien node gap su co.
- */
 public class WorkerRegistry {
     private final Map<String, WorkerInfo> workers = new ConcurrentHashMap<>();
-    private final ScheduledExecutorService healthCheckExecutor = Executors.newSingleThreadScheduledExecutor();
-    private Consumer<WorkerInfo> onWorkerFailedListener;
-    private static final long HEARTBEAT_TIMEOUT_MS = 9000; // Qua 9 giay khong co tin nhan coi nhu OFFLINE
-
-    public WorkerRegistry() {
-        startHealthChecker();
-    }
-
-    public void setOnWorkerFailedListener(Consumer<WorkerInfo> listener) {
-        this.onWorkerFailedListener = listener;
-    }
-
-    public void register(WorkerInfo info) {
-        info.setStatus(WorkerStatus.ONLINE);
-        info.setLastHeartbeatTime(System.currentTimeMillis());
+    private final ScheduledExecutorService health = Executors.newSingleThreadScheduledExecutor();
+    private Consumer<WorkerInfo> onFailure = w -> {};
+    public WorkerRegistry() { health.scheduleAtFixedRate(this::checkHealth, 3, 2, TimeUnit.SECONDS); }
+    public void setOnWorkerFailedListener(Consumer<WorkerInfo> listener) { onFailure = listener; }
+    public synchronized void register(WorkerInfo info) {
+        if (info.metrics == null) info.metrics = new ResourceMetrics();
+        WorkerInfo old = workers.get(info.getWorkerId());
+        if (old != null && Objects.equals(old.sessionId, info.sessionId)) {
+            old.setLastHeartbeatTime(System.currentTimeMillis()); old.setStatus(WorkerStatus.ONLINE);
+            old.metrics = info.metrics; return;
+        }
+        if (old != null && old.getStatus() != WorkerStatus.OFFLINE)
+            throw new IllegalArgumentException("Worker ID already active: " + info.getWorkerId());
+        if (old != null) info.paused = old.paused;
+        info.setStatus(WorkerStatus.ONLINE); info.setLastHeartbeatTime(System.currentTimeMillis());
         workers.put(info.getWorkerId(), info);
-        System.out.printf("[Master - Registry] Dang ky thanh cong Worker: %s%n", info);
+        System.out.println("[Registry] REGISTER " + info);
     }
-
-    public void recordHeartbeat(String workerId) {
-        WorkerInfo info = workers.get(workerId);
-        if (info != null) {
-            info.setLastHeartbeatTime(System.currentTimeMillis());
-            if (info.getStatus() == WorkerStatus.OFFLINE) {
-                info.setStatus(WorkerStatus.ONLINE);
-                System.out.printf("[Master - Registry] Worker [%s] da khoi phuc truc tuyen (ONLINE)!%n", workerId);
-            }
-        }
+    public synchronized boolean heartbeat(String id, String session, ResourceMetrics metrics) {
+        WorkerInfo info = workers.get(id);
+        if (info == null || !Objects.equals(info.sessionId, session)) return false;
+        info.setLastHeartbeatTime(System.currentTimeMillis()); info.setStatus(WorkerStatus.ONLINE);
+        info.metrics = metrics == null ? new ResourceMetrics() : metrics;
+        return true;
     }
-
-    public List<WorkerInfo> getAvailableWorkers() {
-        List<WorkerInfo> list = new ArrayList<>();
-        for (WorkerInfo info : workers.values()) {
-            if (info.getStatus() == WorkerStatus.ONLINE) {
-                list.add(info);
-            }
-        }
-        return list;
+    public void recordHeartbeat(String id) {
+        WorkerInfo info = workers.get(id);
+        if (info != null) heartbeat(id, info.sessionId, info.metrics);
     }
-
-    public WorkerInfo getWorker(String workerId) {
-        return workers.get(workerId);
-    }
-
-    public List<WorkerInfo> getAllWorkers() {
-        return new ArrayList<>(workers.values());
-    }
-
-    public void setWorkerStatus(String workerId, WorkerStatus status) {
-        WorkerInfo info = workers.get(workerId);
-        if (info != null) {
-            info.setStatus(status);
-        }
-    }
-
-    private void startHealthChecker() {
-        healthCheckExecutor.scheduleAtFixedRate(() -> {
-            long now = System.currentTimeMillis();
-            for (WorkerInfo info : workers.values()) {
-                if (info.getStatus() == WorkerStatus.ONLINE) {
-                    if (now - info.getLastHeartbeatTime() > HEARTBEAT_TIMEOUT_MS) {
-                        info.setStatus(WorkerStatus.OFFLINE);
-                        System.err.printf("[Master - Canh bao] Phat hien Worker [%s] mat tin hieu Heartbeat -> Danh dau OFFLINE!%n",
-                                info.getWorkerId());
-                        if (onWorkerFailedListener != null) {
-                            onWorkerFailedListener.accept(info);
-                        }
-                    }
+    public void checkHealth() {
+        List<WorkerInfo> failed = new ArrayList<>();
+        synchronized (this) {
+            for (WorkerInfo w : workers.values()) {
+                if (w.getStatus() != WorkerStatus.OFFLINE && System.currentTimeMillis() - w.getLastHeartbeatTime() > 9000) {
+                    w.setStatus(WorkerStatus.OFFLINE); failed.add(w);
                 }
             }
-        }, 3, 2, TimeUnit.SECONDS);
+        }
+        failed.forEach(onFailure);
     }
-
-    public void shutdown() {
-        healthCheckExecutor.shutdownNow();
+    public List<WorkerInfo> getAvailableWorkers() {
+        return workers.values().stream().filter(w -> w.getStatus() != WorkerStatus.OFFLINE && !w.paused).toList();
     }
+    public WorkerInfo getWorker(String id) { return workers.get(id); }
+    public List<WorkerInfo> getAllWorkers() { return new ArrayList<>(workers.values()); }
+    public void setWorkerStatus(String id, WorkerStatus status) {
+        WorkerInfo w = workers.get(id); if (w != null) w.setStatus(status);
+    }
+    public void shutdown() { health.shutdownNow(); }
 }

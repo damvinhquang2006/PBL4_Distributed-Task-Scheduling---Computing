@@ -2,189 +2,51 @@ package com.pbl4.master.split;
 
 import com.pbl4.computing.graph.Graph;
 import com.pbl4.computing.matrix.Matrix;
-import com.pbl4.core.model.Task;
-import com.pbl4.core.model.TaskType;
+import com.pbl4.core.model.*;
+import java.util.*;
+import java.util.function.BiFunction;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Bộ chia nhỏ công việc lớn thành các đơn vị công việc (Task) con độc lập để phân phối cho các Worker.
- */
 public class TaskSplitter {
-
-    /**
-     * Chia nhỏ biểu thức số học khởi đầu (Ví dụ: 1+2 và 3*2).
-     */
-    public static List<Task> splitArithmetic(String jobId, String leftExpr, String rightExpr) {
-        List<Task> tasks = new ArrayList<>();
-
-        Task t1 = new Task(jobId + "-task-01", jobId, TaskType.ARITHMETIC);
-        t1.addPayload("expression", leftExpr);
-        tasks.add(t1);
-
-        Task t2 = new Task(jobId + "-task-02", jobId, TaskType.ARITHMETIC);
-        t2.addPayload("expression", rightExpr);
-        tasks.add(t2);
-
+    private static List<Task> chunks(String job, TaskType type, int units, int requested,
+                                      BiFunction<Integer, Integer, Map<String, Object>> factory) {
+        if (units <= 0) throw new IllegalArgumentException("Input must have at least one row/column");
+        int count = Math.min(units, Math.max(1, requested));
+        List<Task> tasks = new ArrayList<>(); int offset = 0;
+        for (int i = 0; i < count; i++) {
+            int start = offset, end = start + units / count + (i < units % count ? 1 : 0); offset = end;
+            Task task = new Task(String.format("%s-task-%02d", job, i + 1), job, type);
+            task.deferPayload(() -> factory.apply(start, end)); tasks.add(task);
+        }
         return tasks;
     }
-
-    /**
-     * Chia nhỏ phép cộng/trừ ma trận theo dải dòng (row strips).
-     */
-    public static List<Task> splitMatrixAddSub(String jobId, Matrix A, Matrix B, TaskType type, int numWorkers) {
-        if (numWorkers <= 0) numWorkers = 1;
-        int totalRows = A.getRows();
-        int partitions = Math.min(numWorkers, totalRows);
-        int rowsPerTask = totalRows / partitions;
-        int remainder = totalRows % partitions;
-
-        List<Task> tasks = new ArrayList<>();
-        int currentRow = 0;
-
-        for (int i = 0; i < partitions; i++) {
-            int currentBatch = rowsPerTask + (i < remainder ? 1 : 0);
-            int startRow = currentRow;
-            int endRow = startRow + currentBatch;
-
-            double[][] sliceA = A.sliceRows(startRow, endRow);
-            double[][] sliceB = B.sliceRows(startRow, endRow);
-
-            Task task = new Task(String.format("%s-task-%02d", jobId, i + 1), jobId, type);
-            task.addPayload("startRow", startRow);
-            task.addPayload("sliceA", sliceA);
-            task.addPayload("sliceB", sliceB);
-
-            tasks.add(task);
-            currentRow = endRow;
-        }
-
-        return tasks;
+    public static List<Task> splitArithmetic(String job, String left, String right) {
+        return List.of(new Task(job + "-task-01", job, TaskType.ARITHMETIC).addPayload("expression", left),
+            new Task(job + "-task-02", job, TaskType.ARITHMETIC).addPayload("expression", right));
     }
-
-    /**
-     * Chia nhỏ phép nhân 2 ma trận A x B theo khối dòng của A.
-     * Mỗi worker nhận một lát cắt dòng của A và toàn bộ ma trận B.
-     */
-    public static List<Task> splitMatrixMultiply(String jobId, Matrix A, Matrix B, int numWorkers) {
-        if (numWorkers <= 0) numWorkers = 1;
-        int totalRows = A.getRows();
-        int partitions = Math.min(numWorkers, totalRows);
-        int rowsPerTask = totalRows / partitions;
-        int remainder = totalRows % partitions;
-
-        List<Task> tasks = new ArrayList<>();
-        int currentRow = 0;
-
-        for (int i = 0; i < partitions; i++) {
-            int currentBatch = rowsPerTask + (i < remainder ? 1 : 0);
-            int startRow = currentRow;
-            int endRow = startRow + currentBatch;
-
-            double[][] sliceA = A.sliceRows(startRow, endRow);
-
-            Task task = new Task(String.format("%s-task-%02d", jobId, i + 1), jobId, TaskType.MATRIX_MULTIPLY);
-            task.addPayload("startRow", startRow);
-            task.addPayload("sliceA", sliceA);
-            task.addPayload("dataB", B.getData());
-            task.addPayload("colsB", B.getCols());
-
-            tasks.add(task);
-            currentRow = endRow;
-        }
-
-        return tasks;
+    public static List<Task> splitMatrixAddSub(String job, Matrix a, Matrix b, TaskType type, int count) {
+        if (a.getRows() != b.getRows() || a.getCols() != b.getCols() || a.getCols() <= 0)
+            throw new IllegalArgumentException("Matrix dimensions must match and be positive");
+        return chunks(job, type, a.getRows(), count, (start,end) -> new HashMap<>(Map.of(
+            "startRow", start, "sliceA", a.sliceRows(start,end), "sliceB", b.sliceRows(start,end))));
     }
-
-    /**
-     * Chia nhỏ bài toán tìm đường đi ngắn nhất đồ thị (All-Pairs Shortest Path).
-     * Tập các đỉnh nguồn [0..V-1] được phân chia đều cho các Workers.
-     */
-    public static List<Task> splitGraphShortestPath(String jobId, Graph graph, int numWorkers) {
-        if (numWorkers <= 0) numWorkers = 1;
-        int V = graph.getVertices();
-        int partitions = Math.min(numWorkers, V);
-        int sourcesPerTask = V / partitions;
-        int remainder = V % partitions;
-
-        List<Task> tasks = new ArrayList<>();
-        int currentSource = 0;
-
-        for (int i = 0; i < partitions; i++) {
-            int currentBatch = sourcesPerTask + (i < remainder ? 1 : 0);
-            List<Integer> assignedSources = new ArrayList<>();
-            for (int k = 0; k < currentBatch; k++) {
-                assignedSources.add(currentSource++);
-            }
-
-            Task task = new Task(String.format("%s-task-%02d", jobId, i + 1), jobId, TaskType.GRAPH_SHORTEST_PATH);
-            task.addPayload("graph", graph);
-            task.addPayload("sourceVertices", assignedSources);
-
-            tasks.add(task);
-        }
-
-        return tasks;
+    public static List<Task> splitMatrixMultiply(String job, Matrix a, Matrix b, int count) {
+        if (a.getCols() != b.getRows() || a.getCols() <= 0 || b.getCols() <= 0)
+            throw new IllegalArgumentException("Incompatible multiplication dimensions");
+        return chunks(job, TaskType.MATRIX_MULTIPLY, a.getRows(), count, (start,end) -> new HashMap<>(Map.of(
+            "startRow", start, "sliceA", a.sliceRows(start,end), "dataB", b.getData(), "colsB", b.getCols())));
     }
-
-    /**
-     * Chia dinh thuc theo cac so hang khai trien Laplace tren dong dau tien.
-     */
-    public static List<Task> splitMatrixDeterminant(String jobId, Matrix A, int numWorkers) {
-        if (numWorkers <= 0) numWorkers = 1;
-        int totalCols = A.getCols();
-        int partitions = Math.min(numWorkers, totalCols);
-        int colsPerTask = totalCols / partitions;
-        int remainder = totalCols % partitions;
-
-        List<Task> tasks = new ArrayList<>();
-        int currentCol = 0;
-
-        for (int i = 0; i < partitions; i++) {
-            int currentBatch = colsPerTask + (i < remainder ? 1 : 0);
-            List<Integer> assignedColumns = new ArrayList<>();
-            for (int k = 0; k < currentBatch; k++) {
-                assignedColumns.add(currentCol++);
-            }
-
-            Task task = new Task(String.format("%s-task-%02d", jobId, i + 1), jobId, TaskType.MATRIX_DETERMINANT);
-            task.addPayload("matrixData", A.getData());
-            task.addPayload("assignedColumns", assignedColumns);
-
-            tasks.add(task);
-        }
-
-        return tasks;
+    public static List<Task> splitMatrixDeterminant(String job, Matrix a, int count) {
+        if (a.getRows() != a.getCols()) throw new IllegalArgumentException("Square matrix required");
+        return chunks(job, TaskType.MATRIX_DETERMINANT, a.getCols(), count, (start,end) -> new HashMap<>(Map.of(
+            "matrixData", a.getData(), "assignedColumns", java.util.stream.IntStream.range(start,end).boxed().toList())));
     }
-
-    /**
-     * Chia hang ma tran theo lat cat dong; Worker rut gon lat cat thanh basis cuc bo.
-     */
-    public static List<Task> splitMatrixRank(String jobId, Matrix A, int numWorkers) {
-        if (numWorkers <= 0) numWorkers = 1;
-        int totalRows = A.getRows();
-        int partitions = Math.min(numWorkers, totalRows);
-        int rowsPerTask = totalRows / partitions;
-        int remainder = totalRows % partitions;
-
-        List<Task> tasks = new ArrayList<>();
-        int currentRow = 0;
-
-        for (int i = 0; i < partitions; i++) {
-            int currentBatch = rowsPerTask + (i < remainder ? 1 : 0);
-            int startRow = currentRow;
-            int endRow = startRow + currentBatch;
-
-            Task task = new Task(String.format("%s-task-%02d", jobId, i + 1), jobId, TaskType.MATRIX_RANK);
-            task.addPayload("startRow", startRow);
-            task.addPayload("sliceA", A.sliceRows(startRow, endRow));
-            task.addPayload("cols", A.getCols());
-
-            tasks.add(task);
-            currentRow = endRow;
-        }
-
-        return tasks;
+    public static List<Task> splitMatrixRank(String job, Matrix a, int count) {
+        if (a.getCols() <= 0) throw new IllegalArgumentException("Positive columns required");
+        return chunks(job, TaskType.MATRIX_RANK, a.getRows(), count, (start,end) -> new HashMap<>(Map.of(
+            "startRow", start, "sliceA", a.sliceRows(start,end), "cols", a.getCols())));
+    }
+    public static List<Task> splitGraphShortestPath(String job, Graph graph, int count) {
+        return chunks(job, TaskType.GRAPH_SHORTEST_PATH, graph.getVertices(), count, (start,end) -> new HashMap<>(Map.of(
+            "graph", graph, "sourceVertices", java.util.stream.IntStream.range(start,end).boxed().toList())));
     }
 }

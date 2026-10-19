@@ -5,194 +5,103 @@ import com.pbl4.computing.matrix.Matrix;
 import com.pbl4.core.model.*;
 import com.pbl4.core.network.SocketMessenger;
 import com.pbl4.master.aggregate.ResultAggregator;
-import com.pbl4.master.scheduler.TaskScheduler;
+import com.pbl4.master.scheduler.*;
 import com.pbl4.master.split.TaskSplitter;
-
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Supplier;
 
-/**
- * Node dieu phoi trung tam (Master Node) chiu trach nhiem nhan job, chia nho task,
- * lap lich can bang tai va tong hop ket qua.
- */
 public class MasterServer {
     private final int port;
-    private final WorkerRegistry registry;
-    private final TaskScheduler scheduler;
-    private final Map<String, Job> activeJobs = new ConcurrentHashMap<>();
-    private final Map<String, CountDownLatch> jobLatches = new ConcurrentHashMap<>();
-    private final AtomicBoolean running = new AtomicBoolean(false);
-
+    private final String bindHost;
+    private final String session = UUID.randomUUID().toString();
+    private final WorkerRegistry registry = new WorkerRegistry();
+    private final TaskScheduler scheduler = new TaskScheduler(registry);
+    private final JobDispatcher dispatcher = new JobDispatcher(session, scheduler);
+    private final AtomicBoolean running = new AtomicBoolean();
     private ServerSocket serverSocket;
     private ExecutorService connectionThreadPool;
-
-    public MasterServer(int port) {
-        this.port = port;
-        this.registry = new WorkerRegistry();
-        this.scheduler = new TaskScheduler(registry);
-
-        // Thiet lap co che tu dong tai phan phoi (Failover) khi Worker chet
-        this.registry.setOnWorkerFailedListener(this::handleWorkerFailure);
+    private long jobTimeoutMs = 300_000;
+    public MasterServer(int port) { this(port, "0.0.0.0"); }
+    public MasterServer(int port, String bindHost) {
+        this.port = port; this.bindHost = bindHost;
+        registry.setOnWorkerFailedListener(dispatcher::workerFailed);
     }
-
+    public void setJobTimeoutMs(long value) {
+        if (value <= 0) throw new IllegalArgumentException("job timeout must be positive"); jobTimeoutMs = value;
+    }
     public synchronized void start() throws IOException {
         if (running.get()) return;
-        running.set(true);
-
-        connectionThreadPool = Executors.newCachedThreadPool();
-        serverSocket = new ServerSocket(port);
-        System.out.printf("[Master Server] Khoi dong thanh cong, dang lang nghe tai port %d...%n", port);
-
-        Thread acceptThread = new Thread(this::listenForConnections, "Master-AcceptThread");
-        acceptThread.setDaemon(true);
-        acceptThread.start();
-    }
-
-    private void listenForConnections() {
-        while (running.get()) {
-            try {
-                Socket socket = serverSocket.accept();
-                connectionThreadPool.submit(() -> handleClientSocket(socket));
-            } catch (IOException e) {
-                if (!running.get()) break;
-                System.err.printf("[Master] Loi nhan ket noi: %s%n", e.getMessage());
+        serverSocket = new ServerSocket();
+        try { serverSocket.bind(new InetSocketAddress(bindHost, port)); }
+        catch (IOException | RuntimeException e) { stop(); throw e; }
+        connectionThreadPool = Executors.newCachedThreadPool(); running.set(true);
+        Thread listener = new Thread(() -> {
+            while (running.get()) {
+                try { Socket socket = serverSocket.accept(); socket.setSoTimeout(5000); connectionThreadPool.submit(() -> handle(socket)); }
+                catch (IOException | RejectedExecutionException e) { if (running.get()) System.err.println(e.getMessage()); }
             }
-        }
+        }, "Master-listener"); listener.setDaemon(true); listener.start();
+        System.out.println("[Master] Listening " + bindHost + ":" + serverSocket.getLocalPort());
     }
-
-    private void handleClientSocket(Socket socket) {
+    private Message reply(MessageType type, String text) {
+        Message result = new Message(type, "MASTER"); result.masterSession = session; result.setContent(text); return result;
+    }
+    private void handle(Socket socket) {
         try (socket;
-             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
-             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8))) {
-
-            Message msg = SocketMessenger.receiveMessage(reader);
-            if (msg == null) return;
-
-            switch (msg.getType()) {
-                case REGISTER_WORKER:
-                    if (msg.getWorkerInfo() != null) {
-                        registry.register(msg.getWorkerInfo());
-                        SocketMessenger.sendMessage(writer, Message.registerAck(msg.getSenderId()));
-                    }
-                    break;
-
-                case HEARTBEAT:
-                    registry.recordHeartbeat(msg.getSenderId());
-                    SocketMessenger.sendMessage(writer, Message.heartbeatAck(msg.getSenderId()));
-                    break;
-
-                case TASK_RESULT:
-                    handleTaskResult(msg.getTaskResult());
-                    break;
-
-                default:
-                    break;
-            }
-        } catch (Exception e) {
-            // Log loi ket noi thong thuong
-        }
-    }
-
-    private void handleTaskResult(TaskResult result) {
-        if (result == null) return;
-
-        WorkerInfo worker = registry.getWorker(result.getWorkerId());
-        if (worker != null) {
-            worker.decrementActiveTasks();
-            if (result.isSuccess()) {
-                worker.incrementCompletedTasks();
-            }
-        }
-
-        Job job = activeJobs.get(result.getJobId());
-        if (job != null) {
-            job.addResult(result);
-            System.out.printf("[Master] Da nhan ket qua Task [%s] tu %s (Tien do: %d/%d tasks)%n",
-                    result.getTaskId(), result.getWorkerId(), job.getResults().size(), job.getTasks().size());
-
-            if (job.isComplete()) {
-                CountDownLatch latch = jobLatches.get(job.getJobId());
-                if (latch != null) {
-                    latch.countDown();
+             var reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
+             var writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8))) {
+            Message request = SocketMessenger.receiveMessage(reader); if (request == null) return;
+            Message response;
+            if (request.protocolVersion != 2) response = reply(MessageType.REGISTER_REJECTED, "Protocol v2 required");
+            else switch (request.getType()) {
+                case REGISTER_WORKER -> response = register(request);
+                case HEARTBEAT -> {
+                    boolean known = session.equals(request.masterSession) && registry.heartbeat(request.getSenderId(), request.workerSession, request.metrics);
+                    WorkerInfo w = registry.getWorker(request.getSenderId());
+                    response = reply(known ? MessageType.HEARTBEAT_ACK : MessageType.REGISTER_REQUIRED,
+                        known && w.paused ? "PAUSED" : "READY");
                 }
-            }
-        }
-    }
-
-    /**
-     * Tu dong dieu phoi lai cac task do dang khi mot Worker bi ngat ket noi (Fault Tolerance)
-     */
-    private void handleWorkerFailure(WorkerInfo deadWorker) {
-        String deadId = deadWorker.getWorkerId();
-        for (Job job : activeJobs.values()) {
-            if (!job.isComplete()) {
-                for (Task task : job.getTasks()) {
-                    if (deadId.equals(task.getWorkerAssigned()) && !job.getResults().containsKey(task.getTaskId())) {
-                        System.out.printf("[Master - Failover] Tai dieu phoi Task [%s] cua Job [%s] do Worker [%s] bi ngat ket noi!%n",
-                                task.getTaskId(), job.getJobId(), deadId);
-                        task.incrementRetryCount();
-                        WorkerInfo newWorker = scheduler.selectWorker();
-                        if (newWorker != null) {
-                            scheduler.dispatchTask(task, newWorker);
-                        } else {
-                            System.err.println("[Master - Failover] Khong con Worker nao kha dung de nhan lai task!");
-                        }
-                    }
+                case TASK_RESULT -> {
+                    dispatcher.result(request.getTaskResult());
+                    WorkerInfo w = registry.getWorker(request.getSenderId());
+                    if (w != null && Objects.equals(w.sessionId, request.workerSession) && request.metrics != null) w.metrics = request.metrics;
+                    response = reply(MessageType.RESULT_ACK, "Received (including stale or duplicate result)");
                 }
+                default -> response = reply(MessageType.REGISTER_REJECTED, "Unsupported message");
             }
-        }
+            SocketMessenger.sendMessage(writer, response);
+        } catch (Exception e) { if (running.get()) System.err.println("[Master connection] " + e.getMessage()); }
     }
-
-    /**
-     * Thuc thi mot Job hoan chinh: Phan phoi cac task, cho ket qua va xu ly ngoai le/timeout.
-     */
-    public boolean executeJob(Job job, long timeoutMs) {
-        activeJobs.put(job.getJobId(), job);
-        CountDownLatch latch = new CountDownLatch(1);
-        jobLatches.put(job.getJobId(), latch);
-
-        job.setStatus(JobStatus.RUNNING);
-        job.setStartTime(System.currentTimeMillis());
-
-        // Phan phoi tung task toi cac Worker dua tren thuat toan can bang tai
-        for (Task task : job.getTasks()) {
-            WorkerInfo worker = scheduler.selectWorker();
-            if (worker == null) {
-                System.err.println("[Master] Khong co Worker nao dang truc tuyen de xu ly cong viec!");
-                job.setStatus(JobStatus.FAILED);
-                return false;
-            }
-            boolean sent = scheduler.dispatchTask(task, worker);
-            if (!sent) {
-                System.err.printf("[Master] Gui Task [%s] that bai!%n", task.getTaskId());
-            }
-        }
-
-        boolean completed = false;
+    private Message register(Message request) {
         try {
-            completed = latch.await(timeoutMs, TimeUnit.MILLISECONDS);
-            if (completed) {
-                job.setStatus(JobStatus.COMPLETED);
-                job.setEndTime(System.currentTimeMillis());
-            } else {
-                job.setStatus(JobStatus.FAILED);
-                System.err.printf("[Master] Job [%s] qua thoi gian cho (Timeout %d ms)!%n", job.getJobId(), timeoutMs);
-            }
-        } catch (InterruptedException e) {
-            job.setStatus(JobStatus.FAILED);
-            Thread.currentThread().interrupt();
-        } finally {
-            jobLatches.remove(job.getJobId());
-        }
-
-        return completed;
+            WorkerInfo info = request.getWorkerInfo();
+            if (info == null || info.sessionId == null || info.getWorkerId() == null || info.getWorkerId().isBlank()
+                || info.getHost() == null || info.getCapacity() < 1 || info.getPort() < 1 || info.getPort() > 65535)
+                throw new IllegalArgumentException("Invalid Worker registration");
+            Message ping = new Message(MessageType.PING, "MASTER");
+            Message pong = SocketMessenger.sendAndReceive(info.getHost(), info.getPort(), ping, 2000);
+            if (pong == null || pong.protocolVersion != 2 || pong.getType() != MessageType.PONG
+                || !Objects.equals(info.sessionId, pong.workerSession)) throw new IOException("Reverse connection/session check failed");
+            registry.register(info);
+            return reply(MessageType.REGISTER_ACK, registry.getWorker(info.getWorkerId()).paused ? "PAUSED" : "READY");
+        } catch (Exception e) { return reply(MessageType.REGISTER_REJECTED, e.getMessage()); }
     }
-
+    public boolean executeJob(Job job, long timeoutMs) { return dispatcher.execute(job, timeoutMs); }
+    private int partitions() {
+        long capacity = registry.getAvailableWorkers().stream().mapToLong(WorkerInfo::getCapacity).sum();
+        return (int) Math.min(64, 4 * Math.max(1, capacity));
+    }
+    private <T> T aggregate(Job job, Supplier<T> calculation) {
+        try {
+            T value = calculation.get(); job.setStatus(JobStatus.COMPLETED); job.setEndTime(System.currentTimeMillis()); return value;
+        } catch (RuntimeException e) { job.setStatus(JobStatus.FAILED); throw e; }
+        finally { job.getResults().clear(); }
+    }
     // ==========================================
     // CAC HAM XU LY NGHIEP VU CAP CAO (API)
     // ==========================================
@@ -201,16 +110,16 @@ public class MasterServer {
      * Vi du khoi dau: Tinh toan song song bieu thuc (VD: 1+2 va 3*2 -> Tong hop = 9)
      */
     public Double runArithmeticStarter(String expr1, String expr2, String topOp) {
-        String jobId = "arithmetic-" + System.currentTimeMillis();
+        String jobId = "arithmetic-" + UUID.randomUUID().toString();
         Job job = new Job(jobId, "Bieu thuc song song: (" + expr1 + ") " + topOp + " (" + expr2 + ")", TaskType.ARITHMETIC);
         
         List<Task> tasks = TaskSplitter.splitArithmetic(jobId, expr1, expr2);
         job.setTasks(tasks);
 
         System.out.printf("%n=== BAT DAU JOB KHOI DAU: (%s) %s (%s) ===%n", expr1, topOp, expr2);
-        boolean ok = executeJob(job, 10000);
+        boolean ok = executeJob(job, jobTimeoutMs);
         if (ok) {
-            double res = ResultAggregator.aggregateArithmetic(job, topOp);
+            double res = aggregate(job, () -> ResultAggregator.aggregateArithmetic(job, topOp));
             System.out.printf(">>> KET QUA TONG HOP: %s = %.2f (Thoi gian: %d ms)%n",
                     job.getTitle(), res, job.getDurationMs());
             return res;
@@ -226,19 +135,19 @@ public class MasterServer {
     public Matrix runMatrixAddOrSub(Matrix A, Matrix B, boolean isAdd) {
         TaskType type = isAdd ? TaskType.MATRIX_ADD : TaskType.MATRIX_SUB;
         String opName = isAdd ? "Cong" : "Tru";
-        String jobId = "mat-" + (isAdd ? "add" : "sub") + "-" + System.currentTimeMillis();
+        String jobId = "mat-" + (isAdd ? "add" : "sub") + "-" + UUID.randomUUID().toString();
 
-        int workerCount = Math.max(1, registry.getAvailableWorkers().size());
+        int partitionCount = partitions();
         Job job = new Job(jobId, String.format("%s ma tran [%d x %d]", opName, A.getRows(), A.getCols()), type);
-        List<Task> tasks = TaskSplitter.splitMatrixAddSub(jobId, A, B, type, workerCount);
+        List<Task> tasks = TaskSplitter.splitMatrixAddSub(jobId, A, B, type, partitionCount);
         job.setTasks(tasks);
 
-        System.out.printf("%n=== BAT DAU JOB %s MA TRAN [%d x %d] TREN %d WORKERS ===%n",
+        System.out.printf("%n=== BAT DAU JOB %s MA TRAN [%d x %d] CHIA THANH %d TASKS ===%n",
                 opName.toUpperCase(), A.getRows(), A.getCols(), tasks.size());
 
-        boolean ok = executeJob(job, 30000);
+        boolean ok = executeJob(job, jobTimeoutMs);
         if (ok) {
-            Matrix res = ResultAggregator.aggregateMatrix(job, A.getRows(), A.getCols());
+            Matrix res = aggregate(job, () -> ResultAggregator.aggregateMatrix(job, A.getRows(), A.getCols()));
             System.out.printf(">>> HOAN THANH %s MA TRAN TRONG %d ms!%n", opName, job.getDurationMs());
             return res;
         }
@@ -249,19 +158,19 @@ public class MasterServer {
      * Phep chia lay du (%) 2 ma tran phan tan C = A % B
      */
     public Matrix runMatrixModulo(Matrix A, Matrix B) {
-        String jobId = "mat-mod-" + System.currentTimeMillis();
-        int workerCount = Math.max(1, registry.getAvailableWorkers().size());
+        String jobId = "mat-mod-" + UUID.randomUUID().toString();
+        int partitionCount = partitions();
 
         Job job = new Job(jobId, String.format("Chia lay du (%%) ma tran [%d x %d]", A.getRows(), A.getCols()), TaskType.MATRIX_MOD);
-        List<Task> tasks = TaskSplitter.splitMatrixAddSub(jobId, A, B, TaskType.MATRIX_MOD, workerCount);
+        List<Task> tasks = TaskSplitter.splitMatrixAddSub(jobId, A, B, TaskType.MATRIX_MOD, partitionCount);
         job.setTasks(tasks);
 
-        System.out.printf("%n=== BAT DAU JOB CHIA LAY DU (%%) MA TRAN [%d x %d] TREN %d WORKERS ===%n",
+        System.out.printf("%n=== BAT DAU JOB CHIA LAY DU (%%) MA TRAN [%d x %d] CHIA THANH %d TASKS ===%n",
                 A.getRows(), A.getCols(), tasks.size());
 
-        boolean ok = executeJob(job, 30000);
+        boolean ok = executeJob(job, jobTimeoutMs);
         if (ok) {
-            Matrix res = ResultAggregator.aggregateMatrix(job, A.getRows(), A.getCols());
+            Matrix res = aggregate(job, () -> ResultAggregator.aggregateMatrix(job, A.getRows(), A.getCols()));
             System.out.printf(">>> HOAN THANH CHIA LAY DU (%%) MA TRAN TRONG %d ms!%n", job.getDurationMs());
             return res;
         }
@@ -272,20 +181,20 @@ public class MasterServer {
      * Phep nhan 2 ma tran phan tan C = A * B
      */
     public Matrix runMatrixMultiplication(Matrix A, Matrix B) {
-        String jobId = "mat-mul-" + System.currentTimeMillis();
-        int workerCount = Math.max(1, registry.getAvailableWorkers().size());
+        String jobId = "mat-mul-" + UUID.randomUUID().toString();
+        int partitionCount = partitions();
 
         Job job = new Job(jobId, String.format("Nhan ma tran [%d x %d] * [%d x %d]",
                 A.getRows(), A.getCols(), B.getRows(), B.getCols()), TaskType.MATRIX_MULTIPLY);
-        List<Task> tasks = TaskSplitter.splitMatrixMultiply(jobId, A, B, workerCount);
+        List<Task> tasks = TaskSplitter.splitMatrixMultiply(jobId, A, B, partitionCount);
         job.setTasks(tasks);
 
-        System.out.printf("%n=== BAT DAU JOB NHAN MA TRAN [%d x %d] * [%d x %d] TREN %d WORKERS ===%n",
+        System.out.printf("%n=== BAT DAU JOB NHAN MA TRAN [%d x %d] * [%d x %d] CHIA THANH %d TASKS ===%n",
                 A.getRows(), A.getCols(), B.getRows(), B.getCols(), tasks.size());
 
-        boolean ok = executeJob(job, 60000);
+        boolean ok = executeJob(job, jobTimeoutMs);
         if (ok) {
-            Matrix res = ResultAggregator.aggregateMatrix(job, A.getRows(), B.getCols());
+            Matrix res = aggregate(job, () -> ResultAggregator.aggregateMatrix(job, A.getRows(), B.getCols()));
             System.out.printf(">>> HOAN THANH NHAN MA TRAN TRONG %d ms!%n", job.getDurationMs());
             return res;
         }
@@ -300,20 +209,20 @@ public class MasterServer {
             throw new IllegalArgumentException("Dinh thuc chi tinh duoc cho ma tran vuong!");
         }
 
-        String jobId = "mat-det-" + System.currentTimeMillis();
-        int workerCount = Math.max(1, registry.getAvailableWorkers().size());
+        String jobId = "mat-det-" + UUID.randomUUID().toString();
+        int partitionCount = partitions();
 
         Job job = new Job(jobId, String.format("Tinh dinh thuc ma tran [%d x %d]",
                 A.getRows(), A.getCols()), TaskType.MATRIX_DETERMINANT);
-        List<Task> tasks = TaskSplitter.splitMatrixDeterminant(jobId, A, workerCount);
+        List<Task> tasks = TaskSplitter.splitMatrixDeterminant(jobId, A, partitionCount);
         job.setTasks(tasks);
 
-        System.out.printf("%n=== BAT DAU JOB TINH DINH THUC MA TRAN [%d x %d] TREN %d WORKERS ===%n",
+        System.out.printf("%n=== BAT DAU JOB TINH DINH THUC MA TRAN [%d x %d] CHIA THANH %d TASKS ===%n",
                 A.getRows(), A.getCols(), tasks.size());
 
-        boolean ok = executeJob(job, 60000);
+        boolean ok = executeJob(job, jobTimeoutMs);
         if (ok) {
-            double determinant = ResultAggregator.aggregateMatrixDeterminant(job);
+            double determinant = aggregate(job, () -> ResultAggregator.aggregateMatrixDeterminant(job));
             System.out.printf(">>> HOAN THANH TINH DINH THUC TRONG %d ms!%n", job.getDurationMs());
             return determinant;
         }
@@ -324,20 +233,20 @@ public class MasterServer {
      * Tinh hang ma tran phan tan bang cach rut gon tung lat cat dong tren Worker.
      */
     public Integer runMatrixRank(Matrix A) {
-        String jobId = "mat-rank-" + System.currentTimeMillis();
-        int workerCount = Math.max(1, registry.getAvailableWorkers().size());
+        String jobId = "mat-rank-" + UUID.randomUUID().toString();
+        int partitionCount = partitions();
 
         Job job = new Job(jobId, String.format("Tinh hang ma tran [%d x %d]",
                 A.getRows(), A.getCols()), TaskType.MATRIX_RANK);
-        List<Task> tasks = TaskSplitter.splitMatrixRank(jobId, A, workerCount);
+        List<Task> tasks = TaskSplitter.splitMatrixRank(jobId, A, partitionCount);
         job.setTasks(tasks);
 
-        System.out.printf("%n=== BAT DAU JOB TINH HANG MA TRAN [%d x %d] TREN %d WORKERS ===%n",
+        System.out.printf("%n=== BAT DAU JOB TINH HANG MA TRAN [%d x %d] CHIA THANH %d TASKS ===%n",
                 A.getRows(), A.getCols(), tasks.size());
 
-        boolean ok = executeJob(job, 60000);
+        boolean ok = executeJob(job, jobTimeoutMs);
         if (ok) {
-            int rank = ResultAggregator.aggregateMatrixRank(job, A.getCols());
+            int rank = aggregate(job, () -> ResultAggregator.aggregateMatrixRank(job, A.getCols()));
             System.out.printf(">>> HOAN THANH TINH HANG MA TRAN TRONG %d ms!%n", job.getDurationMs());
             return rank;
         }
@@ -376,20 +285,20 @@ public class MasterServer {
      * Tim duong di ngan nhat do thi phan tan (All-Pairs Shortest Path)
      */
     public double[][] runGraphShortestPath(Graph graph) {
-        String jobId = "graph-sp-" + System.currentTimeMillis();
-        int workerCount = Math.max(1, registry.getAvailableWorkers().size());
+        String jobId = "graph-sp-" + UUID.randomUUID().toString();
+        int partitionCount = partitions();
 
         Job job = new Job(jobId, String.format("Tim duong di ngan nhat do thi (%d dinh)",
                 graph.getVertices()), TaskType.GRAPH_SHORTEST_PATH);
-        List<Task> tasks = TaskSplitter.splitGraphShortestPath(jobId, graph, workerCount);
+        List<Task> tasks = TaskSplitter.splitGraphShortestPath(jobId, graph, partitionCount);
         job.setTasks(tasks);
 
-        System.out.printf("%n=== BAT DAU TIM DUONG DI NGAN NHAT PHAN TAN (%d DINH) TREN %d WORKERS ===%n",
+        System.out.printf("%n=== BAT DAU TIM DUONG DI NGAN NHAT PHAN TAN (%d DINH) CHIA THANH %d TASKS ===%n",
                 graph.getVertices(), tasks.size());
 
-        boolean ok = executeJob(job, 30000);
+        boolean ok = executeJob(job, jobTimeoutMs);
         if (ok) {
-            double[][] dist = ResultAggregator.aggregateGraphShortestPath(job, graph.getVertices());
+            double[][] dist = aggregate(job, () -> ResultAggregator.aggregateGraphShortestPath(job, graph.getVertices()));
             System.out.printf(">>> HOAN THANH TIM DUONG DI NGAN NHAT TRONG %d ms!%n", job.getDurationMs());
             return dist;
         }
@@ -401,36 +310,18 @@ public class MasterServer {
      */
     public boolean toggleWorkerState(String workerId) {
         WorkerInfo worker = registry.getWorker(workerId);
-        if (worker == null) {
-            System.err.printf("[Master] Khong tim thay Worker [%s] trong danh sach!%n", workerId);
-            return false;
-        }
-
-        boolean willBeOnline = (worker.getStatus() != WorkerStatus.ONLINE);
-        WorkerStatus newStatus = willBeOnline ? WorkerStatus.ONLINE : WorkerStatus.OFFLINE;
-        worker.setStatus(newStatus);
-        if (willBeOnline) {
-            worker.setLastHeartbeatTime(System.currentTimeMillis());
-        }
-
+        if (worker == null) return false;
+        worker.paused = !worker.paused;
         try {
-            Message msg = Message.setWorkerState(workerId, willBeOnline);
-            SocketMessenger.sendOneWay(worker.getHost(), worker.getPort(), msg, 3000);
-            System.out.printf("[Master] Da gui lenh chuyen Worker [%s] sang trang thai: %s%n",
-                    workerId, newStatus);
-            return true;
-        } catch (Exception e) {
-            System.out.printf("[Master] Da cap nhat trang thai Worker [%s] sang %s tren Master (Khong ket noi duoc den Worker qua socket: %s)%n",
-                    workerId, newStatus, e.getMessage());
-            return true;
-        }
+            Message request = Message.setWorkerState(workerId, !worker.paused); request.masterSession = session;
+            SocketMessenger.sendAndReceive(worker.getHost(), worker.getPort(), request, 3000);
+        } catch (IOException e) { System.err.println("[Master] State saved; heartbeat will synchronize: " + e.getMessage()); }
+        return true;
     }
-
     public synchronized void stop() {
-        if (!running.get()) return;
         running.set(false);
 
-        registry.shutdown();
+        dispatcher.close(); registry.shutdown();
         if (connectionThreadPool != null) {
             connectionThreadPool.shutdownNow();
         }

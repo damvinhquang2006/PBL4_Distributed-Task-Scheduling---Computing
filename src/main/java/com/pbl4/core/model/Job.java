@@ -15,7 +15,7 @@ public class Job {
     private String jobId;
     private String title;
     private TaskType type;
-    private JobStatus status;
+    private volatile JobStatus status;
     private List<Task> tasks = new ArrayList<>();
     private Map<String, TaskResult> results = new ConcurrentHashMap<>();
     private long startTime;
@@ -95,7 +95,7 @@ public class Job {
 
     public boolean isComplete() {
         if (tasks == null || tasks.isEmpty()) return false;
-        return results.size() >= tasks.size();
+        return tasks.stream().allMatch(t -> results.containsKey(t.getTaskId()) && results.get(t.getTaskId()).isSuccess());
     }
 
     public long getStartTime() {

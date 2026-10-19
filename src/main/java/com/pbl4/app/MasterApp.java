@@ -20,14 +20,31 @@ import java.util.Scanner;
  */
 public class MasterApp {
     private static MasterServer masterServer;
+    private static com.pbl4.master.http.MasterHttpServer httpServer;
 
     public static void main(String[] args) {
         int port = 50;
+        int httpPort = 8080;
         boolean autoDemo = false;
+        String bindHost = "0.0.0.0";
+        long timeoutMs = 300_000;
+        LoadBalancingPolicy policy = LoadBalancingPolicy.ROUND_ROBIN;
+        double cpuHigh=85, cpuLow=75, ramHigh=90, ramLow=80, heapHigh=85, heapLow=75;
 
         for (int i = 0; i < args.length; i++) {
-            if ("--port".equals(args[i]) && i + 1 < args.length) {
+            if ("--bindHost".equals(args[i]) && i + 1 < args.length) { bindHost = args[++i];
+            } else if ("--policy".equals(args[i]) && i + 1 < args.length) { policy = LoadBalancingPolicy.valueOf(args[++i]);
+            } else if ("--jobTimeoutSeconds".equals(args[i]) && i + 1 < args.length) { timeoutMs = Long.parseLong(args[++i]) * 1000;
+            } else if ("--cpuHigh".equals(args[i]) && i + 1 < args.length) { cpuHigh = Double.parseDouble(args[++i]);
+            } else if ("--cpuLow".equals(args[i]) && i + 1 < args.length) { cpuLow = Double.parseDouble(args[++i]);
+            } else if ("--ramHigh".equals(args[i]) && i + 1 < args.length) { ramHigh = Double.parseDouble(args[++i]);
+            } else if ("--ramLow".equals(args[i]) && i + 1 < args.length) { ramLow = Double.parseDouble(args[++i]);
+            } else if ("--heapHigh".equals(args[i]) && i + 1 < args.length) { heapHigh = Double.parseDouble(args[++i]);
+            } else if ("--heapLow".equals(args[i]) && i + 1 < args.length) { heapLow = Double.parseDouble(args[++i]);
+            } else if ("--port".equals(args[i]) && i + 1 < args.length) {
                 port = Integer.parseInt(args[++i]);
+            } else if ("--httpPort".equals(args[i]) && i + 1 < args.length) {
+                httpPort = Integer.parseInt(args[++i]);
             } else if ("--demo".equals(args[i])) {
                 autoDemo = true;
             }
@@ -38,10 +55,24 @@ public class MasterApp {
         System.out.println("===============================================================");
 
         try {
-            masterServer = new MasterServer(port);
+            if (timeoutMs <= 0) throw new IllegalArgumentException("job timeout must be positive");
+            var thresholds = new com.pbl4.master.scheduler.ResourceThresholds(cpuHigh,cpuLow,ramHigh,ramLow,heapHigh,heapLow);
+            masterServer = new MasterServer(port, bindHost);
+            masterServer.setJobTimeoutMs(timeoutMs);
+            masterServer.getScheduler().setPolicy(policy);
+            masterServer.getScheduler().setThresholds(thresholds);
             masterServer.start();
+            try {
+                httpServer = new com.pbl4.master.http.MasterHttpServer(masterServer, httpPort);
+                httpServer.start();
+            } catch (Exception e) {
+                System.err.printf("[MasterApp] Khong the khoi dong Web API tren port %d: %s%n", httpPort, e.getMessage());
+            }
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                if (httpServer != null) {
+                    httpServer.stop();
+                }
                 if (masterServer != null) {
                     masterServer.stop();
                 }
@@ -676,6 +707,8 @@ public class MasterApp {
             System.out.printf("%-15s %-18s %-12s %-10d %-14d %-12d%n",
                     w.getWorkerId(), w.getHost() + ":" + w.getPort(),
                     w.getStatus(), w.getCapacity(), w.getActiveTasks(), w.getCompletedTasks());
+            masterServer.getScheduler().eligible(w);
+            System.out.println("  " + w.metrics + " admission=" + w.admissionReason);
         }
         System.out.println("----------------------------------------------------------------------------------");
         System.out.printf("Chinh sach can bang tai hien tai: %s%n", masterServer.getScheduler().getPolicy());
@@ -684,7 +717,7 @@ public class MasterApp {
     private static void toggleLoadBalancingPolicy() {
         LoadBalancingPolicy cur = masterServer.getScheduler().getPolicy();
         LoadBalancingPolicy next = (cur == LoadBalancingPolicy.ROUND_ROBIN) ?
-                LoadBalancingPolicy.LEAST_LOADED : LoadBalancingPolicy.ROUND_ROBIN;
+                LoadBalancingPolicy.LEAST_LOADED : cur == LoadBalancingPolicy.LEAST_LOADED ? LoadBalancingPolicy.RESOURCE_AWARE : LoadBalancingPolicy.ROUND_ROBIN;
         masterServer.getScheduler().setPolicy(next);
         System.out.printf(">> Da chuyen chinh sach Can bang tai thanh: %s%n", next);
     }
@@ -705,7 +738,7 @@ public class MasterApp {
             System.out.println("----------------- TUY CHINH CAC WORKER (ON/OFF) -----------------");
             for (int i = 0; i < workers.size(); i++) {
                 WorkerInfo w = workers.get(i);
-                String badge = (w.getStatus() == WorkerStatus.ONLINE) ? "[ONLINE - HOAT DONG]" : "[OFFLINE - TAM DUNG]";
+                String badge = w.paused ? "[PAUSED]" : "[" + w.getStatus() + "]";
                 System.out.printf("%d. %-12s (%s:%d) -> %s%n",
                         (i + 1), w.getWorkerId(), w.getHost(), w.getPort(), badge);
             }

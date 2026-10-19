@@ -34,7 +34,10 @@ public class SocketMessenger {
         if (line == null || line.trim().isEmpty()) {
             return null;
         }
-        return JsonUtils.fromJson(line, Message.class);
+        Message message = JsonUtils.fromJson(line, Message.class);
+        // Old clients omit the version; never silently interpret them as v2.
+        if (!JsonUtils.getMapper().readTree(line).has("protocolVersion")) message.protocolVersion = 0;
+        return message;
     }
 
     /**

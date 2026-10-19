@@ -5,11 +5,17 @@ package com.pbl4.worker;
  */
 public class WorkerConfig {
     private String workerId;
+    private String bindHost = "0.0.0.0";
+    private boolean demoDelay;
+    public String getBindHost() { return bindHost; }
+    public void setBindHost(String value) { bindHost = value; }
+    public boolean isDemoDelay() { return demoDelay; }
+    public void setDemoDelay(boolean value) { demoDelay = value; }
     private String host = "127.0.0.1";
     private int port;
     private String masterHost = "127.0.0.1";
     private int masterPort = 50;
-    private int capacity = Runtime.getRuntime().availableProcessors();
+    private int capacity = Math.max(1, Runtime.getRuntime().availableProcessors() - 1);
     private int heartbeatIntervalSeconds = 3;
 
     public WorkerConfig() {
@@ -73,7 +79,7 @@ public class WorkerConfig {
     }
 
     public void setCapacity(int capacity) {
-        this.capacity = capacity;
+        if (capacity < 1) throw new IllegalArgumentException("capacity must be positive"); this.capacity = capacity;
     }
 
     public int getHeartbeatIntervalSeconds() {

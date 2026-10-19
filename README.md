@@ -118,11 +118,54 @@ java -cp target/distributed-task-scheduling-1.0.0.jar com.pbl4.app.WorkerApp --i
 java -cp target/distributed-task-scheduling-1.0.0.jar com.pbl4.app.WorkerApp --id client03 --port 53 --masterPort 50
 ```
 
-Hoặc dùng script tiện ích khởi chạy cả cụm:
+
+
+
+==================================================================
+Hoặc dùng script tiện ích khởi chạy cả cụm (Master + 50 Workers):
 ```powershell
 .\scripts\run-all.ps1
 ```
-Để dừng tất cả:
+
+Khởi chạy cả cụm kèm giao diện trực quan Web UI ReactJS:
+```powershell
+.\scripts\run-all.ps1 -WithUI
+```
+Hoặc khởi chạy riêng Web UI:
+```powershell
+.\scripts\start-ui.ps1
+```
+==================================================================
+
+
+
+
+
+
+Để dừng tất cả cụm và Web UI:
 ```powershell
 .\scripts\stop-all.ps1
 ```
+
+---
+
+## 4. Giao Diện Trực Quan Hóa Web UI (ReactJS + Vite)
+
+Dự án cung cấp giao diện Web trực quan hóa hoàn chỉnh tại thư mục `frontend/` kết nối với Master Server qua REST API (`http://localhost:8080/api`):
+- **Phòng thí nghiệm Ma trận (Matrix Computation Lab)**:
+  - Chọn kích thước $r_A \times c_A$ và $r_B \times c_B$ trực quan với tính năng kiểm tra tính tương thích kích thước thời gian thực.
+  - Chọn 4 phép toán ma trận: Cộng (`+`), Trừ (`-`), Nhân (`x`), Chia lấy dư (`%`).
+  - Lưới nhập ma trận tương tác (Interactive Grid) kèm công cụ sinh số ngẫu nhiên hoặc điền 0.
+  - Đo đạc và hiển thị trực quan so sánh thời gian tính toán phân tán vs tuần tự (Speedup factor).
+- **Giám sát Cụm Workers (Cluster Topology Monitor)**:
+  - Hiển thị trực quan toàn bộ 50 Workers với thanh tải CPU %, RAM %, JVM Heap % và tiến độ tác vụ.
+  - Chuyển đổi chính sách cân bằng tải (`ROUND_ROBIN`, `LEAST_LOADED`, `RESOURCE_AWARE`).
+  - Nút Bật/Tạm dừng từng Worker phục vụ mô phỏng khả năng tự phục hồi khi node gặp sự cố (Fault Tolerance).
+- **Ví dụ khởi đầu (Starter Expression Demo)**:
+  - Mô phỏng trực quan Master chia các biểu thức $(1+2) + (3 \times 2) = 9$ cho các Worker và tổng hợp kết quả.
+
+---
+
+## Chạy trên hai laptop và điều phối CPU/RAM
+
+Xem [hướng dẫn LAN](LAN.md) để chạy Master trên laptop A, Worker trên A/B, cấu hình firewall, kiểm tra kết nối và nghiệm thu. Bản LAN dùng giao thức v2, cần cùng JAR trên cả hai máy. Tài liệu demo localhost phía trên mô tả cấu hình cũ; hàng đợi và cơ chế xác nhận/phục hồi mới được mô tả trong LAN.md.

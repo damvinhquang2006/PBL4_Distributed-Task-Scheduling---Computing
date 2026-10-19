@@ -15,11 +15,27 @@ public class ClusterLauncher {
 
     public static void main(String[] args) throws Exception {
         int masterPort = 50;
-        int[] workerPorts = {51, 52, 53};
-        String[] workerIds = {"client01", "client02", "client03"};
+        int workerCount = 3;
+        int startWorkerPort = 51;
+        boolean showMenu = false;
+        boolean keepAlive = false;
+
+        for (int i = 0; i < args.length; i++) {
+            if (("--workers".equals(args[i]) || "--count".equals(args[i])) && i + 1 < args.length) {
+                workerCount = Integer.parseInt(args[++i]);
+            } else if ("--masterPort".equals(args[i]) && i + 1 < args.length) {
+                masterPort = Integer.parseInt(args[++i]);
+            } else if ("--startPort".equals(args[i]) && i + 1 < args.length) {
+                startWorkerPort = Integer.parseInt(args[++i]);
+            } else if ("--menu".equals(args[i])) {
+                showMenu = true;
+            } else if ("--keep-alive".equals(args[i])) {
+                keepAlive = true;
+            }
+        }
 
         System.out.println("==================================================================");
-        System.out.println("     KHOI DONG CUM TINH TOAN 1 MASTER VA 3 WORKERS TREN LOCALHOST ");
+        System.out.printf("     KHOI DONG CUM TINH TOAN 1 MASTER VA %d WORKERS TREN LOCALHOST%n", workerCount);
         System.out.println("==================================================================");
 
         // 1. Khoi dong Master Server (Port 50)
@@ -27,19 +43,22 @@ public class ClusterLauncher {
         master.start();
         Thread.sleep(500);
 
-        // 2. Khoi dong 3 Worker Nodes (Port 51, 52, 53)
+        // 2. Khoi dong N Worker Nodes (Ports tu startWorkerPort)
         List<WorkerNode> workers = new ArrayList<>();
-        for (int i = 0; i < workerPorts.length; i++) {
-            WorkerConfig cfg = new WorkerConfig(workerIds[i], "127.0.0.1", workerPorts[i], "127.0.0.1", masterPort);
+        for (int i = 0; i < workerCount; i++) {
+            int port = startWorkerPort + i;
+            String id = (workerCount <= 3) ? String.format("client%02d", i + 1) : String.format("worker-%02d", i + 1);
+            WorkerConfig cfg = new WorkerConfig(id, "127.0.0.1", port, "127.0.0.1", masterPort);
+            cfg.setCapacity(2);
             WorkerNode node = new WorkerNode(cfg);
             node.start();
             workers.add(node);
         }
 
         // Doi cac Worker dang ky xong
-        Thread.sleep(1500);
+        Thread.sleep(Math.min(3000, 500 + workerCount * 40));
 
-        System.out.println("\n>>> TAT CA 3 WORKER DA DANG KY VOI MASTER THANH CONG! <<<");
+        System.out.printf("%n>>> TAT CA %d WORKER DA DANG KY VOI MASTER THANH CONG! <<<%n", workers.size());
 
         // Dang ky hook don dep khi tat
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -52,16 +71,6 @@ public class ClusterLauncher {
 
         // Gan MasterServer vao MasterApp
         MasterApp.setMasterServer(master);
-
-        boolean showMenu = false;
-        boolean keepAlive = false;
-        for (String arg : args) {
-            if ("--menu".equals(arg)) {
-                showMenu = true;
-            } else if ("--keep-alive".equals(arg)) {
-                keepAlive = true;
-            }
-        }
 
         if (showMenu) {
             MasterApp.runInteractiveConsole();

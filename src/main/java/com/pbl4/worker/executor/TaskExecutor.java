@@ -15,6 +15,7 @@ import java.util.List;
  * Hien thi chi tiet tien trinh xu ly tung buoc mot cho den khi hoan thanh.
  */
 public class TaskExecutor {
+    public static final ThreadLocal<Boolean> DEMO_DELAY = ThreadLocal.withInitial(() -> false);
 
     public static TaskResult execute(String workerId, Task task) {
         long start = System.currentTimeMillis();
@@ -357,6 +358,7 @@ public class TaskExecutor {
     }
 
     private static void sleepPacing(long ms) {
+        if (!DEMO_DELAY.get()) return;
         try {
             Thread.sleep(ms);
         } catch (InterruptedException ignored) {

@@ -9,6 +9,15 @@ import java.util.Map;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Task {
+    public String attemptId;
+    public String masterSession;
+    public String workerSession;
+    @com.fasterxml.jackson.annotation.JsonIgnore
+    private java.util.function.Supplier<Map<String, Object>> payloadFactory;
+    public void deferPayload(java.util.function.Supplier<Map<String, Object>> factory) { payloadFactory = factory; }
+    public void materializePayload() { if (payloadFactory != null) payload = payloadFactory.get(); }
+    public void clearMaterializedPayload() { if (payloadFactory != null) payload = new HashMap<>(); }
+    public void releasePayload() { payloadFactory = null; payload.clear(); }
     private String taskId;
     private String jobId;
     private TaskType taskType;
@@ -92,6 +101,7 @@ public class Task {
         return retryCount;
     }
 
+    public void undoRetry() { retryCount = Math.max(0, retryCount - 1); }
     public void incrementRetryCount() {
         this.retryCount++;
     }

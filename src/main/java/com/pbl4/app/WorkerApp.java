@@ -18,10 +18,17 @@ public class WorkerApp {
         String host = "127.0.0.1";
         String masterHost = "127.0.0.1";
         int masterPort = 50;
-        int capacity = Runtime.getRuntime().availableProcessors();
+        int capacity = Math.max(1, Runtime.getRuntime().availableProcessors() - 1);
+        String bindHost = "0.0.0.0";
+        boolean demoDelay = false;
+        int count = 1;
 
         for (int i = 0; i < args.length; i++) {
-            if ("--id".equals(args[i]) && i + 1 < args.length) {
+            if ("--demoDelay".equals(args[i])) { demoDelay = true;
+            } else if ("--bindHost".equals(args[i]) && i + 1 < args.length) { bindHost = args[++i];
+            } else if ("--count".equals(args[i]) && i + 1 < args.length) {
+                count = Integer.parseInt(args[++i]);
+            } else if ("--id".equals(args[i]) && i + 1 < args.length) {
                 id = args[++i];
             } else if ("--port".equals(args[i]) && i + 1 < args.length) {
                 port = Integer.parseInt(args[++i]);
@@ -36,13 +43,18 @@ public class WorkerApp {
             }
         }
 
+        if (count > 1) {
+            WorkerClusterLauncher.startCluster(count, port, host, masterHost, masterPort, capacity, "worker-");
+            return;
+        }
+
         System.out.printf("==================================================%n");
         System.out.printf("   KHOI DONG WORKER NODE [%s] TAI %s:%d%n", id, host, port);
         System.out.printf("   Ket noi toi Master: %s:%d | So luong: %d threads%n", masterHost, masterPort, capacity);
         System.out.printf("==================================================%n");
 
         WorkerConfig config = new WorkerConfig(id, host, port, masterHost, masterPort);
-        config.setCapacity(capacity);
+        config.setCapacity(capacity); config.setBindHost(bindHost); config.setDemoDelay(demoDelay);
 
         workerNode = new WorkerNode(config);
 
