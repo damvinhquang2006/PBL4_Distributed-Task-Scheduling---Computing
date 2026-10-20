@@ -30,6 +30,9 @@ public class TaskExecutor {
                 case MATRIX_MULTIPLY -> executeMatrixMultiply(workerId, task, result);
                 case MATRIX_DETERMINANT -> executeMatrixDeterminant(workerId, task, result);
                 case MATRIX_RANK -> executeMatrixRank(workerId, task, result);
+                case MATRIX_TRANSPOSE -> executeMatrixTranspose(workerId, task, result);
+                case MATRIX_SCALAR_MUL -> executeMatrixScalarMul(workerId, task, result);
+                case MATRIX_INVERSE -> executeMatrixInverse(workerId, task, result);
                 case GRAPH_SHORTEST_PATH -> executeGraphShortestPath(workerId, task, result);
                 default -> throw new UnsupportedOperationException("Unknown TaskType: " + task.getTaskType());
             }
@@ -302,6 +305,98 @@ public class TaskExecutor {
         result.addResult("localRank", localBasis.length);
 
         System.out.printf("[%s]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK%n", workerId);
+    }
+
+    /**
+     * Thuc thi chuyen vi lat cat dong: T_slice = (A_slice)^T
+     */
+    private static void executeMatrixTranspose(String workerId, Task task, TaskResult result) {
+        int startRow = ((Number) task.getPayloadValue("startRow")).intValue();
+        double[][] sliceA = parse2DArray(task.getPayloadValue("sliceA"));
+        int rows = sliceA.length;
+        int cols = sliceA[0].length;
+
+        System.out.printf("[%s]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=%d, [%d x %d])... OK%n",
+                workerId, startRow, rows, cols);
+        sleepPacing(30);
+
+        System.out.printf("[%s]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:%n", workerId);
+        double[][] transposedSlice = MatrixOperations.transposeSlice(sliceA);
+        int percent = 100;
+        System.out.printf("[%s]  |    |-- Tien do: %s %3d%% (Chuyen vi thanh cong [%d x %d])%n",
+                workerId, getProgressBar(percent), percent, cols, rows);
+        sleepPacing(25);
+
+        System.out.printf("[%s]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK%n", workerId);
+        result.addResult("startRow", startRow);
+        result.addResult("rowCount", transposedSlice.length);
+        result.addResult("sliceResult", transposedSlice);
+
+        System.out.printf("[%s]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK%n", workerId);
+    }
+
+    /**
+     * Thuc thi nhan lat cat dong voi so vo huong: C_slice = A_slice * scalar
+     */
+    private static void executeMatrixScalarMul(String workerId, Task task, TaskResult result) {
+        int startRow = ((Number) task.getPayloadValue("startRow")).intValue();
+        double scalar = ((Number) task.getPayloadValue("scalar")).doubleValue();
+        double[][] sliceA = parse2DArray(task.getPayloadValue("sliceA"));
+        int rows = sliceA.length;
+        int cols = sliceA[0].length;
+
+        System.out.printf("[%s]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=%d, [%d x %d]) va scalar=%.2f... OK%n",
+                workerId, startRow, rows, cols, scalar);
+        sleepPacing(30);
+
+        System.out.printf("[%s]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: %.2f%n", workerId, scalar);
+        double[][] sliceC = new double[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                sliceC[i][j] = sliceA[i][j] * scalar;
+            }
+            int percent = (int) Math.round(((i + 1.0) / rows) * 100);
+            if (rows <= 8 || i % Math.max(1, rows / 4) == 0 || i == rows - 1) {
+                System.out.printf("[%s]  |    |-- Tien do: %s %3d%% (Dong %d/%d hoan tat)%n",
+                        workerId, getProgressBar(percent), percent, (i + 1), rows);
+                sleepPacing(25);
+            }
+        }
+
+        System.out.printf("[%s]  |-- [Buoc 3/4] Tinh toan xong toan bo %d dong voi so vo huong... OK%n", workerId, rows);
+        result.addResult("startRow", startRow);
+        result.addResult("rowCount", sliceC.length);
+        result.addResult("sliceResult", sliceC);
+
+        System.out.printf("[%s]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK%n", workerId);
+    }
+
+    /**
+     * Thuc thi nghich dao lat cat dong cua ma tran: Giai he phuong trinh A^T * X = I[:, startRow:endRow]
+     */
+    private static void executeMatrixInverse(String workerId, Task task, TaskResult result) {
+        int startRow = ((Number) task.getPayloadValue("startRow")).intValue();
+        int endRow = ((Number) task.getPayloadValue("endRow")).intValue();
+        double[][] matrixData = parse2DArray(task.getPayloadValue("matrixData"));
+        int n = ((Number) task.getPayloadValue("n")).intValue();
+
+        System.out.printf("[%s]  |-- [Buoc 1/4] Giai ma ma tran goc [%d x %d] va dai dong can nghich dao [%d..%d)... OK%n",
+                workerId, n, n, startRow, endRow);
+        sleepPacing(30);
+
+        System.out.printf("[%s]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...%n", workerId);
+        double[][] invSlice = MatrixOperations.invertRowSlice(matrixData, startRow, endRow);
+        int percent = 100;
+        System.out.printf("[%s]  |    |-- Tien do: %s %3d%% (Giai xong he phuong trinh cho %d dong)%n",
+                workerId, getProgressBar(percent), percent, (endRow - startRow));
+        sleepPacing(25);
+
+        System.out.printf("[%s]  |-- [Buoc 3/4] Hoan tat tinh toan %d dong cua ma tran nghich dao... OK%n", workerId, invSlice.length);
+        result.addResult("startRow", startRow);
+        result.addResult("rowCount", invSlice.length);
+        result.addResult("sliceResult", invSlice);
+
+        System.out.printf("[%s]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK%n", workerId);
     }
 
     /**

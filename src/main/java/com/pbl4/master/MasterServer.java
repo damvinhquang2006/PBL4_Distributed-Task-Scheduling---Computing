@@ -254,6 +254,82 @@ public class MasterServer {
     }
 
     /**
+     * Phep chuyen vi ma tran phan tan A -> A^T
+     */
+    public Matrix runMatrixTranspose(Matrix A) {
+        String jobId = "mat-trans-" + UUID.randomUUID().toString();
+        int partitionCount = partitions();
+
+        Job job = new Job(jobId, String.format("Chuyen vi ma tran [%d x %d] -> [%d x %d]",
+                A.getRows(), A.getCols(), A.getCols(), A.getRows()), TaskType.MATRIX_TRANSPOSE);
+        List<Task> tasks = TaskSplitter.splitMatrixTranspose(jobId, A, partitionCount);
+        job.setTasks(tasks);
+
+        System.out.printf("%n=== BAT DAU JOB CHUYEN VI MA TRAN [%d x %d] CHIA THANH %d TASKS ===%n",
+                A.getRows(), A.getCols(), tasks.size());
+
+        boolean ok = executeJob(job, jobTimeoutMs);
+        if (ok) {
+            Matrix res = aggregate(job, () -> ResultAggregator.aggregateMatrixTranspose(job, A.getRows(), A.getCols()));
+            System.out.printf(">>> HOAN THANH CHUYEN VI MA TRAN TRONG %d ms!%n", job.getDurationMs());
+            return res;
+        }
+        return null;
+    }
+
+    /**
+     * Phep nhan ma tran voi so vo huong phan tan C = A * scalar
+     */
+    public Matrix runMatrixScalarMultiplication(Matrix A, double scalar) {
+        String jobId = "mat-scalar-" + UUID.randomUUID().toString();
+        int partitionCount = partitions();
+
+        Job job = new Job(jobId, String.format("Nhan ma tran [%d x %d] voi so vo huong %.2f",
+                A.getRows(), A.getCols(), scalar), TaskType.MATRIX_SCALAR_MUL);
+        List<Task> tasks = TaskSplitter.splitMatrixScalarMul(jobId, A, scalar, partitionCount);
+        job.setTasks(tasks);
+
+        System.out.printf("%n=== BAT DAU JOB NHAN VO HUONG MA TRAN [%d x %d] * %.2f CHIA THANH %d TASKS ===%n",
+                A.getRows(), A.getCols(), scalar, tasks.size());
+
+        boolean ok = executeJob(job, jobTimeoutMs);
+        if (ok) {
+            Matrix res = aggregate(job, () -> ResultAggregator.aggregateMatrix(job, A.getRows(), A.getCols()));
+            System.out.printf(">>> HOAN THANH NHAN VO HUONG MA TRAN TRONG %d ms!%n", job.getDurationMs());
+            return res;
+        }
+        return null;
+    }
+
+    /**
+     * Phep nghich dao ma tran phan tan A^-1
+     */
+    public Matrix runMatrixInverse(Matrix A) {
+        if (A.getRows() != A.getCols()) {
+            throw new IllegalArgumentException("Nghich dao chi tinh duoc cho ma tran vuong!");
+        }
+
+        String jobId = "mat-inv-" + UUID.randomUUID().toString();
+        int partitionCount = partitions();
+
+        Job job = new Job(jobId, String.format("Nghich dao ma tran [%d x %d]",
+                A.getRows(), A.getCols()), TaskType.MATRIX_INVERSE);
+        List<Task> tasks = TaskSplitter.splitMatrixInverse(jobId, A, partitionCount);
+        job.setTasks(tasks);
+
+        System.out.printf("%n=== BAT DAU JOB NGHICH DAO MA TRAN [%d x %d] CHIA THANH %d TASKS ===%n",
+                A.getRows(), A.getCols(), tasks.size());
+
+        boolean ok = executeJob(job, jobTimeoutMs);
+        if (ok) {
+            Matrix res = aggregate(job, () -> ResultAggregator.aggregateMatrix(job, A.getRows(), A.getCols()));
+            System.out.printf(">>> HOAN THANH NGHICH DAO MA TRAN TRONG %d ms!%n", job.getDurationMs());
+            return res;
+        }
+        return null;
+    }
+
+    /**
      * Phep nhan chuoi nhieu ma tran phan tan M1 * M2 * M3 ...
      */
     public Matrix runMatrixChainMultiplication(List<Matrix> matrices) {

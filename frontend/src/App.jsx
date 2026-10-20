@@ -22,6 +22,18 @@ import './App.css';
 
 const API_BASE = 'http://localhost:8080/api';
 
+const OPERATIONS = [
+  { key: '+', label: 'Cộng (+)' },
+  { key: '-', label: 'Trừ (-)' },
+  { key: 'x', label: 'Nhân (x)' },
+  { key: '%', label: 'Chia dư (%)' },
+  { key: 'scalar', label: 'Vô hướng (k·A)' },
+  { key: 'T', label: 'Chuyển vị (Aᵀ)' },
+  { key: 'inv', label: 'Nghịch đảo (A⁻¹)' },
+  { key: 'det', label: 'Định thức det(A)' },
+  { key: 'rank', label: 'Hạng rank(A)' }
+];
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('compute'); // 'compute' | 'cluster' | 'starter'
   const [status, setStatus] = useState(null);
@@ -34,7 +46,8 @@ export default function App() {
   const [colsA, setColsA] = useState(3);
   const [rowsB, setRowsB] = useState(3);
   const [colsB, setColsB] = useState(3);
-  const [op, setOp] = useState('x'); // '+', '-', 'x', '%'
+  const [op, setOp] = useState('x');
+  const [scalarVal, setScalarVal] = useState(2);
   const [matrixA, setMatrixA] = useState([
     [1, 2, 3],
     [4, 5, 6],
@@ -56,6 +69,9 @@ export default function App() {
   const [topOp, setTopOp] = useState('+');
   const [starterResult, setStarterResult] = useState(null);
   const [starterLoading, setStarterLoading] = useState(false);
+
+  const isUnary = op === 'scalar' || op === 'T' || op === 'inv' || op === 'det' || op === 'rank';
+  const isSquareReq = op === 'inv' || op === 'det';
 
   // Fetch status and workers
   const fetchClusterInfo = useCallback(async () => {
@@ -89,10 +105,13 @@ export default function App() {
     if (cols > 8) cols = 8;
 
     if (target === 'A') {
+      if (isSquareReq && rows !== rowsA) {
+        cols = rows;
+      }
       setRowsA(rows);
       setColsA(cols);
       setMatrixA(prev => resizeMatrix(prev, rows, cols));
-      // Auto-adjust B if operation requires it
+      // Auto-adjust B if binary operation requires it
       if (op === '+' || op === '-' || op === '%') {
         setRowsB(rows);
         setColsB(cols);
@@ -117,6 +136,11 @@ export default function App() {
     } else if (newOp === 'x') {
       setRowsB(colsA);
       setMatrixB(prev => resizeMatrix(prev, colsA, colsB));
+    } else if (newOp === 'inv' || newOp === 'det') {
+      if (rowsA !== colsA) {
+        setColsA(rowsA);
+        setMatrixA(prev => resizeMatrix(prev, rowsA, rowsA));
+      }
     }
   };
 
@@ -177,7 +201,28 @@ export default function App() {
     if (op === 'x') {
       return colsA === rowsB;
     }
-    return true;
+    if (isSquareReq) {
+      return rowsA === colsA;
+    }
+    return rowsA >= 1 && colsA >= 1;
+  };
+
+  const getValidationMessage = () => {
+    if (isValidDimensions()) {
+      if (op === 'scalar') return `Kích thước hợp lệ: Nhân ma trận [${rowsA} x ${colsA}] với số vô hướng k = ${scalarVal}`;
+      if (op === 'T') return `Kích thước hợp lệ: Chuyển vị ma trận [${rowsA} x ${colsA}] ➔ [${colsA} x ${rowsA}]`;
+      if (op === 'inv') return `Kích thước hợp lệ: Ma trận vuông [${rowsA} x ${colsA}] (Nghịch đảo)`;
+      if (op === 'det') return `Kích thước hợp lệ: Ma trận vuông [${rowsA} x ${colsA}] (Định thức)`;
+      if (op === 'rank') return `Kích thước hợp lệ: Tính hạng cho ma trận [${rowsA} x ${colsA}]`;
+      return `Kích thước hợp lệ: [${rowsA} x ${colsA}] ${op} [${rowsB} x ${colsB}]`;
+    }
+    if (op === 'x') {
+      return `Phép nhân yêu cầu số cột A (${colsA}) phải bằng số dòng B (${rowsB})!`;
+    }
+    if (isSquareReq) {
+      return `Phép toán ${op === 'inv' ? 'Nghịch đảo (A⁻¹)' : 'Định thức det(A)'} yêu cầu ma trận vuông (số dòng ${rowsA} = số cột ${colsA})!`;
+    }
+    return `Phép toán ${op} yêu cầu 2 ma trận cùng kích thước!`;
   };
 
   // Run Matrix Computation
@@ -197,7 +242,8 @@ export default function App() {
         body: JSON.stringify({
           operation: op,
           matrixA,
-          matrixB,
+          matrixB: isUnary ? undefined : matrixB,
+          scalar: op === 'scalar' ? (parseFloat(scalarVal) || 0) : undefined,
           compareSequential: compareSeq
         })
       });
@@ -263,6 +309,16 @@ export default function App() {
     }
   };
 
+  const getResultTitle = () => {
+    if (!computeResult) return '';
+    if (computeResult.operation === 'det') return 'Kết Quả Định Thức det(A)';
+    if (computeResult.operation === 'rank') return 'Kết Quả Hạng Ma Trận rank(A)';
+    if (computeResult.operation === 'T') return 'Kết Quả Ma Trận Chuyển Vị Aᵀ';
+    if (computeResult.operation === 'inv') return 'Kết Quả Ma Trận Nghịch Đảo A⁻¹';
+    if (computeResult.operation === 'scalar') return `Kết Quả Nhân Ma Trận Với Số Vô Hướng (k=${scalarVal})`;
+    return `Kết Quả Tính Toán Ma Trận C = A ${computeResult.operation} B`;
+  };
+
   return (
     <div className="app-container">
       {/* HEADER */}
@@ -274,7 +330,7 @@ export default function App() {
           <div>
             <h1 className="brand-title">PBL4 Distributed Computing Lab</h1>
             <p className="brand-subtitle">
-              He Thong Tinh Toan Phan Tan & Can Bang Tai Master - Worker
+              Hệ Thống Tính Toán Phân Tán & Cân Bằng Tải Master - Worker
             </p>
           </div>
         </div>
@@ -311,7 +367,7 @@ export default function App() {
           <button
             className={`refresh-btn ${loadingStatus ? 'spin' : ''}`}
             onClick={fetchClusterInfo}
-            title="Lam moi trang thai"
+            title="Làm mới trạng thái"
           >
             <RefreshCw size={16} />
           </button>
@@ -325,21 +381,21 @@ export default function App() {
           onClick={() => setActiveTab('compute')}
         >
           <Layers size={18} />
-          <span>Giai Ma Tran Phan Tan</span>
+          <span>Giải Ma Trận Phân Tán</span>
         </button>
         <button
           className={`tab-btn ${activeTab === 'cluster' ? 'active' : ''}`}
           onClick={() => setActiveTab('cluster')}
         >
           <Server size={18} />
-          <span>Giam Sat Cum ({workers.length} Workers)</span>
+          <span>Giám Sát Cụm ({workers.length} Workers)</span>
         </button>
         <button
           className={`tab-btn ${activeTab === 'starter' ? 'active' : ''}`}
           onClick={() => setActiveTab('starter')}
         >
           <Sparkles size={18} />
-          <span>Vi Du Khoi Dau</span>
+          <span>Ví Dụ Khởi Đầu</span>
         </button>
       </nav>
 
@@ -351,28 +407,23 @@ export default function App() {
             {/* CONTROLS CARD */}
             <div className="card controls-card">
               <div className="card-header">
-                <h3>Cau Hinh Phep Toan & Kich Thuoc</h3>
+                <h3>Cấu Hình Phép Toán & Kích Thước</h3>
                 <div className="quick-actions">
-                  <button className="action-btn" onClick={() => randomizeMatrix('BOTH')}>
-                    <Sparkles size={14} /> Ngau nhien A & B
+                  <button className="action-btn" onClick={() => randomizeMatrix(isUnary ? 'A' : 'BOTH')}>
+                    <Sparkles size={14} /> {isUnary ? 'Ngẫu nhiên A' : 'Ngẫu nhiên A & B'}
                   </button>
-                  <button className="action-btn" onClick={() => fillZeros('BOTH')}>
-                    0️⃣ Dien 0
+                  <button className="action-btn" onClick={() => fillZeros(isUnary ? 'A' : 'BOTH')}>
+                    0️⃣ Điền 0
                   </button>
                 </div>
               </div>
 
               <div className="config-grid">
                 {/* OPERATION SELECTION */}
-                <div className="config-group">
-                  <label>Phep tinh:</label>
+                <div className="config-group" style={{ gridColumn: '1 / -1' }}>
+                  <label>Phép tính ma trận:</label>
                   <div className="op-buttons">
-                    {[
-                      { key: '+', label: 'Cong (+)' },
-                      { key: '-', label: 'Tru (-)' },
-                      { key: 'x', label: 'Nhan (x)' },
-                      { key: '%', label: 'Chia lay du (%)' }
-                    ].map(item => (
+                    {OPERATIONS.map(item => (
                       <button
                         key={item.key}
                         className={`op-btn ${op === item.key ? 'selected' : ''}`}
@@ -384,9 +435,26 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* DIMENSIONS */}
+                {/* SCALAR INPUT (IF SCALAR OP) */}
+                {op === 'scalar' && (
+                  <div className="config-group">
+                    <label>Hệ số vô hướng (k):</label>
+                    <div className="dim-inputs">
+                      <input
+                        type="number"
+                        step="any"
+                        value={scalarVal}
+                        onChange={e => setScalarVal(e.target.value)}
+                        style={{ width: '80px' }}
+                      />
+                      <span>(k · A)</span>
+                    </div>
+                  </div>
+                )}
+
+                {/* DIMENSIONS MATRIX A */}
                 <div className="config-group">
-                  <label>Kich thuoc Ma tran A:</label>
+                  <label>Kích thước Ma trận A:</label>
                   <div className="dim-inputs">
                     <input
                       type="number"
@@ -395,7 +463,7 @@ export default function App() {
                       value={rowsA}
                       onChange={e => handleDimChange('A', parseInt(e.target.value) || 1, colsA)}
                     />
-                    <span>dong  x </span>
+                    <span>dòng  x </span>
                     <input
                       type="number"
                       min="1"
@@ -403,31 +471,43 @@ export default function App() {
                       value={colsA}
                       onChange={e => handleDimChange('A', rowsA, parseInt(e.target.value) || 1)}
                     />
-                    <span>cot</span>
+                    <span>cột</span>
+                    {isSquareReq && rowsA !== colsA && (
+                      <button
+                        className="small-btn"
+                        onClick={() => handleDimChange('A', rowsA, rowsA)}
+                        style={{ marginLeft: '6px' }}
+                      >
+                        Đặt vuông {rowsA}x{rowsA}
+                      </button>
+                    )}
                   </div>
                 </div>
 
-                <div className="config-group">
-                  <label>Kich thuoc Ma tran B:</label>
-                  <div className="dim-inputs">
-                    <input
-                      type="number"
-                      min="1"
-                      max="8"
-                      value={rowsB}
-                      onChange={e => handleDimChange('B', parseInt(e.target.value) || 1, colsB)}
-                    />
-                    <span>dong  x </span>
-                    <input
-                      type="number"
-                      min="1"
-                      max="8"
-                      value={colsB}
-                      onChange={e => handleDimChange('B', rowsB, parseInt(e.target.value) || 1)}
-                    />
-                    <span>cot</span>
+                {/* DIMENSIONS MATRIX B (ONLY FOR BINARY OPS) */}
+                {!isUnary && (
+                  <div className="config-group">
+                    <label>Kích thước Ma trận B:</label>
+                    <div className="dim-inputs">
+                      <input
+                        type="number"
+                        min="1"
+                        max="8"
+                        value={rowsB}
+                        onChange={e => handleDimChange('B', parseInt(e.target.value) || 1, colsB)}
+                      />
+                      <span>dòng  x </span>
+                      <input
+                        type="number"
+                        min="1"
+                        max="8"
+                        value={colsB}
+                        onChange={e => handleDimChange('B', rowsB, parseInt(e.target.value) || 1)}
+                      />
+                      <span>cột</span>
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* VALIDATION STATUS */}
@@ -435,18 +515,12 @@ export default function App() {
                 {isValidDimensions() ? (
                   <div className="valid-pill success">
                     <CheckCircle2 size={16} />
-                    <span>
-                      Kich thuoc hop le: [{rowsA} x {colsA}] {op} [{rowsB} x {colsB}]
-                    </span>
+                    <span>{getValidationMessage()}</span>
                   </div>
                 ) : (
                   <div className="valid-pill error">
                     <AlertTriangle size={16} />
-                    <span>
-                      {op === 'x'
-                        ? `Phep nhan yeu cau so cot A (${colsA}) phai bang so dong B (${rowsB})!`
-                        : `Phep toan ${op} yeu cau 2 ma tran cung kich thuoc!`}
-                    </span>
+                    <span>{getValidationMessage()}</span>
                   </div>
                 )}
 
@@ -457,7 +531,7 @@ export default function App() {
                       checked={compareSeq}
                       onChange={e => setCompareSeq(e.target.checked)}
                     />
-                    <span>So sanh voi Thuat toan tuan tu</span>
+                    <span>So sánh với Thuật toán tuần tự</span>
                   </label>
 
                   <button
@@ -468,12 +542,12 @@ export default function App() {
                     {computing ? (
                       <>
                         <RefreshCw className="spin" size={18} />
-                        <span>Dang tinh toan phan tan...</span>
+                        <span>Đang tính toán phân tán...</span>
                       </>
                     ) : (
                       <>
                         <Play size={18} fill="currentColor" />
-                        <span>Chay Tinh Toan Phan Tan</span>
+                        <span>Chạy Tính Toán Phân Tán</span>
                       </>
                     )}
                   </button>
@@ -483,12 +557,25 @@ export default function App() {
 
             {/* MATRICES INTERACTIVE EDITORS */}
             <div className="matrices-wrapper">
+              {op === 'scalar' && (
+                <>
+                  <div className="op-divider">
+                    <span className="op-badge" style={{ width: 'auto', padding: '0 16px', borderRadius: '14px', fontSize: '18px' }}>
+                      k = {scalarVal}
+                    </span>
+                  </div>
+                  <div className="op-divider">
+                    <span className="op-badge">·</span>
+                  </div>
+                </>
+              )}
+
               {/* MATRIX A */}
               <div className="matrix-card">
                 <div className="matrix-header">
-                  <h4>Ma Tran A [{rowsA} x {colsA}]</h4>
+                  <h4>Ma Trận A [{rowsA} x {colsA}]</h4>
                   <button className="small-btn" onClick={() => randomizeMatrix('A')}>
-                    Ngau nhien
+                    Ngẫu nhiên
                   </button>
                 </div>
                 <div
@@ -509,36 +596,48 @@ export default function App() {
                 </div>
               </div>
 
-              {/* OP SYMBOL */}
-              <div className="op-divider">
-                <span className="op-badge">{op}</span>
-              </div>
+              {/* OP SYMBOL OR MATRIX B (FOR BINARY OPS) */}
+              {!isUnary && (
+                <>
+                  <div className="op-divider">
+                    <span className="op-badge">{op}</span>
+                  </div>
 
-              {/* MATRIX B */}
-              <div className="matrix-card">
-                <div className="matrix-header">
-                  <h4>Ma Tran B [{rowsB} x {colsB}]</h4>
-                  <button className="small-btn" onClick={() => randomizeMatrix('B')}>
-                    Ngau nhien
-                  </button>
+                  <div className="matrix-card">
+                    <div className="matrix-header">
+                      <h4>Ma Trận B [{rowsB} x {colsB}]</h4>
+                      <button className="small-btn" onClick={() => randomizeMatrix('B')}>
+                        Ngẫu nhiên
+                      </button>
+                    </div>
+                    <div
+                      className="matrix-grid-box"
+                      style={{ gridTemplateColumns: `repeat(${colsB}, minmax(48px, 1fr))` }}
+                    >
+                      {matrixB.map((row, i) =>
+                        row.map((val, j) => (
+                          <input
+                            key={`B-${i}-${j}`}
+                            type="number"
+                            className="cell-input"
+                            value={val}
+                            onChange={e => updateCell('B', i, j, e.target.value)}
+                          />
+                        ))
+                      )}
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {/* UNARY BADGE */}
+              {isUnary && op !== 'scalar' && (
+                <div className="op-divider">
+                  <span className="op-badge" style={{ width: 'auto', padding: '0 16px', borderRadius: '14px', fontSize: '16px' }}>
+                    {op === 'T' ? 'Aᵀ (Chuyển vị)' : op === 'inv' ? 'A⁻¹ (Nghịch đảo)' : op === 'det' ? 'det(A)' : 'rank(A)'}
+                  </span>
                 </div>
-                <div
-                  className="matrix-grid-box"
-                  style={{ gridTemplateColumns: `repeat(${colsB}, minmax(48px, 1fr))` }}
-                >
-                  {matrixB.map((row, i) =>
-                    row.map((val, j) => (
-                      <input
-                        key={`B-${i}-${j}`}
-                        type="number"
-                        className="cell-input"
-                        value={val}
-                        onChange={e => updateCell('B', i, j, e.target.value)}
-                      />
-                    ))
-                  )}
-                </div>
-              </div>
+              )}
             </div>
 
             {/* COMPUTE ERROR ALERT */}
@@ -556,8 +655,12 @@ export default function App() {
                   <div className="result-title">
                     <CheckCircle2 size={24} className="success-icon" />
                     <div>
-                      <h3>Ket Qua Tinh Toan Ma Tran C = A {op} B</h3>
-                      <p>Kich thuoc ket qua: [{computeResult.rows} x {computeResult.cols}]</p>
+                      <h3>{getResultTitle()}</h3>
+                      <p>
+                        {computeResult.isScalar
+                          ? `Kết quả là một giá trị vô hướng`
+                          : `Kích thước kết quả: [${computeResult.rows} x ${computeResult.cols}]`}
+                      </p>
                     </div>
                   </div>
 
@@ -567,7 +670,7 @@ export default function App() {
                       <Clock size={16} />
                       <div className="bench-info">
                         <span className="bench-val">{computeResult.distributedTimeMs} ms</span>
-                        <span className="bench-name">Thoi gian Phan tan</span>
+                        <span className="bench-name">Thời gian Phân tán</span>
                       </div>
                     </div>
 
@@ -576,7 +679,7 @@ export default function App() {
                         <BarChart3 size={16} />
                         <div className="bench-info">
                           <span className="bench-val">{computeResult.sequentialTimeMs} ms</span>
-                          <span className="bench-name">Thoi gian Tuan tu</span>
+                          <span className="bench-name">Thời gian Tuần tự</span>
                         </div>
                       </div>
                     )}
@@ -586,30 +689,45 @@ export default function App() {
                         <Zap size={16} />
                         <div className="bench-info">
                           <span className="bench-val">{computeResult.speedup}x</span>
-                          <span className="bench-name">Toc do (Speedup)</span>
+                          <span className="bench-name">Tốc độ (Speedup)</span>
                         </div>
                       </div>
                     )}
                   </div>
                 </div>
 
-                {/* RESULT MATRIX DISPLAY */}
-                <div className="result-matrix-container">
-                  <div
-                    className="matrix-grid-box result-grid"
-                    style={{
-                      gridTemplateColumns: `repeat(${computeResult.cols}, minmax(64px, 1fr))`
-                    }}
-                  >
-                    {computeResult.result.map((row, i) =>
-                      row.map((val, j) => (
-                        <div key={`res-${i}-${j}`} className="result-cell">
-                          {Number.isInteger(val) ? val : val.toFixed(2)}
-                        </div>
-                      ))
-                    )}
+                {/* RESULT DISPLAY: SCALAR OR 2D MATRIX */}
+                {computeResult.isScalar ? (
+                  <div className="scalar-result-box">
+                    <span className="scalar-op-name">
+                      {computeResult.operation === 'det' ? 'Định thức det(A) =' : 'Hạng rank(A) ='}
+                    </span>
+                    <span className="scalar-val-big">
+                      {computeResult.operation === 'det'
+                        ? (Number.isInteger(computeResult.resultScalar)
+                            ? computeResult.resultScalar
+                            : computeResult.resultScalar.toFixed(4))
+                        : Math.round(computeResult.resultScalar)}
+                    </span>
                   </div>
-                </div>
+                ) : (
+                  <div className="result-matrix-container">
+                    <div
+                      className="matrix-grid-box result-grid"
+                      style={{
+                        gridTemplateColumns: `repeat(${computeResult.cols}, minmax(64px, 1fr))`
+                      }}
+                    >
+                      {computeResult.result.map((row, i) =>
+                        row.map((val, j) => (
+                          <div key={`res-${i}-${j}`} className="result-cell">
+                            {Number.isInteger(val) ? val : val.toFixed(2)}
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -620,23 +738,23 @@ export default function App() {
           <div className="cluster-view">
             <div className="cluster-summary-bar">
               <div className="summary-item">
-                <span className="summary-label">Tong so Worker:</span>
+                <span className="summary-label">Tổng số Worker:</span>
                 <span className="summary-val">{workers.length}</span>
               </div>
               <div className="summary-item">
-                <span className="summary-label">Worker San Sang:</span>
+                <span className="summary-label">Worker Sẵn Sàng:</span>
                 <span className="summary-val green">
                   {workers.filter(w => w.status === 'ONLINE' && !w.paused).length}
                 </span>
               </div>
               <div className="summary-item">
-                <span className="summary-label">Dang Tam Dung (Paused):</span>
+                <span className="summary-label">Đang Tạm Dừng (Paused):</span>
                 <span className="summary-val orange">
                   {workers.filter(w => w.paused).length}
                 </span>
               </div>
               <div className="summary-item">
-                <span className="summary-label">Chinh sach dieu phoi:</span>
+                <span className="summary-label">Chính sách điều phối:</span>
                 <span className="summary-val cyan">{status?.policy}</span>
               </div>
             </div>
@@ -694,10 +812,10 @@ export default function App() {
                     <button
                       className={`toggle-worker-btn ${w.paused ? 'resume' : 'pause'}`}
                       onClick={() => handleToggleWorker(w.workerId)}
-                      title={w.paused ? 'Bat lai Worker' : 'Tam dung Worker (Mo phong loi)'}
+                      title={w.paused ? 'Bật lại Worker' : 'Tạm dừng Worker (Mô phỏng lỗi)'}
                     >
                       {w.paused ? <Play size={13} /> : <Pause size={13} />}
-                      <span>{w.paused ? 'Bat lai' : 'Tam dung'}</span>
+                      <span>{w.paused ? 'Bật lại' : 'Tạm dừng'}</span>
                     </button>
                   </div>
                 </div>
@@ -712,10 +830,10 @@ export default function App() {
             <div className="starter-header">
               <Sparkles className="starter-icon" size={32} />
               <div>
-                <h2>Vi Du Khoi Dau: Tinh Toan Bieu Thuc Song Song</h2>
+                <h2>Ví Dụ Khởi Đầu: Tính Toán Biểu Thức Song Song</h2>
                 <p>
-                  Mo phong Master chia phep toan <strong>({expr1})</strong> cho Worker 1 va{' '}
-                  <strong>({expr2})</strong> cho Worker 2, sau do tong hop bang phep tinh{' '}
+                  Mô phỏng Master chia phép toán <strong>({expr1})</strong> cho Worker 1 và{' '}
+                  <strong>({expr2})</strong> cho Worker 2, sau đó tổng hợp bằng phép tính{' '}
                   <strong>{topOp}</strong>.
                 </p>
               </div>
@@ -724,7 +842,7 @@ export default function App() {
             <div className="starter-form">
               <div className="starter-inputs-row">
                 <div className="starter-input-box">
-                  <label>Phep toan 1 (Worker 01):</label>
+                  <label>Phép toán 1 (Worker 01):</label>
                   <input
                     type="text"
                     value={expr1}
@@ -734,7 +852,7 @@ export default function App() {
                 </div>
 
                 <div className="starter-op-box">
-                  <label>Tong hop:</label>
+                  <label>Tổng hợp:</label>
                   <select value={topOp} onChange={e => setTopOp(e.target.value)}>
                     <option value="+">+</option>
                     <option value="-">-</option>
@@ -744,7 +862,7 @@ export default function App() {
                 </div>
 
                 <div className="starter-input-box">
-                  <label>Phep toan 2 (Worker 02):</label>
+                  <label>Phép toán 2 (Worker 02):</label>
                   <input
                     type="text"
                     value={expr2}
@@ -759,7 +877,7 @@ export default function App() {
                   disabled={starterLoading}
                 >
                   {starterLoading ? <RefreshCw className="spin" size={18} /> : <Play size={18} />}
-                  <span>Thuc Thi</span>
+                  <span>Thực Thi</span>
                 </button>
               </div>
 
@@ -767,7 +885,7 @@ export default function App() {
                 <div className="starter-result-banner">
                   <CheckCircle2 size={28} className="success-icon" />
                   <div className="result-text">
-                    <h4>Ket qua tong hop tai Master:</h4>
+                    <h4>Kết quả tổng hợp tại Master:</h4>
                     <p className="equation">
                       ({starterResult.expr1}) {starterResult.topOp} ({starterResult.expr2}) ={' '}
                       <span className="starter-number">{starterResult.result}</span>

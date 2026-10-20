@@ -134,4 +134,51 @@ public class DistributedComputingIntegrationTest {
         assertEquals(MatrixOperations.rank(squareMatrix), masterServer.runMatrixRank(squareMatrix));
         assertEquals(MatrixOperations.rank(rectangularMatrix), masterServer.runMatrixRank(rectangularMatrix));
     }
+
+    @Test
+    public void testDistributedMatrixTranspose() {
+        Matrix A = Matrix.random(12, 9, 1.0, 20.0);
+
+        Matrix distributedResult = masterServer.runMatrixTranspose(A);
+        assertNotNull(distributedResult);
+
+        Matrix expected = MatrixOperations.transpose(A);
+        assertEquals(expected, distributedResult);
+    }
+
+    @Test
+    public void testDistributedMatrixScalarMultiplication() {
+        Matrix A = Matrix.random(12, 12, 1.0, 15.0);
+        double scalar = 3.5;
+
+        Matrix distributedResult = masterServer.runMatrixScalarMultiplication(A, scalar);
+        assertNotNull(distributedResult);
+
+        Matrix expected = MatrixOperations.multiplyScalar(A, scalar);
+        assertEquals(expected, distributedResult);
+    }
+
+    @Test
+    public void testDistributedMatrixInverse() {
+        Matrix A = new Matrix(new double[][]{
+                {4, 7, 2},
+                {2, 6, 1},
+                {1, 3, 5}
+        });
+
+        Matrix distributedResult = masterServer.runMatrixInverse(A);
+        assertNotNull(distributedResult);
+
+        Matrix expected = MatrixOperations.inverse(A);
+        assertEquals(expected, distributedResult);
+
+        // Verify A * A^-1 == I
+        Matrix prod = MatrixOperations.multiply(A, distributedResult);
+        Matrix id = Matrix.identity(3);
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                assertEquals(id.get(i, j), prod.get(i, j), 1e-5);
+            }
+        }
+    }
 }

@@ -45,6 +45,24 @@ public class TaskSplitter {
         return chunks(job, TaskType.MATRIX_RANK, a.getRows(), count, (start,end) -> new HashMap<>(Map.of(
             "startRow", start, "sliceA", a.sliceRows(start,end), "cols", a.getCols())));
     }
+    public static List<Task> splitMatrixTranspose(String job, Matrix a, int count) {
+        if (a.getRows() <= 0 || a.getCols() <= 0)
+            throw new IllegalArgumentException("Positive rows and columns required");
+        return chunks(job, TaskType.MATRIX_TRANSPOSE, a.getRows(), count, (start,end) -> new HashMap<>(Map.of(
+            "startRow", start, "sliceA", a.sliceRows(start,end), "totalCols", a.getCols())));
+    }
+    public static List<Task> splitMatrixScalarMul(String job, Matrix a, double scalar, int count) {
+        if (a.getRows() <= 0 || a.getCols() <= 0)
+            throw new IllegalArgumentException("Positive rows and columns required");
+        return chunks(job, TaskType.MATRIX_SCALAR_MUL, a.getRows(), count, (start,end) -> new HashMap<>(Map.of(
+            "startRow", start, "sliceA", a.sliceRows(start,end), "scalar", scalar)));
+    }
+    public static List<Task> splitMatrixInverse(String job, Matrix a, int count) {
+        if (a.getRows() != a.getCols() || a.getRows() <= 0)
+            throw new IllegalArgumentException("Positive square matrix required for inverse");
+        return chunks(job, TaskType.MATRIX_INVERSE, a.getRows(), count, (start,end) -> new HashMap<>(Map.of(
+            "startRow", start, "endRow", end, "matrixData", a.getData(), "n", a.getRows())));
+    }
     public static List<Task> splitGraphShortestPath(String job, Graph graph, int count) {
         return chunks(job, TaskType.GRAPH_SHORTEST_PATH, graph.getVertices(), count, (start,end) -> new HashMap<>(Map.of(
             "graph", graph, "sourceVertices", java.util.stream.IntStream.range(start,end).boxed().toList())));

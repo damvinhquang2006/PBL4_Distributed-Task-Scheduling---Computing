@@ -132,4 +132,77 @@ public class MatrixComputationTest {
 
         assertEquals(2, MatrixOperations.rank(A));
     }
+
+    @Test
+    public void testMatrixTranspose() {
+        Matrix A = new Matrix(new double[][]{
+                {1, 2, 3},
+                {4, 5, 6}
+        });
+
+        Matrix T = MatrixOperations.transpose(A);
+        assertEquals(3, T.getRows());
+        assertEquals(2, T.getCols());
+
+        assertEquals(1.0, T.get(0, 0));
+        assertEquals(4.0, T.get(0, 1));
+        assertEquals(2.0, T.get(1, 0));
+        assertEquals(5.0, T.get(1, 1));
+        assertEquals(3.0, T.get(2, 0));
+        assertEquals(6.0, T.get(2, 1));
+
+        // (A^T)^T == A
+        assertEquals(A, MatrixOperations.transpose(T));
+    }
+
+    @Test
+    public void testMatrixScalarMultiplication() {
+        Matrix A = new Matrix(new double[][]{
+                {2, -4, 6},
+                {1, 0, -3}
+        });
+
+        Matrix scaled = MatrixOperations.multiplyScalar(A, 2.5);
+        assertEquals(5.0, scaled.get(0, 0), 1e-6);
+        assertEquals(-10.0, scaled.get(0, 1), 1e-6);
+        assertEquals(15.0, scaled.get(0, 2), 1e-6);
+        assertEquals(2.5, scaled.get(1, 0), 1e-6);
+        assertEquals(0.0, scaled.get(1, 1), 1e-6);
+        assertEquals(-7.5, scaled.get(1, 2), 1e-6);
+    }
+
+    @Test
+    public void testMatrixInverse() {
+        Matrix A = new Matrix(new double[][]{
+                {4, 7},
+                {2, 6}
+        });
+
+        // det(A) = 24 - 14 = 10
+        // A^-1 = 1/10 * [[6, -7], [-2, 4]] = [[0.6, -0.7], [-0.2, 0.4]]
+        Matrix invA = MatrixOperations.inverse(A);
+        assertEquals(0.6, invA.get(0, 0), 1e-6);
+        assertEquals(-0.7, invA.get(0, 1), 1e-6);
+        assertEquals(-0.2, invA.get(1, 0), 1e-6);
+        assertEquals(0.4, invA.get(1, 1), 1e-6);
+
+        // A * A^-1 == I
+        Matrix prod = MatrixOperations.multiply(A, invA);
+        Matrix identity = Matrix.identity(2);
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                assertEquals(identity.get(i, j), prod.get(i, j), 1e-5);
+            }
+        }
+    }
+
+    @Test
+    public void testMatrixInverseSingularThrowsException() {
+        Matrix singular = new Matrix(new double[][]{
+                {1, 2},
+                {2, 4}
+        });
+
+        assertThrows(ArithmeticException.class, () -> MatrixOperations.inverse(singular));
+    }
 }

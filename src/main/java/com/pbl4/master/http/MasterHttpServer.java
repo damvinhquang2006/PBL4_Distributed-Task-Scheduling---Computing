@@ -159,50 +159,98 @@ public class MasterHttpServer {
             List<List<Number>> rawA = (List<List<Number>>) body.get("matrixA");
             List<List<Number>> rawB = (List<List<Number>>) body.get("matrixB");
             boolean compare = Boolean.TRUE.equals(body.get("compareSequential"));
+            Number scalarNum = (Number) body.get("scalar");
+            double scalar = scalarNum != null ? scalarNum.doubleValue() : 2.0;
 
-            if (rawA == null || rawA.isEmpty() || rawB == null || rawB.isEmpty()) {
-                sendResponse(exchange, 400, Map.of("error", "matrixA and matrixB must not be empty"));
+            if (rawA == null || rawA.isEmpty()) {
+                sendResponse(exchange, 400, Map.of("error", "matrixA must not be empty"));
                 return;
             }
 
             Matrix A = toMatrix(rawA);
-            Matrix B = toMatrix(rawB);
+            Matrix B = (rawB != null && !rawB.isEmpty()) ? toMatrix(rawB) : null;
 
-            // Kiem tra hop le ve chieu
-            if ("+".equals(op) || "-".equals(op) || "%".equals(op)) {
-                if (A.getRows() != B.getRows() || A.getCols() != B.getCols()) {
-                    sendResponse(exchange, 400, Map.of("error", String.format(
-                            "Kich thuoc khong hop le cho phep tinh '%s': A la [%d x %d], B la [%d x %d]",
-                            op, A.getRows(), A.getCols(), B.getRows(), B.getCols())));
+            boolean isUnary = "T".equalsIgnoreCase(op) || "transpose".equalsIgnoreCase(op)
+                    || "inv".equalsIgnoreCase(op) || "inverse".equalsIgnoreCase(op)
+                    || "det".equalsIgnoreCase(op) || "determinant".equalsIgnoreCase(op)
+                    || "rank".equalsIgnoreCase(op)
+                    || "scalar".equalsIgnoreCase(op) || "*s".equalsIgnoreCase(op) || "k*A".equalsIgnoreCase(op);
+
+            if (!isUnary) {
+                if (B == null) {
+                    sendResponse(exchange, 400, Map.of("error", "matrixB must not be empty for binary operations"));
                     return;
                 }
-            } else if ("*".equalsIgnoreCase(op) || "x".equalsIgnoreCase(op)) {
-                if (A.getCols() != B.getRows()) {
-                    sendResponse(exchange, 400, Map.of("error", String.format(
-                            "Kich thuoc khong hop le cho phep Nhan (x): So cot cua A (%d) phai bang so dong cua B (%d)",
-                            A.getCols(), B.getRows())));
+                // Check dimensions for binary
+                if ("+".equals(op) || "-".equals(op) || "%".equals(op)) {
+                    if (A.getRows() != B.getRows() || A.getCols() != B.getCols()) {
+                        sendResponse(exchange, 400, Map.of("error", String.format(
+                                "Kích thước không hợp lệ cho phép tính '%s': A là [%d x %d], B là [%d x %d]",
+                                op, A.getRows(), A.getCols(), B.getRows(), B.getCols())));
+                        return;
+                    }
+                } else if ("*".equalsIgnoreCase(op) || "x".equalsIgnoreCase(op)) {
+                    if (A.getCols() != B.getRows()) {
+                        sendResponse(exchange, 400, Map.of("error", String.format(
+                                "Kích thước không hợp lệ cho phép Nhân (x): Số cột của A (%d) phải bằng số dòng của B (%d)",
+                                A.getCols(), B.getRows())));
+                        return;
+                    }
+                } else {
+                    sendResponse(exchange, 400, Map.of("error", "Unsupported operation: " + op));
                     return;
                 }
             } else {
-                sendResponse(exchange, 400, Map.of("error", "Unsupported operation: " + op));
-                return;
+                // Check dimensions for unary square operations
+                if ("inv".equalsIgnoreCase(op) || "inverse".equalsIgnoreCase(op)
+                        || "det".equalsIgnoreCase(op) || "determinant".equalsIgnoreCase(op)) {
+                    if (A.getRows() != A.getCols()) {
+                        sendResponse(exchange, 400, Map.of("error", String.format(
+                                "Phép toán '%s' yêu cầu ma trận vuông: A là [%d x %d]",
+                                op, A.getRows(), A.getCols())));
+                        return;
+                    }
+                }
             }
 
             // 1. Tinh toan phan tan
             long distStart = System.nanoTime();
-            Matrix distResult;
+            Matrix distMatrix = null;
+            Double distScalar = null;
+            boolean isScalarResult = false;
+
             if ("+".equals(op)) {
-                distResult = masterServer.runMatrixAddOrSub(A, B, true);
+                distMatrix = masterServer.runMatrixAddOrSub(A, B, true);
             } else if ("-".equals(op)) {
-                distResult = masterServer.runMatrixAddOrSub(A, B, false);
+                distMatrix = masterServer.runMatrixAddOrSub(A, B, false);
             } else if ("%".equals(op)) {
-                distResult = masterServer.runMatrixModulo(A, B);
+                distMatrix = masterServer.runMatrixModulo(A, B);
+            } else if ("*".equalsIgnoreCase(op) || "x".equalsIgnoreCase(op)) {
+                distMatrix = masterServer.runMatrixMultiplication(A, B);
+            } else if ("scalar".equalsIgnoreCase(op) || "*s".equalsIgnoreCase(op) || "k*A".equalsIgnoreCase(op)) {
+                distMatrix = masterServer.runMatrixScalarMultiplication(A, scalar);
+            } else if ("T".equalsIgnoreCase(op) || "transpose".equalsIgnoreCase(op)) {
+                distMatrix = masterServer.runMatrixTranspose(A);
+            } else if ("inv".equalsIgnoreCase(op) || "inverse".equalsIgnoreCase(op)) {
+                distMatrix = masterServer.runMatrixInverse(A);
+            } else if ("det".equalsIgnoreCase(op) || "determinant".equalsIgnoreCase(op)) {
+                distScalar = masterServer.runMatrixDeterminant(A);
+                isScalarResult = true;
+            } else if ("rank".equalsIgnoreCase(op)) {
+                Integer r = masterServer.runMatrixRank(A);
+                distScalar = r != null ? r.doubleValue() : null;
+                isScalarResult = true;
             } else {
-                distResult = masterServer.runMatrixMultiplication(A, B);
+                sendResponse(exchange, 400, Map.of("error", "Unsupported operation: " + op));
+                return;
             }
             double distTimeMs = (System.nanoTime() - distStart) / 1_000_000.0;
 
-            if (distResult == null) {
+            if (!isScalarResult && distMatrix == null) {
+                sendResponse(exchange, 500, Map.of("error", "Distributed computation failed or timed out."));
+                return;
+            }
+            if (isScalarResult && distScalar == null) {
                 sendResponse(exchange, 500, Map.of("error", "Distributed computation failed or timed out."));
                 return;
             }
@@ -218,8 +266,18 @@ public class MasterHttpServer {
                     MatrixOperations.subtract(A, B);
                 } else if ("%".equals(op)) {
                     MatrixOperations.modulo(A, B);
-                } else {
+                } else if ("*".equalsIgnoreCase(op) || "x".equalsIgnoreCase(op)) {
                     MatrixOperations.multiply(A, B);
+                } else if ("scalar".equalsIgnoreCase(op) || "*s".equalsIgnoreCase(op) || "k*A".equalsIgnoreCase(op)) {
+                    MatrixOperations.multiplyScalar(A, scalar);
+                } else if ("T".equalsIgnoreCase(op) || "transpose".equalsIgnoreCase(op)) {
+                    MatrixOperations.transpose(A);
+                } else if ("inv".equalsIgnoreCase(op) || "inverse".equalsIgnoreCase(op)) {
+                    MatrixOperations.inverse(A);
+                } else if ("det".equalsIgnoreCase(op) || "determinant".equalsIgnoreCase(op)) {
+                    MatrixOperations.determinant(A);
+                } else if ("rank".equalsIgnoreCase(op)) {
+                    MatrixOperations.rank(A);
                 }
                 seqTimeMs = (System.nanoTime() - seqStart) / 1_000_000.0;
                 speedup = (seqTimeMs > 0 && distTimeMs > 0) ? (seqTimeMs / distTimeMs) : 1.0;
@@ -228,9 +286,16 @@ public class MasterHttpServer {
             Map<String, Object> resp = new LinkedHashMap<>();
             resp.put("success", true);
             resp.put("operation", op);
-            resp.put("rows", distResult.getRows());
-            resp.put("cols", distResult.getCols());
-            resp.put("result", distResult.getData());
+            resp.put("isScalar", isScalarResult);
+            if (isScalarResult) {
+                resp.put("resultScalar", distScalar);
+                resp.put("rows", A.getRows());
+                resp.put("cols", A.getCols());
+            } else {
+                resp.put("rows", distMatrix.getRows());
+                resp.put("cols", distMatrix.getCols());
+                resp.put("result", distMatrix.getData());
+            }
             resp.put("distributedTimeMs", Math.round(distTimeMs * 100.0) / 100.0);
             resp.put("sequentialTimeMs", seqTimeMs != null ? Math.round(seqTimeMs * 100.0) / 100.0 : null);
             resp.put("speedup", speedup != null ? Math.round(speedup * 1000.0) / 1000.0 : null);

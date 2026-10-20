@@ -25,6 +25,15 @@ public enum TaskType {
     /** Rut gon mot lat cat dong de ho tro tinh hang ma tran */
     MATRIX_RANK,
 
+    /** Phep chuyen vi ma tran theo khoi dong */
+    MATRIX_TRANSPOSE,
+
+    /** Phep nhan ma tran voi mot so vo huong theo khoi dong */
+    MATRIX_SCALAR_MUL,
+
+    /** Phep nghich dao ma tran theo khoi dong */
+    MATRIX_INVERSE,
+
     /** Tim duong di ngan nhat do thi (Parallel Multi-source Dijkstra) */
     GRAPH_SHORTEST_PATH
 }

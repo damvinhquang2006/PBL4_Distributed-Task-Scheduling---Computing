@@ -3,7 +3,7 @@ package com.pbl4.computing.matrix;
 import java.util.List;
 
 /**
- * Các phép toán số học ma trận: Cộng, Trừ, Nhân ma trận và các phép tính theo từng lát cắt dòng (row-slice).
+ * Các phép toán số học ma trận: Cộng, Trừ, Nhân ma trận, Chia dư, Chuyển vị, Nhân vô hướng, Nghịch đảo, Định thức, Hạng.
  */
 public class MatrixOperations {
     private static final double EPS = 1e-9;
@@ -180,6 +180,181 @@ public class MatrixOperations {
     }
 
     /**
+     * Chuyen vi ma tran A -> A^T (kich thuoc cols x rows).
+     */
+    public static Matrix transpose(Matrix A) {
+        if (A == null) {
+            throw new IllegalArgumentException("Matrix cannot be null!");
+        }
+        int r = A.getRows();
+        int c = A.getCols();
+        Matrix T = new Matrix(c, r);
+        double[][] aData = A.getData();
+        double[][] tData = T.getData();
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                tData[j][i] = aData[i][j];
+            }
+        }
+        return T;
+    }
+
+    /**
+     * Phep toan tinh toan tren Worker: Chuyen vi mot lat cat dong (rows x cols) thanh (cols x rows).
+     */
+    public static double[][] transposeSlice(double[][] sliceA) {
+        if (sliceA == null || sliceA.length == 0) {
+            return new double[0][0];
+        }
+        int rows = sliceA.length;
+        int cols = sliceA[0].length;
+        double[][] trans = new double[cols][rows];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                trans[j][i] = sliceA[i][j];
+            }
+        }
+        return trans;
+    }
+
+    /**
+     * Nhan ma tran voi mot so vo huong: C = A * scalar.
+     */
+    public static Matrix multiplyScalar(Matrix A, double scalar) {
+        if (A == null) {
+            throw new IllegalArgumentException("Matrix cannot be null!");
+        }
+        int r = A.getRows();
+        int c = A.getCols();
+        Matrix res = new Matrix(r, c);
+        double[][] aData = A.getData();
+        double[][] resData = res.getData();
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                resData[i][j] = aData[i][j] * scalar;
+            }
+        }
+        return res;
+    }
+
+    /**
+     * Phep toan tinh toan tren Worker: Nhan mot lat cat dong voi mot so vo huong.
+     */
+    public static double[][] multiplyScalarSlice(double[][] sliceA, double scalar) {
+        if (sliceA == null || sliceA.length == 0) {
+            return new double[0][0];
+        }
+        int rows = sliceA.length;
+        int cols = sliceA[0].length;
+        double[][] result = new double[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result[i][j] = sliceA[i][j] * scalar;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Nghich dao ma tran vuong bang phuong phap Gauss-Jordan co chon pivot.
+     * Nem ArithmeticException neu ma tran suy bien (dinh thuc = 0).
+     */
+    public static Matrix inverse(Matrix A) {
+        if (A == null) {
+            throw new IllegalArgumentException("Matrix cannot be null!");
+        }
+        if (A.getRows() != A.getCols()) {
+            throw new IllegalArgumentException("Inverse requires a square matrix!");
+        }
+        int n = A.getRows();
+        if (n == 0) {
+            return new Matrix(0, 0);
+        }
+        double[][] slice = invertRowSlice(A.getData(), 0, n);
+        return new Matrix(slice);
+    }
+
+    /**
+     * Phep toan tinh toan tren Worker: Tinh mot khoi dong [startRow..endRow) cua ma tran nghich dao A^-1.
+     * Giai he phuong trinh A^T * X = I[:, startRow:endRow] bang Gauss-Jordan voi chon pivot,
+     * sau do chuyen vi de thu duoc lat cat dong cua A^-1.
+     */
+    public static double[][] invertRowSlice(double[][] matrixData, int startRow, int endRow) {
+        if (matrixData == null || matrixData.length == 0) {
+            return new double[0][0];
+        }
+        int n = matrixData.length;
+        if (matrixData[0].length != n) {
+            throw new IllegalArgumentException("Matrix must be square for inversion!");
+        }
+        if (startRow < 0 || endRow > n || startRow >= endRow) {
+            throw new IllegalArgumentException("Invalid row slice range: [" + startRow + ", " + endRow + ")");
+        }
+
+        int kCols = endRow - startRow;
+        // Xay dung ma tran mo rong: [A^T | I[:, startRow:endRow]]
+        // Kich thuoc: n dong x (n + kCols) cot
+        double[][] aug = new double[n][n + kCols];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                aug[i][j] = matrixData[j][i]; // Chuyen vi A vao nua ben trai
+            }
+            for (int colIdx = 0; colIdx < kCols; colIdx++) {
+                int globalCol = startRow + colIdx;
+                if (i == globalCol) {
+                    aug[i][n + colIdx] = 1.0;
+                }
+            }
+        }
+
+        // Gauss-Jordan elimination tren toan bo ma tran mo rong
+        for (int col = 0; col < n; col++) {
+            int pivotRow = col;
+            for (int row = col + 1; row < n; row++) {
+                if (Math.abs(aug[row][col]) > Math.abs(aug[pivotRow][col])) {
+                    pivotRow = row;
+                }
+            }
+
+            if (Math.abs(aug[pivotRow][col]) < EPS) {
+                throw new ArithmeticException("Ma trận suy biến (định thức bằng 0), không thể nghịch đảo!");
+            }
+
+            if (pivotRow != col) {
+                double[] tmp = aug[col];
+                aug[col] = aug[pivotRow];
+                aug[pivotRow] = tmp;
+            }
+
+            double pivot = aug[col][col];
+            for (int j = col; j < n + kCols; j++) {
+                aug[col][j] /= pivot;
+            }
+
+            for (int row = 0; row < n; row++) {
+                if (row != col) {
+                    double factor = aug[row][col];
+                    if (Math.abs(factor) > EPS) {
+                        for (int j = col; j < n + kCols; j++) {
+                            aug[row][j] -= factor * aug[col][j];
+                        }
+                    }
+                }
+            }
+        }
+
+        // Ket qua tren nua phai la cac cot [startRow..endRow) cua (A^-1)^T
+        // Chuyen vi nua phai de thanh cac dong [startRow..endRow) cua A^-1
+        double[][] resultSlice = new double[kCols][n];
+        for (int colIdx = 0; colIdx < kCols; colIdx++) {
+            for (int i = 0; i < n; i++) {
+                resultSlice[colIdx][i] = aug[i][n + colIdx];
+            }
+        }
+        return resultSlice;
+    }
+
+    /**
      * Tinh dinh thuc ma tran vuong bang khu Gauss co chon pivot.
      */
     public static double determinant(Matrix A) {
@@ -349,5 +524,4 @@ public class MatrixOperations {
         }
         return copy;
     }
-
 }

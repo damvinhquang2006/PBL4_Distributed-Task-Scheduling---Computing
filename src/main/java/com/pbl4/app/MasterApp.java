@@ -175,6 +175,7 @@ public class MasterApp {
 
         int rowsA = 0, colsA = 0, rowsB = 0, colsB = 0;
         String op = "";
+        double scalarValue = 1.0;
 
         // =================================================================
         // BUOC 1: Chon kich thuoc ma tran A, sau do chon phep tinh.
@@ -187,7 +188,7 @@ public class MasterApp {
             colsB = 0;
 
             // =============================================================
-            // BUOC 2: Chon phep tinh cho bai toan (+, -, x, %, det, rank)
+            // BUOC 2: Chon phep tinh cho bai toan (+, -, x, %, scalar, t, inv, det, rank)
             // =============================================================
             boolean step2Done = false;
             while (!step2Done) {
@@ -198,24 +199,31 @@ public class MasterApp {
                 System.out.println("  [-] Tru hai ma tran (A - B)");
                 System.out.println("  [x] Nhan hai ma tran (A x B)");
                 System.out.println("  [%] Chia lay du phan tu ma tran (A % B)");
+                System.out.println("  [scalar] Nhan ma tran voi so vo huong (k * A)");
+                System.out.println("  [t] Chuyen vi ma tran (A^T)");
+                System.out.println("  [inv] Nghich dao ma tran (A^-1)");
                 System.out.println("  [det] Tinh dinh thuc ma tran A");
                 System.out.println("  [rank] Tinh hang ma tran A");
-                System.out.print("Vui long nhap phep tinh (+, -, x, %, det, rank): ");
+                System.out.print("Vui long nhap phep tinh (+, -, x, %, scalar, t, inv, det, rank): ");
 
                 String chosenOp = scanner.nextLine().trim().toLowerCase();
                 if ("*".equals(chosenOp)) chosenOp = "x";
                 if ("d".equals(chosenOp)) chosenOp = "det";
                 if ("r".equals(chosenOp)) chosenOp = "rank";
+                if ("s".equals(chosenOp) || "k".equals(chosenOp)) chosenOp = "scalar";
+                if ("i".equals(chosenOp)) chosenOp = "inv";
 
                 if (!"+".equals(chosenOp) && !"-".equals(chosenOp) && !"x".equals(chosenOp)
-                        && !"%".equals(chosenOp) && !"det".equals(chosenOp) && !"rank".equals(chosenOp)) {
-                    System.out.println("Phep toan khong hop le! Vui long chi chon +, -, x, %, det, hoac rank.");
+                        && !"%".equals(chosenOp) && !"scalar".equals(chosenOp) && !"t".equals(chosenOp)
+                        && !"inv".equals(chosenOp) && !"det".equals(chosenOp) && !"rank".equals(chosenOp)) {
+                    System.out.println("Phep toan khong hop le! Vui long chi chon +, -, x, %, scalar, t, inv, det, hoac rank.");
                     continue;
                 }
 
-                if ("det".equals(chosenOp)) {
+                if ("det".equals(chosenOp) || "inv".equals(chosenOp)) {
                     if (rowsA != colsA) {
-                        System.out.printf("%n[LOI TUONG THICH] Dinh thuc chi tinh duoc cho ma tran vuong!%n");
+                        String name = "det".equals(chosenOp) ? "Dinh thuc" : "Nghich dao";
+                        System.out.printf("%n[LOI TUONG THICH] %s chi tinh duoc cho ma tran vuong!%n", name);
                         System.out.printf("Hien tai: Ma tran A [%d x %d] khong phai ma tran vuong.%n", rowsA, colsA);
                         System.out.println("1. Chon lai phep toan khac");
                         System.out.println("2. Nhap lai kich thuoc ma tran A (Quay ve Buoc 1)");
@@ -235,7 +243,20 @@ public class MasterApp {
                     continue;
                 }
 
-                if ("rank".equals(chosenOp)) {
+                if ("rank".equals(chosenOp) || "t".equals(chosenOp)) {
+                    op = chosenOp;
+                    step2Done = true;
+                    continue;
+                }
+
+                if ("scalar".equals(chosenOp)) {
+                    System.out.print("Nhap he so vo huong k (VD: 2.5): ");
+                    try {
+                        scalarValue = Double.parseDouble(scanner.nextLine().trim());
+                    } catch (NumberFormatException e) {
+                        scalarValue = 2.0;
+                        System.out.println("Gia tri khong hop le, mac dinh chon k = 2.0");
+                    }
                     op = chosenOp;
                     step2Done = true;
                     continue;
@@ -425,6 +446,15 @@ public class MasterApp {
         } else if ("%".equals(op)) {
             resultMatrix = masterServer.runMatrixModulo(matrixA, matrixB);
             expectedMatrix = MatrixOperations.modulo(matrixA, matrixB);
+        } else if ("t".equals(op)) {
+            resultMatrix = masterServer.runMatrixTranspose(matrixA);
+            expectedMatrix = MatrixOperations.transpose(matrixA);
+        } else if ("scalar".equals(op)) {
+            resultMatrix = masterServer.runMatrixScalarMultiplication(matrixA, scalarValue);
+            expectedMatrix = MatrixOperations.multiplyScalar(matrixA, scalarValue);
+        } else if ("inv".equals(op)) {
+            resultMatrix = masterServer.runMatrixInverse(matrixA);
+            expectedMatrix = MatrixOperations.inverse(matrixA);
         } else if ("det".equals(op)) {
             scalarResult = masterServer.runMatrixDeterminant(matrixA);
         } else if ("rank".equals(op)) {
@@ -478,7 +508,7 @@ public class MasterApp {
     }
 
     private static boolean isUnaryMatrixOperation(String op) {
-        return "det".equals(op) || "rank".equals(op);
+        return "det".equals(op) || "rank".equals(op) || "t".equals(op) || "inv".equals(op) || "scalar".equals(op);
     }
 
     private static void renderSingleMatrixTemplate(int rows, int cols, Double[][] data,
@@ -870,9 +900,78 @@ public class MasterApp {
         System.out.println("\n--- BAI TEST 6: DO HIEU NANG & HE SO TANG TOC (BENCHMARK) ---");
         handleBenchmark();
 
+        System.out.println("\n--- BAI TEST 7: CHUYEN VI MA TRAN PHAN TAN (A^T) ---");
+        handleMatrixTransposeDemo();
+
+        System.out.println("\n--- BAI TEST 8: NHAN MA TRAN VOI SO VO HUONG (k * A) ---");
+        handleMatrixScalarMulDemo();
+
+        System.out.println("\n--- BAI TEST 9: NGHICH DAO MA TRAN PHAN TAN (A^-1) ---");
+        handleMatrixInverseDemo();
+
+        System.out.println("\n--- BAI TEST 10: DINH THUC VA HANG MA TRAN PHAN TAN ---");
+        handleMatrixDetAndRankDemo();
+
         System.out.println("\n--- THONG KE TAI VA KET QUA CUOI CUNG ---");
         showWorkerStats();
         System.out.println("\n>>> [DEMO] TAT CA KICH BAN DA HOAN TAT THANH CONG 100%!");
+    }
+
+    private static void handleMatrixTransposeDemo() {
+        Matrix A = Matrix.random(6, 4, 1.0, 10.0);
+        System.out.println("Ma tran A [6x4]:\n" + A.prettyPrint(6));
+        Matrix T = masterServer.runMatrixTranspose(A);
+        if (T != null) {
+            System.out.println("Ket qua chuyen vi A^T [4x6]:\n" + T.prettyPrint(6));
+            Matrix expected = MatrixOperations.transpose(A);
+            System.out.printf("Kiem tra tinh chinh xac: %s%n", T.equals(expected) ? "CHINH XAC (MATCH 100%)" : "SAI LECH!");
+        }
+    }
+
+    private static void handleMatrixScalarMulDemo() {
+        Matrix A = Matrix.random(4, 4, 1.0, 10.0);
+        double k = 2.5;
+        System.out.printf("Ma tran A [4x4], he so k = %.2f:%n%s%n", k, A.prettyPrint(4));
+        Matrix S = masterServer.runMatrixScalarMultiplication(A, k);
+        if (S != null) {
+            System.out.println("Ket qua k * A [4x4]:\n" + S.prettyPrint(4));
+            Matrix expected = MatrixOperations.multiplyScalar(A, k);
+            System.out.printf("Kiem tra tinh chinh xac: %s%n", S.equals(expected) ? "CHINH XAC (MATCH 100%)" : "SAI LECH!");
+        }
+    }
+
+    private static void handleMatrixInverseDemo() {
+        Matrix A = new Matrix(new double[][]{
+            {4, 7, 2},
+            {2, 6, 1},
+            {1, 3, 5}
+        });
+        System.out.println("Ma tran A [3x3]:\n" + A.prettyPrint(3));
+        Matrix inv = masterServer.runMatrixInverse(A);
+        if (inv != null) {
+            System.out.println("Ket qua A^-1 [3x3]:\n" + inv.prettyPrint(3));
+            Matrix prod = MatrixOperations.multiply(A, inv);
+            Matrix id = Matrix.identity(3);
+            boolean match = prod.equals(id);
+            System.out.printf("Kiem tra tinh chinh xac (A * A^-1 == I): %s%n", match ? "CHINH XAC (MATCH 100%)" : "SAI LECH!");
+        }
+    }
+
+    private static void handleMatrixDetAndRankDemo() {
+        Matrix A = new Matrix(new double[][]{
+            {6, 1, 1},
+            {4, -2, 5},
+            {2, 8, 7}
+        });
+        System.out.println("Ma tran A [3x3]:\n" + A.prettyPrint(3));
+        Double det = masterServer.runMatrixDeterminant(A);
+        Integer rank = masterServer.runMatrixRank(A);
+        if (det != null && rank != null) {
+            System.out.printf("Dinh thuc det(A) = %.4f (Kiem tra: %s)%n", det,
+                Math.abs(det - MatrixOperations.determinant(A)) < 1e-6 ? "CHINH XAC (MATCH 100%)" : "SAI LECH!");
+            System.out.printf("Hang rank(A) = %d (Kiem tra: %s)%n", rank,
+                rank == MatrixOperations.rank(A) ? "CHINH XAC (MATCH 100%)" : "SAI LECH!");
+        }
     }
 
     private static void waitWorkersOnline(int minWorkers, long maxWaitMs) {

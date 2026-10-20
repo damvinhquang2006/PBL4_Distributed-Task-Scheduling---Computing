@@ -71,6 +71,33 @@ public class ResultAggregator {
     }
 
     /**
+     * Tong hop cac lat cat ma tran chuyen vi tu cac Worker thanh ma tran chuyen vi hoan chinh A^T.
+     * Ma tran goc co kich thuoc origRows x origCols, ma tran ket qua co kich thuoc origCols x origRows.
+     */
+    public static Matrix aggregateMatrixTranspose(Job job, int origRows, int origCols) {
+        Matrix resultMatrix = new Matrix(origCols, origRows);
+        double[][] data = resultMatrix.getData();
+
+        for (TaskResult taskResult : job.getResults().values()) {
+            if (!taskResult.isSuccess()) {
+                throw new RuntimeException("Task " + taskResult.getTaskId() + " that bai: " + taskResult.getErrorMessage());
+            }
+
+            int startRow = ((Number) taskResult.getResultValue("startRow")).intValue();
+            double[][] sliceData = parse2DArray(taskResult.getResultValue("sliceResult"));
+            int sliceRows = sliceData.length;
+            int sliceCols = sliceData[0].length;
+
+            for (int i = 0; i < sliceRows; i++) {
+                System.arraycopy(sliceData[i], 0, data[i], startRow, sliceCols);
+            }
+        }
+
+        job.setFinalOutput(resultMatrix);
+        return resultMatrix;
+    }
+
+    /**
      * Tong hop ket qua tim duong di ngan nhat cua cac nhom dinh thanh ma tran khoang cach toan the.
      */
     public static double[][] aggregateGraphShortestPath(Job job, int totalVertices) {

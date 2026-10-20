@@ -55,7 +55,13 @@ graph TD
 ### B. Tính toán Ma trận Phân tán (Distributed Matrix Engine)
 - **Cộng & Trừ ma trận ($A \pm B$)**: Phân chia theo dải dòng (Row Striping). Mỗi Worker nhận $\frac{Rows}{K}$ dòng tương ứng của $A$ và $B$, tính tổng/hiệu cục bộ và gửi về lát cắt dòng. Master ghép nối các lát cắt thành ma trận hoàn chỉnh.
 - **Nhân 2 ma trận ($A \times B$)**: Chia ma trận $A$ thành các khối dòng. Mỗi Worker nhận khối dòng của $A$ và toàn bộ $B$, tính toán khối dòng tương ứng của ma trận tích $C = A_{slice} \times B$.
-- **Nhân chuỗi ma trận ($A \times B \times C$)**: Multi-stage distributed pipeline: Tích $T = A \times B$ được tính phân tán trên 3 Worker, sau đó kết quả $T$ tiếp tục được nhân phân tán với $C$.
+- **Chia lấy dư ($A \pmod B$)**: Chia dải dòng, tính $A_{slice}[i][j] \pmod{B_{slice}[i][j]}$ phân tán trên các Worker.
+- **Nhân ma trận với số vô hướng ($k \cdot A$)**: Phân chia $A$ theo khối dòng. Mỗi Worker nhân các phần tử trong khối dòng với hệ số vô hướng $k$.
+- **Chuyển vị ma trận ($A^T$)**: Phân chia $A$ theo dải dòng. Mỗi Worker chuyển vị cục bộ khối dòng của mình, Master tổng hợp các khối cột tương ứng thành ma trận chuyển vị hoàn chỉnh $[C \times R]$.
+- **Nghịch đảo ma trận ($A^{-1}$)**: Áp dụng phương pháp khử Gauss-Jordan trên ma trận mở rộng $[A^T \mid I_{slice}]$. Mỗi Worker giải hệ phương trình tìm dải dòng tương ứng của $A^{-1}$, Master ghép nối thành ma trận nghịch đảo. Tự động kiểm tra tính khả nghịch (báo lỗi nếu ma trận suy biến).
+- **Định thức ma trận ($\det(A)$)**: Khai triển Laplace song song theo hàng đầu tiên. Master chia các cột cofactor cho các Worker tính định thức định thức con (minors) bằng phép khử Gauss, sau đó tổng hợp thành định thức cuối cùng.
+- **Hạng ma trận ($\operatorname{rank}(A)$)**: Mỗi Worker rút gọn dải dòng được giao thành cơ sở dòng cục bộ (row basis) theo dạng bậc thang. Master gom các cơ sở dòng cục bộ và tính hạng toàn cục.
+- **Nhân chuỗi ma trận ($A \times B \times C$)**: Multi-stage distributed pipeline: Tích $T = A \times B$ được tính phân tán trên các Worker, sau đó kết quả $T$ tiếp tục được nhân phân tán với $C$.
 - **Benchmark so sánh hiệu năng**: Tự động so sánh thời gian thực thi giữa **Đơn luồng (Single Thread)** và **Phân tán (Distributed Master-Workers)**, tính toán **Hệ số tăng tốc (Speedup factor)**.
 
 ### C. Đồ thị phân tán: Tìm đường đi ngắn nhất (All-Pairs Shortest Path)
@@ -154,7 +160,10 @@ Hoặc khởi chạy riêng Web UI:
 Dự án cung cấp giao diện Web trực quan hóa hoàn chỉnh tại thư mục `frontend/` kết nối với Master Server qua REST API (`http://localhost:8080/api`):
 - **Phòng thí nghiệm Ma trận (Matrix Computation Lab)**:
   - Chọn kích thước $r_A \times c_A$ và $r_B \times c_B$ trực quan với tính năng kiểm tra tính tương thích kích thước thời gian thực.
-  - Chọn 4 phép toán ma trận: Cộng (`+`), Trừ (`-`), Nhân (`x`), Chia lấy dư (`%`).
+  - Hỗ trợ đầy đủ 9 phép toán ma trận:
+    - Nhị phân: Cộng (`+`), Trừ (`-`), Nhân (`x`), Chia lấy dư (`%`).
+    - Nhân vô hướng: Hệ số $k$ nhân ma trận (`k · A`).
+    - Đơn phân: Chuyển vị (`Aᵀ`), Nghịch đảo (`A⁻¹`), Định thức (`det(A)`), Hạng ma trận (`rank(A)`).
   - Lưới nhập ma trận tương tác (Interactive Grid) kèm công cụ sinh số ngẫu nhiên hoặc điền 0.
   - Đo đạc và hiển thị trực quan so sánh thời gian tính toán phân tán vs tuần tự (Speedup factor).
 - **Giám sát Cụm Workers (Cluster Topology Monitor)**:
