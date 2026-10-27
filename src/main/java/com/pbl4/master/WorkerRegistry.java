@@ -12,6 +12,10 @@ public class WorkerRegistry {
     public WorkerRegistry() { health.scheduleAtFixedRate(this::checkHealth, 3, 2, TimeUnit.SECONDS); }
     public void setOnWorkerFailedListener(Consumer<WorkerInfo> listener) { onFailure = listener; }
     public synchronized void register(WorkerInfo info) {
+        if (info.machineId == null || info.machineId.isBlank() || info.machineName == null || info.machineName.isBlank() || info.hostParallelism < 1)
+            throw new IllegalArgumentException("Laptop identity and HostParallelism required; update both laptops to the same new JAR");
+        if (workers.values().stream().anyMatch(w -> w.getStatus() != WorkerStatus.OFFLINE && info.machineId.equals(w.machineId) && info.hostParallelism != w.hostParallelism))
+            throw new IllegalArgumentException("Conflicting HostParallelism for laptop " + info.machineId);
         if (info.metrics == null) info.metrics = new ResourceMetrics();
         WorkerInfo old = workers.get(info.getWorkerId());
         if (old != null && Objects.equals(old.sessionId, info.sessionId)) {
@@ -23,7 +27,7 @@ public class WorkerRegistry {
         if (old != null) info.paused = old.paused;
         info.setStatus(WorkerStatus.ONLINE); info.setLastHeartbeatTime(System.currentTimeMillis());
         workers.put(info.getWorkerId(), info);
-        System.out.println("[Registry] REGISTER " + info);
+        System.out.println("[Registry] REGISTER " + info + " | laptop=" + info.machineId + " (" + info.machineName + ")");
     }
     public synchronized boolean heartbeat(String id, String session, ResourceMetrics metrics) {
         WorkerInfo info = workers.get(id);

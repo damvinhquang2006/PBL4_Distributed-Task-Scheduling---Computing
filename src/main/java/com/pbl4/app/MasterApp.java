@@ -325,54 +325,82 @@ public class MasterApp {
         int activeRow = 0;
         int activeCol = 0;
 
-        while (true) {
-            clearScreen();
-            if (unaryOperation) {
-                renderSingleMatrixTemplate(rowsA, colsA, dataA, activeRow, activeCol, op);
-            } else {
-                renderTwinMatrixTemplates(rowsA, colsA, dataA, rowsB, colsB, dataB,
-                        activeMatrix, activeRow, activeCol, op);
+        if (rowsA > 10 || colsA > 10 || (!unaryOperation && (rowsB > 10 || colsB > 10))) {
+            System.out.printf("%n=== CHE DO MA TRAN LON [%d x %d] ===%n", rowsA, colsA);
+            System.out.println("He thong ho tro sinh gia tri tu dong O(1) RAM cho ma tran quy mo lon:");
+            System.out.println("  1. Sinh so ngau nhien bang PRNG (Khoang [1.0 - 10.0]) [Khuyen nghi]");
+            System.out.println("  2. Dien toan bo so 0.0 (Ma tran 0)");
+            System.out.println("  3. Dien toan bo so 1.0 (Ma tran 1)");
+            System.out.print("Vui long chon phuong thuc sinh so (1-3, Mac dinh 1): ");
+            String genChoice = scanner.nextLine().trim();
+            int choice = "2".equals(genChoice) ? 2 : "3".equals(genChoice) ? 3 : 1;
+
+            for (int i = 0; i < rowsA; i++) {
+                for (int j = 0; j < colsA; j++) {
+                    double val = (choice == 1) ? (1.0 + (Math.abs((long) i * 374761393L + (long) j * 668265263L) % 10)) : (choice == 2 ? 0.0 : 1.0);
+                    dataA[i][j] = val;
+                }
             }
 
-            System.out.printf(">> Dang nhap phan tu: MA TRAN %c - Dong %d, Cot %d (Toa do [%d][%d])%n",
-                    activeMatrix, (activeRow + 1), (activeCol + 1), activeRow, activeCol);
-            System.out.print("Nhap gia tri (so nguyen hoac so thap phan): ");
-
-            String input = scanner.nextLine().trim();
-            try {
-                double val = Double.parseDouble(input);
-                if (activeMatrix == 'A') {
-                    dataA[activeRow][activeCol] = val;
-                    activeCol++;
-                    if (activeCol >= colsA) {
-                        activeCol = 0;
-                        activeRow++;
-                        if (activeRow >= rowsA) {
-                            if (unaryOperation) {
-                                break;
-                            }
-                            activeMatrix = 'B';
-                            activeRow = 0;
-                            activeCol = 0;
-                        }
-                    }
-                } else {
-                    dataB[activeRow][activeCol] = val;
-                    activeCol++;
-                    if (activeCol >= colsB) {
-                        activeCol = 0;
-                        activeRow++;
-                        if (activeRow >= rowsB) {
-                            // Da nhap xong toan bo 2 ma tran!
-                            break;
-                        }
+            if (!unaryOperation) {
+                for (int i = 0; i < rowsB; i++) {
+                    for (int j = 0; j < colsB; j++) {
+                        double val = (choice == 1) ? (1.0 + (Math.abs((long) i * 668265263L + (long) j * 374761393L) % 10)) : (choice == 2 ? 0.0 : 1.0);
+                        dataB[i][j] = val;
                     }
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Gia tri khong hop le! Vui long nhap mot con so hop le (VD: 5 hoac 3.5).");
+            }
+            System.out.println(">>> Da khoi tao gia tri ma tran thanh cong bang PRNG O(1) RAM!\n");
+        } else {
+            while (true) {
+                clearScreen();
+                if (unaryOperation) {
+                    renderSingleMatrixTemplate(rowsA, colsA, dataA, activeRow, activeCol, op);
+                } else {
+                    renderTwinMatrixTemplates(rowsA, colsA, dataA, rowsB, colsB, dataB,
+                            activeMatrix, activeRow, activeCol, op);
+                }
+
+                System.out.printf(">> Dang nhap phan tu: MA TRAN %c - Dong %d, Cot %d (Toa do [%d][%d])%n",
+                        activeMatrix, (activeRow + 1), (activeCol + 1), activeRow, activeCol);
+                System.out.print("Nhap gia tri (so nguyen hoac so thap phan): ");
+
+                String input = scanner.nextLine().trim();
                 try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException ignored) {}
+                    double val = Double.parseDouble(input);
+                    if (activeMatrix == 'A') {
+                        dataA[activeRow][activeCol] = val;
+                        activeCol++;
+                        if (activeCol >= colsA) {
+                            activeCol = 0;
+                            activeRow++;
+                            if (activeRow >= rowsA) {
+                                if (unaryOperation) {
+                                    break;
+                                }
+                                activeMatrix = 'B';
+                                activeRow = 0;
+                                activeCol = 0;
+                            }
+                        }
+                    } else {
+                        dataB[activeRow][activeCol] = val;
+                        activeCol++;
+                        if (activeCol >= colsB) {
+                            activeCol = 0;
+                            activeRow++;
+                            if (activeRow >= rowsB) {
+                                // Da nhap xong toan bo 2 ma tran!
+                                break;
+                            }
+                        }
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Gia tri khong hop le! Vui long nhap mot con so hop le (VD: 5 hoac 3.5).");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ignored) {}
+                }
             }
         }
 
@@ -519,17 +547,21 @@ public class MasterApp {
         System.out.println("Giai thich: [  X  ]: Chua nhap | [>?<]: Con tro dang nhap | [12.0]: Da nhap\n");
 
         System.out.printf("--- MA TRAN A [%d x %d] ---%n", rows, cols);
-        for (int i = 0; i < rows; i++) {
+        int maxR = Math.min(rows, 6);
+        int maxC = Math.min(cols, 6);
+        for (int i = 0; i < maxR; i++) {
             System.out.print("[ ");
-            for (int j = 0; j < cols; j++) {
+            for (int j = 0; j < maxC; j++) {
                 if (i == activeRow && j == activeCol) {
                     System.out.print(" [>?<] ");
                 } else {
                     System.out.print(formatCell(data[i][j]));
                 }
             }
+            if (cols > 6) System.out.print(" ... ");
             System.out.println("]");
         }
+        if (rows > 6) System.out.println("  [ ...  ...  ... ]");
         System.out.println("---------------------------------------------------------------------------");
     }
 
@@ -541,7 +573,7 @@ public class MasterApp {
         System.out.printf("Phep toan da chon: [%d x %d]  %s  [%d x %d]%n", rowsA, colsA, op.toUpperCase(), rowsB, colsB);
         System.out.println("Giai thich: [  X  ]: Chua nhap | [>?<]: Con tro dang nhap | [12.0]: Da nhap\n");
 
-        int maxRows = Math.max(rowsA, rowsB);
+        int maxRows = Math.min(Math.max(rowsA, rowsB), 6);
         boolean sideBySide = (colsA + colsB) <= 9;
 
         if (sideBySide) {
@@ -554,13 +586,14 @@ public class MasterApp {
                 StringBuilder lineA = new StringBuilder();
                 if (i < rowsA) {
                     lineA.append("[ ");
-                    for (int j = 0; j < colsA; j++) {
+                    for (int j = 0; j < Math.min(colsA, 6); j++) {
                         if (activeMatrix == 'A' && i == activeRow && j == activeCol) {
                             lineA.append(" [>?<] ");
                         } else {
                             lineA.append(formatCell(dataA[i][j]));
                         }
                     }
+                    if (colsA > 6) lineA.append(" ... ");
                     lineA.append("]");
                 } else {
                     lineA.append(" ".repeat(widthA));
@@ -569,44 +602,54 @@ public class MasterApp {
                 StringBuilder lineB = new StringBuilder();
                 if (i < rowsB) {
                     lineB.append("[ ");
-                    for (int j = 0; j < colsB; j++) {
+                    for (int j = 0; j < Math.min(colsB, 6); j++) {
                         if (activeMatrix == 'B' && i == activeRow && j == activeCol) {
                             lineB.append(" [>?<] ");
                         } else {
                             lineB.append(formatCell(dataB[i][j]));
                         }
                     }
+                    if (colsB > 6) lineB.append(" ... ");
                     lineB.append("]");
                 }
 
                 System.out.printf("%-" + widthA + "s   |    %s%n", lineA.toString(), lineB.toString());
             }
+            if (rowsA > 6 || rowsB > 6) System.out.println("  [ ...  ...  ... ]                   |    [ ...  ...  ... ]");
         } else {
             System.out.printf("--- MA TRAN A [%d x %d] ---%n", rowsA, colsA);
-            for (int i = 0; i < rowsA; i++) {
+            int maxRA = Math.min(rowsA, 6);
+            int maxCA = Math.min(colsA, 6);
+            for (int i = 0; i < maxRA; i++) {
                 System.out.print("[ ");
-                for (int j = 0; j < colsA; j++) {
+                for (int j = 0; j < maxCA; j++) {
                     if (activeMatrix == 'A' && i == activeRow && j == activeCol) {
                         System.out.print(" [>?<] ");
                     } else {
                         System.out.print(formatCell(dataA[i][j]));
                     }
                 }
+                if (colsA > 6) System.out.print(" ... ");
                 System.out.println("]");
             }
+            if (rowsA > 6) System.out.println("  [ ...  ...  ... ]");
 
             System.out.printf("%n--- MA TRAN B [%d x %d] ---%n", rowsB, colsB);
-            for (int i = 0; i < rowsB; i++) {
+            int maxRB = Math.min(rowsB, 6);
+            int maxCB = Math.min(colsB, 6);
+            for (int i = 0; i < maxRB; i++) {
                 System.out.print("[ ");
-                for (int j = 0; j < colsB; j++) {
+                for (int j = 0; j < maxCB; j++) {
                     if (activeMatrix == 'B' && i == activeRow && j == activeCol) {
                         System.out.print(" [>?<] ");
                     } else {
                         System.out.print(formatCell(dataB[i][j]));
                     }
                 }
+                if (colsB > 6) System.out.print(" ... ");
                 System.out.println("]");
             }
+            if (rowsB > 6) System.out.println("  [ ...  ...  ... ]");
         }
         System.out.println("---------------------------------------------------------------------------");
     }

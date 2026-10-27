@@ -10,7 +10,11 @@ public class TaskScheduler {
     private final WorkerRegistry registry;
     private volatile LoadBalancingPolicy policy = LoadBalancingPolicy.ROUND_ROBIN;
     private volatile ResourceThresholds thresholds = ResourceThresholds.defaults();
-    private int cursor;
+    private String lastMachine = "";
+    private final Map<String, String> lastWorker = new HashMap<>();
+    private final Map<String, Integer> reservedMachines = new HashMap<>();
+    private static class Gate { boolean cpu, ram, heap; }
+    private final Map<String, Gate> gates = new HashMap<>();
     public TaskScheduler(WorkerRegistry registry) { this.registry = registry; }
     public LoadBalancingPolicy getPolicy() { return policy; }
     public void setPolicy(LoadBalancingPolicy value) { policy = Objects.requireNonNull(value); }
@@ -21,40 +25,81 @@ public class TaskScheduler {
     }
     public synchronized boolean eligible(WorkerInfo w) {
         ResourceMetrics m = w.metrics == null ? new ResourceMetrics() : w.metrics;
+        ResourceMetrics host = registry.getAllWorkers().stream()
+            .filter(other -> machine(other).equals(machine(w)) && other.getStatus() != WorkerStatus.OFFLINE && other.metrics != null)
+            .max(Comparator.comparingLong(WorkerInfo::getLastHeartbeatTime)).map(other -> other.metrics).orElse(m);
         ResourceThresholds t = thresholds;
-        w.cpuBlocked = blocked(w.cpuBlocked, m.cpu, t.cpuHigh(), t.cpuLow());
-        w.ramBlocked = blocked(w.ramBlocked, m.ram, t.ramHigh(), t.ramLow());
-        w.heapBlocked = blocked(w.heapBlocked, m.heap, t.heapHigh(), t.heapLow());
+        Gate gate = gates.computeIfAbsent(machine(w), id -> new Gate());
+        gate.cpu = blocked(gate.cpu, host.cpu, t.cpuHigh(), t.cpuLow());
+        gate.ram = blocked(gate.ram, host.ram, t.ramHigh(), t.ramLow());
+        gate.heap = blocked(gate.heap, host.heap, t.heapHigh(), t.heapLow());
+        w.cpuBlocked = gate.cpu; w.ramBlocked = gate.ram; w.heapBlocked = gate.heap;
         String reason = w.getStatus() == WorkerStatus.OFFLINE ? "OFFLINE" : w.paused ? "PAUSED" :
             w.unavailableUntil > System.currentTimeMillis() ? "RETRY_BACKOFF" :
             Math.max(w.getActiveTasks(), m.runningTasks) >= w.getCapacity() ? "CAPACITY" :
+            machineActive(machine(w)) >= machineCapacity(machine(w)) ? "HOST_CAPACITY" :
             policy == LoadBalancingPolicy.RESOURCE_AWARE && w.cpuBlocked ? "CPU_HIGH" :
             policy == LoadBalancingPolicy.RESOURCE_AWARE && w.ramBlocked ? "RAM_HIGH" :
             policy == LoadBalancingPolicy.RESOURCE_AWARE && w.heapBlocked ? "HEAP_HIGH" : "READY";
         w.admissionReason = reason;
         return reason.equals("READY");
     }
-    private static double metric(Double value) { return ResourceMetrics.valid(value) == null ? 101 : value; }
+    private static String machine(WorkerInfo w) { return w.machineId == null ? w.getWorkerId() : w.machineId; }
+    public synchronized int machineCapacity(String id) {
+        List<WorkerInfo> members = registry.getAllWorkers().stream().filter(w -> w.getStatus() != WorkerStatus.OFFLINE && machine(w).equals(id)).toList();
+        int capacity = members.stream().mapToInt(WorkerInfo::getCapacity).sum();
+        int limit = members.stream().mapToInt(w -> w.hostParallelism > 0 ? w.hostParallelism : w.getCapacity()).min().orElse(0);
+        return Math.min(capacity, limit);
+    }
+    public synchronized int machineActive(String id) {
+        int tracked = registry.getAllWorkers().stream().filter(w -> machine(w).equals(id)).mapToInt(WorkerInfo::getActiveTasks).sum();
+        return Math.max(tracked, reservedMachines.getOrDefault(id, 0));
+    }
+    public synchronized int effectiveCapacity() {
+        List<WorkerInfo> available = registry.getAvailableWorkers();
+        return available.stream().map(TaskScheduler::machine).distinct()
+            .mapToInt(id -> Math.min(machineCapacity(id), available.stream().filter(w -> machine(w).equals(id)).mapToInt(WorkerInfo::getCapacity).sum())).sum();
+    }
+    public synchronized String describeAvailability() {
+        List<WorkerInfo> workers = registry.getAllWorkers();
+        if (workers.isEmpty()) return "Chưa có Worker đăng ký với Master.";
+        return workers.stream().sorted(Comparator.comparing(WorkerInfo::getWorkerId)).map(w -> {
+            eligible(w);
+            return w.getWorkerId() + " (" + w.getHost() + ":" + w.getPort() + "): " + w.admissionReason;
+        }).collect(java.util.stream.Collectors.joining("; "));
+    }
     public synchronized WorkerInfo selectWorker() {
         List<WorkerInfo> available = registry.getAvailableWorkers().stream().filter(this::eligible)
             .sorted(Comparator.comparing(WorkerInfo::getWorkerId)).toList();
         if (available.isEmpty()) return null;
-        if (policy == LoadBalancingPolicy.ROUND_ROBIN)
-            return available.get(Math.floorMod(cursor++, available.size()));
-        Comparator<WorkerInfo> comparator = policy == LoadBalancingPolicy.LEAST_LOADED ?
-            Comparator.comparingDouble(WorkerInfo::getActiveTasks) :
-            Comparator.comparingDouble(w -> (double) Math.max(w.getActiveTasks(), w.metrics.runningTasks) / w.getCapacity());
-        return available.stream().min(comparator
-            .thenComparingDouble(w -> metric(w.metrics.cpu)).thenComparingDouble(w -> metric(w.metrics.ram))
-            .thenComparing(WorkerInfo::getWorkerId)).orElse(null);
+        List<String> ids = available.stream().map(TaskScheduler::machine).distinct().sorted().toList();
+        double best = ids.stream().mapToDouble(id -> (double) machineActive(id) / machineCapacity(id)).min().orElseThrow();
+        List<String> tied = ids.stream().filter(id -> Math.abs((double) machineActive(id) / machineCapacity(id) - best) < 1e-9).toList();
+        String chosen = tied.stream().filter(id -> id.compareTo(lastMachine) > 0).findFirst().orElse(tied.get(0));
+        lastMachine = chosen;
+        List<WorkerInfo> members = available.stream().filter(w -> machine(w).equals(chosen)).toList();
+        if (policy == LoadBalancingPolicy.LEAST_LOADED) {
+            double load = members.stream().mapToDouble(w -> (double) w.getActiveTasks() / w.getCapacity()).min().orElseThrow();
+            members = members.stream().filter(w -> Math.abs((double) w.getActiveTasks() / w.getCapacity() - load) < 1e-9).toList();
+        }
+        String previous = lastWorker.getOrDefault(chosen, "");
+        WorkerInfo worker = members.stream().filter(w -> w.getWorkerId().compareTo(previous) > 0).findFirst().orElse(members.get(0));
+        lastWorker.put(chosen, worker.getWorkerId());
+        return worker;
     }
     /** Selection and reservation share one lock across all jobs. */
     public synchronized WorkerInfo reserveWorker() {
         WorkerInfo worker = selectWorker();
-        if (worker != null) worker.incrementActiveTasks();
+        if (worker != null) {
+            worker.incrementActiveTasks();
+            reservedMachines.merge(machine(worker), 1, Integer::sum);
+        }
         return worker;
     }
-    public synchronized void release(WorkerInfo worker) { worker.decrementActiveTasks(); }
+    public synchronized void release(WorkerInfo worker) {
+        worker.decrementActiveTasks();
+        reservedMachines.computeIfPresent(machine(worker), (id, count) -> Math.max(0, count - 1));
+    }
     public Message sendReservedTask(Task task, WorkerInfo target) throws IOException {
         Message request = Message.assignTask(target.getWorkerId(), task);
         request.masterSession = task.masterSession; request.workerSession = task.workerSession;
@@ -63,7 +108,7 @@ public class TaskScheduler {
         for (int i = 0; i < 2; i++) {
             try {
                 Message reply = SocketMessenger.sendAndReceive(target.getHost(), target.getPort(), request, 5000);
-                if (reply == null || reply.protocolVersion != 2
+                if (reply == null || reply.protocolVersion != Message.CURRENT_VERSION
                     || !Objects.equals(reply.workerSession, task.workerSession)
                     || !Objects.equals(reply.masterSession, task.masterSession)) throw new IOException("Missing/incompatible task ACK");
                 return reply;

@@ -9,6 +9,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WorkerInfo {
     public String sessionId;
+    public String jarSha256;
+    public String machineId;
+    public String machineName;
+    public int hostParallelism;
     public volatile ResourceMetrics metrics = new ResourceMetrics();
     public volatile boolean paused;
     public volatile boolean cpuBlocked, ramBlocked, heapBlocked;
@@ -35,6 +39,9 @@ public class WorkerInfo {
         this.host = host;
         this.port = port;
         this.capacity = capacity > 0 ? capacity : Runtime.getRuntime().availableProcessors();
+        this.machineId = workerId;
+        this.machineName = workerId;
+        this.hostParallelism = this.capacity;
         this.status = WorkerStatus.ONLINE;
         this.lastHeartbeatTime = System.currentTimeMillis();
     }

@@ -1,0 +1,9 @@
+[Master] Listening 127.0.0.1:15000
+[MasterHttpServer] REST API Server san sang tai: http://localhost:8080/api/
+[Registry] REGISTER [smoke-a @ 127.0.0.1:15001 | Status: ONLINE | Active: 0 | Done: 0]
+[Registry] REGISTER [smoke-b @ 127.0.0.1:15002 | Status: ONLINE | Active: 0 | Done: 0]
+[Result] async-x-f256eb7f-6a6d-495b-bcbc-366e52998f83-task-02 <- smoke-b (1/3)
+[Result] async-x-f256eb7f-6a6d-495b-bcbc-366e52998f83-task-01 <- smoke-a (2/3)
+[Result] async-x-f256eb7f-6a6d-495b-bcbc-366e52998f83-task-03 <- smoke-a (3/3)
+[Result] async-x-56afc646-651e-4b0a-b285-b8d224ad48b6-task-02 <- smoke-a (1/2)
+[Result] async-x-56afc646-651e-4b0a-b285-b8d224ad48b6-task-01 <- smoke-b (2/2)

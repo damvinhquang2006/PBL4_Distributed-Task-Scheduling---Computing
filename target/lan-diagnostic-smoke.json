@@ -1,0 +1,203 @@
+{
+  "timestamp": "2026-10-27T17:33:10.0725536+07:00",
+  "computer": "DESKTOP-QBGBFLP",
+  "localIPv4": [
+    {
+      "adapter": "Radmin VPN",
+      "address": "26.212.222.230"
+    },
+    {
+      "adapter": "VMware Network Adapter VMnet1",
+      "address": "192.168.137.1"
+    },
+    {
+      "adapter": "VMware Network Adapter VMnet8",
+      "address": "192.168.181.1"
+    },
+    {
+      "adapter": "Wi-Fi",
+      "address": "192.168.1.7"
+    },
+    {
+      "adapter": "Loopback Pseudo-Interface 1",
+      "address": "127.0.0.1"
+    },
+    {
+      "adapter": "vEthernet (WSL (Hyper-V firewall))",
+      "address": "172.25.112.1"
+    }
+  ],
+  "jarSha256": "A819A615794C188E2D3D999FF80C6569746FEC8F51E340FC4CA7845509D2ABD9",
+  "masterTcp": {
+    "address": "127.0.0.1",
+    "port": 15000,
+    "connected": true
+  },
+  "status": {
+    "running": true,
+    "httpPort": 8080,
+    "policy": "ROUND_ROBIN",
+    "totalWorkers": 2,
+    "availableWorkers": 2
+  },
+  "workers": [
+    {
+      "workerId": "smoke-a",
+      "host": "127.0.0.1",
+      "port": 15001,
+      "status": "ONLINE",
+      "paused": false,
+      "admissionReason": "READY",
+      "activeTasks": 0,
+      "capacity": 1,
+      "completedTasks": 2,
+      "metrics": {
+        "cpu": 22.957456857836416,
+        "ram": 90.59027504571073,
+        "heap": 0.9611846494003081,
+        "runningTasks": 0
+      },
+      "tcpFromThisLaptop": {
+        "address": "127.0.0.1",
+        "port": 15001,
+        "connected": true
+      }
+    },
+    {
+      "workerId": "smoke-b",
+      "host": "127.0.0.1",
+      "port": 15002,
+      "status": "ONLINE",
+      "paused": false,
+      "admissionReason": "READY",
+      "activeTasks": 0,
+      "capacity": 1,
+      "completedTasks": 1,
+      "metrics": {
+        "cpu": 23.263643530964913,
+        "ram": 90.60677290960876,
+        "heap": 0.9611846494003081,
+        "runningTasks": 0
+      },
+      "tcpFromThisLaptop": {
+        "address": "127.0.0.1",
+        "port": 15002,
+        "connected": true
+      }
+    }
+  ],
+  "testJobId": "async-x-56afc646-651e-4b0a-b285-b8d224ad48b6",
+  "matrixTest": {
+    "jobId": "async-x-56afc646-651e-4b0a-b285-b8d224ad48b6",
+    "title": "Tinh toan ma tran phan tan [x]: A [2 x 2]",
+    "operation": "x",
+    "status": "COMPLETED",
+    "totalTasks": 2,
+    "completedTasks": 2,
+    "progressPercent": 100.0,
+    "elapsedMs": 87,
+    "etaMs": 0,
+    "failoverEvents": [],
+    "workerFleet": [
+      {
+        "workerId": "smoke-a",
+        "status": "ONLINE",
+        "paused": false,
+        "activeTasks": 0,
+        "completedTasks": 3,
+        "assignedTask": null,
+        "admissionReason": "READY",
+        "host": "127.0.0.1",
+        "port": 15001,
+        "metrics": {
+          "cpu": 22.957456857836416,
+          "ram": 90.59027504571073,
+          "heap": 0.9611846494003081,
+          "runningTasks": 0
+        }
+      },
+      {
+        "workerId": "smoke-b",
+        "status": "ONLINE",
+        "paused": false,
+        "activeTasks": 0,
+        "completedTasks": 2,
+        "assignedTask": null,
+        "admissionReason": "READY",
+        "host": "127.0.0.1",
+        "port": 15002,
+        "metrics": {
+          "cpu": 23.263643530964913,
+          "ram": 90.60677290960876,
+          "heap": 0.9611846494003081,
+          "runningTasks": 0
+        }
+      }
+    ],
+    "result": [
+      [
+        1.0,
+        2.0
+      ],
+      [
+        3.0,
+        4.0
+      ]
+    ],
+    "resultSummary": {
+      "success": true,
+      "operation": "x",
+      "isScalar": false,
+      "totalChunks": 2,
+      "chunkSize": "1 dong / chunk (toi da)",
+      "workersOnline": 2,
+      "workerIds": [
+        "smoke-a",
+        "smoke-b"
+      ],
+      "rows": 2,
+      "cols": 2,
+      "isSampled": false,
+      "result": [
+        [
+          1.0,
+          2.0
+        ],
+        [
+          3.0,
+          4.0
+        ]
+      ],
+      "sampleGrid": [
+        [
+          1.0,
+          2.0
+        ],
+        [
+          3.0,
+          4.0
+        ]
+      ],
+      "rowIndices": [
+        0,
+        1
+      ],
+      "colIndices": [
+        0,
+        1
+      ],
+      "distributedTimeMs": 87
+    },
+    "durationMs": 87
+  },
+  "expectedResult": [
+    [
+      1,
+      2
+    ],
+    [
+      3,
+      4
+    ]
+  ]
+}

@@ -6,6 +6,7 @@ public class ResourceMetrics {
     public Double ram;
     public Double heap;
     public int runningTasks;
+    public int hostRunningTasks;
     public ResourceMetrics() {}
     public ResourceMetrics(Double cpu, Double ram, Double heap, int runningTasks) {
         this.cpu = valid(cpu); this.ram = valid(ram); this.heap = valid(heap);

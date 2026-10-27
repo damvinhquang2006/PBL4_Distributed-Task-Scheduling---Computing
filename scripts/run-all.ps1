@@ -58,9 +58,9 @@ if ($WithUI) {
     Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd '$FrontendDir'; npm run dev -- --port 5173 --open"
 }
 
-Write-Host "`n>>> DA KHOI CHAY TOAN BO CUM THANH CONG!" -ForegroundColor Cyan
+Write-Host "`n>>> DA GUI LENH KHOI DONG. CHO REGISTERED X/Y TRONG TERMINAL WORKER DE XAC NHAN KET NOI." -ForegroundColor Cyan
 Write-Host "  - Master Server: 127.0.0.1:$MasterPort (Web API: http://localhost:8080/api)" -ForegroundColor Gray
-Write-Host "  - Tong so Workers: $WorkerCount (Ports $StartWorkerPort -> $EndWorkerPort)" -ForegroundColor Gray
+Write-Host "  - So Workers yeu cau: $WorkerCount (Ports $StartWorkerPort -> $EndWorkerPort); UI hien so da dang ky thuc te." -ForegroundColor Gray
 if ($WithUI) {
     Write-Host "  - Web UI Dashboard: http://localhost:5173" -ForegroundColor Green
 } else {

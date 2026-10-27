@@ -1,5 +1,40 @@
 # Chạy tính toán ma trận trên hai laptop Windows qua LAN
 
+**Mô hình 50 Worker mỗi laptop:** dùng hướng dẫn mới [LAN-CLUSTER.md](LAN-CLUSTER.md), cùng JAR giao thức 3 và script `start-lan-workers.ps1`. Các phần bên dưới ghi lại cấu hình hai Worker và các bản sửa trước.
+
+## Bản sửa tính toán Web UI — 27/10/2026
+
+**Bản v3:** kết quả có tối đa 10.000 phần tử (bao gồm 3×3, 8×8 và 100×100) được trả và hiển thị đầy đủ, có cuộn hai chiều. Trước đây 8×8 được xem qua 7 dòng/cột chọn mẫu, nên trông như ma trận 7×7. Kết quả lớn hơn 10.000 phần tử ghi rõ là khung xem trước; việc tính toán vẫn thực hiện trên toàn bộ ma trận trong giới hạn cho phép.
+
+Để kiểm tra đúng trường hợp 100×100 trên máy A sau khi hai Worker đăng ký:
+
+```powershell
+.\scripts\diagnose-lan.ps1 -TestMatrix -MatrixSize 100
+```
+
+`matrixTestPassed: true`, `checkedCells: 10000` xác nhận toàn bộ giá trị của bài toán A×I đã được kiểm tra. `workerIds` cho biết những Worker đã hoàn thành phần việc. Mỗi Worker có `runtimeJarSha256` và `jarMatchesMaster` để so sánh **tiến trình đang chạy** với Master. `false` nghĩa là đang chạy khác JAR; `UNKNOWN` nghĩa là bản cũ không báo mã JAR hoặc tiến trình đang chạy từ thư mục classes. Dừng và mở lại Master/Worker sau khi thay JAR.
+
+Worker ghi `[Task failed]` khi lỗi tính toán và `[Result retry]` khi không gửi kết quả về Master được. Xem hai thông báo này cùng `waitingReason`/`admissionReason` để phân biệt lỗi phép toán, lỗi mạng và tạm hoãn do tải tài nguyên.
+
+Bản v2 sửa thêm trường hợp ma trận nhỏ tính xong nhưng giao diện trống: kết quả đầy đủ có trường `result` cho bảng trực tiếp, giao diện cũng đọc được `sampleGrid` từ bản cũ. Khi không đọc được tiến trình hoặc Master khởi động lại, giao diện báo lỗi thay vì chờ vô hạn.
+
+Để kiểm tra cụm đang chạy, trên **máy A** chạy:
+
+```powershell
+.\scripts\diagnose-lan.ps1 -TestMatrix
+```
+
+Script in IP từng card mạng, SHA256 của JAR, khả năng kết nối tới Master và từng Worker, trạng thái CPU/RAM/PAUSED, rồi gửi bài toán kiểm tra `[[1,2],[3,4]] × I`. `resultSummary.result` phải là `[[1,2],[3,4]]`. `resultSummary.workerIds` liệt kê các Worker thực sự hoàn thành tác vụ; tùy chính sách và thời điểm, một bài toán rất nhỏ không bảo đảm dùng mọi Worker. Nếu job kiểm tra chờ quá 15 giây, script chỉ hủy job kiểm tra đó. Chạy không có `-TestMatrix` để chỉ đọc trạng thái.
+
+`PAUSED` nghĩa là cần bật lại Worker trong tab Giám Sát Cụm. `CPU_HIGH`, `RAM_HIGH`, `HEAP_HIGH` nghĩa là Worker kết nối nhưng đang bị chính sách RESOURCE_AWARE hoãn nhận thêm việc. `OFFLINE` nghĩa là thiếu heartbeat. IP Wi-Fi có thể đổi khi chuyển mạng; không dùng IP VMware/VPN làm địa chỉ LAN của hai laptop.
+
+- Web UI dùng các Worker đã đăng ký, không tự tạo thêm 50 Worker khi gửi bài toán. Nút mở rộng 50 Worker vẫn là thao tác demo riêng; không dùng nút này khi cần đúng hai Worker A và B.
+- Số tác vụ tự điều chỉnh theo tổng capacity và tối đa số dòng (hoặc số cột cofactor). Ma trận 3 dòng chỉ có tối đa 3 tác vụ, không có lát cắt `[3..4)`.
+- Nhánh web gửi cùng định dạng dữ liệu cụ thể như console: `sliceA`, `sliceB`, `dataB`... và tổng hợp kết quả thật từ Worker. Giá trị nhập trực tiếp được ưu tiên hơn bộ sinh số.
+- Hiện tính toán đầy đủ tối đa 1.000.000 phần tử cho mỗi ma trận đầu vào và kết quả. Bộ sinh số không thay thế phép tính; chỉ lấy mẫu khi hiển thị ma trận kết quả lớn. Kích thước vượt giới hạn bị từ chối rõ ràng, không báo hoàn thành bằng dữ liệu mô phỏng.
+- Trước khi chạy lại, dừng Master và các Worker cũ bằng Ctrl+C, chép cùng JAR mới sang cả hai máy rồi khởi động lại bằng các lệnh bên dưới. Tải lại giao diện web trên A.
+- Trường `workerIds` trong kết quả API cho biết các Worker thực sự hoàn thành tác vụ.
+
 ## Mô hình
 
 - Laptop A: Master TCP 5000, Worker `laptop-a-worker` TCP 5001.

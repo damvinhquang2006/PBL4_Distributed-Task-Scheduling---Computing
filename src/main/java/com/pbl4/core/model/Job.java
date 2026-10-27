@@ -16,6 +16,10 @@ public class Job {
     private String title;
     private TaskType type;
     private volatile JobStatus status;
+    private volatile String failureReason;
+
+    public String getFailureReason() { return failureReason; }
+    public void setFailureReason(String reason) { failureReason = reason; }
     private List<Task> tasks = new ArrayList<>();
     private Map<String, TaskResult> results = new ConcurrentHashMap<>();
     private long startTime;

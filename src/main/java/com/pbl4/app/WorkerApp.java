@@ -18,13 +18,19 @@ public class WorkerApp {
         String host = "127.0.0.1";
         String masterHost = "127.0.0.1";
         int masterPort = 50;
-        int capacity = Math.max(1, Runtime.getRuntime().availableProcessors() - 1);
+        int capacity = 1;
+        WorkerConfig defaults = new WorkerConfig();
+        String machineId = defaults.getMachineId(), machineName = defaults.getMachineName();
+        int parallelism = defaults.getHostParallelism();
         String bindHost = "0.0.0.0";
         boolean demoDelay = false;
         int count = 1;
 
         for (int i = 0; i < args.length; i++) {
-            if ("--demoDelay".equals(args[i])) { demoDelay = true;
+            if ("--machineId".equals(args[i]) && i + 1 < args.length) { machineId = args[++i];
+            } else if ("--machineName".equals(args[i]) && i + 1 < args.length) { machineName = args[++i];
+            } else if ("--hostParallelism".equals(args[i]) && i + 1 < args.length) { parallelism = Integer.parseInt(args[++i]);
+            } else if ("--demoDelay".equals(args[i])) { demoDelay = true;
             } else if ("--bindHost".equals(args[i]) && i + 1 < args.length) { bindHost = args[++i];
             } else if ("--count".equals(args[i]) && i + 1 < args.length) {
                 count = Integer.parseInt(args[++i]);
@@ -44,7 +50,7 @@ public class WorkerApp {
         }
 
         if (count > 1) {
-            WorkerClusterLauncher.startCluster(count, port, host, masterHost, masterPort, capacity, "worker-");
+            WorkerClusterLauncher.startCluster(count, port, host, masterHost, masterPort, capacity, "worker-", machineId, machineName, bindHost, parallelism);
             return;
         }
 
@@ -55,6 +61,7 @@ public class WorkerApp {
 
         WorkerConfig config = new WorkerConfig(id, host, port, masterHost, masterPort);
         config.setCapacity(capacity); config.setBindHost(bindHost); config.setDemoDelay(demoDelay);
+        config.setMachineId(machineId); config.setMachineName(machineName); config.setHostParallelism(parallelism);
 
         workerNode = new WorkerNode(config);
 
@@ -66,7 +73,7 @@ public class WorkerApp {
 
         try {
             workerNode.start();
-            System.out.println("Worker dang chay va san sang nhan tac vu. Nhan Ctrl+C de dung.");
+            System.out.println("Da mo cong Worker; cho REGISTERED tu Master. Nhan Ctrl+C de dung.");
             
             // Giu tien trinh Worker hoat dong
             while (workerNode.isRunning()) {

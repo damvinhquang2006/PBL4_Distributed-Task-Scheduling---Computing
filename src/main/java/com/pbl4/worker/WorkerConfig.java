@@ -5,6 +5,24 @@ package com.pbl4.worker;
  */
 public class WorkerConfig {
     private String workerId;
+    private String machineName = System.getenv().getOrDefault("COMPUTERNAME", System.getenv().getOrDefault("HOSTNAME", "local-machine"));
+    private String machineId = machineName.toLowerCase(java.util.Locale.ROOT).replaceAll("[^a-z0-9._-]", "-");
+    private int hostParallelism = Math.max(1, Runtime.getRuntime().availableProcessors() - 1);
+    public String getMachineId() { return machineId; }
+    public void setMachineId(String value) {
+        if (value == null || !value.matches("[a-zA-Z0-9._-]{1,64}")) throw new IllegalArgumentException("MachineId must contain 1-64 letters, digits, dots, dashes or underscores");
+        machineId = value;
+    }
+    public String getMachineName() { return machineName; }
+    public void setMachineName(String value) {
+        if (value == null || value.isBlank()) throw new IllegalArgumentException("MachineName required");
+        machineName = value;
+    }
+    public int getHostParallelism() { return hostParallelism; }
+    public void setHostParallelism(int value) {
+        if (value < 1 || value > 1024) throw new IllegalArgumentException("HostParallelism must be between 1 and 1024");
+        hostParallelism = value;
+    }
     private String bindHost = "0.0.0.0";
     private boolean demoDelay;
     public String getBindHost() { return bindHost; }
@@ -15,7 +33,7 @@ public class WorkerConfig {
     private int port;
     private String masterHost = "127.0.0.1";
     private int masterPort = 50;
-    private int capacity = Math.max(1, Runtime.getRuntime().availableProcessors() - 1);
+    private int capacity = 1;
     private int heartbeatIntervalSeconds = 3;
 
     public WorkerConfig() {

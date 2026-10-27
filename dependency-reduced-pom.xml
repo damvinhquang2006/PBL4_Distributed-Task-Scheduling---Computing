@@ -7,6 +7,7 @@
   <version>1.0.0</version>
   <description>Master-Worker Distributed Computing and Load Balancing Framework in Java</description>
   <build>
+    <directory>${pbl4.buildDirectory}</directory>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -64,10 +65,11 @@
     </dependency>
   </dependencies>
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.source>21</maven.compiler.source>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <junit.version>5.10.2</junit.version>
     <jackson.version>2.17.0</jackson.version>
-    <maven.compiler.source>21</maven.compiler.source>
+    <pbl4.buildDirectory>${project.basedir}/target</pbl4.buildDirectory>
   </properties>
 </project>

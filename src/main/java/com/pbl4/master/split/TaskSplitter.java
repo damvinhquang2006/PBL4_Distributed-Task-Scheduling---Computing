@@ -15,6 +15,7 @@ public class TaskSplitter {
         for (int i = 0; i < count; i++) {
             int start = offset, end = start + units / count + (i < units % count ? 1 : 0); offset = end;
             Task task = new Task(String.format("%s-task-%02d", job, i + 1), job, type);
+            task.workUnits = end - start;
             task.deferPayload(() -> factory.apply(start, end)); tasks.add(task);
         }
         return tasks;

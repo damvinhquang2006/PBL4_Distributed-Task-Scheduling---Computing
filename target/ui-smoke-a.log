@@ -1,0 +1,24 @@
+==================================================
+   KHOI DONG WORKER NODE [smoke-a] TAI 127.0.0.1:15001
+   Ket noi toi Master: 127.0.0.1:15000 | So luong: 1 threads
+==================================================
+Worker dang chay va san sang nhan tac vu. Nhan Ctrl+C de dung.
+[Worker] REGISTERED smoke-a -> 127.0.0.1
+[smoke-a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=0) va ma tran B [3 x 3]... OK
+[smoke-a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 3]... OK
+[smoke-a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[smoke-a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[smoke-a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[smoke-a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 3] vao TaskResult... OK
+[smoke-a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 3]... OK
+[smoke-a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 3]... OK
+[smoke-a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[smoke-a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[smoke-a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[smoke-a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 3] vao TaskResult... OK
+[smoke-a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 2] (startRow=1) va ma tran B [2 x 2]... OK
+[smoke-a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[smoke-a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[smoke-a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[smoke-a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[smoke-a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK

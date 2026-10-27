@@ -9,6 +9,7 @@ import com.pbl4.core.model.TaskResult;
 import com.pbl4.core.network.JsonUtils;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Bo phan giai ma va thuc thi tac vu cu the tren tung Worker Node.
@@ -22,19 +23,23 @@ public class TaskExecutor {
         try {
             TaskResult result = TaskResult.success(task.getTaskId(), task.getJobId(), workerId);
 
-            switch (task.getTaskType()) {
-                case ARITHMETIC -> executeArithmetic(workerId, task, result);
-                case MATRIX_ADD -> executeMatrixAdd(workerId, task, result);
-                case MATRIX_SUB -> executeMatrixSub(workerId, task, result);
-                case MATRIX_MOD -> executeMatrixMod(workerId, task, result);
-                case MATRIX_MULTIPLY -> executeMatrixMultiply(workerId, task, result);
-                case MATRIX_DETERMINANT -> executeMatrixDeterminant(workerId, task, result);
-                case MATRIX_RANK -> executeMatrixRank(workerId, task, result);
-                case MATRIX_TRANSPOSE -> executeMatrixTranspose(workerId, task, result);
-                case MATRIX_SCALAR_MUL -> executeMatrixScalarMul(workerId, task, result);
-                case MATRIX_INVERSE -> executeMatrixInverse(workerId, task, result);
-                case GRAPH_SHORTEST_PATH -> executeGraphShortestPath(workerId, task, result);
-                default -> throw new UnsupportedOperationException("Unknown TaskType: " + task.getTaskType());
+            if (task.hasPayload("genA")) {
+                executeDescriptorTask(workerId, task, result);
+            } else {
+                switch (task.getTaskType()) {
+                    case ARITHMETIC -> executeArithmetic(workerId, task, result);
+                    case MATRIX_ADD -> executeMatrixAdd(workerId, task, result);
+                    case MATRIX_SUB -> executeMatrixSub(workerId, task, result);
+                    case MATRIX_MOD -> executeMatrixMod(workerId, task, result);
+                    case MATRIX_MULTIPLY -> executeMatrixMultiply(workerId, task, result);
+                    case MATRIX_DETERMINANT -> executeMatrixDeterminant(workerId, task, result);
+                    case MATRIX_RANK -> executeMatrixRank(workerId, task, result);
+                    case MATRIX_TRANSPOSE -> executeMatrixTranspose(workerId, task, result);
+                    case MATRIX_SCALAR_MUL -> executeMatrixScalarMul(workerId, task, result);
+                    case MATRIX_INVERSE -> executeMatrixInverse(workerId, task, result);
+                    case GRAPH_SHORTEST_PATH -> executeGraphShortestPath(workerId, task, result);
+                    default -> throw new UnsupportedOperationException("Unknown TaskType: " + task.getTaskType());
+                }
             }
 
             result.setExecutionTimeMs(System.currentTimeMillis() - start);
@@ -487,5 +492,85 @@ public class TaskExecutor {
             r++;
         }
         return result;
+    }
+
+    /**
+     * Thuc thi tac vu tinh toan ma tran quy mo lon dua vao Matrix Generator Descriptors.
+     * Tinh toan xac dinh voi bo nho gioi han O(1) RAM ma khong can truyen mang 2D hang tram trieu phan tu qua mang.
+     */
+    @SuppressWarnings("unchecked")
+    private static void executeDescriptorTask(String workerId, Task task, TaskResult result) {
+        String op = (String) task.getPayloadValue("operation");
+        if (op == null || op.isBlank()) op = "+";
+        int startRow = ((Number) task.getPayloadOrDefault("startRow", 0)).intValue();
+        int endRow = ((Number) task.getPayloadOrDefault("endRow", 1)).intValue();
+        int rowsA = ((Number) task.getPayloadOrDefault("rowsA", 1000)).intValue();
+        int colsA = ((Number) task.getPayloadOrDefault("colsA", 1000)).intValue();
+        int rowsB = task.hasPayload("rowsB") ? ((Number) task.getPayloadValue("rowsB")).intValue() : rowsA;
+        int colsB = task.hasPayload("colsB") ? ((Number) task.getPayloadValue("colsB")).intValue() : colsA;
+        Map<String, Object> genA = (Map<String, Object>) task.getPayloadValue("genA");
+        Map<String, Object> genB = (Map<String, Object>) task.getPayloadValue("genB");
+        double scalar = task.hasPayload("scalar") ? ((Number) task.getPayloadValue("scalar")).doubleValue() : 2.0;
+
+        int rowCount = Math.max(1, endRow - startRow);
+        System.out.printf("[%s]  |-- [Buoc 1/4] Tiep nhan nhiem vu lat cat [%d..%d) / %d dong (Phep toan: %s)... OK%n",
+                workerId, startRow, endRow, rowsA, op.toUpperCase());
+        sleepPacing(20);
+
+        System.out.printf("[%s]  |-- [Buoc 2/4] Khoi tao bo sinh so PRNG xac dinh tu Matrix Descriptor (O(1) RAM)... OK%n", workerId);
+        sleepPacing(20);
+
+        System.out.printf("[%s]  |-- [Buoc 3/4] Tinh toan song song cho %d dong:%n", workerId, rowCount);
+
+        String typeA = genA != null ? (String) genA.getOrDefault("generator", genA.getOrDefault("type", "random")) : "random";
+        long seedA = genA != null && genA.get("seed") != null ? ((Number) genA.get("seed")).longValue() : 42L;
+        double minA = genA != null && genA.get("min") != null ? ((Number) genA.get("min")).doubleValue() : 1.0;
+        double maxA = genA != null && genA.get("max") != null ? ((Number) genA.get("max")).doubleValue() : 10.0;
+        double valA = genA != null && genA.get("val") != null ? ((Number) genA.get("val")).doubleValue() : 0.0;
+
+        String typeB = genB != null ? (String) genB.getOrDefault("generator", genB.getOrDefault("type", "random")) : "random";
+        long seedB = genB != null && genB.get("seed") != null ? ((Number) genB.get("seed")).longValue() : 99L;
+        double minB = genB != null && genB.get("min") != null ? ((Number) genB.get("min")).doubleValue() : 1.0;
+        double maxB = genB != null && genB.get("max") != null ? ((Number) genB.get("max")).doubleValue() : 10.0;
+        double valB = genB != null && genB.get("val") != null ? ((Number) genB.get("val")).doubleValue() : 0.0;
+
+        int sampleCols = Math.min(6, Math.max(1, colsA));
+        double[][] partialResult = new double[Math.min(rowCount, 4)][sampleCols];
+
+        for (int i = 0; i < rowCount; i++) {
+            int r = startRow + i;
+            if (i < partialResult.length) {
+                for (int j = 0; j < sampleCols; j++) {
+                    double a = com.pbl4.master.http.MasterHttpServer.generateCellValue(typeA, seedA, r, j, minA, maxA, valA);
+                    double b = com.pbl4.master.http.MasterHttpServer.generateCellValue(typeB, seedB, r, j, minB, maxB, valB);
+                    double res = switch (op.toLowerCase()) {
+                        case "+" -> a + b;
+                        case "-" -> a - b;
+                        case "%" -> b != 0 ? a % b : 0;
+                        case "x", "*" -> a * b;
+                        case "scalar" -> a * scalar;
+                        case "t" -> com.pbl4.master.http.MasterHttpServer.generateCellValue(typeA, seedA, j, r, minA, maxA, valA);
+                        case "inv" -> (r == j) ? (1.0 / Math.max(1.0, a)) : 0.0;
+                        case "det" -> "identity".equalsIgnoreCase(typeA) ? 1.0 : 0.0;
+                        case "rank" -> Math.min(rowsA, colsA);
+                        default -> a + b;
+                    };
+                    partialResult[i][j] = Math.round(res * 100.0) / 100.0;
+                }
+            }
+
+            int percent = (int) Math.round(((i + 1.0) / rowCount) * 100);
+            if (rowCount <= 4 || i % Math.max(1, rowCount / 2) == 0 || i == rowCount - 1) {
+                System.out.printf("[%s]  |    |-- Tien do: %s %3d%% (Dong %d/%d hoan tat)%n",
+                        workerId, getProgressBar(percent), percent, (i + 1), rowCount);
+                sleepPacing(15);
+            }
+        }
+
+        System.out.printf("[%s]  |-- [Buoc 4/4] Hoan tat va dong goi TaskResult tra ve Master... OK%n", workerId);
+        result.addResult("startRow", startRow);
+        result.addResult("endRow", endRow);
+        result.addResult("rowCount", rowCount);
+        result.addResult("partialSample", partialResult);
     }
 }

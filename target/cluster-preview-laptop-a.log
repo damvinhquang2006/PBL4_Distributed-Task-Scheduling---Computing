@@ -1,0 +1,182 @@
+[WorkerCluster] laptop=laptop-a (Laptop-A) | opened=50/50 | ports=5101-5150 | compute limit=2 | Master=127.0.0.1:15000
+[WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
+[WorkerCluster] laptop=laptop-a | REGISTERED 0/50 | opened 50/50
+[Worker] REGISTERED laptop-a-worker-02 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5102 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-04 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5104 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-05 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5105 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-07 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5107 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-03 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5103 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-08 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5108 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-01 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5101 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-06 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5106 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-09 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5109 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-10 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5110 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-11 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5111 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-12 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5112 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-13 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5113 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-14 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5114 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-15 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5115 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-16 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5116 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-17 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5117 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-18 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5118 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-19 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5119 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-20 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5120 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-21 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5121 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-22 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5122 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-23 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5123 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-24 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5124 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-25 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5125 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-26 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5126 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-27 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5127 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-28 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5128 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-29 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5129 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-30 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5130 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-31 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5131 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-32 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5132 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-33 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5133 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-34 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5134 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-35 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5135 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-36 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5136 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-37 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5137 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-38 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5138 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-39 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5139 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-40 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5140 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-41 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5141 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-42 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5142 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-43 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5143 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-44 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5144 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-45 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5145 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-46 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5146 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-47 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5147 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-48 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5148 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-49 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5149 -> Master 127.0.0.1:15000
+[Worker] REGISTERED laptop-a-worker-50 | laptop=laptop-a (Laptop-A) | 127.0.0.1:5150 -> Master 127.0.0.1:15000
+[WorkerCluster] laptop=laptop-a | REGISTERED 50/50 | opened 50/50
+[laptop-a-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=30) va ma tran B [100 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=0) va ma tran B [100 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-a-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-01]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-a-worker-02]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-02]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-a-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-a-worker-02]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-a-worker-02]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-a-worker-02]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-a-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-a-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-a-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-a-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-a-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=50) va ma tran B [100 x 100]... OK
+[laptop-a-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-a-worker-04]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=80) va ma tran B [100 x 100]... OK
+[laptop-a-worker-04]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-a-worker-04]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-04]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-a-worker-03]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-a-worker-04]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-03]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-04]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-a-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-a-worker-03]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-a-worker-04]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-a-worker-03]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-a-worker-04]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-a-worker-03]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-a-worker-04]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-a-worker-04]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-a-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-a-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-a-worker-04]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-a-worker-06]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=30) va ma tran B [100 x 100]... OK
+[laptop-a-worker-06]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-a-worker-06]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-05]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=0) va ma tran B [100 x 100]... OK
+[laptop-a-worker-05]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-a-worker-05]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-06]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-a-worker-05]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-a-worker-06]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-05]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-06]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-a-worker-05]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-a-worker-06]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-a-worker-05]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-a-worker-06]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-a-worker-05]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-a-worker-06]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-a-worker-05]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-a-worker-05]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-a-worker-06]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-a-worker-06]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-a-worker-05]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-a-worker-07]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=50) va ma tran B [100 x 100]... OK
+[laptop-a-worker-08]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=80) va ma tran B [100 x 100]... OK
+[laptop-a-worker-08]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-a-worker-07]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-a-worker-07]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-08]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-08]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-a-worker-07]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-a-worker-08]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-07]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-08]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-a-worker-07]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-a-worker-08]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-a-worker-07]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-a-worker-08]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-a-worker-07]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-a-worker-08]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-a-worker-07]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-a-worker-07]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-a-worker-08]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-a-worker-08]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-a-worker-07]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-a-worker-09]  |-- [Buoc 1/5] Nhan lat cat A [25 x 100] (startRow=0) va ma tran B [100 x 100]... OK
+[laptop-a-worker-09]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [25 x 100]... OK
+[laptop-a-worker-09]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-10]  |-- [Buoc 1/5] Nhan lat cat A [25 x 100] (startRow=25) va ma tran B [100 x 100]... OK
+[laptop-a-worker-10]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [25 x 100]... OK
+[laptop-a-worker-10]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-09]  |    |-- Tien do: [----------]   4% (Dong 1/25 hoan tat)
+[laptop-a-worker-09]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
+[laptop-a-worker-10]  |    |-- Tien do: [----------]   4% (Dong 1/25 hoan tat)
+[laptop-a-worker-10]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
+[laptop-a-worker-10]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
+[laptop-a-worker-10]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-a-worker-10]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
+[laptop-a-worker-10]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
+[laptop-a-worker-10]  |-- [Buoc 5/5] Dong goi lat cat C_slice [25 x 100] vao TaskResult... OK
+[laptop-a-worker-09]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
+[laptop-a-worker-09]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-a-worker-09]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
+[laptop-a-worker-09]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
+[laptop-a-worker-09]  |-- [Buoc 5/5] Dong goi lat cat C_slice [25 x 100] vao TaskResult... OK
+[laptop-a-worker-11]  |-- [Buoc 1/5] Nhan lat cat A [25 x 100] (startRow=50) va ma tran B [100 x 100]... OK
+[laptop-a-worker-11]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [25 x 100]... OK
+[laptop-a-worker-11]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-11]  |    |-- Tien do: [----------]   4% (Dong 1/25 hoan tat)
+[laptop-a-worker-11]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
+[laptop-a-worker-11]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
+[laptop-a-worker-12]  |-- [Buoc 1/5] Nhan lat cat A [25 x 100] (startRow=75) va ma tran B [100 x 100]... OK
+[laptop-a-worker-12]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [25 x 100]... OK
+[laptop-a-worker-12]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-12]  |    |-- Tien do: [----------]   4% (Dong 1/25 hoan tat)
+[laptop-a-worker-12]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
+[laptop-a-worker-12]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
+[laptop-a-worker-12]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-a-worker-12]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
+[laptop-a-worker-12]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
+[laptop-a-worker-12]  |-- [Buoc 5/5] Dong goi lat cat C_slice [25 x 100] vao TaskResult... OK
+[laptop-a-worker-11]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-a-worker-11]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
+[laptop-a-worker-11]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
+[laptop-a-worker-11]  |-- [Buoc 5/5] Dong goi lat cat C_slice [25 x 100] vao TaskResult... OK

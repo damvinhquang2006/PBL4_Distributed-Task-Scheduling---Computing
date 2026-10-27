@@ -1,0 +1,147 @@
+{
+  "timestamp": "2026-10-27T17:52:27.2676133+07:00",
+  "computer": "DESKTOP-QBGBFLP",
+  "localIPv4": [
+    {
+      "adapter": "Radmin VPN",
+      "address": "26.212.222.230"
+    },
+    {
+      "adapter": "VMware Network Adapter VMnet1",
+      "address": "192.168.137.1"
+    },
+    {
+      "adapter": "VMware Network Adapter VMnet8",
+      "address": "192.168.181.1"
+    },
+    {
+      "adapter": "Wi-Fi",
+      "address": "192.168.1.7"
+    },
+    {
+      "adapter": "Loopback Pseudo-Interface 1",
+      "address": "127.0.0.1"
+    },
+    {
+      "adapter": "vEthernet (WSL (Hyper-V firewall))",
+      "address": "172.25.112.1"
+    }
+  ],
+  "jarSha256": "1AD678C9461F7DF94C39C6898206A4A9E3760E134B065F35A5F36DEB1C434534",
+  "masterTcp": {
+    "address": "127.0.0.1",
+    "port": 15000,
+    "connected": true
+  },
+  "status": {
+    "running": true,
+    "httpPort": 8080,
+    "jarSha256": "1ad678c9461f7df94c39c6898206a4a9e3760e134b065f35a5f36deb1c434534",
+    "policy": "ROUND_ROBIN",
+    "totalWorkers": 2,
+    "availableWorkers": 2
+  },
+  "workers": [
+    {
+      "workerId": "smoke-a",
+      "host": "127.0.0.1",
+      "port": 15001,
+      "status": "ONLINE",
+      "paused": false,
+      "admissionReason": "READY",
+      "activeTasks": 0,
+      "capacity": 1,
+      "completedTasks": 4,
+      "metrics": {
+        "cpu": 12.857418939884747,
+        "ram": 82.6149930459532,
+        "heap": 0.9900398791675836,
+        "runningTasks": 0
+      },
+      "runtimeJarSha256": "1ad678c9461f7df94c39c6898206a4a9e3760e134b065f35a5f36deb1c434534",
+      "jarMatchesMaster": true,
+      "tcpFromThisLaptop": {
+        "address": "127.0.0.1",
+        "port": 15001,
+        "connected": true
+      }
+    },
+    {
+      "workerId": "smoke-b",
+      "host": "127.0.0.1",
+      "port": 15002,
+      "status": "ONLINE",
+      "paused": false,
+      "admissionReason": "READY",
+      "activeTasks": 0,
+      "capacity": 1,
+      "completedTasks": 4,
+      "metrics": {
+        "cpu": 19.49075807799029,
+        "ram": 82.80214613457525,
+        "heap": 0.9900398791675836,
+        "runningTasks": 0
+      },
+      "runtimeJarSha256": "1ad678c9461f7df94c39c6898206a4a9e3760e134b065f35a5f36deb1c434534",
+      "jarMatchesMaster": true,
+      "tcpFromThisLaptop": {
+        "address": "127.0.0.1",
+        "port": 15002,
+        "connected": true
+      }
+    }
+  ],
+  "testJobId": "async-x-116f1ce3-1aa2-46f2-bf35-01af4c665807",
+  "matrixTest": {
+    "jobId": "async-x-116f1ce3-1aa2-46f2-bf35-01af4c665807",
+    "status": "COMPLETED",
+    "error": null,
+    "totalTasks": 8,
+    "completedTasks": 8,
+    "waitingReason": null,
+    "workerFleet": [
+      {
+        "workerId": "smoke-a",
+        "status": "ONLINE",
+        "paused": false,
+        "activeTasks": 0,
+        "completedTasks": 8,
+        "assignedTask": null,
+        "admissionReason": "READY",
+        "host": "127.0.0.1",
+        "port": 15001,
+        "metrics": {
+          "cpu": 22.866940200656135,
+          "ram": 82.97405772803414,
+          "heap": 1.0178335127136517,
+          "runningTasks": 0
+        }
+      },
+      {
+        "workerId": "smoke-b",
+        "status": "ONLINE",
+        "paused": false,
+        "activeTasks": 0,
+        "completedTasks": 8,
+        "assignedTask": null,
+        "admissionReason": "READY",
+        "host": "127.0.0.1",
+        "port": 15002,
+        "metrics": {
+          "cpu": 23.652683593109373,
+          "ram": 83.04870620614976,
+          "heap": 1.026854609099912,
+          "runningTasks": 0
+        }
+      }
+    ],
+    "workerIds": [
+      "smoke-a",
+      "smoke-b"
+    ],
+    "durationMs": 569,
+    "checkedCells": 10000
+  },
+  "matrixTestPassed": true,
+  "matrixSize": 100
+}

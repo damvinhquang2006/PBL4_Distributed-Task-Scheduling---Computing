@@ -1,0 +1,1866 @@
+[Master] Listening 0.0.0.0:60104
+[MasterHttpServer] REST API Server san sang tai: http://localhost:60105/api/
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:60109 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:60108 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60109
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60108
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60108 -> Master 127.0.0.1:60104
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60109 -> Master 127.0.0.1:60104
+[laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [2 x 8] (startRow=0) va ma tran B [8 x 8]... OK
+[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [2 x 8] (startRow=2) va ma tran B [8 x 8]... OK
+[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 8]... OK
+[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 8]... OK
+[laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
+[laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
+[laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 8] vao TaskResult... OK
+[laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 8] vao TaskResult... OK
+[Result] async-x-0ab5f190-4f22-43ea-8550-14b6220d638f-task-02 <- laptop-b-worker (1/4)
+[Result] async-x-0ab5f190-4f22-43ea-8550-14b6220d638f-task-01 <- laptop-a-worker (2/4)
+[laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [2 x 8] (startRow=4) va ma tran B [8 x 8]... OK
+[laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 8]... OK
+[laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [2 x 8] (startRow=6) va ma tran B [8 x 8]... OK
+[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 8]... OK
+[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
+[laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 8] vao TaskResult... OK
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
+[laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 8] vao TaskResult... OK
+[Result] async-x-0ab5f190-4f22-43ea-8550-14b6220d638f-task-03 <- laptop-a-worker (3/4)
+[Result] async-x-0ab5f190-4f22-43ea-8550-14b6220d638f-task-04 <- laptop-b-worker (4/4)
+[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [25 x 100] (startRow=25) va ma tran B [100 x 100]... OK
+[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [25 x 100]... OK
+[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [25 x 100] (startRow=0) va ma tran B [100 x 100]... OK
+[laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [25 x 100]... OK
+[laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker]  |    |-- Tien do: [----------]   4% (Dong 1/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [----------]   4% (Dong 1/25 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
+[laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
+[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
+[laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [25 x 100] vao TaskResult... OK
+[laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [25 x 100] vao TaskResult... OK
+[Result] async-x-c1050e53-f39e-4294-a677-f0ccdaf31aa6-task-01 <- laptop-a-worker (1/4)
+[Result] async-x-c1050e53-f39e-4294-a677-f0ccdaf31aa6-task-02 <- laptop-b-worker (2/4)
+[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [25 x 100] (startRow=75) va ma tran B [100 x 100]... OK
+[laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [25 x 100] (startRow=50) va ma tran B [100 x 100]... OK
+[laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [25 x 100]... OK
+[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [25 x 100]... OK
+[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker]  |    |-- Tien do: [----------]   4% (Dong 1/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [----------]   4% (Dong 1/25 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
+[laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
+[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
+[laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [25 x 100] vao TaskResult... OK
+[laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [25 x 100] vao TaskResult... OK
+[Result] async-x-c1050e53-f39e-4294-a677-f0ccdaf31aa6-task-04 <- laptop-b-worker (3/4)
+[Result] async-x-c1050e53-f39e-4294-a677-f0ccdaf31aa6-task-03 <- laptop-a-worker (4/4)
+[MasterHttpServer] Da dung HTTP Server an toan.
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:60181
+[MasterHttpServer] REST API Server san sang tai: http://localhost:60182/api/
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:60186 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:60185 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60186
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60185
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60186 -> Master 127.0.0.1:60181
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60185 -> Master 127.0.0.1:60181
+[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 2]... OK
+[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [2 x 3] (startRow=0) va ma tran B [3 x 2]... OK
+[laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 2]... OK
+[laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[laptop-a-worker]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
+[laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 2] vao TaskResult... OK
+[Result] async-x-50a01c23-8767-4e19-b387-e44dabe7e0f4-task-01 <- laptop-a-worker (1/4)
+[Result] async-x-50a01c23-8767-4e19-b387-e44dabe7e0f4-task-02 <- laptop-b-worker (2/4)
+[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=4) va ma tran B [3 x 2]... OK
+[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=3) va ma tran B [3 x 2]... OK
+[laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[Result] async-x-50a01c23-8767-4e19-b387-e44dabe7e0f4-task-03 <- laptop-a-worker (3/4)
+[Result] async-x-50a01c23-8767-4e19-b387-e44dabe7e0f4-task-04 <- laptop-b-worker (4/4)
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Cot 0, so hang 0.0000)
+[laptop-a-worker]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: 0.000000... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Cot 1, so hang -0.0000)
+[laptop-b-worker]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: 0.000000... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[Result] async-det-b345b456-28ce-4771-9277-0773d3a2d85f-task-01 <- laptop-a-worker (1/3)
+[Result] async-det-b345b456-28ce-4771-9277-0773d3a2d85f-task-02 <- laptop-b-worker (2/3)
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Cot 2, so hang 0.0000)
+[laptop-a-worker]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: 0.000000... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[Result] async-det-b345b456-28ce-4771-9277-0773d3a2d85f-task-03 <- laptop-a-worker (3/3)
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, so dong=1, so cot=3)... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[laptop-b-worker]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, so dong=1, so cot=3)... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[laptop-a-worker]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
+[Result] async-rank-d705dea5-a6be-4b6b-9161-a50e007f818e-task-01 <- laptop-b-worker (1/3)
+[Result] async-rank-d705dea5-a6be-4b6b-9161-a50e007f818e-task-02 <- laptop-a-worker (2/3)
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, so dong=1, so cot=3)... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[laptop-b-worker]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
+[Result] async-rank-d705dea5-a6be-4b6b-9161-a50e007f818e-task-03 <- laptop-b-worker (3/3)
+[MasterHttpServer] Da dung HTTP Server an toan.
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:60217
+[MasterHttpServer] REST API Server san sang tai: http://localhost:60218/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:60221 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:60222 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60221
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60222
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60221 -> Master 127.0.0.1:60217
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60222 -> Master 127.0.0.1:60217
+[laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [50 x 100] (startRow=0) va ma tran B [100 x 100]... OK
+[laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [50 x 100]... OK
+[laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker]  |    |-- Tien do: [----------]   2% (Dong 1/50 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==--------]  26% (Dong 13/50 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=====-----]  50% (Dong 25/50 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=======---]  74% (Dong 37/50 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=========-]  98% (Dong 49/50 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 50/50 hoan tat)
+[laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 50 dong!... OK
+[laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [50 x 100] vao TaskResult... OK
+[Result] async-x-d84946d3-1b65-4f3e-9516-e565dbe35a39-task-01 <- laptop-a-worker (1/2)
+[laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [50 x 100] (startRow=50) va ma tran B [100 x 100]... OK
+[laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [50 x 100]... OK
+[laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker]  |    |-- Tien do: [----------]   2% (Dong 1/50 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==--------]  26% (Dong 13/50 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=====-----]  50% (Dong 25/50 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=======---]  74% (Dong 37/50 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=========-]  98% (Dong 49/50 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 50/50 hoan tat)
+[laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 50 dong!... OK
+[laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [50 x 100] vao TaskResult... OK
+[Result] async-x-d84946d3-1b65-4f3e-9516-e565dbe35a39-task-02 <- laptop-a-worker (2/2)
+[MasterHttpServer] Da dung HTTP Server an toan.
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:60234
+[MasterHttpServer] REST API Server san sang tai: http://localhost:60235/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:60238 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60238
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60238 -> Master 127.0.0.1:60234
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:60240 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60240
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60240 -> Master 127.0.0.1:60234
+[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=1) va ma tran B [3 x 3]... OK
+[laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=0) va ma tran B [3 x 3]... OK
+[laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 3]... OK
+[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 3]... OK
+[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 3] vao TaskResult... OK
+[laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 3] vao TaskResult... OK
+[Result] async-x-aa012c11-5b0b-4c0b-9357-a53a6acd4559-task-01 <- laptop-a-worker (1/3)
+[Result] async-x-aa012c11-5b0b-4c0b-9357-a53a6acd4559-task-02 <- laptop-b-worker (2/3)
+[laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 3]... OK
+[laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 3]... OK
+[laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 3] vao TaskResult... OK
+[Result] async-x-aa012c11-5b0b-4c0b-9357-a53a6acd4559-task-03 <- laptop-a-worker (3/3)
+[MasterHttpServer] Da dung HTTP Server an toan.
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:60258
+[MasterHttpServer] REST API Server san sang tai: http://localhost:60259/api/
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:60263 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:60262 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60263
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60263 -> Master 127.0.0.1:60258
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60262
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60262 -> Master 127.0.0.1:60258
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma ma tran goc [2 x 2] va dai dong can nghich dao [1..2)... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma ma tran goc [2 x 2] va dai dong can nghich dao [0..1)... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
+[MasterHttpServer] Da dung HTTP Server an toan.
+[Master Server] Da dung hoat dong an toan.
+[Task failed] laptop-b-worker / async-inv-c68d90c2-45dd-4a4b-b396-565ccb0afdc4-task-02: Ma tr?n suy bi?n (??nh th?c b?ng 0), kh�ng th? ngh?ch ??o!
+[Task failed] laptop-a-worker / async-inv-c68d90c2-45dd-4a4b-b396-565ccb0afdc4-task-01: Ma tr?n suy bi?n (??nh th?c b?ng 0), kh�ng th? ngh?ch ??o!
+[Job] async-inv-c68d90c2-45dd-4a4b-b396-565ccb0afdc4: Ma tr?n suy bi?n (??nh th?c b?ng 0), kh�ng th? ngh?ch ??o!
+[Job] FAILED async-inv-c68d90c2-45dd-4a4b-b396-565ccb0afdc4
+[Master] Listening 0.0.0.0:60275
+[MasterHttpServer] REST API Server san sang tai: http://localhost:60276/api/
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:60280 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:60279 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60280
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60279
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60280 -> Master 127.0.0.1:60275
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60279 -> Master 127.0.0.1:60275
+[MasterHttpServer] Da dung HTTP Server an toan.
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:60288
+[MasterHttpServer] REST API Server san sang tai: http://localhost:60289/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:60292 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60292
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60292 -> Master 127.0.0.1:60288
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:60293 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60293
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60293 -> Master 127.0.0.1:60288
+[MasterHttpServer] Da dung HTTP Server an toan.
+[Job] async-x-459a6007-bfcf-41a7-b5e2-6ba2c1325aa6: H?t th?i gian ch? Worker ho�n th�nh t�c v?. laptop-a-worker (127.0.0.1:60292): PAUSED; laptop-b-worker (127.0.0.1:60293): PAUSED
+[Master Server] Da dung hoat dong an toan.
+[Job] FAILED async-x-459a6007-bfcf-41a7-b5e2-6ba2c1325aa6
+[Master] Listening 0.0.0.0:60325
+[MasterHttpServer] REST API Server san sang tai: http://localhost:60326/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:60329 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:60330 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60329
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60330
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60329 -> Master 127.0.0.1:60325
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60330 -> Master 127.0.0.1:60325
+[Master] Listening 0.0.0.0:60335
+[Job] async-x-9a730bb0-92ad-4d79-a9d6-dab1c64879c6: H?t th?i gian ch? Worker ho�n th�nh t�c v?. Ch?a c� Worker ??ng k� v?i Master.
+[Job] FAILED async-x-9a730bb0-92ad-4d79-a9d6-dab1c64879c6
+[Master Server] Da dung hoat dong an toan.
+[MasterHttpServer] Da dung HTTP Server an toan.
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:60338
+[MasterHttpServer] REST API Server san sang tai: http://localhost:60339/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:60342 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60342
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60342 -> Master 127.0.0.1:60338
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:60343 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60343
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60343 -> Master 127.0.0.1:60338
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=1)... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=1, so dong=1)... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async-+-ac76f9ec-25b3-495f-b44a-2cac8bc1710b-task-02 <- laptop-b-worker (1/3)
+[Result] async-+-ac76f9ec-25b3-495f-b44a-2cac8bc1710b-task-01 <- laptop-a-worker (2/3)
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=2, so dong=1)... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async-+-ac76f9ec-25b3-495f-b44a-2cac8bc1710b-task-03 <- laptop-a-worker (3/3)
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=1)... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=1, so dong=1)... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async---d7eab9a6-6245-4e61-9685-62f656cc5614-task-01 <- laptop-b-worker (1/3)
+[Result] async---d7eab9a6-6245-4e61-9685-62f656cc5614-task-02 <- laptop-a-worker (2/3)
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=2, so dong=1)... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async---d7eab9a6-6245-4e61-9685-62f656cc5614-task-03 <- laptop-b-worker (3/3)
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=1, so dong=1)... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=0, so dong=1)... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async-%-8eb0ed3e-6999-422d-819c-d00158b846d2-task-01 <- laptop-a-worker (1/3)
+[Result] async-%-8eb0ed3e-6999-422d-819c-d00158b846d2-task-02 <- laptop-b-worker (2/3)
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=2, so dong=1)... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async-%-8eb0ed3e-6999-422d-819c-d00158b846d2-task-03 <- laptop-a-worker (3/3)
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, [1 x 3]) va scalar=2.50... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 2.50
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, [1 x 3]) va scalar=2.50... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 2.50
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong voi so vo huong... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong voi so vo huong... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async-scalar-26520930-f0e2-44c7-bd3c-55d89881ef17-task-01 <- laptop-b-worker (1/3)
+[Result] async-scalar-26520930-f0e2-44c7-bd3c-55d89881ef17-task-02 <- laptop-a-worker (2/3)
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, [1 x 3]) va scalar=2.50... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 2.50
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong voi so vo huong... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async-scalar-26520930-f0e2-44c7-bd3c-55d89881ef17-task-03 <- laptop-b-worker (3/3)
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, [1 x 3])... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [3 x 1])
+[laptop-b-worker]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, [1 x 3])... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [3 x 1])
+[laptop-a-worker]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
+[Result] async-t-fc6ddc3d-99a8-4378-9980-ce2d85fc8027-task-02 <- laptop-b-worker (1/3)
+[Result] async-t-fc6ddc3d-99a8-4378-9980-ce2d85fc8027-task-01 <- laptop-a-worker (2/3)
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, [1 x 3])... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [3 x 1])
+[laptop-a-worker]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
+[Result] async-t-fc6ddc3d-99a8-4378-9980-ce2d85fc8027-task-03 <- laptop-a-worker (3/3)
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [1..2)... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
+[laptop-a-worker]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [0..1)... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
+[laptop-b-worker]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
+[Result] async-inv-0f83d688-5f2f-4b9f-b785-c27197191037-task-02 <- laptop-a-worker (1/3)
+[Result] async-inv-0f83d688-5f2f-4b9f-b785-c27197191037-task-01 <- laptop-b-worker (2/3)
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [2..3)... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
+[laptop-b-worker]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
+[Result] async-inv-0f83d688-5f2f-4b9f-b785-c27197191037-task-03 <- laptop-b-worker (3/3)
+[MasterHttpServer] Da dung HTTP Server an toan.
+[Master Server] Da dung hoat dong an toan.
+[Registry] REGISTER [a @ 127.0.0.1:1 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b @ 127.0.0.1:1 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Dispatcher] REQUEUE cb0ebf40-5b61-451e-80d3-7eb6f1c27067-1
+[Result] cb0ebf40-5b61-451e-80d3-7eb6f1c27067-1 <- b (1/1)
+[Registry] REGISTER [a @ 127.0.0.1:1 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Job] 1df51fe8-6330-4522-b892-b5c7f6b2cea4: bad input
+[Job] FAILED 1df51fe8-6330-4522-b892-b5c7f6b2cea4
+[Registry] REGISTER [a @ 127.0.0.1:1 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Job] a2f8f203-4509-475c-9001-70027216a7b4: H?t th?i gian ch? Worker ho�n th�nh t�c v?. a (127.0.0.1:1): CAPACITY
+[Job] FAILED a2f8f203-4509-475c-9001-70027216a7b4
+[Registry] REGISTER [a @ 127.0.0.1:1 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Dispatcher] REQUEUE 1b5ea39a-6c1d-4fa2-a2b5-d15c5a495a37-1
+[Dispatcher] REQUEUE 1b5ea39a-6c1d-4fa2-a2b5-d15c5a495a37-1
+[Job] 1b5ea39a-6c1d-4fa2-a2b5-d15c5a495a37: ?� h?t ba l?n th? giao t�c v?. Kh�ng giao ???c t�c v? t?i Worker [a] t?i 127.0.0.1:1: disconnected
+[Job] FAILED 1b5ea39a-6c1d-4fa2-a2b5-d15c5a495a37
+[Master] Listening 0.0.0.0:5050
+[Registry] REGISTER [test-worker-01 @ 127.0.0.1:5051 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Registry] REGISTER [test-worker-02 @ 127.0.0.1:5052 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED test-worker-01 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5051
+[Master] REGISTERED test-worker-02 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5052
+[Worker] REGISTERED test-worker-01 | laptop=[Registry] REGISTER [test-worker-03 @ 127.0.0.1:5053 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5051 -> Master 127.0.0.1:5050
+[Worker] REGISTERED test-worker-02 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5052 -> Master 127.0.0.1:5050
+[Master] REGISTERED test-worker-03 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5053
+[Worker] REGISTERED test-worker-03 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5053 -> Master 127.0.0.1:5050
+
+=== BAT DAU JOB NGHICH DAO MA TRAN [3 x 3] CHIA THANH 3 TASKS ===
+[test-worker-02]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [1..2)... OK
+[test-worker-02]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
+[test-worker-03]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [2..3)... OK
+[test-worker-03]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
+[test-worker-02]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
+[test-worker-03]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
+[test-worker-01]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [0..1)... OK
+[test-worker-01]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
+[test-worker-01]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
+[Result] mat-inv-28a1c6cd-1acd-483a-9396-f9fd372471aa-task-02 <- test-worker-02 (1/3)
+[Result] mat-inv-28a1c6cd-1acd-483a-9396-f9fd372471aa-task-03 <- test-worker-03 (2/3)
+[Result] mat-inv-28a1c6cd-1acd-483a-9396-f9fd372471aa-task-01 <- test-worker-01 (3/3)
+>>> HOAN THANH NGHICH DAO MA TRAN TRONG 105 ms!
+
+=== BAT DAU JOB TINH DINH THUC MA TRAN [3 x 3] CHIA THANH 3 TASKS ===
+[test-worker-02]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Cot 1, so hang -18.0000)
+[test-worker-02]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: -18.000000... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[test-worker-03]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[test-worker-03]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
+[test-worker-01]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Cot 2, so hang 36.0000)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Cot 0, so hang -324.0000)
+[test-worker-01]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: -324.000000... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[test-worker-03]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: 36.000000... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[Result] mat-det-942a451a-71db-4acb-b64f-8ee93ec895d4-task-02 <- test-worker-02 (1/3)
+[Result] mat-det-942a451a-71db-4acb-b64f-8ee93ec895d4-task-01 <- test-worker-01 (2/3)
+[Result] mat-det-942a451a-71db-4acb-b64f-8ee93ec895d4-task-03 <- test-worker-03 (3/3)
+>>> HOAN THANH TINH DINH THUC TRONG 100 ms!
+
+=== BAT DAU JOB TINH HANG MA TRAN [3 x 3] CHIA THANH 3 TASKS ===
+[test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, so dong=1, so cot=3)... OK
+[test-worker-03]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[test-worker-03]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
+[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, so dong=1, so cot=3)... OK
+[test-worker-01]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[test-worker-01]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
+[test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, so dong=1, so cot=3)... OK
+[test-worker-02]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[test-worker-02]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
+[Result] mat-rank-6c1ec3f7-cd41-4410-a72b-ad5dc3a5ee8e-task-03 <- test-worker-03 (1/3)
+[Result] mat-rank-6c1ec3f7-cd41-4410-a72b-ad5dc3a5ee8e-task-01 <- test-worker-01 (2/3)
+[Result] mat-rank-6c1ec3f7-cd41-4410-a72b-ad5dc3a5ee8e-task-02 <- test-worker-02 (3/3)
+>>> HOAN THANH TINH HANG MA TRAN TRONG 102 ms!
+
+=== BAT DAU JOB TINH HANG MA TRAN [3 x 4] CHIA THANH 3 TASKS ===
+[test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, so dong=1, so cot=4)... OK
+[test-worker-02]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[test-worker-02]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
+[test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, so dong=1, so cot=4)... OK
+[test-worker-03]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[test-worker-03]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, so dong=1, so cot=4)... OK
+[test-worker-01]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[test-worker-03]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[test-worker-01]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
+[Result] mat-rank-78b240a3-29c7-473d-9833-cedbc4b1d1fb-task-02 <- test-worker-02 (1/3)
+[Result] mat-rank-78b240a3-29c7-473d-9833-cedbc4b1d1fb-task-03 <- test-worker-03 (2/3)
+[Result] mat-rank-78b240a3-29c7-473d-9833-cedbc4b1d1fb-task-01 <- test-worker-01 (3/3)
+>>> HOAN THANH TINH HANG MA TRAN TRONG 100 ms!
+
+=== BAT DAU JOB NHAN VO HUONG MA TRAN [12 x 12] * 3.50 CHIA THANH 6 TASKS ===
+[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, [2 x 12]) va scalar=3.50... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
+[test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=4, [2 x 12]) va scalar=3.50... OK
+[test-worker-03]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
+[test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, [2 x 12]) va scalar=3.50... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-scalar-f0c32f95-00cc-4a89-93db-fde902ba3108-task-03 <- test-worker-03 (1/6)
+[Result] mat-scalar-f0c32f95-00cc-4a89-93db-fde902ba3108-task-01 <- test-worker-01 (2/6)
+[Result] mat-scalar-f0c32f95-00cc-4a89-93db-fde902ba3108-task-02 <- test-worker-02 (3/6)
+[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=6, [2 x 12]) va scalar=3.50... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
+[test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=8, [2 x 12]) va scalar=3.50... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
+[test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=10, [2 x 12]) va scalar=3.50... OK
+[test-worker-03]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-scalar-f0c32f95-00cc-4a89-93db-fde902ba3108-task-05 <- test-worker-02 (4/6)
+[Result] mat-scalar-f0c32f95-00cc-4a89-93db-fde902ba3108-task-04 <- test-worker-01 (5/6)
+[Result] mat-scalar-f0c32f95-00cc-4a89-93db-fde902ba3108-task-06 <- test-worker-03 (6/6)
+>>> HOAN THANH NHAN VO HUONG MA TRAN TRONG 201 ms!
+
+=== BAT DAU TIM DUONG DI NGAN NHAT PHAN TAN (10 DINH) CHIA THANH 6 TASKS ===
+[test-worker-03]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 2 dinh nguon)... OK
+[test-worker-03]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
+[test-worker-01]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 2 dinh nguon)... OK
+[test-worker-01]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
+[test-worker-02]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 2 dinh nguon)... OK
+[test-worker-02]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
+[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Hoan thanh Dijkstra dinh 2)
+[test-worker-03]  |    |-- Tien do: [=====-----]  50% (Hoan thanh Dijkstra dinh 4)
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Hoan thanh Dijkstra dinh 0)
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 3)
+[test-worker-02]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 5)
+[test-worker-03]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 1)
+[test-worker-01]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
+[Result] graph-sp-374034c0-adbe-43f5-817c-4036ef1e70f7-task-01 <- test-worker-01 (1/6)
+[Result] graph-sp-374034c0-adbe-43f5-817c-4036ef1e70f7-task-03 <- test-worker-03 (2/6)
+[Result] graph-sp-374034c0-adbe-43f5-817c-4036ef1e70f7-task-02 <- test-worker-02 (3/6)
+[test-worker-02]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 1 dinh nguon)... OK
+[test-worker-02]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
+[test-worker-03]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 1 dinh nguon)... OK
+[test-worker-03]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 8)
+[test-worker-02]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
+[test-worker-01]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 2 dinh nguon)... OK
+[test-worker-01]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 9)
+[test-worker-03]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Hoan thanh Dijkstra dinh 6)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 7)
+[test-worker-01]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
+[Result] graph-sp-374034c0-adbe-43f5-817c-4036ef1e70f7-task-06 <- test-worker-03 (4/6)
+[Result] graph-sp-374034c0-adbe-43f5-817c-4036ef1e70f7-task-05 <- test-worker-02 (5/6)
+[Result] graph-sp-374034c0-adbe-43f5-817c-4036ef1e70f7-task-04 <- test-worker-01 (6/6)
+>>> HOAN THANH TIM DUONG DI NGAN NHAT TRONG 201 ms!
+
+=== BAT DAU JOB NHAN MA TRAN [15 x 12] * [12 x 15] CHIA THANH 6 TASKS ===
+[test-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [3 x 12] (startRow=6) va ma tran B [12 x 15]... OK
+[test-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 15]... OK
+[test-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[test-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [3 x 12] (startRow=0) va ma tran B [12 x 15]... OK
+[test-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [3 x 12] (startRow=3) va ma tran B [12 x 15]... OK
+[test-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 15]... OK
+[test-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[test-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[test-worker-03]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[test-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[test-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 15] vao TaskResult... OK
+[test-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 15]... OK
+[test-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[test-worker-01]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[test-worker-01]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[test-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[test-worker-02]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[test-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[test-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[test-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 15] vao TaskResult... OK
+[test-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 15] vao TaskResult... OK
+[Result] mat-mul-79589b3e-d6b3-4acc-8506-be47459b12a5-task-01 <- test-worker-01 (1/6)
+[Result] mat-mul-79589b3e-d6b3-4acc-8506-be47459b12a5-task-03 <- test-worker-03 (2/6)
+[Result] mat-mul-79589b3e-d6b3-4acc-8506-be47459b12a5-task-02 <- test-worker-02 (3/6)
+[test-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [2 x 12] (startRow=13) va ma tran B [12 x 15]... OK
+[test-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 15]... OK
+[test-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[test-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [2 x 12] (startRow=11) va ma tran B [12 x 15]... OK
+[test-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 15]... OK
+[test-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
+[test-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 15] vao TaskResult... OK
+[test-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [2 x 12] (startRow=9) va ma tran B [12 x 15]... OK
+[test-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 15]... OK
+[test-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
+[test-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 15] vao TaskResult... OK
+[test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
+[test-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 15] vao TaskResult... OK
+[Result] mat-mul-79589b3e-d6b3-4acc-8506-be47459b12a5-task-06 <- test-worker-03 (4/6)
+[Result] mat-mul-79589b3e-d6b3-4acc-8506-be47459b12a5-task-04 <- test-worker-01 (5/6)
+[Result] mat-mul-79589b3e-d6b3-4acc-8506-be47459b12a5-task-05 <- test-worker-02 (6/6)
+>>> HOAN THANH NHAN MA TRAN TRONG 198 ms!
+
+=== BAT DAU JOB KHOI DAU: (1+2) + (3*2) ===
+[test-worker-01]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '1+2'... OK
+[test-worker-01]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[test-worker-02]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '3*2'... OK
+[test-worker-02]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[test-worker-02]  |-- [Buoc 3/4] Tinh toan phep toan: 3*2 = 6.00... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[test-worker-01]  |-- [Buoc 3/4] Tinh toan phep toan: 1+2 = 3.00... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[Result] arithmetic-15cc754b-793f-4434-8961-150a7f920f63-task-02 <- test-worker-02 (1/2)
+[Result] arithmetic-15cc754b-793f-4434-8961-150a7f920f63-task-01 <- test-worker-01 (2/2)
+>>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 99 ms)
+
+=== BAT DAU JOB CHIA LAY DU (%) MA TRAN [12 x 12] CHIA THANH 6 TASKS ===
+[test-worker-02]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=4, so dong=2)... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[test-worker-03]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=0, so dong=2)... OK
+[test-worker-03]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=2, so dong=2)... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-mod-805efe6f-4f1a-4bc2-a960-8ad61ba7828f-task-01 <- test-worker-03 (1/6)
+[Result] mat-mod-805efe6f-4f1a-4bc2-a960-8ad61ba7828f-task-03 <- test-worker-02 (2/6)
+[Result] mat-mod-805efe6f-4f1a-4bc2-a960-8ad61ba7828f-task-02 <- test-worker-01 (3/6)
+[test-worker-02]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=10, so dong=2)... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-03]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=6, so dong=2)... OK
+[test-worker-03]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[test-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=8, so dong=2)... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-mod-805efe6f-4f1a-4bc2-a960-8ad61ba7828f-task-06 <- test-worker-02 (4/6)
+[Result] mat-mod-805efe6f-4f1a-4bc2-a960-8ad61ba7828f-task-04 <- test-worker-03 (5/6)
+[Result] mat-mod-805efe6f-4f1a-4bc2-a960-8ad61ba7828f-task-05 <- test-worker-01 (6/6)
+>>> HOAN THANH CHIA LAY DU (%) MA TRAN TRONG 200 ms!
+
+=== BAT DAU JOB CONG MA TRAN [12 x 12] CHIA THANH 6 TASKS ===
+[test-worker-03]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=2)... OK
+[test-worker-03]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[test-worker-02]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=4, so dong=2)... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
+[test-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=2, so dong=2)... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-add-944cdb24-fd33-4d48-97bd-5ed2c746fceb-task-03 <- test-worker-02 (1/6)
+[Result] mat-add-944cdb24-fd33-4d48-97bd-5ed2c746fceb-task-02 <- test-worker-01 (2/6)
+[Result] mat-add-944cdb24-fd33-4d48-97bd-5ed2c746fceb-task-01 <- test-worker-03 (3/6)
+[test-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=8, so dong=2)... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[test-worker-02]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=10, so dong=2)... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[test-worker-03]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=6, so dong=2)... OK
+[test-worker-03]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
+[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-add-944cdb24-fd33-4d48-97bd-5ed2c746fceb-task-04 <- test-worker-03 (4/6)
+[Result] mat-add-944cdb24-fd33-4d48-97bd-5ed2c746fceb-task-06 <- test-worker-02 (5/6)
+[Result] mat-add-944cdb24-fd33-4d48-97bd-5ed2c746fceb-task-05 <- test-worker-01 (6/6)
+>>> HOAN THANH Cong MA TRAN TRONG 203 ms!
+
+=== BAT DAU JOB CHUYEN VI MA TRAN [12 x 9] CHIA THANH 6 TASKS ===
+[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, [2 x 9])... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
+[test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=4, [2 x 9])... OK
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
+[test-worker-01]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
+[test-worker-02]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
+[test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, [2 x 9])... OK
+[test-worker-03]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
+[test-worker-03]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
+[Result] mat-trans-865cc12c-050a-4680-bec3-94a042e82b08-task-02 <- test-worker-01 (1/6)
+[Result] mat-trans-865cc12c-050a-4680-bec3-94a042e82b08-task-03 <- test-worker-02 (2/6)
+[Result] mat-trans-865cc12c-050a-4680-bec3-94a042e82b08-task-01 <- test-worker-03 (3/6)
+[test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=6, [2 x 9])... OK
+[test-worker-03]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
+[test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=10, [2 x 9])... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
+[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=8, [2 x 9])... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
+[test-worker-03]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
+[test-worker-02]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
+[test-worker-01]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
+[Result] mat-trans-865cc12c-050a-4680-bec3-94a042e82b08-task-04 <- test-worker-03 (4/6)
+[Result] mat-trans-865cc12c-050a-4680-bec3-94a042e82b08-task-05 <- test-worker-01 (5/6)
+[Result] mat-trans-865cc12c-050a-4680-bec3-94a042e82b08-task-06 <- test-worker-02 (6/6)
+>>> HOAN THANH CHUYEN VI MA TRAN TRONG 202 ms!
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:60719
+[Registry] REGISTER [unique @ 127.0.0.1:60720 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED unique | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60720
+[Worker] REGISTERED unique | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60720 -> Master 127.0.0.1:60719
+[Worker reconnect] unique / desktop-qbgbflp: Worker ID already active: unique
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:60737
+[Registry] REGISTER [restart @ 127.0.0.1:60740 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED restart | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60740
+[Worker] REGISTERED restart | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60740 -> Master 127.0.0.1:60737
+[Registry] REGISTER [restart @ 127.0.0.1:60740 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED restart | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60740
+[Worker] REGISTERED restart | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60740 -> Master 127.0.0.1:60737
+
+=== BAT DAU JOB KHOI DAU: (1+2) + (3*2) ===
+[restart]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '1+2'... OK
+[restart]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[restart]  |-- [Buoc 3/4] Tinh toan phep toan: 1+2 = 3.00... OK
+[restart]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[restart]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '3*2'... OK
+[restart]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[restart]  |-- [Buoc 3/4] Tinh toan phep toan: 3*2 = 6.00... OK
+[restart]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[Result] arithmetic-7d0a5f68-c4c4-45e2-9605-f843282184ec-task-01 <- restart (1/2)
+[Result] arithmetic-7d0a5f68-c4c4-45e2-9605-f843282184ec-task-02 <- restart (2/2)
+>>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 52 ms)
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:60749
+[Registry] REGISTER [a @ 127.0.0.1:60750 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED a | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60750
+[Worker] REGISTERED a | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60750 -> Master 127.0.0.1:60749
+[Registry] REGISTER [b @ 127.0.0.1:60752 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED b | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60752
+[Worker] REGISTERED b | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60752 -> Master 127.0.0.1:60749
+
+=== BAT DAU JOB CONG MA TRAN [5 x 3] CHIA THANH 5 TASKS ===
+[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=1, so dong=1)... OK
+[b]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[a]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=1)... OK
+[a]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[a]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=2, so dong=1)... OK
+[a]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=3, so dong=1)... OK
+[b]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-add-b460f190-1f96-44ea-a925-622b2e57e63b-task-01 <- a (1/5)
+[Result] mat-add-b460f190-1f96-44ea-a925-622b2e57e63b-task-02 <- b (2/5)
+[Result] mat-add-b460f190-1f96-44ea-a925-622b2e57e63b-task-04 <- b (3/5)
+[Result] mat-add-b460f190-1f96-44ea-a925-622b2e57e63b-task-03 <- a (4/5)
+[a]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=4, so dong=1)... OK
+[a]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-add-b460f190-1f96-44ea-a925-622b2e57e63b-task-05 <- a (5/5)
+>>> HOAN THANH Cong MA TRAN TRONG 178 ms!
+
+=== BAT DAU JOB TRU MA TRAN [5 x 3] CHIA THANH 5 TASKS ===
+[a]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=1, so dong=1)... OK
+[a]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=1)... OK
+[b]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[a]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=3, so dong=1)... OK
+[a]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=2, so dong=1)... OK
+[b]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-sub-8b1cefc2-fefe-438a-b7e2-f2a49de0ffff-task-04 <- a (1/5)
+[Result] mat-sub-8b1cefc2-fefe-438a-b7e2-f2a49de0ffff-task-02 <- a (2/5)
+[Result] mat-sub-8b1cefc2-fefe-438a-b7e2-f2a49de0ffff-task-01 <- b (3/5)
+[Result] mat-sub-8b1cefc2-fefe-438a-b7e2-f2a49de0ffff-task-03 <- b (4/5)
+[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=4, so dong=1)... OK
+[b]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-sub-8b1cefc2-fefe-438a-b7e2-f2a49de0ffff-task-05 <- b (5/5)
+>>> HOAN THANH Tru MA TRAN TRONG 202 ms!
+
+=== BAT DAU JOB CHIA LAY DU (%) MA TRAN [5 x 3] CHIA THANH 5 TASKS ===
+[a]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=0, so dong=1)... OK
+[a]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
+[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=1, so dong=1)... OK
+[b]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
+[b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[a]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=2, so dong=1)... OK
+[a]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=3, so dong=1)... OK
+[b]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
+[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
+[b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-mod-9e070670-9d2b-4473-b2a7-217c17235f5e-task-01 <- a (1/5)
+[Result] mat-mod-9e070670-9d2b-4473-b2a7-217c17235f5e-task-02 <- b (2/5)
+[Result] mat-mod-9e070670-9d2b-4473-b2a7-217c17235f5e-task-03 <- a (3/5)
+[Result] mat-mod-9e070670-9d2b-4473-b2a7-217c17235f5e-task-04 <- b (4/5)
+[a]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=4, so dong=1)... OK
+[a]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
+[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-mod-9e070670-9d2b-4473-b2a7-217c17235f5e-task-05 <- a (5/5)
+>>> HOAN THANH CHIA LAY DU (%) MA TRAN TRONG 201 ms!
+
+=== BAT DAU JOB NHAN MA TRAN [5 x 3] * [3 x 2] CHIA THANH 5 TASKS ===
+[b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=0) va ma tran B [3 x 2]... OK
+[b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=1) va ma tran B [3 x 2]... OK
+[b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 2]... OK
+[b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=3) va ma tran B [3 x 2]... OK
+[a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[Result] mat-mul-97bebf6f-544c-44bb-b422-df9a6cab6aa3-task-02 <- a (1/5)
+[Result] mat-mul-97bebf6f-544c-44bb-b422-df9a6cab6aa3-task-03 <- b (2/5)
+[Result] mat-mul-97bebf6f-544c-44bb-b422-df9a6cab6aa3-task-01 <- b (3/5)
+[Result] mat-mul-97bebf6f-544c-44bb-b422-df9a6cab6aa3-task-04 <- a (4/5)
+[b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=4) va ma tran B [3 x 2]... OK
+[b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[Result] mat-mul-97bebf6f-544c-44bb-b422-df9a6cab6aa3-task-05 <- b (5/5)
+>>> HOAN THANH NHAN MA TRAN TRONG 204 ms!
+
+=== BAT DAU NHAN CHUOI 3 MA TRAN PHAN TAN ===
+--- Giai doan 1: Nhan voi ma tran thu 2 [3 x 2] ---
+
+=== BAT DAU JOB NHAN MA TRAN [5 x 3] * [3 x 2] CHIA THANH 5 TASKS ===
+[a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=0) va ma tran B [3 x 2]... OK
+[a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=1) va ma tran B [3 x 2]... OK
+[b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 2]... OK
+[a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=3) va ma tran B [3 x 2]... OK
+[b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[Result] mat-mul-f6cbb527-7e18-4804-b695-3abaa61c8e29-task-02 <- b (1/5)
+[Result] mat-mul-f6cbb527-7e18-4804-b695-3abaa61c8e29-task-03 <- a (2/5)
+[Result] mat-mul-f6cbb527-7e18-4804-b695-3abaa61c8e29-task-04 <- b (3/5)
+[Result] mat-mul-f6cbb527-7e18-4804-b695-3abaa61c8e29-task-01 <- a (4/5)
+[a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=4) va ma tran B [3 x 2]... OK
+[a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[Result] mat-mul-f6cbb527-7e18-4804-b695-3abaa61c8e29-task-05 <- a (5/5)
+>>> HOAN THANH NHAN MA TRAN TRONG 202 ms!
+--- Giai doan 2: Nhan voi ma tran thu 3 [2 x 2] ---
+
+=== BAT DAU JOB NHAN MA TRAN [5 x 2] * [2 x 2] CHIA THANH 5 TASKS ===
+[b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 2] (startRow=0) va ma tran B [2 x 2]... OK
+[b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 2] (startRow=1) va ma tran B [2 x 2]... OK
+[a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 2] (startRow=2) va ma tran B [2 x 2]... OK
+[b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 2] (startRow=3) va ma tran B [2 x 2]... OK
+[a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[Result] mat-mul-4d6a5d14-a715-4dbb-a906-2894e20b94a5-task-01 <- b (1/5)
+[Result] mat-mul-4d6a5d14-a715-4dbb-a906-2894e20b94a5-task-02 <- a (2/5)
+[Result] mat-mul-4d6a5d14-a715-4dbb-a906-2894e20b94a5-task-03 <- b (3/5)
+[Result] mat-mul-4d6a5d14-a715-4dbb-a906-2894e20b94a5-task-04 <- a (4/5)
+[b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 2] (startRow=4) va ma tran B [2 x 2]... OK
+[b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[Result] mat-mul-4d6a5d14-a715-4dbb-a906-2894e20b94a5-task-05 <- b (5/5)
+>>> HOAN THANH NHAN MA TRAN TRONG 203 ms!
+>>> HOAN TAT TOAN BO CHUOI NHAN TRONG 405 ms! Kich thuoc cuoi: [5 x 2]
+
+=== BAT DAU JOB TINH DINH THUC MA TRAN [3 x 3] CHIA THANH 3 TASKS ===
+[a]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[a]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
+[b]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[b]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
+[b]  |    |-- Tien do: [==========] 100% (Cot 1, so hang -4.0000)
+[b]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: -4.000000... OK
+[b]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[a]  |    |-- Tien do: [==========] 100% (Cot 2, so hang 6.0000)
+[a]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[a]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
+[a]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: 6.000000... OK
+[a]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[a]  |    |-- Tien do: [==========] 100% (Cot 0, so hang -2.0000)
+[a]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: -2.000000... OK
+[a]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[Result] mat-det-a5cc7c50-4673-4020-b681-8e2b817360ae-task-02 <- b (1/3)
+[Result] mat-det-a5cc7c50-4673-4020-b681-8e2b817360ae-task-03 <- a (2/3)
+[Result] mat-det-a5cc7c50-4673-4020-b681-8e2b817360ae-task-01 <- a (3/3)
+>>> HOAN THANH TINH DINH THUC TRONG 103 ms!
+
+=== BAT DAU JOB TINH HANG MA TRAN [3 x 3] CHIA THANH 3 TASKS ===
+[b]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, so dong=1, so cot=3)... OK
+[b]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[b]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[b]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[b]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
+[b]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, so dong=1, so cot=3)... OK
+[b]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[b]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[b]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[b]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
+[a]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, so dong=1, so cot=3)... OK
+[a]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[a]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[a]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[a]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
+[Result] mat-rank-457a7645-c909-49aa-95b9-ea5ceb7cabd2-task-01 <- b (1/3)
+[Result] mat-rank-457a7645-c909-49aa-95b9-ea5ceb7cabd2-task-03 <- b (2/3)
+[Result] mat-rank-457a7645-c909-49aa-95b9-ea5ceb7cabd2-task-02 <- a (3/3)
+>>> HOAN THANH TINH HANG MA TRAN TRONG 101 ms!
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:60878
+[Registry] REGISTER [lost @ 127.0.0.1:60879 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED lost | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60879
+[Worker] REGISTERED lost | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60879 -> Master 127.0.0.1:60878
+
+=== BAT DAU JOB NHAN MA TRAN [3 x 3] * [3 x 3] CHIA THANH 2 TASKS ===
+[Dispatcher] REQUEUE mat-mul-9875dd5b-46b0-4c6e-84d9-908cb354e17d-task-01
+[Task failed] lost / mat-mul-9875dd5b-46b0-4c6e-84d9-908cb354e17d-task-01: stopped
+[Registry] REGISTER [replacement @ 127.0.0.1:60880 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED replacement | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60880
+[Worker] REGISTERED replacement | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60880 -> Master 127.0.0.1:60878
+[replacement]  |-- [Buoc 1/5] Nhan lat cat A [2 x 3] (startRow=0) va ma tran B [3 x 3]... OK
+[replacement]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 3]... OK
+[replacement]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[replacement]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[replacement]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[replacement]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
+[replacement]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 3] vao TaskResult... OK
+[replacement]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 3]... OK
+[replacement]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 3]... OK
+[replacement]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[replacement]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[replacement]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[replacement]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 3] vao TaskResult... OK
+[Result] mat-mul-9875dd5b-46b0-4c6e-84d9-908cb354e17d-task-01 <- replacement (1/2)
+[Result] mat-mul-9875dd5b-46b0-4c6e-84d9-908cb354e17d-task-02 <- replacement (2/2)
+>>> HOAN THANH NHAN MA TRAN TRONG 181 ms!
+[Master Server] Da dung hoat dong an toan.
+[Worker reconnect] early / desktop-qbgbflp: Connection refused: getsockopt
+[Master] Listening 0.0.0.0:60890
+[Registry] REGISTER [early @ 127.0.0.1:60891 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED early | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60891
+[Worker] REGISTERED early | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60891 -> Master 127.0.0.1:60890
+
+=== BAT DAU JOB KHOI DAU: (1+2) + (3*2) ===
+[early]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '3*2'... OK
+[early]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[early]  |-- [Buoc 3/4] Tinh toan phep toan: 3*2 = 6.00... OK
+[early]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[early]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '1+2'... OK
+[early]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[early]  |-- [Buoc 3/4] Tinh toan phep toan: 1+2 = 3.00... OK
+[early]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[Result] arithmetic-7c61fd80-2fd1-42c0-b624-e50e608adafa-task-02 <- early (1/2)
+[Result] arithmetic-7c61fd80-2fd1-42c0-b624-e50e608adafa-task-01 <- early (2/2)
+>>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 107 ms)
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:60890
+[Worker reconnect] early / desktop-qbgbflp: Registration required
+[Registry] REGISTER [early @ 127.0.0.1:60891 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED early | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60891
+[Worker] REGISTERED early | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:60891 -> Master 127.0.0.1:60890
+
+=== BAT DAU JOB KHOI DAU: (1+2) + (3*2) ===
+[early]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '1+2'... OK
+[early]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[early]  |-- [Buoc 3/4] Tinh toan phep toan: 1+2 = 3.00... OK
+[early]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[early]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '3*2'... OK
+[early]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[early]  |-- [Buoc 3/4] Tinh toan phep toan: 3*2 = 6.00... OK
+[early]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[Result] arithmetic-97664df5-8285-4533-b6f0-5edb9f0c4788-task-01 <- early (1/2)
+[Result] arithmetic-97664df5-8285-4533-b6f0-5edb9f0c4788-task-02 <- early (2/2)
+>>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 16 ms)
+[Master Server] Da dung hoat dong an toan.
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:49989
+[Registry] REGISTER [laptop-a-worker-01 @ 127.0.0.1:49990 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker-01 | laptop=laptop-a (DESKTOP-QBGBFLP) | 127.0.0.1:49990
+[Worker] REGISTERED laptop-a-worker-01 | laptop=laptop-a (DESKTOP-QBGBFLP) | 127.0.0.1:49990 -> Master 127.0.0.1:49989
+[WorkerCluster] laptop=laptop-b (Laptop B) | opened=3/3 | ports=23000-23002 | compute limit=2 | Master=127.0.0.1:49989
+[WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
+[Registry] REGISTER [laptop-b-worker-01 @ 127.0.0.2:23000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.2:23000
+[Worker] REGISTERED laptop-b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.2:23000 -> Master 127.0.0.1:49989
+[WorkerCluster] laptop=laptop-b | REGISTERED 1/3 | opened 3/3[Registry] REGISTER [laptop-b-worker-02 @ 127.0.0.2:23001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+
+[Master] REGISTERED laptop-b-worker-02 | laptop=laptop-b (Laptop B) | 127.0.0.2:23001
+[Worker] REGISTERED laptop-b-worker-02 | laptop=laptop-b (Laptop B) | 127.0.0.2:23001 -> Master 127.0.0.1:49989
+[Registry] REGISTER [laptop-b-worker-03 @ 127.0.0.2:23002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-03 | laptop=laptop-b (Laptop B) | 127.0.0.2:23002
+[Worker] REGISTERED laptop-b-worker-03 | laptop=laptop-b (Laptop B) | 127.0.0.2:23002 -> Master 127.0.0.1:49989
+[laptop-b-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [13 x 100] (startRow=13) va ma tran B [100 x 100]... OK
+[laptop-b-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [13 x 100]... OK
+[laptop-b-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker-01]  |    |-- Tien do: [----------]   8% (Dong 1/13 hoan tat)
+[laptop-b-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [13 x 100] (startRow=26) va ma tran B [100 x 100]... OK
+[laptop-b-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [13 x 100]... OK
+[laptop-b-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker-01]  |    |-- Tien do: [===-------]  31% (Dong 4/13 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [----------]   8% (Dong 1/13 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [=====-----]  54% (Dong 7/13 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [===-------]  31% (Dong 4/13 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [=======---]  77% (Dong 10/13 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [=====-----]  54% (Dong 7/13 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [==========] 100% (Dong 13/13 hoan tat)
+[laptop-b-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 13 dong!... OK
+[laptop-b-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [13 x 100] vao TaskResult... OK
+[laptop-b-worker-02]  |    |-- Tien do: [=======---]  77% (Dong 10/13 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [==========] 100% (Dong 13/13 hoan tat)
+[laptop-b-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 13 dong!... OK
+[laptop-b-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [13 x 100] vao TaskResult... OK
+[Result] async-x-724cda44-a17b-420f-a500-90571ac95573-task-03 <- laptop-b-worker-02 (1/8)
+[Result] async-x-724cda44-a17b-420f-a500-90571ac95573-task-02 <- laptop-b-worker-01 (2/8)
+[laptop-a-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [13 x 100] (startRow=0) va ma tran B [100 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [13 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-01]  |    |-- Tien do: [----------]   8% (Dong 1/13 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [===-------]  31% (Dong 4/13 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [=====-----]  54% (Dong 7/13 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [=======---]  77% (Dong 10/13 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 13/13 hoan tat)
+[laptop-a-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 13 dong!... OK
+[laptop-a-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [13 x 100] vao TaskResult... OK
+[Result] async-x-724cda44-a17b-420f-a500-90571ac95573-task-01 <- laptop-a-worker-01 (3/8)
+[laptop-a-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [13 x 100] (startRow=39) va ma tran B [100 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [13 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-01]  |    |-- Tien do: [----------]   8% (Dong 1/13 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [===-------]  31% (Dong 4/13 hoan tat)
+[laptop-b-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [12 x 100] (startRow=64) va ma tran B [100 x 100]... OK
+[laptop-b-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [12 x 100]... OK
+[laptop-b-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-01]  |    |-- Tien do: [=====-----]  54% (Dong 7/13 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [----------]   8% (Dong 1/12 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [=======---]  77% (Dong 10/13 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [===-------]  33% (Dong 4/12 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 13/13 hoan tat)
+[laptop-a-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 13 dong!... OK
+[laptop-a-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [13 x 100] vao TaskResult... OK
+[laptop-b-worker-01]  |    |-- Tien do: [=====-----]  58% (Dong 7/12 hoan tat)
+[laptop-b-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [12 x 100] (startRow=52) va ma tran B [100 x 100]... OK
+[laptop-b-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [12 x 100]... OK
+[laptop-b-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker-01]  |    |-- Tien do: [========--]  83% (Dong 10/12 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [==========] 100% (Dong 12/12 hoan tat)
+[laptop-b-worker-03]  |    |-- Tien do: [----------]   8% (Dong 1/12 hoan tat)
+[laptop-b-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 12 dong!... OK
+[laptop-b-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 4/12 hoan tat)
+[laptop-b-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [12 x 100] vao TaskResult... OK
+[laptop-b-worker-03]  |    |-- Tien do: [=====-----]  58% (Dong 7/12 hoan tat)
+[laptop-b-worker-03]  |    |-- Tien do: [========--]  83% (Dong 10/12 hoan tat)
+[laptop-b-worker-03]  |    |-- Tien do: [==========] 100% (Dong 12/12 hoan tat)
+[laptop-b-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 12 dong!... OK
+[laptop-b-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [12 x 100] vao TaskResult... OK
+[Result] async-x-724cda44-a17b-420f-a500-90571ac95573-task-04 <- laptop-a-worker-01 (4/8)
+[Result] async-x-724cda44-a17b-420f-a500-90571ac95573-task-06 <- laptop-b-worker-01 (5/8)
+[Result] async-x-724cda44-a17b-420f-a500-90571ac95573-task-05 <- laptop-b-worker-03 (6/8)
+[laptop-a-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [12 x 100] (startRow=76) va ma tran B [100 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [12 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [12 x 100] (startRow=88) va ma tran B [100 x 100]... OK
+[laptop-b-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [12 x 100]... OK
+[laptop-b-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-01]  |    |-- Tien do: [----------]   8% (Dong 1/12 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [----------]   8% (Dong 1/12 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [===-------]  33% (Dong 4/12 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 4/12 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [=====-----]  58% (Dong 7/12 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [=====-----]  58% (Dong 7/12 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [========--]  83% (Dong 10/12 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [========--]  83% (Dong 10/12 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 12/12 hoan tat)
+[laptop-a-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 12 dong!... OK
+[laptop-a-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [12 x 100] vao TaskResult... OK
+[laptop-b-worker-02]  |    |-- Tien do: [==========] 100% (Dong 12/12 hoan tat)
+[laptop-b-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 12 dong!... OK
+[laptop-b-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [12 x 100] vao TaskResult... OK
+[Result] async-x-724cda44-a17b-420f-a500-90571ac95573-task-08 <- laptop-b-worker-02 (7/8)
+[Result] async-x-724cda44-a17b-420f-a500-90571ac95573-task-07 <- laptop-a-worker-01 (8/8)
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:50189
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:50191
+[MasterHttpServer] REST API Server san sang tai: http://localhost:50192/api/
+[Registry] REGISTER [laptop-a-worker-01 @ 127.0.0.1:23000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-01 | laptop=laptop-a (Laptop A) | 127.0.0.1:23000
+[Worker] REGISTERED laptop-a-worker-01 | laptop=laptop-a (Laptop A) | 127.0.0.1:23000 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-02 @ 127.0.0.1:23001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-02 | laptop=laptop-a (Laptop A) | 127.0.0.1:23001
+[Worker] REGISTERED laptop-a-worker-02 | laptop=laptop-a (Laptop A) | 127.0.0.1:23001 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-03 @ 127.0.0.1:23002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-03 | laptop=laptop-a (Laptop A) | 127.0.0.1:23002
+[Registry] REGISTER [laptop-a-worker-04 @ 127.0.0.1:23003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-04 | laptop=laptop-a (Laptop A) | 127.0.0.1:23003
+[Worker] REGISTERED laptop-a-worker-03 | laptop=laptop-a (Laptop A) | 127.0.0.1:23002 -> Master 127.0.0.1:50191
+[Worker] REGISTERED laptop-a-worker-04 | laptop=laptop-a (Laptop A) | 127.0.0.1:23003 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-05 @ 127.0.0.1:23004 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-05 | laptop=laptop-a (Laptop A) | 127.0.0.1:23004
+[Registry] REGISTER [laptop-a-worker-06 @ 127.0.0.1:23005 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-05 | laptop=laptop-a (Laptop A) | 127.0.0.1:23004 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-a-worker-06 | laptop=laptop-a (Laptop A) | 127.0.0.1:23005
+[Worker] REGISTERED laptop-a-worker-06 | laptop=laptop-a (Laptop A) | [Registry] REGISTER [laptop-a-worker-07 @ 127.0.0.1:23006 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+127.0.0.1:23005 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-a-worker-07 | laptop=laptop-a (Laptop A) | 127.0.0.1:23006
+[Registry] REGISTER [laptop-a-worker-09 @ 127.0.0.1:23008 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-07 | laptop=laptop-a (Laptop A) | 127.0.0.1:23006 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-a-worker-09 | laptop=laptop-a (Laptop A) | 127.0.0.1:23008
+[Registry] REGISTER [laptop-a-worker-08 @ 127.0.0.1:23007 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-08 | laptop=laptop-a (Laptop A) | 127.0.0.1:23007
+[Worker] REGISTERED laptop-a-worker-09 | laptop=laptop-a (Laptop A) | 127.0.0.1:23008 -> Master 127.0.0.1:50191
+[Worker] REGISTERED laptop-a-worker-08 | laptop=laptop-a (Laptop A) | 127.0.0.1:23007 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-10 @ 127.0.0.1:23009 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-10 | laptop=laptop-a (Laptop A) | 127.0.0.1:23009
+[Registry] REGISTER [laptop-a-worker-11 @ 127.0.0.1:23010 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-11 | laptop=laptop-a (Laptop A) | 127.0.0.1:23010
+[Worker] REGISTERED laptop-a-worker-10 | laptop=laptop-a (Laptop A) | 127.0.0.1:23009 -> Master 127.0.0.1:50191
+[Worker] REGISTERED laptop-a-worker-11 | laptop=laptop-a (Laptop A) | 127.0.0.1:23010 -> Master 127.0.0.1:[Registry] REGISTER [laptop-a-worker-12 @ 127.0.0.1:23011 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+50191
+[Master] REGISTERED laptop-a-worker-12 | laptop=laptop-a (Laptop A) | 127.0.0.1:23011
+[Worker] REGISTERED laptop-a-worker-12 | laptop=laptop-a (Laptop A) | 127.0.0.1:23011 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-13 @ 127.0.0.1:23012 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-13 | laptop=laptop-a (Laptop A) | 127.0.0.1:23012
+[Worker] REGISTERED laptop-a-worker-13 | laptop=laptop-a (Laptop A) | 127.0.0.1:23012 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-14 @ 127.0.0.1:23013 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-14 | laptop=laptop-a (Laptop A) | 127.0.0.1:23013
+[Worker] REGISTERED laptop-a-worker-14 | laptop=laptop-a (Laptop A) | 127.0.0.1:23013 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-15 @ 127.0.0.1:23014 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-15 | laptop=laptop-a (Laptop A) | 127.0.0.1:23014
+[Worker] REGISTERED laptop-a-worker-15 | laptop=laptop-a (Laptop A) | 127.0.0.1:[Registry] REGISTER [laptop-a-worker-16 @ 127.0.0.1:23015 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+23014 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-a-worker-16 | laptop=laptop-a (Laptop A) | 127.0.0.1:23015
+[Worker] REGISTERED laptop-a-worker-16 | laptop=laptop-a (Laptop A) | 127.0.0.1:23015 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-17 @ 127.0.0.1:23016 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-17 | laptop=laptop-a (Laptop A) | 127.0.0.1:23016
+[Worker] REGISTERED laptop-a-worker-17 | laptop=laptop-a (Laptop A) | 127.0.0.1:23016 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-18 @ 127.0.0.1:23017 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-18 | laptop=laptop-a (Laptop A) | 127.0.0.1:23017
+[Registry] REGISTER [laptop-a-worker-19 @ 127.0.0.1:23018 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-18 | laptop=laptop-a (Laptop A) | 127.0.0.1:23017 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-a-worker-19 | laptop=laptop-a (Laptop A) | 127.0.0.1:23018
+[Worker] REGISTERED laptop-a-worker-19 | laptop=laptop-a (Laptop A) | 127.0.0.1:23018 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-20 @ 127.0.0.1:23019 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-20 | laptop=laptop-a (Laptop A) | 127.0.0.1:23019
+[Worker] REGISTERED laptop-a-worker-20 | laptop=laptop-a (Laptop A) | 127.0.0.1:23019 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-21 @ 127.0.0.1:23020 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-21 | laptop=laptop-a (Laptop A) | 127.0.0.1:23020
+[Worker] REGISTERED laptop-a-worker-21 | laptop=laptop-a (Laptop A) | 127.0.0.1:23020 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-22 @ 127.0.0.1:23021 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-22 | laptop=laptop-a (Laptop A) | 127.0.0.1:23021
+[Worker] REGISTERED laptop-a-worker-22 | laptop=laptop-a (Laptop A) | 127.0.0.1:23021 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-23 @ 127.0.0.1:23022 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-23 | laptop=laptop-a (Laptop A) | 127.0.0.1:23022
+[Worker] REGISTERED laptop-a-worker-23 | laptop=laptop-a (Laptop A) | 127.0.0.1:23022 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-24 @ 127.0.0.1:23023 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-24 | laptop=laptop-a (Laptop A) | 127.0.0.1:23023
+[Worker] REGISTERED laptop-a-worker-24 | laptop=laptop-a (Laptop A) | 127.0.0.1:23023 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-25 @ 127.0.0.1:23024 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-25 | laptop=laptop-a (Laptop A) | 127.0.0.1:23024
+[Registry] REGISTER [laptop-a-worker-26 @ 127.0.0.1:23025 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-25 | laptop=laptop-a (Laptop A) | 127.0.0.1:23024 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-a-worker-26 | laptop=laptop-a (Laptop A) | 127.0.0.1:23025
+[Worker] REGISTERED laptop-a-worker-26 | laptop=laptop-a (Laptop A) | 127.0.0.1:23025 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-27 @ 127.0.0.1:23026 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-27 | laptop=laptop-a (Laptop A) | 127.0.0.1:23026
+[Worker] REGISTERED laptop-a-worker-27 | laptop=laptop-a (Laptop A) | 127.0.0.1:[Registry] REGISTER [laptop-a-worker-28 @ 127.0.0.1:23027 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+23026 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-a-worker-28 | laptop=laptop-a (Laptop A) | 127.0.0.1:23027
+[Worker] REGISTERED laptop-a-worker-28 | laptop=laptop-a (Laptop A) | 127.0.0.1:23027 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-29 @ 127.0.0.1:23028 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-29 | laptop=laptop-a (Laptop A) | 127.0.0.1:23028
+[Registry] REGISTER [laptop-a-worker-30 @ 127.0.0.1:23029 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-29 | laptop=laptop-a (Laptop A) | 127.0.0.1:23028 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-a-worker-30 | laptop=laptop-a (Laptop A) | 127.0.0.1:23029
+[Worker] REGISTERED laptop-a-worker-30 | laptop=laptop-a (Laptop A) | 127.0.0.1:23029 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-31 @ 127.0.0.1:23030 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-31 | laptop=laptop-a (Laptop A) | 127.0.0.1:23030
+[Worker] REGISTERED laptop-a-worker-31 | laptop=laptop-a (Laptop A) | 127.0.0.1:23030 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-32 @ 127.0.0.1:23031 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-32 | laptop=laptop-a (Laptop A) | 127.0.0.1:23031
+[Worker] REGISTERED laptop-a-worker-32[Registry] REGISTER [laptop-a-worker-33 @ 127.0.0.1:23032 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+ | laptop=laptop-a (Laptop A) | 127.0.0.1:23031 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-a-worker-33 | laptop=laptop-a (Laptop A) | 127.0.0.1:23032
+[Registry] REGISTER [laptop-a-worker-34 @ 127.0.0.1:23033 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-33 | laptop=laptop-a (Laptop A) | 127.0.0.1:23032 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-a-worker-34 | laptop=laptop-a (Laptop A) | 127.0.0.1:23033
+[Worker] REGISTERED laptop-a-worker-34 | laptop=laptop-a (Laptop A) | 127.0.0.1:23033 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-35 @ 127.0.0.1:23034 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-35 | laptop=laptop-a (Laptop A) | 127.0.0.1:23034
+[Worker] REGISTERED laptop-a-worker-35 | laptop=laptop-a (Laptop A) | 127.0.0.1:23034 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-36 @ 127.0.0.1:23035 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-36 | laptop=laptop-a (Laptop A) | 127.0.0.1:23035
+[Worker] REGISTERED laptop-a-worker-36 | laptop=laptop-a (Laptop A) | 127.0.0.1:23035 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-37 @ 127.0.0.1:23036 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-37 | laptop=laptop-a (Laptop A) | 127.0.0.1:23036
+[Worker] REGISTERED laptop-a-worker-37 | laptop=laptop-a (Laptop A) | 127.0.0.1:23036[Registry] REGISTER [laptop-a-worker-38 @ 127.0.0.1:23037 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+ -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-a-worker-38 | laptop=laptop-a (Laptop A) | 127.0.0.1:23037
+[Worker] REGISTERED laptop-a-worker-38 | laptop=laptop-a (Laptop A) | 127.0.0.1:23037 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-39 @ 127.0.0.1:23038 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-39 | laptop=laptop-a (Laptop A) | 127.0.0.1:23038
+[Registry] REGISTER [laptop-a-worker-40 @ 127.0.0.1:23039 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-40 | laptop=laptop-a (Laptop A) | 127.0.0.1:23039
+[Worker] REGISTERED laptop-a-worker-39 | laptop=laptop-a (Laptop A) | 127.0.0.1:23038 -> Master 127.0.0.1:50191
+[Worker] REGISTERED laptop-a-worker-40 | laptop=laptop-a (Laptop A) | 127.0.0.1:23039 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-41 @ 127.0.0.1:23040 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-41 | laptop=laptop-a (Laptop A) | 127.0.0.1:23040
+[Worker] REGISTERED laptop-a-worker-41 | laptop=laptop-a (Laptop A) | 127.0.0.1:23040 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-42 @ 127.0.0.1:23041 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-42 | laptop=laptop-a (Laptop A) | 127.0.0.1:23041
+[Worker] REGISTERED laptop-a-worker-42 | laptop=laptop-a (Laptop A) | 127.0.0.1:23041 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-43 @ 127.0.0.1:23042 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-43 | laptop=laptop-a (Laptop A) | 127.0.0.1:23042
+[Worker] REGISTERED laptop-a-worker-43 | laptop=laptop-a (Laptop A) | 127.0.0.1:23042 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-44 @ 127.0.0.1:23043 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-44 | laptop=laptop-a (Laptop A) | 127.0.0.1:23043
+[Worker] REGISTERED laptop-a-worker-44 | laptop=laptop-a (Laptop A) | 127.0.0.1:23043 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-45 @ 127.0.0.1:23044 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-45 | laptop=laptop-a (Laptop A) | 127.0.0.1:23044
+[WorkerCluster] laptop=laptop-a (Laptop A) | opened=50/50 | ports=23000-23049 | compute limit=2 | Master=127.0.0.1:50191
+[WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
+[Registry] REGISTER [laptop-a-worker-46 @ 127.0.0.1:23045 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-45 | laptop=laptop-a (Laptop A) | 127.0.0.1:23044 -> Master 127.0.0.1:50191
+[WorkerCluster] laptop=laptop-a | REGISTERED 45/50 | opened 50/50
+[Master] REGISTERED laptop-a-worker-46 | laptop=laptop-a (Laptop A) | 127.0.0.1:23045
+[Worker] REGISTERED laptop-a-worker-46 | laptop=laptop-a (Laptop A) | 127.0.0.1:23045 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-47 @ 127.0.0.1:23046 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-47 | laptop=laptop-a (Laptop A) | 127.0.0.1:23046
+[Worker] REGISTERED laptop-a-worker-47 | laptop=laptop-a (Laptop A) | 127.0.0.1:23046 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-48 @ 127.0.0.1:23047 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-48 | laptop=laptop-a (Laptop A) | 127.0.0.1:23047
+[Worker] REGISTERED laptop-a-worker-48 | laptop=laptop-a (Laptop A) | 127.0.0.1:23047 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-49 @ 127.0.0.1:23048 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-49 | laptop=laptop-a (Laptop A) | 127.0.0.1:23048
+[Worker] REGISTERED laptop-a-worker-49 | laptop=laptop-a (Laptop A) | 127.0.0.1:23048 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-a-worker-50 @ 127.0.0.1:23049 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-50 | laptop=laptop-a (Laptop A) | 127.0.0.1:23049
+[Worker] REGISTERED laptop-a-worker-50 | laptop=laptop-a (Laptop A) | 127.0.0.1:23049 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-01 @ 127.0.0.2:23000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.2:23000
+[Registry] REGISTER [laptop-b-worker-02 @ 127.0.0.2:23001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.2:23000 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-b-worker-02 | laptop=laptop-b (Laptop B) | 127.0.0.2:23001
+[Registry] REGISTER [laptop-b-worker-03 @ 127.0.0.2:23002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-02 | laptop=laptop-b (Laptop B) | 127.0.0.2:23001 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-b-worker-03 | laptop=laptop-b (Laptop B) | 127.0.0.2:23002
+[Worker] REGISTERED laptop-b-worker-03 | laptop=laptop-b (Laptop B) | 127.0.0.2:23002 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-04 @ 127.0.0.2:23003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-04 | laptop=laptop-b (Laptop B) | 127.0.0.2:23003
+[Worker] REGISTERED laptop-b-worker-04 | laptop=laptop-b (Laptop B) | 127.0.0.2:23003 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-05 @ 127.0.0.2:23004 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-05 | laptop=laptop-b (Laptop B) | 127.0.0.2:23004
+[Worker] REGISTERED laptop-b-worker-05 | laptop=laptop-b (Laptop B) | 127.0.0.2:23004 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-06 @ 127.0.0.2:23005 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-06 | laptop=laptop-b (Laptop B) | 127.0.0.2:23005
+[Worker] REGISTERED laptop-b-worker-06 | laptop=laptop-b (Laptop B) | 127.0.0.2:23005 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-07 @ 127.0.0.2:23006 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-07 | laptop=laptop-b (Laptop B) | 127.0.0.2:23006
+[Registry] REGISTER [laptop-b-worker-09 @ 127.0.0.2:23008 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-07 | laptop=laptop-b (Laptop B) | 127.0.0.2:23006 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-b-worker-09 | laptop=laptop-b (Laptop B) | 127.0.0.2:23008
+[Registry] REGISTER [laptop-b-worker-10 @ 127.0.0.2:23009 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-10[Registry] REGISTER [laptop-b-worker-08 @ 127.0.0.2:23007 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+ | laptop=laptop-b (Laptop B) | 127.0.0.2:23009
+[Worker] REGISTERED laptop-b-worker-09 | laptop=laptop-b (Laptop B) | 127.0.0.2:23008 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-b-worker-08 | laptop=laptop-b (Laptop B) | 127.0.0.2:23007
+[Worker] REGISTERED [Registry] REGISTER [laptop-b-worker-11 @ 127.0.0.2:23010 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+laptop-b-worker-10 | laptop=laptop-b (Laptop B) | 127.0.0.2:23009 -> Master 127.0.0.1:50191
+[Worker] REGISTERED laptop-b-worker-08 | laptop=laptop-b (Laptop B) | 127.0.0.2:23007 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-b-worker-11 | laptop=laptop-b (Laptop B) | 127.0.0.2:23010
+[Registry] REGISTER [laptop-b-worker-12 @ 127.0.0.2:23011 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-11 | laptop=laptop-b (Laptop B) | 127.0.0.2:23010 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-b-worker-12 | laptop=laptop-b (Laptop B) | 127.0.0.2:23011
+[Worker] REGISTERED laptop-b-worker-12 | laptop=laptop-b (Laptop B) | 127.0.0.2:23011 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-13 @ 127.0.0.2:23012 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-13 | laptop=laptop-b (Laptop B) | 127.0.0.2:23012
+[Worker] REGISTERED laptop-b-worker-13 | laptop=laptop-b (Laptop B) | 127.0.0.2:23012 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-14 @ 127.0.0.2:23013 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-14 | laptop=laptop-b (Laptop B) | 127.0.0.2:23013
+[Registry] REGISTER [laptop-b-worker-15 @ 127.0.0.2:23014 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-14 | laptop=laptop-b (Laptop B) | 127.0.0.2:23013 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-b-worker-15 | laptop=laptop-b (Laptop B) | 127.0.0.2:23014
+[Worker] REGISTERED laptop-b-worker-15 | laptop=laptop-b (Laptop B) | 127.0.0.2:23014 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-16 @ 127.0.0.2:23015 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-16 | laptop=laptop-b (Laptop B) | 127.0.0.2:23015
+[Worker] REGISTERED laptop-b-worker-16 | laptop=laptop-b (Laptop B) | 127.0.0.2:23015 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-17 @ 127.0.0.2:23016 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-17 | laptop=laptop-b (Laptop B) | 127.0.0.2:23016
+[Worker] REGISTERED laptop-b-worker-17 | laptop=laptop-b (Laptop B) | 127.0.0.2:23016 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-18 @ 127.0.0.2:23017 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-18 | laptop=laptop-b (Laptop B) | 127.0.0.2:23017
+[Worker] REGISTERED laptop-b-worker-18 | laptop=laptop-b (Laptop B) | 127.0.0.2:23017 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-19 @ 127.0.0.2:23018 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-19 | laptop=laptop-b (Laptop B) | 127.0.0.2:23018
+[Worker] REGISTERED laptop-b-worker-19 | laptop=laptop-b (Laptop B) | 127.0.0.2:23018 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-20 @ 127.0.0.2:23019 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-20 | laptop=laptop-b (Laptop B) | 127.0.0.2:23019
+[Worker] REGISTERED laptop-b-worker-20 | laptop=laptop-b (Laptop B) | 127.0.0.2:23019 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-21 @ 127.0.0.2:23020 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-21 | laptop=laptop-b (Laptop B) | 127.0.0.2:23020
+[Worker] REGISTERED laptop-b-worker-21 | laptop=laptop-b (Laptop B) | 127.0.0.2:23020 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-22 @ 127.0.0.2:23021 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-22 | laptop=laptop-b (Laptop B) | 127.0.0.2:23021
+[Registry] REGISTER [laptop-b-worker-23 @ 127.0.0.2:23022 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-22 | laptop=laptop-b (Laptop B) | 127.0.0.2:23021 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-b-worker-23 | laptop=laptop-b (Laptop B) | 127.0.0.2:23022
+[Worker] REGISTERED laptop-b-worker-23 | laptop=laptop-b (Laptop B) | 127.0.0.2:23022 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-24 @ 127.0.0.2:23023 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Registry] REGISTER [laptop-b-worker-25 @ 127.0.0.2:23024 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-24 | laptop=laptop-b (Laptop B) | 127.0.0.2:23023
+[Master] REGISTERED laptop-b-worker-25 | laptop=laptop-b (Laptop B) | 127.0.0.2:23024
+[Worker] REGISTERED laptop-b-worker-24 | laptop=laptop-b (Laptop B) | 127.0.0.2:23023 -> Master 127.0.0.1:50191
+[Worker] REGISTERED laptop-b-worker-25 | laptop=laptop-b (Laptop B) | 127.0.0.2:23024 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-26 @ 127.0.0.2:23025 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-26 | laptop=laptop-b (Laptop B) | 127.0.0.2:23025
+[Registry] REGISTER [laptop-b-worker-27 @ 127.0.0.2:23026 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-27 | laptop=laptop-b (Laptop B) | 127.0.0.2:23026
+[Worker] REGISTERED laptop-b-worker-26 | laptop=laptop-b (Laptop B) | 127.0.0.2:23025 -> Master 127.0.0.1:50191
+[Worker] REGISTERED laptop-b-worker-27 | laptop=laptop-b (Laptop B) | 127.0.0.2:23026 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-28 @ 127.0.0.2:23027 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Registry] REGISTER [laptop-b-worker-29 @ 127.0.0.2:23028 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-28 | laptop=laptop-b (Laptop B) | 127.0.0.2:23027
+[Master] REGISTERED laptop-b-worker-29 | laptop=laptop-b (Laptop B) | 127.0.0.2:23028
+[Worker] REGISTERED laptop-b-worker-28 | laptop=laptop-b (Laptop B) | 127.0.0.2:23027 -> Master 127.0.0.1:50191
+[Worker] REGISTERED laptop-b-worker-29 | laptop=laptop-b (Laptop B) | 127.0.0.2:23028 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-30 @ 127.0.0.2:23029 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-30 | laptop=laptop-b (Laptop B) | 127.0.0.2:23029
+[Registry] REGISTER [laptop-b-worker-31 @ 127.0.0.2:23030 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-30 | laptop=laptop-b (Laptop B) | 127.0.0.2:23029 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-b-worker-31 | laptop=laptop-b (Laptop B) | 127.0.0.2:23030
+[Worker] REGISTERED laptop-b-worker-31 | laptop=laptop-b (Laptop B) | 127.0.0.2:23030 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-32 @ 127.0.0.2:23031 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-32 | laptop=laptop-b (Laptop B) | 127.0.0.2:23031
+[Worker] REGISTERED laptop-b-worker-32 | laptop=laptop-b (Laptop B) | 127.0.0.2:23031 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-33 @ 127.0.0.2:23032 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-33 | laptop=laptop-b (Laptop B) | 127.0.0.2:23032
+[Worker] REGISTERED laptop-b-worker-33 | laptop=laptop-b (Laptop B) | 127.0.0.2:23032 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-34 @ 127.0.0.2:23033 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-34 | laptop=laptop-b (Laptop B) | 127.0.0.2:23033
+[Worker] REGISTERED laptop-b-worker-34 | laptop=laptop-b (Laptop B) | 127.0.0.2:23033 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-35 @ 127.0.0.2:23034 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-35 | laptop=laptop-b (Laptop B) | 127.0.0.2:23034
+[Worker] REGISTERED laptop-b-worker-35 | laptop=laptop-b (Laptop B) | 127.0.0.2:23034 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-36 @ 127.0.0.2:23035 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-36 | laptop=laptop-b (Laptop B) | 127.0.0.2:23035
+[Worker] REGISTERED laptop-b-worker-36 | laptop=laptop-b (Laptop B) | 127.0.0.2:23035 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-37 @ 127.0.0.2:23036 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-37 | laptop=laptop-b (Laptop B) | 127.0.0.2:23036
+[Worker] REGISTERED laptop-b-worker-37 | laptop=laptop-b (Laptop B) | 127.0.0.2:23036 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-38 @ 127.0.0.2:23037 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-38 | laptop=laptop-b (Laptop B) | 127.0.0.2:23037
+[Worker] REGISTERED laptop-b-worker-38 | laptop=laptop-b (Laptop B) | 127.0.0.2:23037 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-39 @ 127.0.0.2:23038 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-39 | laptop=laptop-b (Laptop B) | 127.0.0.2:23038
+[Registry] REGISTER [laptop-b-worker-40 @ 127.0.0.2:23039 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039
+[Worker] REGISTERED laptop-b-worker-39 | laptop=laptop-b (Laptop B) | 127.0.0.2:23038 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-41 @ 127.0.0.2:23040 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-b-worker-41 | laptop=laptop-b (Laptop B) | 127.0.0.2:23040
+[Worker] REGISTERED laptop-b-worker-41 | laptop=laptop-b (Laptop B) | 127.0.0.2:23040 -> Master 127.0.0.1:50191
+[WorkerCluster] laptop=laptop-b (Laptop B) | opened=50/50 | ports=23000-23049 | compute limit=3 | Master=127.0.0.1:50191
+[WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
+[WorkerCluster] laptop=laptop-b | REGISTERED [Registry] REGISTER [laptop-b-worker-45 @ 127.0.0.2:23044 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+41/50 | opened 50/50
+[Master] REGISTERED laptop-b-worker-45 | laptop=laptop-b (Laptop B) | 127.0.0.2:23044
+[Worker] REGISTERED laptop-b-worker-45 | laptop=laptop-b (Laptop B) | 127.0.0.2:23044 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-42 @ 127.0.0.2:23041 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Registry] REGISTER [laptop-b-worker-44 @ 127.0.0.2:23043 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-42 | laptop=laptop-b (Laptop B) | 127.0.0.2:23041
+[Registry] REGISTER [laptop-b-worker-46 @ 127.0.0.2:23045 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-44 | laptop=laptop-b (Laptop B) | 127.0.0.2:23043
+[Registry] REGISTER [laptop-b-worker-43 @ 127.0.0.2:23042 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-46 | laptop=laptop-b (Laptop B) | 127.0.0.2:23045
+[Registry] REGISTER [laptop-b-worker-47 @ 127.0.0.2:23046 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-46 | laptop=laptop-b (Laptop B) | 127.0.0.2:23045 -> Master 127.0.0.1:50191
+[Worker] REGISTERED laptop-b-worker-44 | laptop=laptop-b (Laptop B) | 127.0.0.2:23043 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-b-worker-47 | laptop=laptop-b (Laptop B) | 127.0.0.2:23046
+[Registry] REGISTER [laptop-b-worker-48 @ 127.0.0.2:23047 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-42 | laptop=laptop-b (Laptop B) | 127.0.0.2:23041 -> Master 127.0.0.1:50191
+[Master] REGISTERED laptop-b-worker-43 | laptop=laptop-b (Laptop B) | 127.0.0.2:23042
+[Master] REGISTERED laptop-b-worker-48 | laptop=laptop-b (Laptop B) | 127.0.0.2:23047
+[Worker] REGISTERED laptop-b-worker-43 | laptop=laptop-b (Laptop B) | 127.0.0.2:23042 -> Master 127.0.0.1:50191
+[Worker] REGISTERED laptop-b-worker-47 | laptop=laptop-b (Laptop B) | 127.0.0.2:23046 -> Master 127.0.0.1:50191
+[Worker] REGISTERED laptop-b-worker-48 | laptop=laptop-b (Laptop B) | 127.0.0.2:23047 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-49 @ 127.0.0.2:23048 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-49 | laptop=laptop-b (Laptop B) | 127.0.0.2:23048
+[Worker] REGISTERED laptop-b-worker-49 | laptop=laptop-b (Laptop B) | 127.0.0.2:23048 -> Master 127.0.0.1:50191
+[Registry] REGISTER [laptop-b-worker-50 @ 127.0.0.2:23049 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-50 | laptop=laptop-b (Laptop B) | 127.0.0.2:23049
+[Worker] REGISTERED laptop-b-worker-50 | laptop=laptop-b (Laptop B) | 127.0.0.2:23049 -> Master 127.0.0.1:50191
+[laptop-a-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=0) va ma tran B [100 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-01]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-a-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-a-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-b-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=10) va ma tran B [100 x 100]... OK
+[laptop-b-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-b-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker-01]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-b-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-b-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-a-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=30) va ma tran B [100 x 100]... OK
+[laptop-a-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-a-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-02]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-a-worker-02]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-a-worker-02]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-a-worker-02]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-a-worker-02]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-a-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-a-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[Result] async-x-f176f63c-dcbf-436a-9822-b5b112b183e7-task-01 <- laptop-a-worker-01 (1/10)
+[laptop-b-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=20) va ma tran B [100 x 100]... OK
+[laptop-b-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-b-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker-02]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[Result] async-x-f176f63c-dcbf-436a-9822-b5b112b183e7-task-02 <- laptop-b-worker-01 (2/10)
+[laptop-b-worker-02]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-b-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-b-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-b-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=40) va ma tran B [100 x 100]... OK
+[laptop-b-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-b-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[Result] async-x-f176f63c-dcbf-436a-9822-b5b112b183e7-task-04 <- laptop-a-worker-02 (3/10)
+[laptop-b-worker-03]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-b-worker-03]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-b-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-b-worker-03]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-b-worker-03]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-b-worker-03]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-b-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-b-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[Result] async-x-f176f63c-dcbf-436a-9822-b5b112b183e7-task-03 <- laptop-b-worker-02 (4/10)
+[Result] async-x-f176f63c-dcbf-436a-9822-b5b112b183e7-task-05 <- laptop-b-worker-03 (5/10)
+[laptop-a-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=50) va ma tran B [100 x 100]... OK
+[laptop-a-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-a-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-03]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-a-worker-03]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-a-worker-03]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-a-worker-03]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-a-worker-03]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-a-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-a-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[Result] async-x-f176f63c-dcbf-436a-9822-b5b112b183e7-task-06 <- laptop-a-worker-03 (6/10)
+[laptop-b-worker-04]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=60) va ma tran B [100 x 100]... OK
+[laptop-b-worker-04]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-b-worker-04]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker-04]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-b-worker-04]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-b-worker-04]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-b-worker-04]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-b-worker-04]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-b-worker-04]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-b-worker-04]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-b-worker-04]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-a-worker-04]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=80) va ma tran B [100 x 100]... OK
+[laptop-a-worker-04]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-a-worker-04]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-04]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-a-worker-04]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-04]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-a-worker-04]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-b-worker-06]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=90) va ma tran B [100 x 100]... OK
+[laptop-b-worker-06]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-b-worker-06]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker-05]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=70) va ma tran B [100 x 100]... OK
+[laptop-b-worker-05]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[laptop-b-worker-05]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-04]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-a-worker-04]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-a-worker-04]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-b-worker-06]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-b-worker-05]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[laptop-b-worker-05]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-a-worker-04]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-b-worker-06]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[laptop-b-worker-06]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-b-worker-06]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-b-worker-06]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-b-worker-06]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-b-worker-06]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[laptop-b-worker-06]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[laptop-b-worker-05]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[laptop-b-worker-05]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[laptop-b-worker-05]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[laptop-b-worker-05]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[laptop-b-worker-05]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[Result] async-x-f176f63c-dcbf-436a-9822-b5b112b183e7-task-07 <- laptop-b-worker-04 (7/10)
+[laptop-b-worker-05]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[Result] async-x-f176f63c-dcbf-436a-9822-b5b112b183e7-task-10 <- laptop-b-worker-06 (8/10)
+[Result] async-x-f176f63c-dcbf-436a-9822-b5b112b183e7-task-08 <- laptop-b-worker-05 (9/10)
+[Result] async-x-f176f63c-dcbf-436a-9822-b5b112b183e7-task-09 <- laptop-a-worker-04 (10/10)
+[MasterHttpServer] Da dung HTTP Server an toan.
+[Master Server] Da dung hoat dong an toan.
+[WorkerCluster] laptop=late-b (Late laptop B) | opened=3/3 | ports=23000-23002 | compute limit=1 | Master=127.0.0.1:50431
+[WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
+[WorkerCluster] laptop=late-b | REGISTERED 0/3 | opened 3/3
+[Master] Listening 0.0.0.0:50431
+[Registry] REGISTER [late-b-worker-01 @ 127.0.0.2:23000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
+[Registry] REGISTER [late-b-worker-02 @ 127.0.0.2:23001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
+[Registry] REGISTER [late-b-worker-03 @ 127.0.0.2:23002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
+[Master] REGISTERED late-b-worker-01 | laptop=late-b (Late laptop B) | 127.0.0.2:23000
+[Master] REGISTERED late-b-worker-02 | laptop=late-b (Late laptop B) | 127.0.0.2:23001
+[Master] REGISTERED late-b-worker-03 | laptop=late-b (Late laptop B) | 127.0.0.2:23002
+[Worker] REGISTERED late-b-worker-01 | laptop=late-b (Late laptop B) | 127.0.0.2:23000 -> Master 127.0.0.1:50431
+[Worker] REGISTERED late-b-worker-03 | laptop=late-b (Late laptop B) | 127.0.0.2:23002 -> Master 127.0.0.1:50431
+[Worker] REGISTERED late-b-worker-02 | laptop=late-b (Late laptop B) | 127.0.0.2:23001 -> Master 127.0.0.1:50431
+[Master Server] Da dung hoat dong an toan.
+[Master] Listening 0.0.0.0:50431
+[WorkerCluster] laptop=late-b | REGISTERED 3/3 | opened 3/3
+[Worker reconnect] late-b-worker-03 / late-b: Registration required
+[Worker reconnect] late-b-worker-02 / late-b: Registration required
+[Worker reconnect] late-b-worker-01 / late-b: Registration required
+[WorkerCluster] laptop=late-b | REGISTERED 0/3 | opened 3/3
+[Registry] REGISTER [late-b-worker-02 @ 127.0.0.2:23001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
+[Master] REGISTERED late-b-worker-02 | laptop=late-b (Late laptop B) | 127.0.0.2:23001
+[Registry] REGISTER [late-b-worker-03 @ 127.0.0.2:23002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
+[Registry] REGISTER [late-b-worker-01 @ 127.0.0.2:23000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
+[Master] REGISTERED late-b-worker-03 | laptop=late-b (Late laptop B) | 127.0.0.2:23002
+[Master] REGISTERED late-b-worker-01 | laptop=late-b (Late laptop B) | 127.0.0.2:23000
+[Worker] REGISTERED late-b-worker-02 | laptop=late-b (Late laptop B) | 127.0.0.2:23001 -> Master 127.0.0.1:50431
+[Worker] REGISTERED late-b-worker-03 | laptop=late-b (Late laptop B) | 127.0.0.2:23002 -> Master 127.0.0.1:50431
+[Worker] REGISTERED late-b-worker-01 | laptop=late-b (Late laptop B) | 127.0.0.2:23000 -> Master 127.0.0.1:50431
+
+=== BAT DAU JOB KHOI DAU: (1+2) + (3*2) ===
+[late-b-worker-01]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '1+2'... OK
+[late-b-worker-01]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[late-b-worker-01]  |-- [Buoc 3/4] Tinh toan phep toan: 1+2 = 3.00... OK
+[late-b-worker-01]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[Result] arithmetic-e8a3306f-3a63-4a32-9ba6-4189fe3d71df-task-01 <- late-b-worker-01 (1/2)
+[late-b-worker-02]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '3*2'... OK
+[late-b-worker-02]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[late-b-worker-02]  |-- [Buoc 3/4] Tinh toan phep toan: 3*2 = 6.00... OK
+[late-b-worker-02]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[Result] arithmetic-e8a3306f-3a63-4a32-9ba6-4189fe3d71df-task-02 <- late-b-worker-02 (2/2)
+>>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 165 ms)
+[Master Server] Da dung hoat dong an toan.
+[Master Server] Da dung hoat dong an toan.
+[Worker] REGISTERED b | laptop=shared (DESKTOP-QBGBFLP) | 127.0.0.1:61928 -> Master 127.0.0.1:61926
+[Worker] REGISTERED a | laptop=shared (DESKTOP-QBGBFLP) | 127.0.0.1:61927 -> Master 127.0.0.1:61926
+[b]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '1+2'... OK
+[b]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[b]  |-- [Buoc 3/4] Tinh toan phep toan: 1+2 = 3.00... OK
+[b]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[Registry] REGISTER [a-worker-0 @ 127.0.0.1:5000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-0 @ 127.0.0.1:5000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-1 @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-1 @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-2 @ 127.0.0.1:5002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-2 @ 127.0.0.1:5002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-3 @ 127.0.0.1:5003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-3 @ 127.0.0.1:5003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-4 @ 127.0.0.1:5004 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-4 @ 127.0.0.1:5004 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-0 @ 127.0.0.1:5000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [a-worker-1 @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (Laptop A new)
+[Master Server] Da dung hoat dong an toan.
+[Registry] REGISTER [w @ 127.0.0.1:1 | Status: ONLINE | Active: 0 | Done: 0] | laptop=w (w)
+[Result] small <- w (1/2)
+[Result] large <- w (2/2)
+[Registry] REGISTER [a-worker-0 @ 127.0.0.1:5000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-0 @ 127.0.0.1:5000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-1 @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-1 @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-2 @ 127.0.0.1:5002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-2 @ 127.0.0.1:5002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-3 @ 127.0.0.1:5003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-3 @ 127.0.0.1:5003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-4 @ 127.0.0.1:5004 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-4 @ 127.0.0.1:5004 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-5 @ 127.0.0.1:5005 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-5 @ 127.0.0.1:5005 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-6 @ 127.0.0.1:5006 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-6 @ 127.0.0.1:5006 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-7 @ 127.0.0.1:5007 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-7 @ 127.0.0.1:5007 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-8 @ 127.0.0.1:5008 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-8 @ 127.0.0.1:5008 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-9 @ 127.0.0.1:5009 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-9 @ 127.0.0.1:5009 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-10 @ 127.0.0.1:5010 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-10 @ 127.0.0.1:5010 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-11 @ 127.0.0.1:5011 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-11 @ 127.0.0.1:5011 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-12 @ 127.0.0.1:5012 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-12 @ 127.0.0.1:5012 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-13 @ 127.0.0.1:5013 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-13 @ 127.0.0.1:5013 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-14 @ 127.0.0.1:5014 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-14 @ 127.0.0.1:5014 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-15 @ 127.0.0.1:5015 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-15 @ 127.0.0.1:5015 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-16 @ 127.0.0.1:5016 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-16 @ 127.0.0.1:5016 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-17 @ 127.0.0.1:5017 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-17 @ 127.0.0.1:5017 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-18 @ 127.0.0.1:5018 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-18 @ 127.0.0.1:5018 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-19 @ 127.0.0.1:5019 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-19 @ 127.0.0.1:5019 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-20 @ 127.0.0.1:5020 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-20 @ 127.0.0.1:5020 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-21 @ 127.0.0.1:5021 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-21 @ 127.0.0.1:5021 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-22 @ 127.0.0.1:5022 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-22 @ 127.0.0.1:5022 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-23 @ 127.0.0.1:5023 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-23 @ 127.0.0.1:5023 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-24 @ 127.0.0.1:5024 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-24 @ 127.0.0.1:5024 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-25 @ 127.0.0.1:5025 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-25 @ 127.0.0.1:5025 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-26 @ 127.0.0.1:5026 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-26 @ 127.0.0.1:5026 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-27 @ 127.0.0.1:5027 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-27 @ 127.0.0.1:5027 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-28 @ 127.0.0.1:5028 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-28 @ 127.0.0.1:5028 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-29 @ 127.0.0.1:5029 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-29 @ 127.0.0.1:5029 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-30 @ 127.0.0.1:5030 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-30 @ 127.0.0.1:5030 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-31 @ 127.0.0.1:5031 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-31 @ 127.0.0.1:5031 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-32 @ 127.0.0.1:5032 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-32 @ 127.0.0.1:5032 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-33 @ 127.0.0.1:5033 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-33 @ 127.0.0.1:5033 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-34 @ 127.0.0.1:5034 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-34 @ 127.0.0.1:5034 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-35 @ 127.0.0.1:5035 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-35 @ 127.0.0.1:5035 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-36 @ 127.0.0.1:5036 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-36 @ 127.0.0.1:5036 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-37 @ 127.0.0.1:5037 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-37 @ 127.0.0.1:5037 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-38 @ 127.0.0.1:5038 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-38 @ 127.0.0.1:5038 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-39 @ 127.0.0.1:5039 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-39 @ 127.0.0.1:5039 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-40 @ 127.0.0.1:5040 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-40 @ 127.0.0.1:5040 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-41 @ 127.0.0.1:5041 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-41 @ 127.0.0.1:5041 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-42 @ 127.0.0.1:5042 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-42 @ 127.0.0.1:5042 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-43 @ 127.0.0.1:5043 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-43 @ 127.0.0.1:5043 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-44 @ 127.0.0.1:5044 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-44 @ 127.0.0.1:5044 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-45 @ 127.0.0.1:5045 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-45 @ 127.0.0.1:5045 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-46 @ 127.0.0.1:5046 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-46 @ 127.0.0.1:5046 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-47 @ 127.0.0.1:5047 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-47 @ 127.0.0.1:5047 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-48 @ 127.0.0.1:5048 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-48 @ 127.0.0.1:5048 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-49 @ 127.0.0.1:5049 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-49 @ 127.0.0.1:5049 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [w1 @ 127.0.0.1:1001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=w1 (w1)
+[Registry] REGISTER [w2 @ 127.0.0.1:1002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=w2 (w2)
+[Registry] REGISTER [w3 @ 127.0.0.1:1003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=w3 (w3)
+[Registry] REGISTER [w1 @ 127.0.0.1:1001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=w1 (w1)
+[Registry] REGISTER [w2 @ 127.0.0.1:1002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=w2 (w2)
+[Worker] REGISTERED w | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:61939 -> Master 127.0.0.1:61938
+[Registry] REGISTER [a @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [a @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)

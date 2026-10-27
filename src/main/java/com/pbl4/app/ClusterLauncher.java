@@ -3,6 +3,7 @@ package com.pbl4.app;
 import com.pbl4.master.MasterServer;
 import com.pbl4.worker.WorkerConfig;
 import com.pbl4.worker.WorkerNode;
+import com.pbl4.worker.WorkerRuntime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,20 +46,22 @@ public class ClusterLauncher {
 
         // 2. Khoi dong N Worker Nodes (Ports tu startWorkerPort)
         List<WorkerNode> workers = new ArrayList<>();
+        WorkerConfig defaults = new WorkerConfig();
+        WorkerRuntime runtime = new WorkerRuntime(defaults.getHostParallelism());
         for (int i = 0; i < workerCount; i++) {
             int port = startWorkerPort + i;
-            String id = (workerCount <= 3) ? String.format("client%02d", i + 1) : String.format("worker-%02d", i + 1);
+            String id = defaults.getMachineId() + String.format("-worker-%02d", i + 1);
             WorkerConfig cfg = new WorkerConfig(id, "127.0.0.1", port, "127.0.0.1", masterPort);
-            cfg.setCapacity(2);
-            WorkerNode node = new WorkerNode(cfg);
+            cfg.setCapacity(1);
+            WorkerNode node = new WorkerNode(cfg, runtime);
             node.start();
             workers.add(node);
         }
 
         // Doi cac Worker dang ky xong
-        Thread.sleep(Math.min(3000, 500 + workerCount * 40));
-
-        System.out.printf("%n>>> TAT CA %d WORKER DA DANG KY VOI MASTER THANH CONG! <<<%n", workers.size());
+        long registrationDeadline = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(10);
+        while (workers.stream().anyMatch(w -> !w.isRegistered()) && System.nanoTime() < registrationDeadline) Thread.sleep(50);
+        System.out.printf("%n[WorkerCluster] REGISTERED %d/%d; opened %d ports.%n", workers.stream().filter(WorkerNode::isRegistered).count(), workerCount, workers.size());
 
         // Dang ky hook don dep khi tat
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -66,6 +69,7 @@ public class ClusterLauncher {
             for (WorkerNode w : workers) {
                 w.stop();
             }
+            runtime.close();
             master.stop();
         }));
 
@@ -78,6 +82,7 @@ public class ClusterLauncher {
             for (WorkerNode w : workers) {
                 w.stop();
             }
+            runtime.close();
             master.stop();
             System.out.println(">>> DA DUNG TOAN BO CUM THANH CONG!");
             System.exit(0);
@@ -93,6 +98,7 @@ public class ClusterLauncher {
             for (WorkerNode w : workers) {
                 w.stop();
             }
+            runtime.close();
             master.stop();
             System.out.println(">>> DA DUNG TOAN BO CUM THANH CONG!");
             System.exit(0);

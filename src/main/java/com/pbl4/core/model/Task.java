@@ -12,6 +12,7 @@ public class Task {
     public String attemptId;
     public String masterSession;
     public String workerSession;
+    public long workUnits = 1;
     @com.fasterxml.jackson.annotation.JsonIgnore
     private java.util.function.Supplier<Map<String, Object>> payloadFactory;
     public void deferPayload(java.util.function.Supplier<Map<String, Object>> factory) { payloadFactory = factory; }
@@ -79,6 +80,15 @@ public class Task {
 
     public Object getPayloadValue(String key) {
         return payload != null ? payload.get(key) : null;
+    }
+
+    public boolean hasPayload(String key) {
+        return payload != null && payload.containsKey(key) && payload.get(key) != null;
+    }
+
+    public Object getPayloadOrDefault(String key, Object defaultValue) {
+        Object val = getPayloadValue(key);
+        return val != null ? val : defaultValue;
     }
 
     public String getWorkerAssigned() {

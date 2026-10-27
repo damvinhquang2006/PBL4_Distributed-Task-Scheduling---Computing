@@ -35,7 +35,7 @@ public class SocketMessenger {
             return null;
         }
         Message message = JsonUtils.fromJson(line, Message.class);
-        // Old clients omit the version; never silently interpret them as v2.
+        // An absent wire version must never silently become the current protocol.
         if (!JsonUtils.getMapper().readTree(line).has("protocolVersion")) message.protocolVersion = 0;
         return message;
     }

@@ -8,7 +8,8 @@ import java.util.UUID;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Message {
-    public int protocolVersion = 2;
+    public static final int CURRENT_VERSION = 3;
+    public int protocolVersion = CURRENT_VERSION;
     public String masterSession;
     public String workerSession;
     public ResourceMetrics metrics;

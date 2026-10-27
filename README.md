@@ -1,5 +1,7 @@
 # Hệ Thống Tính Toán Phân Tán & Cân Bằng Tải (Master - Worker Architecture)
 
+Chạy **50 Worker trên A + 50 Worker trên B** qua LAN/hotspot: xem [LAN-CLUSTER.md](LAN-CLUSTER.md). Bản mới dùng giao thức 3, nhận diện từng laptop và giới hạn CPU chung cho mỗi máy; Web UI chỉ hiển thị Worker thực sự đăng ký với Master.
+
 Hệ thống tính toán phân tán (Distributed Computing) và cân bằng tải công việc (Load Balancing) theo kiến trúc **Master - Worker** được phát triển bằng **Java 21+**.
 
 Hệ thống sử dụng mô hình đa cổng (Multi-port Local Nodes) với **1 Master** và **3 Workers**:
