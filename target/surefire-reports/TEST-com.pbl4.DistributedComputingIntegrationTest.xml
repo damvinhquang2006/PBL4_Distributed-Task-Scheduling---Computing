@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.pbl4.DistributedComputingIntegrationTest" time="2.256" tests="9" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.pbl4.DistributedComputingIntegrationTest" time="2.266" tests="9" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire13699244272416598726\surefirebooter-20261027190827395_3.jar C:\Users\VINH_QUANG\AppData\Local\Temp\surefire13699244272416598726 2026-10-27T19-08-27_182-jvmRun1 surefire-20261027190827395_1tmp surefire_0-20261027190827395_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564\surefirebooter-20261110003532781_3.jar C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564 2026-11-10T00-35-32_548-jvmRun1 surefire-20261110003532781_1tmp surefire_0-20261110003532781_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\test-classes;D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\classes;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.0\jackson-databind-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.0\jackson-annotations-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.0\jackson-core-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\net\bytebuddy\byte-buddy\1.14.9\byte-buddy-1.14.9.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.17.0\jackson-datatype-jsr310-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,10 +30,9 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire13699244272416598726\surefirebooter-20261027190827395_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564\surefirebooter-20261110003532781_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="jdk.net.unixdomain.tmpdir" value="target/unused-unix-sockets"/>
     <property name="java.runtime.version" value="25.0.2+10-LTS-69"/>
     <property name="user.name" value="VINH_QUANG"/>
     <property name="stdout.encoding" value="Cp1252"/>
@@ -51,7 +50,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\powershell;C:\Users\VINH_QUANG\.codex\tmp\arg0-windows\codex-arg0X4tFAL;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\libheif\libheif\bin;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\jxrlib\jxrlib\bin;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\poppler\Library\bin;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\bin\override;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\nodejs;D:\DBeaver;C:\Program Files\apache-maven-3.9.15\bin;C:\MinGW\bin;C:\Program Files\Common Files\Oracle\Java\javapath;;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files (x86)\cloudflared\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\VINH_QUANG\.local\bin;C:\Users\VINH_QUANG\AppData\Local\agy\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Python\Launcher\;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\powershell;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WindowsApps;C:\Users\VINH_QUANG\AppData\Local\Programs\Antigravity\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VINH_QUANG\.bun\bin;C:\Users\VINH_QUANG\.dotnet\tools;C:\Users\VINH_QUANG\AppData\Local\Programs\Zed\bin;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WinGet\Packages\Ngrok.Ngrok_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\bin\fallback;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\git\cmd;C:\Users\VINH_QUANG\AppData\Local\OpenAI\Codex\bin\c602dfdab3808440;C:\Users\VINH_QUANG\AppData\Local\OpenAI\Codex\bin\2993767bd1dfb009;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Users/VINH_QUANG/.gemini/antigravity/bin;C:\Users\VINH_QUANG\AppData\Roaming\Antigravity\bin;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\nodejs;D:\DBeaver;C:\Program Files\apache-maven-3.9.15\bin;C:\MinGW\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files (x86)\cloudflared\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\VINH_QUANG\.local\bin;C:\Users\VINH_QUANG\AppData\Local\agy\bin;C:\Program Files\Java\jdk-25.0.2\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Python\Launcher\;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WindowsApps;C:\Users\VINH_QUANG\AppData\Local\Programs\Antigravity\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VINH_QUANG\.bun\bin;C:\Users\VINH_QUANG\.dotnet\tools;C:\Users\VINH_QUANG\AppData\Local\Programs\Zed\bin;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WinGet\Packages\Ngrok.Ngrok_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;D:\UnityCLI\bin;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
@@ -59,232 +58,239 @@
     <property name="stdin.encoding" value="Cp1252"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
-    <property name="argLine" value="-Djdk.net.unixdomain.tmpdir=target/unused-unix-sockets"/>
   </properties>
-  <testcase name="testDistributedMatrixInverse" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.107">
+  <testcase name="testDistributedMatrixInverse" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.102">
     <system-out><![CDATA[[Master] Listening 0.0.0.0:5050
-[Registry] REGISTER [test-worker-01 @ 127.0.0.1:5051 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
 [Registry] REGISTER [test-worker-02 @ 127.0.0.1:5052 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Registry] REGISTER [test-worker-03 @ 127.0.0.1:5053 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED test-worker-01 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5051
+[Registry] REGISTER [test-worker-01 @ 127.0.0.1:5051 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
 [Master] REGISTERED test-worker-02 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5052
-[Master] REGISTERED test-worker-03 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5053
+[Master] REGISTERED test-worker-01 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5051
 [Worker] REGISTERED test-worker-02 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5052 -> Master 127.0.0.1:5050
 [Worker] REGISTERED test-worker-01 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5051 -> Master 127.0.0.1:5050
+[Registry] REGISTER [test-worker-03 @ 127.0.0.1:5053 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED test-worker-03 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5053
 [Worker] REGISTERED test-worker-03 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5053 -> Master 127.0.0.1:5050
 
 === BAT DAU JOB NGHICH DAO MA TRAN [3 x 3] CHIA THANH 3 TASKS ===
 [test-worker-01]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [0..1)... OK
 [test-worker-01]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
 [test-worker-02]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [1..2)... OK
-[test-worker-03]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [2..3)... OK
-[test-worker-03]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
+[test-worker-02]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
 [test-worker-01]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
 [test-worker-01]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
 [test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
-[test-worker-02]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
+[test-worker-03]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [2..3)... OK
+[test-worker-03]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
 [test-worker-03]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
 [test-worker-03]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
 [test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
 [test-worker-02]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
 [test-worker-02]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
 [test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
-[Result] mat-inv-977817d3-0cdd-4864-8ad3-339509572635-task-02 <- test-worker-02 (1/3)
-[Result] mat-inv-977817d3-0cdd-4864-8ad3-339509572635-task-01 <- test-worker-01 (2/3)
-[Result] mat-inv-977817d3-0cdd-4864-8ad3-339509572635-task-03 <- test-worker-03 (3/3)
->>> HOAN THANH NGHICH DAO MA TRAN TRONG 106 ms!
+[Result] mat-inv-8eadd95b-7da4-4e0f-8344-35c1169a8e44-task-01 <- test-worker-01 (1/3)
+[Result] mat-inv-8eadd95b-7da4-4e0f-8344-35c1169a8e44-task-03 <- test-worker-03 (2/3)
+[Result] mat-inv-8eadd95b-7da4-4e0f-8344-35c1169a8e44-task-02 <- test-worker-02 (3/3)
+>>> HOAN THANH NGHICH DAO MA TRAN TRONG 101 ms!
 ]]></system-out>
   </testcase>
-  <testcase name="testDistributedMatrixDeterminantAndRank" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.304">
+  <testcase name="testDistributedMatrixDeterminantAndRank" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.307">
     <system-out><![CDATA[
 === BAT DAU JOB TINH DINH THUC MA TRAN [3 x 3] CHIA THANH 3 TASKS ===
-[test-worker-01]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
-[test-worker-01]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
-[test-worker-02]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
-[test-worker-02]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
-[test-worker-01]  |    |-- Tien do: [==========] 100% (Cot 0, so hang -324.0000)
 [test-worker-03]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
 [test-worker-03]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
-[test-worker-02]  |    |-- Tien do: [==========] 100% (Cot 1, so hang -18.0000)
-[test-worker-02]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: -18.000000... OK
-[test-worker-02]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
-[test-worker-01]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: -324.000000... OK
-[test-worker-01]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[test-worker-02]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
+[test-worker-01]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
 [test-worker-03]  |    |-- Tien do: [==========] 100% (Cot 2, so hang 36.0000)
 [test-worker-03]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: 36.000000... OK
 [test-worker-03]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
-[Result] mat-det-3aa52495-35a4-458d-8398-6d67b0d5fd71-task-02 <- test-worker-02 (1/3)
-[Result] mat-det-3aa52495-35a4-458d-8398-6d67b0d5fd71-task-03 <- test-worker-03 (2/3)
-[Result] mat-det-3aa52495-35a4-458d-8398-6d67b0d5fd71-task-01 <- test-worker-01 (3/3)
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Cot 1, so hang -18.0000)
+[test-worker-02]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: -18.000000... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Cot 0, so hang -324.0000)
+[test-worker-01]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: -324.000000... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[Result] mat-det-91d8efb3-0077-4669-871c-6f75675b3d62-task-03 <- test-worker-03 (1/3)
+[Result] mat-det-91d8efb3-0077-4669-871c-6f75675b3d62-task-02 <- test-worker-02 (2/3)
+[Result] mat-det-91d8efb3-0077-4669-871c-6f75675b3d62-task-01 <- test-worker-01 (3/3)
 >>> HOAN THANH TINH DINH THUC TRONG 100 ms!
 
 === BAT DAU JOB TINH HANG MA TRAN [3 x 3] CHIA THANH 3 TASKS ===
 [test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, so dong=1, so cot=3)... OK
 [test-worker-01]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
 [test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, so dong=1, so cot=3)... OK
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[test-worker-01]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
 [test-worker-02]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
 [test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, so dong=1, so cot=3)... OK
 [test-worker-03]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
-[test-worker-01]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
-[test-worker-01]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
 [test-worker-02]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
 [test-worker-02]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
 [test-worker-02]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
 [test-worker-03]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
 [test-worker-03]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
 [test-worker-03]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
-[test-worker-01]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
-[Result] mat-rank-df378a64-f68f-4e55-92fa-faef9ee9f227-task-02 <- test-worker-02 (1/3)
-[Result] mat-rank-df378a64-f68f-4e55-92fa-faef9ee9f227-task-01 <- test-worker-01 (2/3)
-[Result] mat-rank-df378a64-f68f-4e55-92fa-faef9ee9f227-task-03 <- test-worker-03 (3/3)
->>> HOAN THANH TINH HANG MA TRAN TRONG 102 ms!
+[Result] mat-rank-73610443-3f7f-4344-9ead-95764e664cdd-task-02 <- test-worker-02 (1/3)
+[Result] mat-rank-73610443-3f7f-4344-9ead-95764e664cdd-task-01 <- test-worker-01 (2/3)
+[Result] mat-rank-73610443-3f7f-4344-9ead-95764e664cdd-task-03 <- test-worker-03 (3/3)
+>>> HOAN THANH TINH HANG MA TRAN TRONG 101 ms!
 
 === BAT DAU JOB TINH HANG MA TRAN [3 x 4] CHIA THANH 3 TASKS ===
+[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, so dong=1, so cot=4)... OK
+[test-worker-01]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, so dong=1, so cot=4)... OK
 [test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, so dong=1, so cot=4)... OK
 [test-worker-03]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[test-worker-01]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[test-worker-02]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
 [test-worker-03]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
 [test-worker-03]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
 [test-worker-03]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
-[test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, so dong=1, so cot=4)... OK
-[test-worker-02]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
-[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, so dong=1, so cot=4)... OK
-[test-worker-01]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[test-worker-01]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
 [test-worker-02]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
 [test-worker-02]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
 [test-worker-02]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
-[test-worker-01]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
-[test-worker-01]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
-[test-worker-01]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
-[Result] mat-rank-92d805ce-1660-4fc5-a02a-89eb8981e73b-task-03 <- test-worker-03 (1/3)
-[Result] mat-rank-92d805ce-1660-4fc5-a02a-89eb8981e73b-task-02 <- test-worker-02 (2/3)
-[Result] mat-rank-92d805ce-1660-4fc5-a02a-89eb8981e73b-task-01 <- test-worker-01 (3/3)
->>> HOAN THANH TINH HANG MA TRAN TRONG 100 ms!
+[Result] mat-rank-b75aba86-337a-4cda-9f91-7d4fa86fb690-task-03 <- test-worker-03 (1/3)
+[Result] mat-rank-b75aba86-337a-4cda-9f91-7d4fa86fb690-task-02 <- test-worker-02 (2/3)
+[Result] mat-rank-b75aba86-337a-4cda-9f91-7d4fa86fb690-task-01 <- test-worker-01 (3/3)
+>>> HOAN THANH TINH HANG MA TRAN TRONG 104 ms!
 ]]></system-out>
   </testcase>
-  <testcase name="testDistributedMatrixScalarMultiplication" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.205">
+  <testcase name="testDistributedMatrixScalarMultiplication" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.204">
     <system-out><![CDATA[
 === BAT DAU JOB NHAN VO HUONG MA TRAN [12 x 12] * 3.50 CHIA THANH 6 TASKS ===
-[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, [2 x 12]) va scalar=3.50... OK
-[test-worker-01]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
 [test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=4, [2 x 12]) va scalar=3.50... OK
 [test-worker-03]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
 [test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, [2 x 12]) va scalar=3.50... OK
 [test-worker-02]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
+[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, [2 x 12]) va scalar=3.50... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
 [test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
 [test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
 [test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
 [test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
 [test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
-[test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
-[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] mat-scalar-7b90281f-892c-40e5-8d74-9403d460cf9c-task-01 <- test-worker-01 (1/6)
-[Result] mat-scalar-7b90281f-892c-40e5-8d74-9403d460cf9c-task-02 <- test-worker-02 (2/6)
-[Result] mat-scalar-7b90281f-892c-40e5-8d74-9403d460cf9c-task-03 <- test-worker-03 (3/6)
+[Result] mat-scalar-7bfd7f23-25d6-41b2-a1ab-a5d8929f7095-task-01 <- test-worker-01 (1/6)
+[Result] mat-scalar-7bfd7f23-25d6-41b2-a1ab-a5d8929f7095-task-02 <- test-worker-02 (2/6)
+[Result] mat-scalar-7bfd7f23-25d6-41b2-a1ab-a5d8929f7095-task-03 <- test-worker-03 (3/6)
 [test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=8, [2 x 12]) va scalar=3.50... OK
-[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=6, [2 x 12]) va scalar=3.50... OK
-[test-worker-01]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
+[test-worker-02]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
 [test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=10, [2 x 12]) va scalar=3.50... OK
 [test-worker-03]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
-[test-worker-02]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
-[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
-[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
-[test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
-[test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
-[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
+[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=6, [2 x 12]) va scalar=3.50... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 3.50
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
 [test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
-[test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
+[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong voi so vo huong... OK
 [test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] mat-scalar-7b90281f-892c-40e5-8d74-9403d460cf9c-task-06 <- test-worker-03 (4/6)
-[Result] mat-scalar-7b90281f-892c-40e5-8d74-9403d460cf9c-task-04 <- test-worker-01 (5/6)
-[Result] mat-scalar-7b90281f-892c-40e5-8d74-9403d460cf9c-task-05 <- test-worker-02 (6/6)
+[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-scalar-7bfd7f23-25d6-41b2-a1ab-a5d8929f7095-task-06 <- test-worker-03 (4/6)
+[Result] mat-scalar-7bfd7f23-25d6-41b2-a1ab-a5d8929f7095-task-05 <- test-worker-02 (5/6)
+[Result] mat-scalar-7bfd7f23-25d6-41b2-a1ab-a5d8929f7095-task-04 <- test-worker-01 (6/6)
 >>> HOAN THANH NHAN VO HUONG MA TRAN TRONG 202 ms!
 ]]></system-out>
   </testcase>
-  <testcase name="testDistributedGraphShortestPath" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.203">
+  <testcase name="testDistributedGraphShortestPath" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.205">
     <system-out><![CDATA[
 === BAT DAU TIM DUONG DI NGAN NHAT PHAN TAN (10 DINH) CHIA THANH 6 TASKS ===
-[test-worker-03]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 2 dinh nguon)... OK
-[test-worker-03]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
-[test-worker-02]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 2 dinh nguon)... OK
-[test-worker-02]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
 [test-worker-01]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 2 dinh nguon)... OK
 [test-worker-01]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
-[test-worker-03]  |    |-- Tien do: [=====-----]  50% (Hoan thanh Dijkstra dinh 4)
-[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Hoan thanh Dijkstra dinh 0)
+[test-worker-02]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 2 dinh nguon)... OK
+[test-worker-02]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
+[test-worker-03]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 2 dinh nguon)... OK
+[test-worker-03]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
 [test-worker-02]  |    |-- Tien do: [=====-----]  50% (Hoan thanh Dijkstra dinh 2)
-[test-worker-03]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 5)
-[test-worker-03]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
-[test-worker-03]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Hoan thanh Dijkstra dinh 0)
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 3)
+[test-worker-02]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
+[test-worker-03]  |    |-- Tien do: [=====-----]  50% (Hoan thanh Dijkstra dinh 4)
+[test-worker-02]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
 [test-worker-01]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 1)
 [test-worker-01]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
 [test-worker-01]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
-[test-worker-02]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 3)
-[test-worker-02]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
-[test-worker-02]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
-[Result] graph-sp-7d8ffc3c-ddcd-4ba5-9a69-170afbbec822-task-01 <- test-worker-01 (1/6)
-[Result] graph-sp-7d8ffc3c-ddcd-4ba5-9a69-170afbbec822-task-02 <- test-worker-02 (2/6)
-[Result] graph-sp-7d8ffc3c-ddcd-4ba5-9a69-170afbbec822-task-03 <- test-worker-03 (3/6)
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 5)
+[test-worker-03]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
+[Result] graph-sp-d75dbe20-385d-45b4-bd27-9234aee04996-task-03 <- test-worker-03 (1/6)
+[Result] graph-sp-d75dbe20-385d-45b4-bd27-9234aee04996-task-02 <- test-worker-02 (2/6)
+[Result] graph-sp-d75dbe20-385d-45b4-bd27-9234aee04996-task-01 <- test-worker-01 (3/6)
 [test-worker-02]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 1 dinh nguon)... OK
 [test-worker-02]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
-[test-worker-02]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 8)
 [test-worker-03]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 1 dinh nguon)... OK
 [test-worker-03]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
 [test-worker-01]  |-- [Buoc 1/4] Giai ma cau truc do thi (10 dinh, 2 dinh nguon)... OK
 [test-worker-01]  |-- [Buoc 2/4] Chay thuat toan Dijkstra cho tung dinh nguon:
-[test-worker-03]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 9)
-[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Hoan thanh Dijkstra dinh 6)
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 8)
 [test-worker-02]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
 [test-worker-02]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 9)
 [test-worker-03]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
 [test-worker-03]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Hoan thanh Dijkstra dinh 6)
 [test-worker-01]  |    |-- Tien do: [==========] 100% (Hoan thanh Dijkstra dinh 7)
 [test-worker-01]  |-- [Buoc 3/4] Hoan tat tinh toan khoang cach cho tat ca dinh nguon... OK
 [test-worker-01]  |-- [Buoc 4/4] Dong goi ma tran khoang cach cuc bo vao TaskResult... OK
-[Result] graph-sp-7d8ffc3c-ddcd-4ba5-9a69-170afbbec822-task-04 <- test-worker-01 (4/6)
-[Result] graph-sp-7d8ffc3c-ddcd-4ba5-9a69-170afbbec822-task-06 <- test-worker-03 (5/6)
-[Result] graph-sp-7d8ffc3c-ddcd-4ba5-9a69-170afbbec822-task-05 <- test-worker-02 (6/6)
->>> HOAN THANH TIM DUONG DI NGAN NHAT TRONG 199 ms!
+[Result] graph-sp-d75dbe20-385d-45b4-bd27-9234aee04996-task-06 <- test-worker-03 (4/6)
+[Result] graph-sp-d75dbe20-385d-45b4-bd27-9234aee04996-task-05 <- test-worker-02 (5/6)
+[Result] graph-sp-d75dbe20-385d-45b4-bd27-9234aee04996-task-04 <- test-worker-01 (6/6)
+>>> HOAN THANH TIM DUONG DI NGAN NHAT TRONG 198 ms!
 ]]></system-out>
   </testcase>
-  <testcase name="testDistributedMatrixMultiplication" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.203">
+  <testcase name="testDistributedMatrixMultiplication" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.204">
     <system-out><![CDATA[
 === BAT DAU JOB NHAN MA TRAN [15 x 12] * [12 x 15] CHIA THANH 6 TASKS ===
+[test-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [3 x 12] (startRow=0) va ma tran B [12 x 15]... OK
 [test-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [3 x 12] (startRow=3) va ma tran B [12 x 15]... OK
 [test-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [3 x 12] (startRow=6) va ma tran B [12 x 15]... OK
-[test-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [3 x 12] (startRow=0) va ma tran B [12 x 15]... OK
-[test-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 15]... OK
-[test-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[test-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 15]... OK
-[test-worker-01]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
 [test-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 15]... OK
-[test-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[test-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 15]... OK
+[test-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 15]... OK
 [test-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[test-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[test-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[test-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
 [test-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
 [test-worker-02]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
 [test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
 [test-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
 [test-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 15] vao TaskResult... OK
+[test-worker-01]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
 [test-worker-01]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
 [test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
-[test-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
 [test-worker-03]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
 [test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
 [test-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
 [test-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
 [test-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 15] vao TaskResult... OK
 [test-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 15] vao TaskResult... OK
-[Result] mat-mul-9a4ac79f-ac24-43be-aff0-1c413450188d-task-02 <- test-worker-02 (1/6)
-[Result] mat-mul-9a4ac79f-ac24-43be-aff0-1c413450188d-task-01 <- test-worker-01 (2/6)
-[Result] mat-mul-9a4ac79f-ac24-43be-aff0-1c413450188d-task-03 <- test-worker-03 (3/6)
+[Result] mat-mul-d8abd214-e736-4132-943e-89ea76ded6e7-task-02 <- test-worker-02 (1/6)
+[Result] mat-mul-d8abd214-e736-4132-943e-89ea76ded6e7-task-03 <- test-worker-03 (2/6)
+[Result] mat-mul-d8abd214-e736-4132-943e-89ea76ded6e7-task-01 <- test-worker-01 (3/6)
+[test-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [2 x 12] (startRow=9) va ma tran B [12 x 15]... OK
+[test-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 15]... OK
+[test-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
+[test-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [2 x 12] (startRow=11) va ma tran B [12 x 15]... OK
+[test-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 15]... OK
 [test-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [2 x 12] (startRow=13) va ma tran B [12 x 15]... OK
 [test-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 15]... OK
 [test-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -292,91 +298,83 @@
 [test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
 [test-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 15] vao TaskResult... OK
-[test-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [2 x 12] (startRow=11) va ma tran B [12 x 15]... OK
-[test-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 15]... OK
-[test-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[test-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [2 x 12] (startRow=9) va ma tran B [12 x 15]... OK
-[test-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 15]... OK
-[test-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
-[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
-[test-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
 [test-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 15] vao TaskResult... OK
+[test-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
 [test-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 15] vao TaskResult... OK
-[Result] mat-mul-9a4ac79f-ac24-43be-aff0-1c413450188d-task-06 <- test-worker-03 (4/6)
-[Result] mat-mul-9a4ac79f-ac24-43be-aff0-1c413450188d-task-05 <- test-worker-02 (5/6)
-[Result] mat-mul-9a4ac79f-ac24-43be-aff0-1c413450188d-task-04 <- test-worker-01 (6/6)
->>> HOAN THANH NHAN MA TRAN TRONG 202 ms!
+[Result] mat-mul-d8abd214-e736-4132-943e-89ea76ded6e7-task-04 <- test-worker-01 (4/6)
+[Result] mat-mul-d8abd214-e736-4132-943e-89ea76ded6e7-task-06 <- test-worker-03 (5/6)
+[Result] mat-mul-d8abd214-e736-4132-943e-89ea76ded6e7-task-05 <- test-worker-02 (6/6)
+>>> HOAN THANH NHAN MA TRAN TRONG 201 ms!
 ]]></system-out>
   </testcase>
-  <testcase name="testStarterArithmeticCalculation" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.099">
+  <testcase name="testStarterArithmeticCalculation" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.1">
     <system-out><![CDATA[
 === BAT DAU JOB KHOI DAU: (1+2) + (3*2) ===
-[test-worker-02]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '3*2'... OK
-[test-worker-02]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
 [test-worker-01]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '1+2'... OK
 [test-worker-01]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
-[test-worker-02]  |-- [Buoc 3/4] Tinh toan phep toan: 3*2 = 6.00... OK
-[test-worker-02]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[test-worker-02]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '3*2'... OK
+[test-worker-02]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
 [test-worker-01]  |-- [Buoc 3/4] Tinh toan phep toan: 1+2 = 3.00... OK
 [test-worker-01]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
-[Result] arithmetic-7f19090e-6e47-457c-b307-1b2f45a4ac76-task-01 <- test-worker-01 (1/2)
-[Result] arithmetic-7f19090e-6e47-457c-b307-1b2f45a4ac76-task-02 <- test-worker-02 (2/2)
+[test-worker-02]  |-- [Buoc 3/4] Tinh toan phep toan: 3*2 = 6.00... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[Result] arithmetic-d8292978-f86b-4a47-9554-6415dc85cb0e-task-01 <- test-worker-01 (1/2)
+[Result] arithmetic-d8292978-f86b-4a47-9554-6415dc85cb0e-task-02 <- test-worker-02 (2/2)
 >>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 98 ms)
 ]]></system-out>
   </testcase>
   <testcase name="testDistributedMatrixModulo" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.204">
     <system-out><![CDATA[
 === BAT DAU JOB CHIA LAY DU (%) MA TRAN [12 x 12] CHIA THANH 6 TASKS ===
-[test-worker-02]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=4, so dong=2)... OK
-[test-worker-02]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
 [test-worker-03]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=0, so dong=2)... OK
 [test-worker-03]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
 [test-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=2, so dong=2)... OK
-[test-worker-01]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
-[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
 [test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[test-worker-02]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=4, so dong=2)... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
 [test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
 [test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] mat-mod-5e8b272a-5a3a-402c-8649-faf208018545-task-02 <- test-worker-01 (1/6)
-[Result] mat-mod-5e8b272a-5a3a-402c-8649-faf208018545-task-03 <- test-worker-02 (2/6)
-[Result] mat-mod-5e8b272a-5a3a-402c-8649-faf208018545-task-01 <- test-worker-03 (3/6)
-[test-worker-03]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=6, so dong=2)... OK
-[test-worker-03]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
-[test-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=8, so dong=2)... OK
-[test-worker-01]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[Result] mat-mod-afab6465-a1ba-49e3-8426-c0922a0bce89-task-03 <- test-worker-02 (1/6)
+[Result] mat-mod-afab6465-a1ba-49e3-8426-c0922a0bce89-task-01 <- test-worker-03 (2/6)
+[Result] mat-mod-afab6465-a1ba-49e3-8426-c0922a0bce89-task-02 <- test-worker-01 (3/6)
 [test-worker-02]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=10, so dong=2)... OK
 [test-worker-02]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
-[test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
-[test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
-[test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
-[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
-[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
-[test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
-[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-03]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=6, so dong=2)... OK
+[test-worker-03]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
 [test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
 [test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] mat-mod-5e8b272a-5a3a-402c-8649-faf208018545-task-05 <- test-worker-01 (4/6)
-[Result] mat-mod-5e8b272a-5a3a-402c-8649-faf208018545-task-06 <- test-worker-02 (5/6)
-[Result] mat-mod-5e8b272a-5a3a-402c-8649-faf208018545-task-04 <- test-worker-03 (6/6)
+[test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=8, so dong=2)... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong modulo cua lat cat... OK
+[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-mod-afab6465-a1ba-49e3-8426-c0922a0bce89-task-04 <- test-worker-03 (4/6)
+[Result] mat-mod-afab6465-a1ba-49e3-8426-c0922a0bce89-task-06 <- test-worker-02 (5/6)
+[Result] mat-mod-afab6465-a1ba-49e3-8426-c0922a0bce89-task-05 <- test-worker-01 (6/6)
 >>> HOAN THANH CHIA LAY DU (%) MA TRAN TRONG 202 ms!
 ]]></system-out>
   </testcase>
-  <testcase name="testDistributedMatrixAddition" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.202">
+  <testcase name="testDistributedMatrixAddition" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.206">
     <system-out><![CDATA[
 === BAT DAU JOB CONG MA TRAN [12 x 12] CHIA THANH 6 TASKS ===
 [test-worker-03]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=2)... OK
@@ -384,86 +382,86 @@
 [test-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=2, so dong=2)... OK
 [test-worker-01]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
 [test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-02]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=4, so dong=2)... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
 [test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
 [test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
-[test-worker-02]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=4, so dong=2)... OK
-[test-worker-02]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
-[test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
-[test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
-[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
 [test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
 [test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] mat-add-e2b1baf3-2a79-4229-8306-92520f6d2d2d-task-02 <- test-worker-01 (1/6)
-[Result] mat-add-e2b1baf3-2a79-4229-8306-92520f6d2d2d-task-01 <- test-worker-03 (2/6)
-[Result] mat-add-e2b1baf3-2a79-4229-8306-92520f6d2d2d-task-03 <- test-worker-02 (3/6)
-[test-worker-02]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=10, so dong=2)... OK
-[test-worker-02]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-add-8a5f7006-d1b8-4cf7-8cfe-777048db5f82-task-03 <- test-worker-02 (1/6)
+[Result] mat-add-8a5f7006-d1b8-4cf7-8cfe-777048db5f82-task-02 <- test-worker-01 (2/6)
+[Result] mat-add-8a5f7006-d1b8-4cf7-8cfe-777048db5f82-task-01 <- test-worker-03 (3/6)
 [test-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=8, so dong=2)... OK
 [test-worker-01]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
-[test-worker-03]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=6, so dong=2)... OK
-[test-worker-03]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
-[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
-[test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
-[test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
-[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
 [test-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [test-worker-01]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
 [test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[test-worker-03]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=6, so dong=2)... OK
+[test-worker-03]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
 [test-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [test-worker-03]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [test-worker-03]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
 [test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] mat-add-e2b1baf3-2a79-4229-8306-92520f6d2d2d-task-06 <- test-worker-02 (4/6)
-[Result] mat-add-e2b1baf3-2a79-4229-8306-92520f6d2d2d-task-04 <- test-worker-03 (5/6)
-[Result] mat-add-e2b1baf3-2a79-4229-8306-92520f6d2d2d-task-05 <- test-worker-01 (6/6)
->>> HOAN THANH Cong MA TRAN TRONG 200 ms!
+[Result] mat-add-8a5f7006-d1b8-4cf7-8cfe-777048db5f82-task-05 <- test-worker-01 (4/6)
+[test-worker-02]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=10, so dong=2)... OK
+[test-worker-02]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[test-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[test-worker-02]  |-- [Buoc 3/4] Tinh toan xong toan bo 2 dong cua lat cat... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-add-8a5f7006-d1b8-4cf7-8cfe-777048db5f82-task-04 <- test-worker-03 (5/6)
+[Result] mat-add-8a5f7006-d1b8-4cf7-8cfe-777048db5f82-task-06 <- test-worker-02 (6/6)
+>>> HOAN THANH Cong MA TRAN TRONG 205 ms!
 ]]></system-out>
   </testcase>
-  <testcase name="testDistributedMatrixTranspose" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.201">
+  <testcase name="testDistributedMatrixTranspose" classname="com.pbl4.DistributedComputingIntegrationTest" time="0.207">
     <system-out><![CDATA[
 === BAT DAU JOB CHUYEN VI MA TRAN [12 x 9] CHIA THANH 6 TASKS ===
 [test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, [2 x 9])... OK
 [test-worker-01]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
 [test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=4, [2 x 9])... OK
 [test-worker-02]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
-[test-worker-02]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
-[test-worker-02]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
-[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
 [test-worker-01]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
 [test-worker-01]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
 [test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
+[test-worker-02]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
+[test-worker-02]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
+[test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
+[Result] mat-trans-9e4dec6d-0b8f-4e69-838b-f8ad98e75068-task-02 <- test-worker-01 (1/6)
+[Result] mat-trans-9e4dec6d-0b8f-4e69-838b-f8ad98e75068-task-03 <- test-worker-02 (2/6)
 [test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, [2 x 9])... OK
 [test-worker-03]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
 [test-worker-03]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
 [test-worker-03]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
 [test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
-[Result] mat-trans-da65f9a1-b4df-4602-ab30-8f55d3802d1f-task-02 <- test-worker-01 (1/6)
-[Result] mat-trans-da65f9a1-b4df-4602-ab30-8f55d3802d1f-task-03 <- test-worker-02 (2/6)
-[Result] mat-trans-da65f9a1-b4df-4602-ab30-8f55d3802d1f-task-01 <- test-worker-03 (3/6)
-[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=8, [2 x 9])... OK
-[test-worker-01]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
+[Result] mat-trans-9e4dec6d-0b8f-4e69-838b-f8ad98e75068-task-01 <- test-worker-03 (3/6)
+[test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=6, [2 x 9])... OK
+[test-worker-03]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
+[test-worker-03]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
+[test-worker-03]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
+[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
 [test-worker-02]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=10, [2 x 9])... OK
 [test-worker-02]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
 [test-worker-02]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
 [test-worker-02]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
 [test-worker-02]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
-[test-worker-03]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=6, [2 x 9])... OK
-[test-worker-03]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
+[test-worker-01]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=8, [2 x 9])... OK
+[test-worker-01]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
 [test-worker-01]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
 [test-worker-01]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
 [test-worker-01]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
-[test-worker-03]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [9 x 2])
-[test-worker-03]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
-[test-worker-03]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
-[Result] mat-trans-da65f9a1-b4df-4602-ab30-8f55d3802d1f-task-06 <- test-worker-02 (4/6)
-[Result] mat-trans-da65f9a1-b4df-4602-ab30-8f55d3802d1f-task-05 <- test-worker-01 (5/6)
-[Result] mat-trans-da65f9a1-b4df-4602-ab30-8f55d3802d1f-task-04 <- test-worker-03 (6/6)
->>> HOAN THANH CHUYEN VI MA TRAN TRONG 201 ms!
+[Result] mat-trans-9e4dec6d-0b8f-4e69-838b-f8ad98e75068-task-05 <- test-worker-01 (4/6)
+[Result] mat-trans-9e4dec6d-0b8f-4e69-838b-f8ad98e75068-task-06 <- test-worker-02 (5/6)
+[Result] mat-trans-9e4dec6d-0b8f-4e69-838b-f8ad98e75068-task-04 <- test-worker-03 (6/6)
+>>> HOAN THANH CHUYEN VI MA TRAN TRONG 203 ms!
 ]]></system-out>
   </testcase>
 </testsuite>

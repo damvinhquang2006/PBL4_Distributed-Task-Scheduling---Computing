@@ -10,6 +10,7 @@ import com.pbl4.core.model.WorkerStatus;
 import com.pbl4.master.MasterServer;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -28,6 +29,12 @@ public class MasterApp {
         boolean autoDemo = false;
         String bindHost = "0.0.0.0";
         long timeoutMs = 300_000;
+        long attemptTimeoutMs = 60_000;
+        long attemptHardTimeoutMs = 180_000;
+        long quarantineRestartAfterMs = 10_000;
+        String dataDirectory = null;
+        String supervisorLock = null, supervisorToken = null;
+        long supervisorPid = -1;
         LoadBalancingPolicy policy = LoadBalancingPolicy.ROUND_ROBIN;
         double cpuHigh=85, cpuLow=75, ramHigh=90, ramLow=80, heapHigh=85, heapLow=75;
 
@@ -35,6 +42,13 @@ public class MasterApp {
             if ("--bindHost".equals(args[i]) && i + 1 < args.length) { bindHost = args[++i];
             } else if ("--policy".equals(args[i]) && i + 1 < args.length) { policy = LoadBalancingPolicy.valueOf(args[++i]);
             } else if ("--jobTimeoutSeconds".equals(args[i]) && i + 1 < args.length) { timeoutMs = Long.parseLong(args[++i]) * 1000;
+            } else if ("--attemptTimeoutSeconds".equals(args[i]) && i + 1 < args.length) { attemptTimeoutMs = Long.parseLong(args[++i]) * 1000;
+            } else if ("--attemptHardTimeoutSeconds".equals(args[i]) && i + 1 < args.length) { attemptHardTimeoutMs = Long.parseLong(args[++i]) * 1000;
+            } else if ("--quarantineRestartSeconds".equals(args[i]) && i + 1 < args.length) { quarantineRestartAfterMs = Long.parseLong(args[++i]) * 1000;
+            } else if ("--dataDir".equals(args[i]) && i + 1 < args.length) { dataDirectory = args[++i];
+            } else if ("--supervisorLock".equals(args[i]) && i + 1 < args.length) { supervisorLock = args[++i];
+            } else if ("--supervisorPid".equals(args[i]) && i + 1 < args.length) { supervisorPid = Long.parseLong(args[++i]);
+            } else if ("--supervisorToken".equals(args[i]) && i + 1 < args.length) { supervisorToken = args[++i];
             } else if ("--cpuHigh".equals(args[i]) && i + 1 < args.length) { cpuHigh = Double.parseDouble(args[++i]);
             } else if ("--cpuLow".equals(args[i]) && i + 1 < args.length) { cpuLow = Double.parseDouble(args[++i]);
             } else if ("--ramHigh".equals(args[i]) && i + 1 < args.length) { ramHigh = Double.parseDouble(args[++i]);
@@ -57,8 +71,12 @@ public class MasterApp {
         try {
             if (timeoutMs <= 0) throw new IllegalArgumentException("job timeout must be positive");
             var thresholds = new com.pbl4.master.scheduler.ResourceThresholds(cpuHigh,cpuLow,ramHigh,ramLow,heapHigh,heapLow);
-            masterServer = new MasterServer(port, bindHost);
+            Path statePath = dataDirectory == null ? Path.of("data", "master-" + port) : Path.of(dataDirectory);
+            masterServer = new MasterServer(port, bindHost, statePath);
             masterServer.setJobTimeoutMs(timeoutMs);
+            masterServer.setAttemptTimeoutMs(attemptTimeoutMs);
+            masterServer.setAttemptHardTimeoutMs(attemptHardTimeoutMs);
+            masterServer.setQuarantineRestartAfterMs(quarantineRestartAfterMs);
             masterServer.getScheduler().setPolicy(policy);
             masterServer.getScheduler().setThresholds(thresholds);
             masterServer.start();
@@ -77,6 +95,25 @@ public class MasterApp {
                     masterServer.stop();
                 }
             }));
+
+            if (supervisorLock != null) {
+                if (supervisorPid < 1 || supervisorToken == null || supervisorToken.isBlank())
+                    throw new IllegalArgumentException("Incomplete Master supervisor lease arguments");
+                Path leasePath = Path.of(supervisorLock); long ownerPid = supervisorPid; String ownerToken = supervisorToken;
+                Thread leaseMonitor = new Thread(() -> {
+                    while (masterServer != null && masterServer.isRunning()) {
+                        if (!SupervisorLease.isOwnedBy(leasePath, ownerPid, ownerToken)) {
+                            System.err.println("[Master] Supervisor lease lost; stopping orphaned Master process.");
+                            if (httpServer != null) httpServer.stop();
+                            if (masterServer != null) masterServer.stop();
+                            System.exit(0);
+                        }
+                        try { Thread.sleep(1500); }
+                        catch (InterruptedException e) { Thread.currentThread().interrupt(); return; }
+                    }
+                }, "master-supervisor-lease-monitor");
+                leaseMonitor.setDaemon(true); leaseMonitor.start();
+            }
 
             if (autoDemo) {
                 runAutomatedDemo();

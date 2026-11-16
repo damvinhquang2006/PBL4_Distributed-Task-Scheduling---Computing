@@ -13,8 +13,16 @@ public class WorkerInfo {
     public String machineId;
     public String machineName;
     public int hostParallelism;
+    public String processGroupId = "default";
+    public int groupParallelism;
     public volatile ResourceMetrics metrics = new ResourceMetrics();
     public volatile boolean paused;
+    public volatile boolean quarantined;
+    public volatile boolean groupRestartRequested;
+    public volatile long quarantinedAtMillis;
+    public volatile long groupRestartAttemptedAtMillis;
+    public volatile long quarantineSinceNanos;
+    public boolean supervised;
     public volatile boolean cpuBlocked, ramBlocked, heapBlocked;
     public volatile String admissionReason = "READY";
     public volatile long unavailableUntil;

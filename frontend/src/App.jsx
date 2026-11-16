@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import './App.css';
 import MachineFleet from './MachineFleet';
+import BenchmarkLab from './BenchmarkLab';
 
 const API_BASE = 'http://localhost:8080/api';
 
@@ -105,6 +106,9 @@ export default function App() {
   const [asyncProgress, setAsyncProgress] = useState(null);
   const [isAsyncRunning, setIsAsyncRunning] = useState(false);
   const jobPollRef = useRef(null);
+  const jobPollIdRef = useRef(null);
+  const jobPollInFlightRef = useRef(false);
+  const jobPollFailuresRef = useRef(0);
   useEffect(() => () => clearInterval(jobPollRef.current), []);
   const [simulatingFailover, setSimulatingFailover] = useState(false);
   const [failoverToast, setFailoverToast] = useState(null);
@@ -160,6 +164,7 @@ export default function App() {
       if (!snapshot.masterSession || !Array.isArray(snapshot.workers) || !Array.isArray(snapshot.machines)) throw new Error('Master chưa hỗ trợ thông tin laptop. Hãy cập nhật JAR và khởi động lại.');
       if (masterSessionRef.current && masterSessionRef.current !== snapshot.masterSession) {
         clearInterval(jobPollRef.current); jobPollRef.current = null;
+        jobPollIdRef.current = null;
         setComputing(false); setIsAsyncRunning(false); setAsyncProgress(null); setComputeResult(null);
         setComputeError('Master đã khởi động lại. Kiểm tra Worker đã đăng ký lại rồi gửi bài toán mới.');
       }
@@ -178,6 +183,68 @@ export default function App() {
     const interval = setInterval(fetchClusterInfo, 2500);
     return () => clearInterval(interval);
   }, [fetchClusterInfo, autoRefresh]);
+
+  const pollAsyncJob = useCallback(async jobId => {
+    if (jobPollInFlightRef.current || jobPollIdRef.current !== jobId) return;
+    jobPollInFlightRef.current = true;
+    try {
+      const response = await fetch(`${API_BASE}/jobs/progress?jobId=${encodeURIComponent(jobId)}`, {
+        signal: AbortSignal.timeout(5000), cache: 'no-store'
+      });
+      if (response.status === 404) throw new Error('Master không còn lưu Job này.');
+      if (!response.ok) throw new Error(`Không đọc được tiến trình (HTTP ${response.status}).`);
+      const progress = await response.json();
+      if (jobPollIdRef.current !== jobId) return;
+      jobPollFailuresRef.current = 0;
+      setAsyncProgress(progress);
+      if (progress.status === 'COMPLETED') {
+        clearInterval(jobPollRef.current); jobPollRef.current = null; jobPollIdRef.current = null;
+        setIsAsyncRunning(false); setComputing(false); setComputeResult(progress.resultSummary || progress); fetchClusterInfo();
+      } else if (progress.status === 'FAILED' || progress.status === 'CANCELLED') {
+        clearInterval(jobPollRef.current); jobPollRef.current = null; jobPollIdRef.current = null;
+        setIsAsyncRunning(false); setComputing(false); setComputeError(progress.error || 'Bài toán đã kết thúc.'); fetchClusterInfo();
+      }
+    } catch (error) {
+      if (jobPollIdRef.current !== jobId) return;
+      jobPollFailuresRef.current += 1;
+      if (jobPollFailuresRef.current >= 3) {
+        clearInterval(jobPollRef.current); jobPollRef.current = null; jobPollIdRef.current = null;
+        setIsAsyncRunning(false); setComputing(false);
+        setComputeError(`Mất kết nối khi khôi phục Job ${jobId}: ${error.message}`);
+      }
+    } finally { jobPollInFlightRef.current = false; }
+  }, [fetchClusterInfo]);
+
+  const watchAsyncJob = useCallback(jobId => {
+    clearInterval(jobPollRef.current);
+    jobPollIdRef.current = jobId; jobPollFailuresRef.current = 0;
+    setAsyncJobId(jobId); setIsAsyncRunning(true); setComputing(true);
+    pollAsyncJob(jobId);
+    jobPollRef.current = setInterval(() => pollAsyncJob(jobId), 1200);
+  }, [pollAsyncJob]);
+
+  // Recover the latest accepted Job after a browser reload using the Master registry.
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      try {
+        const response = await fetch(`${API_BASE}/jobs`, { signal: AbortSignal.timeout(5000), cache: 'no-store' });
+        if (!response.ok) return;
+        const { jobs = [] } = await response.json();
+        if (!active || jobs.length === 0) return;
+        const job = [...jobs].reverse().find(item => ['RUNNING', 'RECOVERING'].includes(item.status)) || jobs[jobs.length - 1];
+        setAsyncJobId(job.jobId);
+        if (['RUNNING', 'RECOVERING'].includes(job.status)) watchAsyncJob(job.jobId);
+        else if (job.status === 'COMPLETED') {
+          const result = await fetch(`${API_BASE}/jobs/progress?jobId=${encodeURIComponent(job.jobId)}`, { signal: AbortSignal.timeout(5000) });
+          if (result.ok && active) {
+            const progress = await result.json(); setAsyncProgress(progress); setComputeResult(progress.resultSummary || progress);
+          }
+        } else if (active) setComputeError(job.error || `Job cuối cùng kết thúc với trạng thái ${job.status}.`);
+      } catch { /* The cluster panel reports API connectivity separately. */ }
+    })();
+    return () => { active = false; };
+  }, [watchAsyncJob]);
 
   // Dimension sync helpers (Supports dimensions up to 50,000 without crashing)
   const handleDimChange = (target, rows, cols) => {
@@ -426,6 +493,7 @@ export default function App() {
       });
       clearInterval(jobPollRef.current);
       jobPollRef.current = null;
+      jobPollIdRef.current = null;
       setIsAsyncRunning(false);
       setComputing(false);
       setComputeError('Bài toán đã bị hủy bởi người dùng.');
@@ -448,6 +516,7 @@ export default function App() {
     setComputing(true);
     clearInterval(jobPollRef.current);
     jobPollRef.current = null;
+    jobPollIdRef.current = null;
     setComputeError(null);
     setComputeResult(null);
     setAsyncProgress(null);
@@ -491,7 +560,7 @@ export default function App() {
 
       const res = await fetch(`${API_BASE}/compute/async`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Idempotency-Key': crypto.randomUUID() },
         body: JSON.stringify(payload)
       });
       const data = await res.json();
@@ -504,53 +573,7 @@ export default function App() {
       }
 
       const jobId = data.jobId;
-      setAsyncJobId(jobId);
-
-      // Stop polling visibly if the Master restarts or becomes unreachable.
-      let polling = false;
-      let pollFailures = 0;
-      const pollInterval = setInterval(async () => {
-        if (polling) return;
-        polling = true;
-        try {
-          const pRes = await fetch(`${API_BASE}/jobs/progress?jobId=${jobId}`, { signal: AbortSignal.timeout(5000) });
-          if (jobPollRef.current !== pollInterval) return;
-          if (pRes.status === 404) throw new Error('Master không còn bài toán này. Có thể Master đã khởi động lại; hãy gửi lại bài toán.');
-          if (!pRes.ok) throw new Error(`Không đọc được tiến trình từ Master (HTTP ${pRes.status}).`);
-          const prog = await pRes.json();
-          pollFailures = 0;
-          setAsyncProgress(prog);
-
-          if (prog.status === 'COMPLETED') {
-            clearInterval(pollInterval);
-            jobPollRef.current = null;
-            setIsAsyncRunning(false);
-            setComputing(false);
-            setComputeResult(prog.resultSummary || prog);
-            fetchClusterInfo();
-          } else if (prog.status === 'FAILED') {
-            clearInterval(pollInterval);
-            jobPollRef.current = null;
-            setIsAsyncRunning(false);
-            setComputing(false);
-            setComputeError(prog.error || 'Thực thi phân tán thất bại');
-            fetchClusterInfo();
-          }
-        } catch (pollErr) {
-          if (jobPollRef.current !== pollInterval) return;
-          pollFailures += 1;
-          if (pollFailures >= 3 || pollErr.message.includes('không còn bài toán')) {
-            clearInterval(pollInterval);
-            jobPollRef.current = null;
-            setIsAsyncRunning(false);
-            setComputing(false);
-            setComputeError(pollErr.message.includes('không còn bài toán') ? pollErr.message : 'Mất kết nối với Master khi chờ kết quả. Kiểm tra cửa sổ Master và kết nối mạng rồi gửi lại bài toán.');
-          }
-        } finally {
-          polling = false;
-        }
-      }, 350);
-      jobPollRef.current = pollInterval;
+      watchAsyncJob(jobId);
 
     } catch (err) {
       setComputeError('Không thể kết nối đến Master Web API: ' + err.message);
@@ -931,6 +954,13 @@ export default function App() {
         >
           <Sparkles size={18} />
           <span>Ví Dụ Khởi Đầu</span>
+        </button>
+        <button
+          className={`tab-btn ${activeTab === 'benchmark' ? 'active' : ''}`}
+          onClick={() => setActiveTab('benchmark')}
+        >
+          <BarChart3 size={18} />
+          <span>Chấm Điểm & Benchmark</span>
         </button>
       </nav>
 
@@ -1528,11 +1558,17 @@ export default function App() {
                       {computeResult.operation === 'det' ? 'Định thức det(A) =' : 'Hạng rank(A) ='}
                     </span>
                     <span className="scalar-val-big">
-                      {computeResult.operation === 'det'
-                        ? (Number.isInteger(computeResult.resultScalar)
-                            ? computeResult.resultScalar
-                            : computeResult.resultScalar.toFixed(4))
-                        : Math.round(computeResult.resultScalar)}
+                      {(() => {
+                        const raw = computeResult.resultScalar;
+                        const num = Number(raw);
+                        if (!Number.isFinite(num)) {
+                          return String(raw || 'Infinity (Tràn số)');
+                        }
+                        if (computeResult.operation === 'det') {
+                          return Number.isInteger(num) ? num : num.toFixed(4);
+                        }
+                        return Math.round(num);
+                      })()}
                     </span>
                   </div>
                 ) : computeResult.isSampled && computeResult.sampleGrid ? (
@@ -1663,6 +1699,15 @@ export default function App() {
               )}
             </div>
           </div>
+        )}
+
+        {/* TAB 4: BENCHMARK & PERFORMANCE LAB */}
+        {activeTab === 'benchmark' && (
+          <BenchmarkLab
+            workers={workers}
+            machines={machines}
+            apiBase={API_BASE}
+          />
         )}
       </main>
     </div>

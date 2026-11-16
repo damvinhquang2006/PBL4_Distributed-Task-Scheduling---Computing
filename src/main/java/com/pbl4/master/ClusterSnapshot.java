@@ -20,7 +20,8 @@ final class ClusterSnapshot {
             row.put("workerId", w.getWorkerId()); row.put("machineId", w.machineId); row.put("machineName", w.machineName);
             row.put("host", w.getHost()); row.put("port", w.getPort()); row.put("capacity", w.getCapacity());
             row.put("hostParallelism", w.hostParallelism); row.put("status", w.getStatus().name()); row.put("connected", connected);
-            row.put("paused", w.paused); row.put("admissionReason", w.admissionReason);
+            row.put("processGroupId", w.processGroupId); row.put("groupParallelism", w.groupParallelism); row.put("supervised", w.supervised);
+            row.put("paused", w.paused); row.put("quarantined", w.quarantined); row.put("admissionReason", w.admissionReason);
             row.put("activeTasks", w.getActiveTasks()); row.put("completedTasks", w.getCompletedTasks());
             row.put("currentTaskIds", activity.getOrDefault(w.getWorkerId(), List.of()));
             row.put("metrics", w.metrics); row.put("lastHeartbeatTime", w.getLastHeartbeatTime()); row.put("jarSha256", w.jarSha256);

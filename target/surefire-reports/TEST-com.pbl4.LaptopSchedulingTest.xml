@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.pbl4.LaptopSchedulingTest" time="0.569" tests="5" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="25"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\test-classes;D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\classes;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.0\jackson-databind-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.0\jackson-annotations-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.0\jackson-core-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\net\bytebuddy\byte-buddy\1.14.9\byte-buddy-1.14.9.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.17.0\jackson-datatype-jsr310-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Asia/Bangkok"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="25"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin"/>
+    <property name="sun.java.command" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564\surefirebooter-20261110003532781_3.jar C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564 2026-11-10T00-35-32_548-jvmRun1 surefire-20261110003532781_1tmp surefire_0-20261110003532781_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\test-classes;D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\classes;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.0\jackson-databind-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.0\jackson-annotations-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.0\jackson-core-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\net\bytebuddy\byte-buddy\1.14.9\byte-buddy-1.14.9.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.17.0\jackson-datatype-jsr310-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\VINH_QUANG"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-01-20"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-25.0.2"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564\surefirebooter-20261110003532781_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="25.0.2+10-LTS-69"/>
+    <property name="user.name" value="VINH_QUANG"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\VINH_QUANG\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\VINH_Q~1\AppData\Local\Temp\"/>
+    <property name="java.version" value="25.0.2"/>
+    <property name="user.dir" value="D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Users/VINH_QUANG/.gemini/antigravity/bin;C:\Users\VINH_QUANG\AppData\Roaming\Antigravity\bin;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\nodejs;D:\DBeaver;C:\Program Files\apache-maven-3.9.15\bin;C:\MinGW\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files (x86)\cloudflared\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\VINH_QUANG\.local\bin;C:\Users\VINH_QUANG\AppData\Local\agy\bin;C:\Program Files\Java\jdk-25.0.2\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Python\Launcher\;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WindowsApps;C:\Users\VINH_QUANG\AppData\Local\Programs\Antigravity\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VINH_QUANG\.bun\bin;C:\Users\VINH_QUANG\.dotnet\tools;C:\Users\VINH_QUANG\AppData\Local\Programs\Zed\bin;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WinGet\Packages\Ngrok.Ngrok_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;D:\UnityCLI\bin;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="25.0.2+10-LTS-69"/>
+    <property name="stdin.encoding" value="Cp1252"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="69.0"/>
+  </properties>
+  <testcase name="workerRuntimeRejectsExcessWorkAcrossDifferentWorkerPorts" classname="com.pbl4.LaptopSchedulingTest" time="0.099">
+    <system-out><![CDATA[[Worker] REGISTERED b | laptop=shared (DESKTOP-QBGBFLP) | 127.0.0.1:51588 -> Master 127.0.0.1:51586
+[Worker] REGISTERED a | laptop=shared (DESKTOP-QBGBFLP) | 127.0.0.1:51587 -> Master 127.0.0.1:51586
+[b]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '1+2'... OK
+[b]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[b]  |-- [Buoc 3/4] Tinh toan phep toan: 1+2 = 3.00... OK
+[b]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+]]></system-out>
+  </testcase>
+  <testcase name="machineLoadAndResourceGatesUseLaptopIdentity" classname="com.pbl4.LaptopSchedulingTest" time="0.003">
+    <system-out><![CDATA[[Registry] REGISTER [a-worker-0 @ 127.0.0.1:5000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-0 @ 127.0.0.1:5000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-1 @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-1 @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-2 @ 127.0.0.1:5002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-2 @ 127.0.0.1:5002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-3 @ 127.0.0.1:5003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-3 @ 127.0.0.1:5003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-4 @ 127.0.0.1:5004 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-4 @ 127.0.0.1:5004 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+]]></system-out>
+  </testcase>
+  <testcase name="snapshotUsesOnlineLaptopMetadataAfterConfigurationChanges" classname="com.pbl4.LaptopSchedulingTest" time="0.002">
+    <system-out><![CDATA[[Registry] REGISTER [a-worker-0 @ 127.0.0.1:5000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [a-worker-1 @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (Laptop A new)
+[Master Server] Da dung hoat dong an toan.
+]]></system-out>
+  </testcase>
+  <testcase name="progressWeightsUnequalChunksByWorkInsteadOfTaskCount" classname="com.pbl4.LaptopSchedulingTest" time="0.115">
+    <system-out><![CDATA[[Registry] REGISTER [w @ 127.0.0.1:1 | Status: ONLINE | Active: 0 | Done: 0] | laptop=w (w)
+[Result] small <- w (1/2)
+[Result] large <- w (2/2)
+]]></system-out>
+  </testcase>
+  <testcase name="hundredLogicalWorkersShareFiveAtomicLaptopSlots" classname="com.pbl4.LaptopSchedulingTest" time="0.343">
+    <system-out><![CDATA[[Registry] REGISTER [a-worker-0 @ 127.0.0.1:5000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-0 @ 127.0.0.1:5000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-1 @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-1 @ 127.0.0.1:5001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-2 @ 127.0.0.1:5002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-2 @ 127.0.0.1:5002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-3 @ 127.0.0.1:5003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-3 @ 127.0.0.1:5003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-4 @ 127.0.0.1:5004 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-4 @ 127.0.0.1:5004 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-5 @ 127.0.0.1:5005 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-5 @ 127.0.0.1:5005 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-6 @ 127.0.0.1:5006 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-6 @ 127.0.0.1:5006 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-7 @ 127.0.0.1:5007 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-7 @ 127.0.0.1:5007 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-8 @ 127.0.0.1:5008 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-8 @ 127.0.0.1:5008 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-9 @ 127.0.0.1:5009 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-9 @ 127.0.0.1:5009 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-10 @ 127.0.0.1:5010 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-10 @ 127.0.0.1:5010 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-11 @ 127.0.0.1:5011 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-11 @ 127.0.0.1:5011 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-12 @ 127.0.0.1:5012 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-12 @ 127.0.0.1:5012 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-13 @ 127.0.0.1:5013 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-13 @ 127.0.0.1:5013 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-14 @ 127.0.0.1:5014 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-14 @ 127.0.0.1:5014 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-15 @ 127.0.0.1:5015 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-15 @ 127.0.0.1:5015 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-16 @ 127.0.0.1:5016 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-16 @ 127.0.0.1:5016 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-17 @ 127.0.0.1:5017 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-17 @ 127.0.0.1:5017 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-18 @ 127.0.0.1:5018 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-18 @ 127.0.0.1:5018 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-19 @ 127.0.0.1:5019 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-19 @ 127.0.0.1:5019 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-20 @ 127.0.0.1:5020 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-20 @ 127.0.0.1:5020 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-21 @ 127.0.0.1:5021 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-21 @ 127.0.0.1:5021 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-22 @ 127.0.0.1:5022 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-22 @ 127.0.0.1:5022 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-23 @ 127.0.0.1:5023 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-23 @ 127.0.0.1:5023 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-24 @ 127.0.0.1:5024 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-24 @ 127.0.0.1:5024 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-25 @ 127.0.0.1:5025 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-25 @ 127.0.0.1:5025 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-26 @ 127.0.0.1:5026 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-26 @ 127.0.0.1:5026 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-27 @ 127.0.0.1:5027 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-27 @ 127.0.0.1:5027 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-28 @ 127.0.0.1:5028 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-28 @ 127.0.0.1:5028 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-29 @ 127.0.0.1:5029 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-29 @ 127.0.0.1:5029 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-30 @ 127.0.0.1:5030 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-30 @ 127.0.0.1:5030 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-31 @ 127.0.0.1:5031 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-31 @ 127.0.0.1:5031 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-32 @ 127.0.0.1:5032 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-32 @ 127.0.0.1:5032 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-33 @ 127.0.0.1:5033 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-33 @ 127.0.0.1:5033 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-34 @ 127.0.0.1:5034 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-34 @ 127.0.0.1:5034 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-35 @ 127.0.0.1:5035 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-35 @ 127.0.0.1:5035 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-36 @ 127.0.0.1:5036 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-36 @ 127.0.0.1:5036 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-37 @ 127.0.0.1:5037 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-37 @ 127.0.0.1:5037 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-38 @ 127.0.0.1:5038 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-38 @ 127.0.0.1:5038 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-39 @ 127.0.0.1:5039 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-39 @ 127.0.0.1:5039 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-40 @ 127.0.0.1:5040 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-40 @ 127.0.0.1:5040 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-41 @ 127.0.0.1:5041 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-41 @ 127.0.0.1:5041 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-42 @ 127.0.0.1:5042 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-42 @ 127.0.0.1:5042 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-43 @ 127.0.0.1:5043 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-43 @ 127.0.0.1:5043 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-44 @ 127.0.0.1:5044 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-44 @ 127.0.0.1:5044 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-45 @ 127.0.0.1:5045 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-45 @ 127.0.0.1:5045 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-46 @ 127.0.0.1:5046 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-46 @ 127.0.0.1:5046 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-47 @ 127.0.0.1:5047 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-47 @ 127.0.0.1:5047 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-48 @ 127.0.0.1:5048 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-48 @ 127.0.0.1:5048 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+[Registry] REGISTER [a-worker-49 @ 127.0.0.1:5049 | Status: ONLINE | Active: 0 | Done: 0] | laptop=a (a)
+[Registry] REGISTER [b-worker-49 @ 127.0.0.1:5049 | Status: ONLINE | Active: 0 | Done: 0] | laptop=b (b)
+]]></system-out>
+  </testcase>
+</testsuite>

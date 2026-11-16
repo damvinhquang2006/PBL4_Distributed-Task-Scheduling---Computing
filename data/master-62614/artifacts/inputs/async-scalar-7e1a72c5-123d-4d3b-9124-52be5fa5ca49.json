@@ -1,0 +1,1 @@
+{"operation":"scalar","rowsA":3,"colsA":3,"rowsB":3,"colsB":3,"genA":{},"genB":{},"scalar":2.5,"taskCount":3,"requestedTaskCount":0,"matrixA":[[4.0,1.0,2.0],[0.0,3.0,1.0],[1.0,0.0,2.0]],"matrixB":[[2.0,3.0,4.0],[1.0,2.0,3.0],[4.0,1.0,2.0]]}

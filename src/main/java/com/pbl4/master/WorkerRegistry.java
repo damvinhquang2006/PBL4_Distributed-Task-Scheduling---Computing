@@ -17,13 +17,20 @@ public class WorkerRegistry {
         if (workers.values().stream().anyMatch(w -> w.getStatus() != WorkerStatus.OFFLINE && info.machineId.equals(w.machineId) && info.hostParallelism != w.hostParallelism))
             throw new IllegalArgumentException("Conflicting HostParallelism for laptop " + info.machineId);
         if (info.metrics == null) info.metrics = new ResourceMetrics();
+        if (info.groupParallelism < 1) info.groupParallelism = info.hostParallelism;
         WorkerInfo old = workers.get(info.getWorkerId());
         if (old != null && Objects.equals(old.sessionId, info.sessionId)) {
             old.setLastHeartbeatTime(System.currentTimeMillis()); old.setStatus(WorkerStatus.ONLINE);
             old.metrics = info.metrics; return;
         }
-        if (old != null && old.getStatus() != WorkerStatus.OFFLINE)
-            throw new IllegalArgumentException("Worker ID already active: " + info.getWorkerId());
+        if (old != null && old.getStatus() != WorkerStatus.OFFLINE) {
+            boolean sameEndpoint = Objects.equals(old.getHost(), info.getHost()) && old.getPort() == info.getPort()
+                && Objects.equals(old.machineId, info.machineId);
+            if (!sameEndpoint) throw new IllegalArgumentException("Worker ID already active: " + info.getWorkerId());
+            old.setStatus(WorkerStatus.OFFLINE);
+            onFailure.accept(old);
+            info.paused = old.paused;
+        }
         if (old != null) info.paused = old.paused;
         info.setStatus(WorkerStatus.ONLINE); info.setLastHeartbeatTime(System.currentTimeMillis());
         workers.put(info.getWorkerId(), info);

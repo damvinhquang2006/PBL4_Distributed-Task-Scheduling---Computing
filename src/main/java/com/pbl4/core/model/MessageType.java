@@ -5,7 +5,7 @@ package com.pbl4.core.model;
  */
 public enum MessageType {
     /** Worker gui den Master de dang ky tham gia cum */
-    PING, PONG, REGISTER_REJECTED, REGISTER_REQUIRED, TASK_ACCEPTED, TASK_REJECTED, RESULT_ACK,
+    PING, PONG, REGISTER_REJECTED, REGISTER_REQUIRED, TASK_ACCEPTED, TASK_REJECTED, RESULT_ACK, RESULT_RETRY,
     REGISTER_WORKER,
     
     /** Master xac nhan dang ky thanh cong */
@@ -27,5 +27,5 @@ public enum MessageType {
     SET_WORKER_STATE,
     
     /** Lenh dung Worker */
-    SHUTDOWN
+    SHUTDOWN, CANCEL_TASK, CANCEL_ACK, TASK_PROGRESS, RESTART_PROCESS_GROUP, RESTART_ACK
 }

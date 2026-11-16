@@ -35,8 +35,10 @@ public class TaskScheduler {
         gate.heap = blocked(gate.heap, host.heap, t.heapHigh(), t.heapLow());
         w.cpuBlocked = gate.cpu; w.ramBlocked = gate.ram; w.heapBlocked = gate.heap;
         String reason = w.getStatus() == WorkerStatus.OFFLINE ? "OFFLINE" : w.paused ? "PAUSED" :
+            w.quarantined ? "QUARANTINED" :
             w.unavailableUntil > System.currentTimeMillis() ? "RETRY_BACKOFF" :
             Math.max(w.getActiveTasks(), m.runningTasks) >= w.getCapacity() ? "CAPACITY" :
+            groupActive(group(w)) >= groupCapacity(group(w)) ? "HOST_CAPACITY" :
             machineActive(machine(w)) >= machineCapacity(machine(w)) ? "HOST_CAPACITY" :
             policy == LoadBalancingPolicy.RESOURCE_AWARE && w.cpuBlocked ? "CPU_HIGH" :
             policy == LoadBalancingPolicy.RESOURCE_AWARE && w.ramBlocked ? "RAM_HIGH" :
@@ -45,15 +47,51 @@ public class TaskScheduler {
         return reason.equals("READY");
     }
     private static String machine(WorkerInfo w) { return w.machineId == null ? w.getWorkerId() : w.machineId; }
+    private static String group(WorkerInfo w) {
+        return machine(w) + "/" + (w.processGroupId == null || w.processGroupId.isBlank() ? "default" : w.processGroupId);
+    }
+    private int groupCapacity(String id) {
+        return registry.getAllWorkers().stream().filter(w -> w.getStatus() != WorkerStatus.OFFLINE && group(w).equals(id))
+            .mapToInt(w -> w.groupParallelism > 0 ? w.groupParallelism : w.hostParallelism).min().orElse(0);
+    }
+    public synchronized void quarantineGroup(WorkerInfo member, boolean quarantined) {
+        for (WorkerInfo worker : registry.getAllWorkers()) if (group(worker).equals(group(member))) {
+            worker.quarantined = quarantined;
+            worker.quarantinedAtMillis = quarantined ? (worker.quarantinedAtMillis == 0 ? System.currentTimeMillis() : worker.quarantinedAtMillis) : 0;
+            worker.quarantineSinceNanos = quarantined ? (worker.quarantineSinceNanos == 0 ? System.nanoTime() : worker.quarantineSinceNanos) : 0;
+            if (!quarantined) { worker.groupRestartRequested = false; worker.groupRestartAttemptedAtMillis = 0; }
+        }
+    }
+    public synchronized void markGroupRestartRequested(WorkerInfo member) {
+        for (WorkerInfo worker : registry.getAllWorkers()) if (group(worker).equals(group(member))) {
+            if (!worker.groupRestartRequested) {
+                worker.groupRestartRequested = true; worker.groupRestartAttemptedAtMillis = System.currentTimeMillis();
+            }
+        }
+    }
+    public synchronized void clearGroupRestartRequested(WorkerInfo member) {
+        for (WorkerInfo worker : registry.getAllWorkers()) if (group(worker).equals(group(member))) worker.groupRestartRequested = false;
+    }
+    private int groupActive(String id) {
+        List<WorkerInfo> members = registry.getAllWorkers().stream().filter(w -> w.getStatus() != WorkerStatus.OFFLINE && group(w).equals(id)).toList();
+        int reserved = members.stream().mapToInt(WorkerInfo::getActiveTasks).sum();
+        int reported = members.stream().filter(w -> w.metrics != null).mapToInt(w -> w.metrics.hostRunningTasks).max().orElse(0);
+        return Math.max(reserved, reported);
+    }
     public synchronized int machineCapacity(String id) {
         List<WorkerInfo> members = registry.getAllWorkers().stream().filter(w -> w.getStatus() != WorkerStatus.OFFLINE && machine(w).equals(id)).toList();
         int capacity = members.stream().mapToInt(WorkerInfo::getCapacity).sum();
         int limit = members.stream().mapToInt(w -> w.hostParallelism > 0 ? w.hostParallelism : w.getCapacity()).min().orElse(0);
-        return Math.min(capacity, limit);
+        Map<String, Integer> groupBudgets = new HashMap<>();
+        members.forEach(w -> groupBudgets.merge(group(w), w.groupParallelism > 0 ? w.groupParallelism : w.hostParallelism, Math::min));
+        int groupLimit = groupBudgets.values().stream().mapToInt(Integer::intValue).sum();
+        return Math.min(capacity, Math.min(limit, groupLimit));
     }
     public synchronized int machineActive(String id) {
-        int tracked = registry.getAllWorkers().stream().filter(w -> machine(w).equals(id)).mapToInt(WorkerInfo::getActiveTasks).sum();
-        return Math.max(tracked, reservedMachines.getOrDefault(id, 0));
+        List<WorkerInfo> members = registry.getAllWorkers().stream().filter(w -> w.getStatus() != WorkerStatus.OFFLINE && machine(w).equals(id)).toList();
+        int tracked = members.stream().mapToInt(WorkerInfo::getActiveTasks).sum();
+        int reported = members.stream().filter(w -> w.metrics != null).mapToInt(w -> w.metrics.hostRunningTasks).max().orElse(0);
+        return Math.max(Math.max(tracked, reported), reservedMachines.getOrDefault(id, 0));
     }
     public synchronized int effectiveCapacity() {
         List<WorkerInfo> available = registry.getAvailableWorkers();

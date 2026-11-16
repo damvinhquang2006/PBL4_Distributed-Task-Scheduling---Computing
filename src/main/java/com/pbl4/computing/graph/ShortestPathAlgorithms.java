@@ -3,6 +3,7 @@ package com.pbl4.computing.graph;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.function.BiConsumer;
 
 /**
  * Các thuật toán tìm đường đi ngắn nhất: Dijkstra từ nhiều nguồn (Multi-Source Dijkstra) và Floyd-Warshall.
@@ -13,6 +14,10 @@ public class ShortestPathAlgorithms {
      * Thuật toán Dijkstra tìm đường đi ngắn nhất từ 1 đỉnh nguồn source đến tất cả các đỉnh khác.
      */
     public static double[] dijkstra(Graph graph, int source) {
+        return dijkstra(graph, source, (completed, total) -> {});
+    }
+
+    public static double[] dijkstra(Graph graph, int source, BiConsumer<Integer, Integer> progress) {
         int V = graph.getVertices();
         double[][] adj = graph.getAdjMatrix();
         double[] dist = new double[V];
@@ -24,14 +29,17 @@ public class ShortestPathAlgorithms {
         pq.add(new double[]{source, 0.0});
 
         boolean[] visited = new boolean[V];
+        int visitedCount = 0;
 
         while (!pq.isEmpty()) {
+            if (Thread.currentThread().isInterrupted()) throw new java.util.concurrent.CancellationException("Task attempt was cancelled");
             double[] top = pq.poll();
             int u = (int) top[0];
             double d = top[1];
 
             if (visited[u]) continue;
             visited[u] = true;
+            progress.accept(++visitedCount, V);
 
             for (int v = 0; v < V; v++) {
                 if (adj[u][v] < Graph.INF / 2) {

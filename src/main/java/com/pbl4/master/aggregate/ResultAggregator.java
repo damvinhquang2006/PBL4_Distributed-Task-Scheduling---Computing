@@ -13,6 +13,28 @@ import java.util.List;
  */
 public class ResultAggregator {
 
+    public static double toDouble(Object obj) {
+        if (obj == null) return 0.0;
+        if (obj instanceof Number n) return n.doubleValue();
+        if (obj instanceof String s) {
+            try {
+                return Double.parseDouble(s.trim());
+            } catch (NumberFormatException ignored) {}
+        }
+        return 0.0;
+    }
+
+    public static int toInt(Object obj) {
+        if (obj == null) return 0;
+        if (obj instanceof Number n) return n.intValue();
+        if (obj instanceof String s) {
+            try {
+                return Integer.parseInt(s.trim());
+            } catch (NumberFormatException ignored) {}
+        }
+        return 0;
+    }
+
     /**
      * Tong hop bieu thuc khoi dau: Lay ket qua Task 1 (VD: 3) va Task 2 (VD: 6), tinh 3 + 6 = 9.
      */
@@ -25,8 +47,8 @@ public class ResultAggregator {
             throw new IllegalStateException("Can it nhat 2 ket qua de tong hop bieu thuc!");
         }
 
-        double val1 = ((Number) results.get(0).getResultValue("value")).doubleValue();
-        double val2 = ((Number) results.get(1).getResultValue("value")).doubleValue();
+        double val1 = toDouble(results.get(0).getResultValue("value"));
+        double val2 = toDouble(results.get(1).getResultValue("value"));
 
         double finalRes;
         switch (topOperator) {
@@ -61,7 +83,7 @@ public class ResultAggregator {
                 throw new RuntimeException("Task " + taskResult.getTaskId() + " that bai: " + taskResult.getErrorMessage());
             }
 
-            int startRow = ((Number) taskResult.getResultValue("startRow")).intValue();
+            int startRow = toInt(taskResult.getResultValue("startRow"));
             double[][] sliceData = parse2DArray(taskResult.getResultValue("sliceResult"));
             resultMatrix.setRowSlice(startRow, sliceData);
         }
@@ -83,7 +105,7 @@ public class ResultAggregator {
                 throw new RuntimeException("Task " + taskResult.getTaskId() + " that bai: " + taskResult.getErrorMessage());
             }
 
-            int startRow = ((Number) taskResult.getResultValue("startRow")).intValue();
+            int startRow = toInt(taskResult.getResultValue("startRow"));
             double[][] sliceData = parse2DArray(taskResult.getResultValue("sliceResult"));
             int sliceRows = sliceData.length;
             int sliceCols = sliceData[0].length;
@@ -112,7 +134,7 @@ public class ResultAggregator {
             double[][] distances = parse2DArray(taskResult.getResultValue("distances"));
 
             for (int i = 0; i < sources.size(); i++) {
-                int src = ((Number) sources.get(i)).intValue();
+                int src = toInt(sources.get(i));
                 System.arraycopy(distances[i], 0, allDist[src], 0, totalVertices);
             }
         }
@@ -130,7 +152,7 @@ public class ResultAggregator {
             if (!taskResult.isSuccess()) {
                 throw new RuntimeException("Task " + taskResult.getTaskId() + " that bai: " + taskResult.getErrorMessage());
             }
-            determinant += ((Number) taskResult.getResultValue("partialDeterminant")).doubleValue();
+            determinant += toDouble(taskResult.getResultValue("partialDeterminant"));
         }
 
         job.setFinalOutput(determinant);

@@ -1,6 +1,6 @@
 # Chạy tính toán ma trận trên hai laptop Windows qua LAN
 
-**Mô hình 50 Worker mỗi laptop:** dùng hướng dẫn mới [LAN-CLUSTER.md](LAN-CLUSTER.md), cùng JAR giao thức 3 và script `start-lan-workers.ps1`. Các phần bên dưới ghi lại cấu hình hai Worker và các bản sửa trước.
+**Mô hình 50 Worker mỗi laptop:** dùng hướng dẫn mới [LAN-CLUSTER.md](LAN-CLUSTER.md), cùng JAR giao thức 4 và script `start-lan-workers.ps1`. Các phần bên dưới ghi lại cấu hình hai Worker và các bản sửa trước.
 
 ## Bản sửa tính toán Web UI — 27/10/2026
 

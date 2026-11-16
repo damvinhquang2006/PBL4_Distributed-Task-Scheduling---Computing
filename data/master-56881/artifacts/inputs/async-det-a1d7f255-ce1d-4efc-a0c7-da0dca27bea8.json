@@ -1,0 +1,1 @@
+{"operation":"det","rowsA":3,"colsA":3,"rowsB":3,"colsB":3,"genA":{},"genB":{},"scalar":2.0,"taskCount":3,"requestedTaskCount":0,"matrixA":[[1.0,2.0,3.0],[2.0,4.0,6.0],[3.0,6.0,9.0]],"matrixB":null}

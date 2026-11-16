@@ -35,4 +35,4 @@ Copy-Item .\target\cluster-validation\distributed-task-scheduling-1.0.0.jar .\ta
 
 Báo cáo kiểm thử ở `target/cluster-validation/surefire-reports/`. Tham số thư mục build là tùy chọn; mặc định dự án vẫn dùng `target/`.
 
-Hai nhóm laptop ở trên được **mô phỏng trên một máy**, không phải nghiệm thu hai laptop qua Wi-Fi/4G thực tế. Chưa đo tốc độ tăng tốc LAN, chưa thay đổi firewall. Dùng checklist cuối `LAN-CLUSTER.md` để nghiệm thu trên A và B thật với cùng JAR giao thức 3.
+Hai nhóm laptop ở trên được **mô phỏng trên một máy**, không phải nghiệm thu hai laptop qua Wi-Fi/4G thực tế. Chưa đo tốc độ tăng tốc LAN, chưa thay đổi firewall. Dùng checklist cuối `LAN-CLUSTER.md` để nghiệm thu trên A và B thật với cùng JAR giao thức 4.

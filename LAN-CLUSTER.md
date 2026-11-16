@@ -4,7 +4,7 @@ Master chỉ dùng Worker đã đăng ký trong phiên hiện tại. A có thể
 
 ## Chuẩn bị
 
-- Cả hai máy dùng Java 21+ và cùng JAR mới hỗ trợ **giao thức 3**. Dừng Master/Worker cũ trước khi thay JAR. Worker giao thức 2 bị từ chối với thông báo cần cập nhật.
+- Cả hai máy dùng Java 21+ và cùng JAR mới hỗ trợ **giao thức 4**. Dừng Master/Worker cũ trước khi thay JAR. JAR giao thức cũ bị từ chối với thông báo cần cập nhật.
 - Chép gói phát hành vào hai máy, giữ `scripts/` và `target/` cạnh nhau. B không cần Maven hoặc Node.js. A cần Node.js để chạy Web UI.
 - Lấy IPv4 Wi-Fi từ `ipconfig`, không chọn VMware/VPN hoặc Default Gateway. Các ví dụ dùng **A=192.168.1.10, B=192.168.1.20**; thay bằng IP thật mỗi khi chuyển mạng.
 - Master TCP 5000; Worker TCP 5001–5050 trên mỗi máy. Hai laptop được dùng cùng cổng vì khác IP. API 8080 và Web UI 5173 chạy trên A.
@@ -75,7 +75,7 @@ Xem `matrixTestPassed=true`, `checkedCells=10000`, `workerIds`, trạng thái t�
 
 `GET /api/status` và `/api/workers` vẫn dùng được. `POST /api/cluster/scale50` trả HTTP 410 vì không còn tự sinh Worker từ Web UI.
 
-Ctrl+C trong terminal cụm Worker dừng toàn bộ cụm của laptop đó. Master giữ Worker OFFLINE sau ngưỡng heartbeat 9 giây, kiểm tra mỗi 2 giây. Master khởi động lại tạo phiên mới; Worker tự đăng ký lại, job cũ không được khôi phục.
+Ctrl+C trong terminal cụm Worker dừng toàn bộ cụm của laptop đó. Master giữ Worker OFFLINE sau ngưỡng heartbeat 9 giây, kiểm tra mỗi 2 giây. Master khởi động lại tạo epoch mới; Worker tự đăng ký lại và hủy attempt thuộc epoch cũ. Job async đã lưu trên A được khôi phục từ thư mục dữ liệu; task chưa commit được chạy lại. Cơ chế này không bảo vệ khi ổ đĩa hoặc toàn bộ laptop A hỏng.
 
 ## Nghiệm thu hai máy thật
 

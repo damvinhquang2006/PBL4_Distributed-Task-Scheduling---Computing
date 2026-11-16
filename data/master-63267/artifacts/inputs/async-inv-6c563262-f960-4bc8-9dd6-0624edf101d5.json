@@ -1,0 +1,1 @@
+{"operation":"inv","rowsA":2,"colsA":2,"rowsB":3,"colsB":3,"genA":{},"genB":{},"scalar":2.0,"taskCount":2,"requestedTaskCount":0,"matrixA":[[1.0,2.0],[2.0,4.0]],"matrixB":null}

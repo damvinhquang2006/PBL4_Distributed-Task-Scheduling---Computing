@@ -1,6 +1,7 @@
 package com.pbl4.computing.matrix;
 
 import java.util.List;
+import java.util.function.BiConsumer;
 
 /**
  * Các phép toán số học ma trận: Cộng, Trừ, Nhân ma trận, Chia dư, Chuyển vị, Nhân vô hướng, Nghịch đảo, Định thức, Hạng.
@@ -203,6 +204,10 @@ public class MatrixOperations {
      * Phep toan tinh toan tren Worker: Chuyen vi mot lat cat dong (rows x cols) thanh (cols x rows).
      */
     public static double[][] transposeSlice(double[][] sliceA) {
+        return transposeSlice(sliceA, (completed, total) -> {});
+    }
+
+    public static double[][] transposeSlice(double[][] sliceA, BiConsumer<Integer, Integer> progress) {
         if (sliceA == null || sliceA.length == 0) {
             return new double[0][0];
         }
@@ -210,6 +215,8 @@ public class MatrixOperations {
         int cols = sliceA[0].length;
         double[][] trans = new double[cols][rows];
         for (int i = 0; i < rows; i++) {
+            if (Thread.currentThread().isInterrupted()) throw new java.util.concurrent.CancellationException("Task attempt was cancelled");
+            progress.accept(i + 1, rows);
             for (int j = 0; j < cols; j++) {
                 trans[j][i] = sliceA[i][j];
             }
@@ -280,6 +287,11 @@ public class MatrixOperations {
      * sau do chuyen vi de thu duoc lat cat dong cua A^-1.
      */
     public static double[][] invertRowSlice(double[][] matrixData, int startRow, int endRow) {
+        return invertRowSlice(matrixData, startRow, endRow, (completed, total) -> {});
+    }
+
+    public static double[][] invertRowSlice(double[][] matrixData, int startRow, int endRow,
+                                             BiConsumer<Integer, Integer> progress) {
         if (matrixData == null || matrixData.length == 0) {
             return new double[0][0];
         }
@@ -309,6 +321,8 @@ public class MatrixOperations {
 
         // Gauss-Jordan elimination tren toan bo ma tran mo rong
         for (int col = 0; col < n; col++) {
+            if (Thread.currentThread().isInterrupted()) throw new java.util.concurrent.CancellationException("Task attempt was cancelled");
+            progress.accept(col + 1, n);
             int pivotRow = col;
             for (int row = col + 1; row < n; row++) {
                 if (Math.abs(aug[row][col]) > Math.abs(aug[pivotRow][col])) {
@@ -358,6 +372,10 @@ public class MatrixOperations {
      * Tinh dinh thuc ma tran vuong bang khu Gauss co chon pivot.
      */
     public static double determinant(Matrix A) {
+        return determinant(A, (completed, total) -> {});
+    }
+
+    public static double determinant(Matrix A, BiConsumer<Integer, Integer> progress) {
         if (A.getRows() != A.getCols()) {
             throw new IllegalArgumentException("Determinant requires a square matrix!");
         }
@@ -368,6 +386,8 @@ public class MatrixOperations {
         int sign = 1;
 
         for (int col = 0; col < n; col++) {
+            if (Thread.currentThread().isInterrupted()) throw new java.util.concurrent.CancellationException("Task attempt was cancelled");
+            progress.accept(col + 1, n);
             int pivotRow = col;
             for (int row = col + 1; row < n; row++) {
                 if (Math.abs(data[row][col]) > Math.abs(data[pivotRow][col])) {
@@ -460,6 +480,10 @@ public class MatrixOperations {
     }
 
     public static double[][] rowBasis(double[][] input, int cols) {
+        return rowBasis(input, cols, (completed, total) -> {});
+    }
+
+    public static double[][] rowBasis(double[][] input, int cols, BiConsumer<Integer, Integer> progress) {
         if (input == null || input.length == 0) {
             return new double[0][cols];
         }
@@ -468,6 +492,8 @@ public class MatrixOperations {
         int rank = 0;
 
         for (int col = 0; col < cols && rank < rowCount; col++) {
+            if (Thread.currentThread().isInterrupted()) throw new java.util.concurrent.CancellationException("Task attempt was cancelled");
+            progress.accept(col + 1, cols);
             int pivotRow = rank;
             for (int row = rank + 1; row < rowCount; row++) {
                 if (Math.abs(data[row][col]) > Math.abs(data[pivotRow][col])) {

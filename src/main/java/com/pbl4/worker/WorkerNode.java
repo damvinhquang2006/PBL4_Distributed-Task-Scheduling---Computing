@@ -25,17 +25,24 @@ public class WorkerNode {
     private long nextContact; private int backoff = 1;
     private static final long RETENTION = 300_000;
     private static class Execution {
+        final String attemptId;
         volatile TaskResult result;
         volatile long completedAt;
         volatile boolean acknowledged;
+        volatile Thread runner;
+        volatile boolean cancelRequested;
+        volatile int progress, progressTotal = 1;
+        volatile long lastProgressSent;
+        final AtomicBoolean released = new AtomicBoolean();
         final AtomicBoolean sending = new AtomicBoolean();
         volatile long lastSendErrorLog;
+        Execution(String attemptId) { this.attemptId = attemptId; }
     }
     public WorkerNode(WorkerConfig config) { this(config, null); }
     public WorkerNode(WorkerConfig config, WorkerRuntime sharedRuntime) {
         this.config = config; this.runtime = sharedRuntime; this.ownsRuntime = sharedRuntime == null;
-        if (sharedRuntime != null && sharedRuntime.parallelism != config.getHostParallelism())
-            throw new IllegalArgumentException("Worker and laptop runtime budgets must match");
+        if (sharedRuntime != null && sharedRuntime.parallelism > config.getHostParallelism())
+            throw new IllegalArgumentException("Worker process budget cannot exceed laptop budget");
     }
     public synchronized void start() throws IOException {
         if (running) return;
@@ -75,6 +82,23 @@ public class WorkerNode {
                     if (Objects.equals(masterSession, request.masterSession)) enabled = "ON".equals(request.getContent());
                     SocketMessenger.sendMessage(writer, reply(MessageType.HEARTBEAT_ACK));
                 }
+                case CANCEL_TASK -> {
+                    if (Objects.equals(masterSession, request.masterSession) && Objects.equals(session, request.workerSession)) {
+                        boolean stopped = cancelAttempt(request.getContent());
+                        Message ack = reply(MessageType.CANCEL_ACK); ack.setContent(stopped ? "STOPPED" : "RUNNING");
+                        SocketMessenger.sendMessage(writer, ack);
+                    } else SocketMessenger.sendMessage(writer, reply(MessageType.TASK_REJECTED));
+                }
+                case RESTART_PROCESS_GROUP -> {
+                    if (config.isSupervised() && Objects.equals(masterSession, request.masterSession)
+                        && Objects.equals(session, request.workerSession)) {
+                        SocketMessenger.sendMessage(writer, reply(MessageType.RESTART_ACK));
+                        runtime.timer.schedule(() -> System.exit(75), 100, TimeUnit.MILLISECONDS);
+                    } else {
+                        Message rejected = reply(MessageType.TASK_REJECTED); rejected.setContent("Worker is not supervised");
+                        SocketMessenger.sendMessage(writer, rejected);
+                    }
+                }
                 case SHUTDOWN -> { if (Objects.equals(masterSession, request.masterSession)) stop(); }
                 default -> { }
             }
@@ -95,13 +119,26 @@ public class WorkerNode {
             Message rejected = reply(MessageType.TASK_REJECTED); rejected.setContent("HOST_CAPACITY");
             SocketMessenger.sendMessage(writer, rejected); return;
         }
-        Execution execution = new Execution(); executions.put(key, execution); active.incrementAndGet();
+        Execution execution = new Execution(task.attemptId); executions.put(key, execution); active.incrementAndGet();
         Runnable calculate = () -> {
+            synchronized (execution) {
+                if (execution.cancelRequested) { releaseExecution(execution); return; }
+                execution.runner = Thread.currentThread();
+            }
             TaskExecutor.DEMO_DELAY.set(config.isDemoDelay());
+            TaskExecutor.setProgressReporter((completed, total) -> { execution.progress = completed; execution.progressTotal = total; });
             TaskResult result;
             try { result = executeTask(task); }
             catch (RuntimeException e) { result = TaskResult.failure(task.getTaskId(), task.getJobId(), config.getWorkerId(), e.getMessage()); }
-            finally { TaskExecutor.DEMO_DELAY.remove(); active.decrementAndGet(); runtime.slots.release(); }
+            finally {
+                TaskExecutor.DEMO_DELAY.remove(); TaskExecutor.clearProgressReporter();
+                synchronized (execution) { execution.runner = null; }
+                releaseExecution(execution);
+            }
+            if (execution.cancelRequested) {
+                execution.result = null; execution.acknowledged = true; execution.completedAt = System.currentTimeMillis();
+                return;
+            }
             result.attemptId = task.attemptId; result.masterSession = task.masterSession; result.workerSession = session;
             if (!result.isSuccess()) System.err.printf("[Task failed] %s / %s: %s%n", config.getWorkerId(), task.getTaskId(), result.getErrorMessage());
             execution.completedAt = System.currentTimeMillis(); execution.result = result;
@@ -111,8 +148,40 @@ public class WorkerNode {
         try { SocketMessenger.sendMessage(writer, reply(MessageType.TASK_ACCEPTED)); }
         finally {
             try { runtime.compute.submit(calculate); }
-            catch (RejectedExecutionException e) { active.decrementAndGet(); runtime.slots.release(); executions.remove(key); }
+            catch (RejectedExecutionException e) { releaseExecution(execution); executions.remove(key); }
         }
+    }
+    private void releaseExecution(Execution execution) {
+        if (execution.released.compareAndSet(false, true)) { active.decrementAndGet(); runtime.slots.release(); }
+    }
+    private void cancelPreviousEpochs(String currentMasterSession) {
+        executions.forEach((key, execution) -> {
+            if (!key.startsWith(currentMasterSession + "/")) stopExecution(execution, 0);
+        });
+    }
+    private boolean cancelAttempt(String content) {
+        if (content == null || content.isBlank()) return true;
+        String attemptId = content.split("/", 2)[0];
+        Execution execution = executions.values().stream()
+            .filter(value -> Objects.equals(value.attemptId, attemptId)).findFirst().orElse(null);
+        return execution == null || stopExecution(execution, 900);
+    }
+    private boolean stopExecution(Execution execution, long waitMillis) {
+        Thread runner;
+        synchronized (execution) {
+            execution.cancelRequested = true;
+            runner = execution.runner;
+            if (runner == null) {
+                execution.acknowledged = true; execution.completedAt = System.currentTimeMillis();
+                execution.result = null;
+                releaseExecution(execution);
+                return true;
+            }
+            runner.interrupt();
+        }
+        if (waitMillis > 0) try { runner.join(waitMillis); }
+        catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+        return !runner.isAlive();
     }
     private void maintain() {
         if (!running) return;
@@ -125,12 +194,17 @@ public class WorkerNode {
                     info.jarSha256 = com.pbl4.core.network.RuntimeBuild.SHA256;
                     info.machineId = config.getMachineId(); info.machineName = config.getMachineName();
                     info.hostParallelism = config.getHostParallelism();
+                    info.processGroupId = config.getProcessGroupId(); info.groupParallelism = config.getGroupParallelism();
+                    info.supervised = config.isSupervised();
                     info.sessionId = session; info.metrics = runtime.metrics(active.get());
                     Message request = Message.register(info); request.workerSession = session;
                     response = SocketMessenger.sendAndReceive(config.getMasterHost(), config.getMasterPort(), request, 5000);
                     if (response == null || response.protocolVersion != Message.CURRENT_VERSION || response.getType() != MessageType.REGISTER_ACK)
                         throw new IOException(response == null ? "No register ACK" : response.getContent());
-                    masterSession = response.masterSession; registered = true;
+                    String previousMaster = masterSession;
+                    masterSession = response.masterSession;
+                    if (previousMaster != null && !Objects.equals(previousMaster, masterSession)) cancelPreviousEpochs(masterSession);
+                    registered = true;
                     enabled = !"PAUSED".equals(response.getContent());
                     System.out.printf("[Worker] REGISTERED %s | laptop=%s (%s) | %s:%d -> Master %s:%d%n",
                         config.getWorkerId(), config.getMachineId(), config.getMachineName(), config.getHost(), config.getPort(), config.getMasterHost(), config.getMasterPort());
@@ -149,7 +223,21 @@ public class WorkerNode {
             }
         }
         executions.entrySet().removeIf(e -> e.getValue().completedAt > 0 && now - e.getValue().completedAt > RETENTION);
-        executions.values().forEach(this::sendResult);
+        executions.values().forEach(execution -> {
+            if (execution.result != null) sendResult(execution);
+            else sendProgress(execution);
+        });
+    }
+    private void sendProgress(Execution execution) {
+        long now = System.currentTimeMillis();
+        if (!running || execution.cancelRequested || now - execution.lastProgressSent < 900) return;
+        execution.lastProgressSent = now;
+        try {
+            Message progress = new Message(MessageType.TASK_PROGRESS, config.getWorkerId());
+            progress.masterSession = masterSession; progress.workerSession = session;
+            progress.setContent(execution.attemptId + "|" + execution.progress + "|" + execution.progressTotal);
+            SocketMessenger.sendAndReceive(config.getMasterHost(), config.getMasterPort(), progress, 1500);
+        } catch (IOException ignored) { }
     }
     private void sendResult(Execution execution) {
         if (!running || execution.result == null || execution.acknowledged || !execution.sending.compareAndSet(false, true)) return;

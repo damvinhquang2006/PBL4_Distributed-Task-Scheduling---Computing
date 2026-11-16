@@ -2,6 +2,10 @@ package com.pbl4;
 
 import com.pbl4.computing.matrix.Matrix;
 import com.pbl4.computing.matrix.MatrixOperations;
+import com.pbl4.core.model.Job;
+import com.pbl4.core.model.TaskResult;
+import com.pbl4.core.model.TaskType;
+import com.pbl4.master.aggregate.ResultAggregator;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -109,6 +113,36 @@ public class MatrixComputationTest {
         });
 
         assertEquals(-306.0, MatrixOperations.determinant(A), 1e-6);
+    }
+
+    @Test
+    public void testMatrixDeterminantAggregatorHandlesInfinityString() {
+        Job job = new Job("det-job", "Determinant", TaskType.MATRIX_DETERMINANT);
+        TaskResult r1 = TaskResult.success("t1", "det-job", "w1");
+        r1.addResult("partialDeterminant", "Infinity"); // Deserialized as String from Jackson
+        TaskResult r2 = TaskResult.success("t2", "det-job", "w2");
+        r2.addResult("partialDeterminant", 123.45);
+        job.addResult(r1);
+        job.addResult(r2);
+
+        double det = ResultAggregator.aggregateMatrixDeterminant(job);
+        assertTrue(Double.isInfinite(det));
+    }
+
+    @Test
+    public void testResultAggregatorToDoubleAndToInt() {
+        assertEquals(Double.POSITIVE_INFINITY, ResultAggregator.toDouble("Infinity"));
+        assertEquals(Double.NEGATIVE_INFINITY, ResultAggregator.toDouble("-Infinity"));
+        assertTrue(Double.isNaN(ResultAggregator.toDouble("NaN")));
+        assertEquals(42.5, ResultAggregator.toDouble(42.5));
+        assertEquals(42.5, ResultAggregator.toDouble("42.5"));
+        assertEquals(0.0, ResultAggregator.toDouble(null));
+        assertEquals(0.0, ResultAggregator.toDouble("not-a-number"));
+
+        assertEquals(10, ResultAggregator.toInt(10));
+        assertEquals(10, ResultAggregator.toInt("10"));
+        assertEquals(0, ResultAggregator.toInt(null));
+        assertEquals(0, ResultAggregator.toInt("abc"));
     }
 
     @Test

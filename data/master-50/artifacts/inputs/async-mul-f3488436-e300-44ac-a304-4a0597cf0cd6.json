@@ -1,0 +1,1 @@
+{"operation":"x","rowsA":20,"colsA":20,"rowsB":20,"colsB":20,"genA":{"rows":20,"cols":20,"generator":"random-v1","type":"random","seed":117969,"min":1,"max":10,"val":1},"genB":{"rows":20,"cols":20,"generator":"random-v1","type":"random","seed":614412,"min":1,"max":10,"val":1},"scalar":2.0,"taskCount":6,"requestedTaskCount":0,"matrixA":null,"matrixB":null}

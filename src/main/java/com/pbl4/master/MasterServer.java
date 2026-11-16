@@ -12,6 +12,8 @@ import com.pbl4.worker.WorkerNode;
 import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.security.MessageDigest;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -25,18 +27,86 @@ public class MasterServer {
     private final WorkerRegistry registry = new WorkerRegistry();
     private final TaskScheduler scheduler = new TaskScheduler(registry);
     private final JobDispatcher dispatcher = new JobDispatcher(session, scheduler);
+    private final MasterStateStore stateStore;
     private final AtomicBoolean running = new AtomicBoolean();
     private ServerSocket serverSocket;
     private ExecutorService connectionThreadPool;
     private long jobTimeoutMs = 300_000;
     public MasterServer(int port) { this(port, "0.0.0.0"); }
     public MasterServer(int port, String bindHost) {
+        this(port, bindHost, Path.of(System.getProperty("pbl4.dataDir", "data"), "master-" + port));
+    }
+    public MasterServer(int port, String bindHost, Path dataDirectory) {
         this.port = port; this.bindHost = bindHost;
+        try { stateStore = new MasterStateStore(dataDirectory); }
+        catch (IOException e) { throw new IllegalStateException("Cannot open durable Master state: " + e.getMessage(), e); }
+        dispatcher.setResultCommitter(result -> {
+            if (result.isSuccess() && stateStore.hasJob(result.getJobId())) stateStore.recordResult(result.getJobId(), result);
+        });
+        dispatcher.setAttemptRecorder(new JobDispatcher.AttemptRecorder() {
+            @Override public void record(Task task, WorkerInfo worker) throws IOException {
+                if (stateStore.hasJob(task.getJobId())) stateStore.recordAttempt(task.getJobId(), task.getTaskId(),
+                    task.attemptId, worker.getWorkerId(), worker.sessionId, session, System.currentTimeMillis());
+            }
+            @Override public void transition(Task task, WorkerInfo worker, String attemptId, String state, String reason) throws IOException {
+                if (stateStore.hasJob(task.getJobId())) stateStore.updateAttemptState(task.getJobId(), task.getTaskId(),
+                    attemptId, state, System.currentTimeMillis(), reason);
+            }
+        });
+        restoreAsyncJobs();
         registry.setOnWorkerFailedListener(dispatcher::workerFailed);
+    }
+
+    private void restoreAsyncJobs() {
+        for (MasterStateStore.StoredJob saved : stateStore.jobs()) {
+            if (saved.request == null) continue;
+            Map<String, Object> request = com.pbl4.core.network.JsonUtils.getMapper().convertValue(saved.request,
+                new com.fasterxml.jackson.core.type.TypeReference<>() {});
+            MatrixJobPlan plan = planFromRequest(request);
+            List<Task> tasks = plan.tasks(saved.jobId, Math.max(1, saved.totalTasks));
+            String title = "Tinh toan ma tran phan tan [" + plan.operation + "]: A [" + plan.a.getRows() + " x " + plan.a.getCols() + "]";
+            AsyncJobRecord rec = new AsyncJobRecord(saved.jobId, title, plan.operation, saved.totalTasks, saved.startedAt, saved.deadlineAt);
+            rec.request = request; rec.persistedResults.putAll(saved.results); rec.completedTasks = saved.results.size();
+            rec.totalUnits = tasks.stream().mapToLong(t -> Math.max(1, t.workUnits)).sum();
+            rec.completedUnits = tasks.stream().filter(t -> saved.results.containsKey(t.getTaskId())).mapToLong(t -> Math.max(1, t.workUnits)).sum();
+            rec.progressPercent = rec.totalUnits == 0 ? 0 : rec.completedUnits * 100.0 / rec.totalUnits;
+            saved.results.values().forEach(result -> rec.workerCompletedTasks.merge(result.getWorkerId(), 1L, Long::sum));
+            if ("COMPLETED".equals(saved.state) && saved.resultSummary != null) {
+                rec.status = JobStatus.COMPLETED;
+                rec.resultSummary = com.pbl4.core.network.JsonUtils.getMapper().convertValue(saved.resultSummary,
+                    new com.fasterxml.jackson.core.type.TypeReference<>() {});
+                Job done = new Job(saved.jobId, title, tasks.get(0).getTaskType()); done.setTasks(tasks);
+                saved.results.values().forEach(done::addResult); rec.result = plan.aggregate(done);
+                if (rec.result instanceof Matrix matrix) rec.resultMatrix = matrix;
+                rec.progressPercent = 100; rec.completedTasks = rec.totalTasks;
+                rec.endTime = saved.startedAt + saved.resultSummary.path("distributedTimeMs").asLong();
+                rec.durationMs = Math.max(0, rec.endTime - rec.startTime);
+            } else if ("FAILED".equals(saved.state) || "CANCELLED".equals(saved.state)) {
+                rec.status = "CANCELLED".equals(saved.state) ? JobStatus.CANCELLED : JobStatus.FAILED;
+                rec.error = saved.error; rec.endTime = System.currentTimeMillis(); rec.durationMs = rec.endTime - rec.startTime;
+            } else {
+                rec.status = JobStatus.RECOVERING; rec.totalTasks = tasks.size();
+            }
+            asyncJobs.put(saved.jobId, rec);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private MatrixJobPlan planFromRequest(Map<String, Object> request) {
+        Map<String, Object> genA = (Map<String, Object>) request.get("genA"), genB = (Map<String, Object>) request.get("genB");
+        double[][] inputA = request.get("matrixA") == null ? null : com.pbl4.core.network.JsonUtils.getMapper().convertValue(request.get("matrixA"), double[][].class);
+        double[][] inputB = request.get("matrixB") == null ? null : com.pbl4.core.network.JsonUtils.getMapper().convertValue(request.get("matrixB"), double[][].class);
+        return new MatrixJobPlan((String) request.get("operation"), ((Number) request.get("rowsA")).intValue(),
+            ((Number) request.get("colsA")).intValue(), ((Number) request.getOrDefault("rowsB", 1)).intValue(),
+            ((Number) request.getOrDefault("colsB", 1)).intValue(), genA, genB,
+            ((Number) request.getOrDefault("scalar", 2.0)).doubleValue(), inputA, inputB);
     }
     public void setJobTimeoutMs(long value) {
         if (value <= 0) throw new IllegalArgumentException("job timeout must be positive"); jobTimeoutMs = value;
     }
+    public void setAttemptTimeoutMs(long value) { dispatcher.setAttemptTimeoutMs(value); }
+    public void setAttemptHardTimeoutMs(long value) { dispatcher.setAttemptHardTimeoutMs(value); }
+    public void setQuarantineRestartAfterMs(long value) { dispatcher.setQuarantineRestartAfterMs(value); }
     public synchronized void start() throws IOException {
         if (running.get()) return;
         serverSocket = new ServerSocket();
@@ -50,6 +120,8 @@ public class MasterServer {
             }
         }, "Master-listener"); listener.setDaemon(true); listener.start();
         System.out.println("[Master] Listening " + bindHost + ":" + serverSocket.getLocalPort());
+        asyncJobs.values().stream().filter(rec -> rec.status == JobStatus.RUNNING)
+            .forEach(rec -> asyncJobExecutor.submit(() -> resumeAsyncMatrixJob(rec)));
     }
     private Message reply(MessageType type, String text) {
         Message result = new Message(type, "MASTER"); result.masterSession = session; result.setContent(text); return result;
@@ -60,7 +132,7 @@ public class MasterServer {
              var writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8))) {
             Message request = SocketMessenger.receiveMessage(reader); if (request == null) return;
             Message response;
-            if (request.protocolVersion != Message.CURRENT_VERSION) response = reply(MessageType.REGISTER_REJECTED, "Protocol v3 required; update the JAR on both laptops and restart Master/Workers");
+            if (request.protocolVersion != Message.CURRENT_VERSION) response = reply(MessageType.REGISTER_REJECTED, "Protocol v4 required; update the JAR on both laptops and restart Master/Workers");
             else switch (request.getType()) {
                 case REGISTER_WORKER -> response = register(request);
                 case HEARTBEAT -> {
@@ -70,10 +142,22 @@ public class MasterServer {
                         known && w.paused ? "PAUSED" : "READY");
                 }
                 case TASK_RESULT -> {
-                    dispatcher.result(request.getTaskResult());
+                    JobDispatcher.ResultDisposition disposition = dispatcher.result(request.getTaskResult());
                     WorkerInfo w = registry.getWorker(request.getSenderId());
                     if (w != null && Objects.equals(w.sessionId, request.workerSession) && request.metrics != null) w.metrics = request.metrics;
-                    response = reply(MessageType.RESULT_ACK, "Received (including stale or duplicate result)");
+                    response = disposition == JobDispatcher.ResultDisposition.RETRY
+                        ? reply(MessageType.RESULT_RETRY, "Master could not persist result; retry")
+                        : reply(MessageType.RESULT_ACK, disposition == JobDispatcher.ResultDisposition.COMMITTED ? "Durably committed" : "Stale or duplicate ignored");
+                }
+                case TASK_PROGRESS -> {
+                    if (session.equals(request.masterSession)) {
+                        String[] parts = Optional.ofNullable(request.getContent()).orElse("").split("\\|", 3);
+                        if (parts.length == 3) try {
+                            dispatcher.reportProgress(request.getSenderId(), request.workerSession, request.masterSession,
+                                parts[0], Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+                        } catch (NumberFormatException ignored) { }
+                    }
+                    response = reply(MessageType.HEARTBEAT_ACK, "Progress received");
                 }
                 default -> response = reply(MessageType.REGISTER_REJECTED, "Unsupported message");
             }
@@ -91,6 +175,9 @@ public class MasterServer {
                 || info.getHost() == null || info.getCapacity() < 1 || info.getPort() < 1 || info.getPort() > 65535
                 || info.machineId == null || info.machineId.isBlank() || info.machineName == null || info.machineName.isBlank() || info.hostParallelism < 1)
                 throw new IllegalArgumentException("Invalid Worker registration");
+            if (info.processGroupId == null || info.processGroupId.isBlank()) info.processGroupId = info.machineId;
+            if (info.groupParallelism < 1) info.groupParallelism = info.hostParallelism;
+            if (info.groupParallelism > info.hostParallelism) throw new IllegalArgumentException("Worker group budget exceeds laptop budget");
             Message ping = new Message(MessageType.PING, "MASTER");
             Message pong = SocketMessenger.sendAndReceive(info.getHost(), info.getPort(), ping, 2000);
             if (pong == null || pong.protocolVersion != Message.CURRENT_VERSION || pong.getType() != MessageType.PONG
@@ -401,11 +488,45 @@ public class MasterServer {
         } catch (IOException e) { System.err.println("[Master] State saved; heartbeat will synchronize: " + e.getMessage()); }
         return true;
     }
+
+    /**
+     * Gioi han so luong Worker duoc phep nhan tac vu (phuc vu Benchmark 1 worker vs nhieu worker).
+     * Neu count <= 0 hoac >= so worker online: mo khoa (unpause) toan bo.
+     * Neu count > 0: chi mo khoa dung count worker dau tien, tam dung (pause) cac worker con lai.
+     */
+    public synchronized List<String> setActiveWorkerLimit(int count) {
+        List<WorkerInfo> online = registry.getAllWorkers().stream()
+                .filter(w -> w.getStatus() != WorkerStatus.OFFLINE)
+                .sorted(Comparator.comparing(WorkerInfo::getWorkerId))
+                .toList();
+        if (online.isEmpty()) return List.of();
+
+        List<String> activeIds = new ArrayList<>();
+        boolean unpauseAll = (count <= 0 || count >= online.size());
+
+        for (int i = 0; i < online.size(); i++) {
+            WorkerInfo w = online.get(i);
+            boolean shouldBePaused = !unpauseAll && (i >= count);
+            if (w.paused != shouldBePaused) {
+                w.paused = shouldBePaused;
+                try {
+                    Message request = Message.setWorkerState(w.getWorkerId(), !w.paused);
+                    request.masterSession = session;
+                    SocketMessenger.sendAndReceive(w.getHost(), w.getPort(), request, 2000);
+                } catch (IOException ignored) {}
+            }
+            if (!w.paused) {
+                activeIds.add(w.getWorkerId());
+            }
+        }
+        return activeIds;
+    }
     public synchronized void stop() {
         running.set(false);
 
         dispatcher.close(); registry.shutdown();
         asyncJobExecutor.shutdownNow();
+        try { stateStore.close(); } catch (IOException e) { System.err.println("[Master] State-store close failed: " + e.getMessage()); }
 
 
         if (connectionThreadPool != null) {
@@ -445,9 +566,10 @@ public class MasterServer {
         public final String title;
         public final String operation;
         public final long startTime;
+        public final long deadlineAt;
         public volatile long endTime;
         public volatile JobStatus status;
-        public final int totalTasks;
+        public int totalTasks;
         public volatile int completedTasks;
         public volatile double progressPercent;
         public long totalUnits;
@@ -455,16 +577,26 @@ public class MasterServer {
         public volatile Map<String, Long> workerCompletedTasks = Map.of();
         public volatile long durationMs;
         public volatile Object result;
+        public volatile Matrix resultMatrix;
         public volatile Map<String, Object> resultSummary;
         public volatile String error;
         public final List<Map<String, Object>> failoverLogs = Collections.synchronizedList(new ArrayList<>());
         public volatile Map<String, String> activeWorkerAssignments = new ConcurrentHashMap<>();
+        public volatile Map<String, Object> request = Map.of();
+        public final Map<String, TaskResult> persistedResults = new ConcurrentHashMap<>();
 
         public AsyncJobRecord(String jobId, String title, String operation, int totalTasks) {
+            this(jobId, title, operation, totalTasks, System.currentTimeMillis(), 0);
+        }
+        public AsyncJobRecord(String jobId, String title, String operation, int totalTasks, long startedAt) {
+            this(jobId, title, operation, totalTasks, startedAt, 0);
+        }
+        public AsyncJobRecord(String jobId, String title, String operation, int totalTasks, long startedAt, long deadlineAt) {
             this.jobId = jobId;
             this.title = title;
             this.operation = operation;
-            this.startTime = System.currentTimeMillis();
+            this.startTime = startedAt;
+            this.deadlineAt = deadlineAt;
             this.status = JobStatus.RUNNING;
             this.totalTasks = totalTasks;
             this.completedTasks = 0;
@@ -495,21 +627,101 @@ public class MasterServer {
     public AsyncJobRecord submitAsyncMatrixJob(String op, int rowsA, int colsA, int rowsB, int colsB,
                                               Map<String, Object> genA, Map<String, Object> genB,
                                               Double scalar, int taskCount, double[][] inputA, double[][] inputB) {
+        return submitAsyncMatrixJob(op, rowsA, colsA, rowsB, colsB, genA, genB, scalar, taskCount, inputA, inputB, null);
+    }
+
+    public synchronized AsyncJobRecord submitAsyncMatrixJob(String op, int rowsA, int colsA, int rowsB, int colsB,
+                                              Map<String, Object> genA, Map<String, Object> genB,
+                                              Double scalar, int taskCount, double[][] inputA, double[][] inputB,
+                                              String idempotencyKey) {
         MatrixJobPlan plan = new MatrixJobPlan(op, rowsA, colsA, rowsB, colsB, genA, genB, scalar, inputA, inputB);
-        String jobId = "async-" + plan.operation + "-" + UUID.randomUUID();
+        String safeOp = switch (plan.operation) {
+            case "+" -> "add";
+            case "-" -> "sub";
+            case "%" -> "mod";
+            case "*" -> "mul";
+            case "x", "X" -> "mul";
+            default -> plan.operation.replaceAll("[^A-Za-z0-9._-]", "_");
+        };
+        String jobId = "async-" + safeOp + "-" + UUID.randomUUID();
         String title = String.format("Tinh toan ma tran phan tan [%s]: A [%d x %d]", plan.operation, rowsA, colsA);
         // Partition work independently of the worker count; never start local workers implicitly.
         List<Task> tasks = plan.tasks(jobId, taskCount <= 0 ? partitions() : Math.min(256, taskCount));
         Job job = new Job(jobId, title, tasks.get(0).getTaskType());
         job.setTasks(tasks);
-        AsyncJobRecord record = new AsyncJobRecord(jobId, title, plan.operation, tasks.size());
+        long startedAt = System.currentTimeMillis();
+        long deadlineAt = startedAt + jobTimeoutMs;
+        AsyncJobRecord record = new AsyncJobRecord(jobId, title, plan.operation, tasks.size(), startedAt, deadlineAt);
         record.totalUnits = tasks.stream().mapToLong(t -> Math.max(1, t.workUnits)).sum();
+        Map<String, Object> request = new LinkedHashMap<>();
+        request.put("operation", plan.operation); request.put("rowsA", rowsA); request.put("colsA", colsA);
+        request.put("rowsB", rowsB); request.put("colsB", colsB); request.put("genA", genA); request.put("genB", genB);
+        request.put("scalar", plan.scalar); request.put("taskCount", tasks.size()); request.put("requestedTaskCount", taskCount);
+        request.put("matrixA", inputA); request.put("matrixB", inputB);
+        String fingerprint = requestFingerprint(request);
+        try {
+            MasterStateStore.StoredJob previous = stateStore.findIdempotent(idempotencyKey, fingerprint);
+            if (previous != null) {
+                AsyncJobRecord existing = asyncJobs.get(previous.jobId);
+                if (existing != null) return existing;
+                throw new IllegalStateException("Idempotent Job exists but is not loaded in this Master session");
+            }
+        } catch (IOException e) { throw new IllegalArgumentException(e.getMessage(), e); }
+        record.request = request;
+        try { stateStore.createJob(jobId, request, record.startTime, record.deadlineAt, tasks.size(), idempotencyKey, fingerprint); }
+        catch (IOException e) { throw new IllegalStateException("Master cannot durably accept this job: " + e.getMessage(), e); }
         asyncJobs.put(jobId, record);
         asyncJobExecutor.submit(() -> executeAsyncMatrixJob(record, plan, job));
         return record;
     }
 
+    private String requestFingerprint(Object value) {
+        try {
+            Object canonical = value;
+            if (value instanceof Map<?, ?> map) {
+                TreeMap<String, Object> sorted = new TreeMap<>();
+                map.forEach((key, item) -> sorted.put(String.valueOf(key), canonicalValue(item)));
+                sorted.remove("taskCount");
+                canonical = sorted;
+            }
+            byte[] digest = MessageDigest.getInstance("SHA-256")
+                .digest(com.pbl4.core.network.JsonUtils.toJson(canonical).getBytes(StandardCharsets.UTF_8));
+            return HexFormat.of().formatHex(digest);
+        } catch (Exception e) { throw new IllegalStateException("Cannot fingerprint Job input", e); }
+    }
+
+    private Object canonicalValue(Object value) {
+        if (value instanceof Map<?, ?> map) {
+            TreeMap<String, Object> sorted = new TreeMap<>();
+            map.forEach((key, item) -> sorted.put(String.valueOf(key), canonicalValue(item)));
+            return sorted;
+        }
+        if (value instanceof List<?> list) return list.stream().map(this::canonicalValue).toList();
+        return value;
+    }
+
+    private void resumeAsyncMatrixJob(AsyncJobRecord record) {
+        long remainingMs = record.deadlineAt - System.currentTimeMillis();
+        if (remainingMs <= 0) {
+            record.error = "Bài toán đã hết thời hạn khi Master khởi động lại."; record.status = JobStatus.FAILED;
+            persistJobState(record); return;
+        }
+        try {
+            MatrixJobPlan plan = planFromRequest(record.request);
+            List<Task> tasks = plan.tasks(record.jobId, Math.max(1, record.totalTasks));
+            Job job = new Job(record.jobId, record.title, tasks.get(0).getTaskType()); job.setTasks(tasks);
+            record.persistedResults.values().forEach(job::addResult);
+            synchronized (record) { if (record.status == JobStatus.RECOVERING) record.status = JobStatus.RUNNING; }
+            executeAsyncMatrixJob(record, plan, job, remainingMs);
+        } catch (Exception e) {
+            record.error = "Không thể phục hồi bài toán: " + e.getMessage(); record.status = JobStatus.FAILED; persistJobState(record);
+        }
+    }
+
     private void executeAsyncMatrixJob(AsyncJobRecord rec, MatrixJobPlan plan, Job job) {
+        executeAsyncMatrixJob(rec, plan, job, jobTimeoutMs);
+    }
+    private void executeAsyncMatrixJob(AsyncJobRecord rec, MatrixJobPlan plan, Job job, long timeoutMs) {
         ScheduledExecutorService monitor = Executors.newSingleThreadScheduledExecutor();
         monitor.scheduleAtFixedRate(() -> {
             Map<String, Object> snap = dispatcher.getJobSnapshot(rec.jobId);
@@ -529,8 +741,9 @@ public class MasterServer {
             }
         }, 80, 150, TimeUnit.MILLISECONDS);
         try {
-            if (rec.status == JobStatus.FAILED) return;
-            if (!dispatcher.execute(job, jobTimeoutMs)) {
+            if (rec.status == JobStatus.FAILED || rec.status == JobStatus.CANCELLED) return;
+            if (!dispatcher.execute(job, timeoutMs)) {
+                if (rec.status == JobStatus.CANCELLED) return;
                 throw new IllegalStateException(job.getFailureReason() != null ? job.getFailureReason()
                     : "Distributed computation failed or timed out. Check Worker logs and connections.");
             }
@@ -566,10 +779,19 @@ public class MasterServer {
                 summary.put("sampleGrid", grid);
                 summary.put("rowIndices", rows);
                 summary.put("colIndices", cols);
-                rec.result = grid;
+                rec.result = grid; rec.resultMatrix = matrix;
             } else {
                 summary.put("isSampled", false);
                 summary.put("resultScalar", output);
+                if (output instanceof Double d) {
+                    if (Double.isInfinite(d)) {
+                        summary.put("overflow", true);
+                        summary.put("note", "Định thức vượt quá giới hạn biểu diễn của số thực 64-bit IEEE 754 (Double.MAX_VALUE ~ 1.8e308).");
+                    } else if (Double.isNaN(d)) {
+                        summary.put("overflow", true);
+                        summary.put("note", "Định thức không xác định (NaN) do bù trừ giữa các giá trị vô cực (+Infinity và -Infinity).");
+                    }
+                }
                 rec.result = output;
             }
             summary.put("distributedTimeMs", System.currentTimeMillis() - rec.startTime);
@@ -582,14 +804,16 @@ public class MasterServer {
                     // Publish completion after all result fields are available to the polling client.
                     rec.endTime = System.currentTimeMillis();
                     rec.durationMs = rec.endTime - rec.startTime;
+                    stateStore.complete(rec.jobId, summary);
                     rec.status = JobStatus.COMPLETED;
                 }
             }
         } catch (Exception e) {
             synchronized (rec) {
-                if (rec.status != JobStatus.FAILED) {
+                if (rec.status == JobStatus.RUNNING) {
                     rec.error = e.getMessage();
                     rec.status = JobStatus.FAILED;
+                    persistJobState(rec);
                 }
             }
         } finally {
@@ -599,6 +823,11 @@ public class MasterServer {
             rec.durationMs = rec.endTime - rec.startTime;
             job.getResults().clear();
         }
+    }
+
+    private void persistJobState(AsyncJobRecord record) {
+        try { stateStore.updateState(record.jobId, record.status.name(), record.error); }
+        catch (IOException e) { System.err.println("[Master] Could not persist Job state " + record.jobId + ": " + e.getMessage()); }
     }
     private List<Integer> pickSampleIndices(int total) {
         List<Integer> list = new ArrayList<>();
@@ -654,9 +883,10 @@ public class MasterServer {
             wMap.put("workerId", w.getWorkerId());
             wMap.put("machineId", w.machineId); wMap.put("machineName", w.machineName);
             wMap.put("hostParallelism", w.hostParallelism);
+            wMap.put("processGroupId", w.processGroupId); wMap.put("groupParallelism", w.groupParallelism);
             wMap.put("jobCompletedTasks", rec.workerCompletedTasks.getOrDefault(w.getWorkerId(), 0L));
             wMap.put("status", w.getStatus().name());
-            wMap.put("paused", w.paused);
+            wMap.put("paused", w.paused); wMap.put("quarantined", w.quarantined);
             wMap.put("activeTasks", w.getActiveTasks());
             wMap.put("completedTasks", w.getCompletedTasks());
             wMap.put("assignedTask", rec.activeWorkerAssignments.get(w.getWorkerId()));
@@ -680,11 +910,50 @@ public class MasterServer {
             resp.put("result", rec.result);
             resp.put("resultSummary", rec.resultSummary);
             resp.put("durationMs", rec.durationMs);
-        } else if (rec.status == JobStatus.FAILED) {
+        } else if (rec.status == JobStatus.FAILED || rec.status == JobStatus.CANCELLED) {
             resp.put("error", rec.error);
         }
 
         return resp;
+    }
+
+    public List<Map<String, Object>> getAsyncJobList() {
+        return asyncJobs.values().stream().sorted(Comparator.comparingLong(rec -> rec.startTime)).map(rec -> {
+            Map<String, Object> row = new LinkedHashMap<>();
+            row.put("jobId", rec.jobId); row.put("title", rec.title); row.put("operation", rec.operation);
+            row.put("status", rec.status.name()); row.put("totalTasks", rec.totalTasks); row.put("completedTasks", rec.completedTasks);
+            row.put("progressPercent", rec.progressPercent); row.put("startedAt", rec.startTime); row.put("error", rec.error);
+            return row;
+        }).toList();
+    }
+
+    public Map<String, Object> getAsyncResultPage(String jobId, int startRow, int requestedRows) {
+        return getAsyncResultPage(jobId, startRow, requestedRows, 0, 256);
+    }
+
+    public Map<String, Object> getAsyncResultPage(String jobId, int startRow, int requestedRows,
+                                                  int startCol, int requestedCols) {
+        AsyncJobRecord rec = asyncJobs.get(jobId);
+        if (rec == null) return null;
+        if (rec.status != JobStatus.COMPLETED) return Map.of("jobId", jobId, "status", rec.status.name());
+        if (rec.resultMatrix == null) return Map.of("jobId", jobId, "status", "COMPLETED", "scalar", rec.result);
+        Matrix matrix = rec.resultMatrix;
+        if (startRow < 0 || startRow >= matrix.getRows() || requestedRows < 1
+            || startCol < 0 || startCol >= matrix.getCols() || requestedCols < 1)
+            throw new IllegalArgumentException("Result page coordinates are outside the matrix");
+        int cols = Math.min(Math.min(20_000, requestedCols), matrix.getCols() - startCol);
+        int rowLimit = Math.min(Math.min(128, requestedRows), Math.max(1, 20_000 / cols));
+        int end = (int) Math.min(matrix.getRows(), (long) startRow + rowLimit);
+        List<List<Double>> dataRows = new ArrayList<>(end - startRow);
+        for (int r = startRow; r < end; r++) {
+            List<Double> row = new ArrayList<>(cols);
+            for (int c = startCol; c < startCol + cols; c++) row.add(matrix.get(r, c));
+            dataRows.add(row);
+        }
+        Map<String, Object> page = new LinkedHashMap<>();
+        page.put("jobId", jobId); page.put("status", "COMPLETED"); page.put("rows", matrix.getRows()); page.put("cols", matrix.getCols());
+        page.put("startRow", startRow); page.put("rowCount", end - startRow); page.put("startCol", startCol); page.put("colCount", cols); page.put("result", dataRows);
+        return page;
     }
 
     public boolean cancelAsyncJob(String jobId) {
@@ -693,8 +962,9 @@ public class MasterServer {
             synchronized (rec) {
                 if (rec.status != JobStatus.RUNNING) return false;
                 rec.error = "Bài toán đã bị hủy bởi người dùng.";
-                rec.status = JobStatus.FAILED;
+                rec.status = JobStatus.CANCELLED;
                 dispatcher.cancel(jobId);
+                persistJobState(rec);
                 return true;
             }
         }

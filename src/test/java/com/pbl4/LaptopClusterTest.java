@@ -115,7 +115,7 @@ class LaptopClusterTest {
             master.start(); Message old = new Message(MessageType.REGISTER_WORKER, "old"); old.protocolVersion = 2;
             Message response = SocketMessenger.sendAndReceive("127.0.0.1", mp, old, 2000);
             assertEquals(MessageType.REGISTER_REJECTED, response.getType());
-            assertTrue(response.getContent().contains("v3")); assertTrue(response.getContent().contains("JAR"));
+            assertTrue(response.getContent().contains("v" + Message.CURRENT_VERSION) || response.getContent().contains("v4")); assertTrue(response.getContent().contains("JAR"));
             assertTrue(master.getRegistry().getAllWorkers().isEmpty());
         } finally { master.stop(); }
     }

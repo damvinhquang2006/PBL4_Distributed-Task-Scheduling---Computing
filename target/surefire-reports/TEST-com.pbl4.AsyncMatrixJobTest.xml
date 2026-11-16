@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.pbl4.AsyncMatrixJobTest" time="6.115" tests="9" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.pbl4.AsyncMatrixJobTest" time="6.423" tests="9" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire13699244272416598726\surefirebooter-20261027190827395_3.jar C:\Users\VINH_QUANG\AppData\Local\Temp\surefire13699244272416598726 2026-10-27T19-08-27_182-jvmRun1 surefire-20261027190827395_1tmp surefire_0-20261027190827395_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564\surefirebooter-20261110003532781_3.jar C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564 2026-11-10T00-35-32_548-jvmRun1 surefire-20261110003532781_1tmp surefire_0-20261110003532781_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\test-classes;D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\classes;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.0\jackson-databind-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.0\jackson-annotations-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.0\jackson-core-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\net\bytebuddy\byte-buddy\1.14.9\byte-buddy-1.14.9.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.17.0\jackson-datatype-jsr310-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,10 +30,9 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire13699244272416598726\surefirebooter-20261027190827395_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564\surefirebooter-20261110003532781_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="jdk.net.unixdomain.tmpdir" value="target/unused-unix-sockets"/>
     <property name="java.runtime.version" value="25.0.2+10-LTS-69"/>
     <property name="user.name" value="VINH_QUANG"/>
     <property name="stdout.encoding" value="Cp1252"/>
@@ -51,7 +50,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\powershell;C:\Users\VINH_QUANG\.codex\tmp\arg0-windows\codex-arg0X4tFAL;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\libheif\libheif\bin;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\jxrlib\jxrlib\bin;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\poppler\Library\bin;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\bin\override;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\nodejs;D:\DBeaver;C:\Program Files\apache-maven-3.9.15\bin;C:\MinGW\bin;C:\Program Files\Common Files\Oracle\Java\javapath;;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files (x86)\cloudflared\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\VINH_QUANG\.local\bin;C:\Users\VINH_QUANG\AppData\Local\agy\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Python\Launcher\;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\powershell;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WindowsApps;C:\Users\VINH_QUANG\AppData\Local\Programs\Antigravity\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VINH_QUANG\.bun\bin;C:\Users\VINH_QUANG\.dotnet\tools;C:\Users\VINH_QUANG\AppData\Local\Programs\Zed\bin;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WinGet\Packages\Ngrok.Ngrok_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\bin\fallback;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin;C:\Users\VINH_QUANG\.cache\codex-runtimes\codex-primary-runtime\dependencies\native\git\cmd;C:\Users\VINH_QUANG\AppData\Local\OpenAI\Codex\bin\c602dfdab3808440;C:\Users\VINH_QUANG\AppData\Local\OpenAI\Codex\bin\2993767bd1dfb009;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Users/VINH_QUANG/.gemini/antigravity/bin;C:\Users\VINH_QUANG\AppData\Roaming\Antigravity\bin;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\nodejs;D:\DBeaver;C:\Program Files\apache-maven-3.9.15\bin;C:\MinGW\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files (x86)\cloudflared\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\VINH_QUANG\.local\bin;C:\Users\VINH_QUANG\AppData\Local\agy\bin;C:\Program Files\Java\jdk-25.0.2\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Python\Launcher\;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WindowsApps;C:\Users\VINH_QUANG\AppData\Local\Programs\Antigravity\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VINH_QUANG\.bun\bin;C:\Users\VINH_QUANG\.dotnet\tools;C:\Users\VINH_QUANG\AppData\Local\Programs\Zed\bin;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WinGet\Packages\Ngrok.Ngrok_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;D:\UnityCLI\bin;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
@@ -59,17 +58,16 @@
     <property name="stdin.encoding" value="Cp1252"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
-    <property name="argLine" value="-Djdk.net.unixdomain.tmpdir=target/unused-unix-sockets"/>
   </properties>
-  <testcase name="eightAndHundredRowMatricesReturnEveryCellAndBothWorkersCompute" classname="com.pbl4.AsyncMatrixJobTest" time="2.045">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:49681
-[MasterHttpServer] REST API Server san sang tai: http://localhost:49682/api/
-[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:49686 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:49685 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49686
-[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49685
-[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49685 -> Master 127.0.0.1:49681
-[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49686 -> Master 127.0.0.1:49681
+  <testcase name="eightAndHundredRowMatricesReturnEveryCellAndBothWorkersCompute" classname="com.pbl4.AsyncMatrixJobTest" time="2.215">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:62974
+[MasterHttpServer] REST API Server san sang tai: http://localhost:62975/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:62976 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:62977 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:62976
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:62977
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:62977 -> Master 127.0.0.1:62974
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:62976 -> Master 127.0.0.1:62974
 [laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [2 x 8] (startRow=0) va ma tran B [8 x 8]... OK
 [laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [2 x 8] (startRow=2) va ma tran B [8 x 8]... OK
 [laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 8]... OK
@@ -84,24 +82,24 @@
 [laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
 [laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 8] vao TaskResult... OK
 [laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 8] vao TaskResult... OK
-[Result] async-x-74ea9c32-1dd4-4574-928d-60b8e7b2136e-task-02 <- laptop-b-worker (1/4)
-[Result] async-x-74ea9c32-1dd4-4574-928d-60b8e7b2136e-task-01 <- laptop-a-worker (2/4)
+[Result] async-mul-9f59f34e-dd61-497c-9ec5-0b72c2dd1a4a-task-02 <- laptop-b-worker (1/4)
+[Result] async-mul-9f59f34e-dd61-497c-9ec5-0b72c2dd1a4a-task-01 <- laptop-a-worker (2/4)
 [laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [2 x 8] (startRow=4) va ma tran B [8 x 8]... OK
 [laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 8]... OK
 [laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [2 x 8] (startRow=6) va ma tran B [8 x 8]... OK
-[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 8]... OK
-[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [laptop-a-worker]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
 [laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 8] vao TaskResult... OK
+[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [2 x 8] (startRow=6) va ma tran B [8 x 8]... OK
+[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 8]... OK
+[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [laptop-b-worker]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
 [laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
 [laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 8] vao TaskResult... OK
-[Result] async-x-74ea9c32-1dd4-4574-928d-60b8e7b2136e-task-03 <- laptop-a-worker (3/4)
-[Result] async-x-74ea9c32-1dd4-4574-928d-60b8e7b2136e-task-04 <- laptop-b-worker (4/4)
+[Result] async-mul-9f59f34e-dd61-497c-9ec5-0b72c2dd1a4a-task-03 <- laptop-a-worker (3/4)
+[Result] async-mul-9f59f34e-dd61-497c-9ec5-0b72c2dd1a4a-task-04 <- laptop-b-worker (4/4)
 [laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [25 x 100] (startRow=0) va ma tran B [100 x 100]... OK
 [laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [25 x 100]... OK
 [laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -112,100 +110,100 @@
 [laptop-b-worker]  |    |-- Tien do: [----------]   4% (Dong 1/25 hoan tat)
 [laptop-a-worker]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
 [laptop-b-worker]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
-[laptop-a-worker]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
 [laptop-b-worker]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
-[laptop-a-worker]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
 [laptop-b-worker]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
 [laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
-[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
 [laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
 [laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [25 x 100] vao TaskResult... OK
 [laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [25 x 100] vao TaskResult... OK
-[Result] async-x-3c0d01af-f15c-48e7-949f-e1512d46e287-task-01 <- laptop-a-worker (1/4)
-[Result] async-x-3c0d01af-f15c-48e7-949f-e1512d46e287-task-02 <- laptop-b-worker (2/4)
+[Result] async-mul-ba3664e4-770e-40fb-bd94-d7d94f403a08-task-01 <- laptop-a-worker (1/4)
+[Result] async-mul-ba3664e4-770e-40fb-bd94-d7d94f403a08-task-02 <- laptop-b-worker (2/4)
 [laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [25 x 100] (startRow=50) va ma tran B [100 x 100]... OK
 [laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [25 x 100]... OK
 [laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker]  |    |-- Tien do: [----------]   4% (Dong 1/25 hoan tat)
+[laptop-a-worker]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
 [laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [25 x 100] (startRow=75) va ma tran B [100 x 100]... OK
 [laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [25 x 100]... OK
 [laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[laptop-a-worker]  |    |-- Tien do: [----------]   4% (Dong 1/25 hoan tat)
 [laptop-b-worker]  |    |-- Tien do: [----------]   4% (Dong 1/25 hoan tat)
-[laptop-a-worker]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
-[laptop-b-worker]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
 [laptop-a-worker]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
-[laptop-b-worker]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [==--------]  28% (Dong 7/25 hoan tat)
 [laptop-a-worker]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
-[laptop-b-worker]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [=====-----]  52% (Dong 13/25 hoan tat)
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
-[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
-[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
 [laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
 [laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [25 x 100] vao TaskResult... OK
+[laptop-b-worker]  |    |-- Tien do: [=======---]  76% (Dong 19/25 hoan tat)
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 25/25 hoan tat)
+[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 25 dong!... OK
 [laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [25 x 100] vao TaskResult... OK
-[Result] async-x-3c0d01af-f15c-48e7-949f-e1512d46e287-task-03 <- laptop-a-worker (3/4)
-[Result] async-x-3c0d01af-f15c-48e7-949f-e1512d46e287-task-04 <- laptop-b-worker (4/4)
+[Result] async-mul-ba3664e4-770e-40fb-bd94-d7d94f403a08-task-03 <- laptop-a-worker (3/4)
+[Result] async-mul-ba3664e4-770e-40fb-bd94-d7d94f403a08-task-04 <- laptop-b-worker (4/4)
 [MasterHttpServer] Da dung HTTP Server an toan.
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
   </testcase>
-  <testcase name="descriptorJobsComputeRealRectangularProductsAndScalarResults" classname="com.pbl4.AsyncMatrixJobTest" time="0.639">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:49711
-[MasterHttpServer] REST API Server san sang tai: http://localhost:49712/api/
-[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:49715 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED [Registry] REGISTER [laptop-b-worker @ 127.0.0.1:49716 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49715
-[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49716
-[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49715 -> Master 127.0.0.1:49711
-[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49716 -> Master 127.0.0.1:49711
+  <testcase name="descriptorJobsComputeRealRectangularProductsAndScalarResults" classname="com.pbl4.AsyncMatrixJobTest" time="0.649">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:63003
+[MasterHttpServer] REST API Server san sang tai: http://localhost:63004/api/
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:63006 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:63005 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63006
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63005
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63006 -> Master 127.0.0.1:63003
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63005 -> Master 127.0.0.1:63003
 [laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [2 x 3] (startRow=0) va ma tran B [3 x 2]... OK
 [laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 2]... OK
 [laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 2]... OK
-[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
-[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [laptop-a-worker]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
-[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
-[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
-[laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
 [laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 2] vao TaskResult... OK
-[Result] async-x-ec6c4602-3e1e-41b9-8d11-11454747bf74-task-01 <- laptop-a-worker (1/4)
-[Result] async-x-ec6c4602-3e1e-41b9-8d11-11454747bf74-task-02 <- laptop-b-worker (2/4)
-[laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=3) va ma tran B [3 x 2]... OK
-[laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
-[laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=4) va ma tran B [3 x 2]... OK
+[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 2]... OK
 [laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
 [laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
-[laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
-[laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
 [laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
-[Result] async-x-ec6c4602-3e1e-41b9-8d11-11454747bf74-task-04 <- laptop-b-worker (3/4)
-[Result] async-x-ec6c4602-3e1e-41b9-8d11-11454747bf74-task-03 <- laptop-a-worker (4/4)
-[laptop-b-worker]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
-[laptop-b-worker]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
+[Result] async-mul-57fd4d19-4bf0-44b7-9aa5-66bcc0c6b295-task-01 <- laptop-a-worker (1/4)
+[Result] async-mul-57fd4d19-4bf0-44b7-9aa5-66bcc0c6b295-task-02 <- laptop-b-worker (2/4)
+[laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=3) va ma tran B [3 x 2]... OK
+[laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=4) va ma tran B [3 x 2]... OK
+[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[Result] async-mul-57fd4d19-4bf0-44b7-9aa5-66bcc0c6b295-task-03 <- laptop-a-worker (3/4)
+[Result] async-mul-57fd4d19-4bf0-44b7-9aa5-66bcc0c6b295-task-04 <- laptop-b-worker (4/4)
 [laptop-a-worker]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
 [laptop-a-worker]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
-[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Cot 1, so hang -0.0000)
-[laptop-b-worker]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: 0.000000... OK
-[laptop-b-worker]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Cot 0, so hang 0.0000)
 [laptop-a-worker]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: 0.000000... OK
 [laptop-a-worker]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
-[Result] async-det-62d31041-6ec8-4e86-b15b-81becc4186fc-task-01 <- laptop-a-worker (1/3)
-[Result] async-det-62d31041-6ec8-4e86-b15b-81becc4186fc-task-02 <- laptop-b-worker (2/3)
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Cot 1, so hang -0.0000)
+[laptop-b-worker]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: 0.000000... OK
+[laptop-b-worker]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
+[Result] async-det-88908e9c-ea09-4a26-a87c-61da7d5649ee-task-01 <- laptop-a-worker (1/3)
+[Result] async-det-88908e9c-ea09-4a26-a87c-61da7d5649ee-task-02 <- laptop-b-worker (2/3)
 [laptop-a-worker]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
 [laptop-a-worker]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Cot 2, so hang 0.0000)
 [laptop-a-worker]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: 0.000000... OK
 [laptop-a-worker]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
-[Result] async-det-62d31041-6ec8-4e86-b15b-81becc4186fc-task-03 <- laptop-a-worker (3/3)
+[Result] async-det-88908e9c-ea09-4a26-a87c-61da7d5649ee-task-03 <- laptop-a-worker (3/3)
 [laptop-b-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, so dong=1, so cot=3)... OK
 [laptop-b-worker]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
 [laptop-a-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, so dong=1, so cot=3)... OK
@@ -216,27 +214,27 @@ laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49715
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
 [laptop-a-worker]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
 [laptop-a-worker]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
-[Result] async-rank-cabf5d9d-8539-4713-838f-1b5e6ec800d7-task-02 <- laptop-a-worker (1/3)
-[Result] async-rank-cabf5d9d-8539-4713-838f-1b5e6ec800d7-task-01 <- laptop-b-worker (2/3)
+[Result] async-rank-7895fccd-ae3a-4f42-b066-6b8bc5dfba77-task-02 <- laptop-a-worker (1/3)
+[Result] async-rank-7895fccd-ae3a-4f42-b066-6b8bc5dfba77-task-01 <- laptop-b-worker (2/3)
 [laptop-b-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, so dong=1, so cot=3)... OK
 [laptop-b-worker]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
 [laptop-b-worker]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
 [laptop-b-worker]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
 [laptop-b-worker]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
-[Result] async-rank-cabf5d9d-8539-4713-838f-1b5e6ec800d7-task-03 <- laptop-b-worker (3/3)
+[Result] async-rank-7895fccd-ae3a-4f42-b066-6b8bc5dfba77-task-03 <- laptop-b-worker (3/3)
 [MasterHttpServer] Da dung HTTP Server an toan.
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
   </testcase>
-  <testcase name="remainingWorkerCanFinishHundredByHundredAfterOtherGoesOffline" classname="com.pbl4.AsyncMatrixJobTest" time="0.258">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:49744
-[MasterHttpServer] REST API Server san sang tai: http://localhost:49745/api/
-[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:49748 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:49749 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49748
-[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49749
-[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49748 -> Master 127.0.0.1:49744
-[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49749 -> Master 127.0.0.1:49744
+  <testcase name="remainingWorkerCanFinishHundredByHundredAfterOtherGoesOffline" classname="com.pbl4.AsyncMatrixJobTest" time="0.273">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:63032
+[MasterHttpServer] REST API Server san sang tai: http://localhost:63033/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:63034 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:63035 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63034
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63035
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63034 -> Master 127.0.0.1:63032
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63035 -> Master 127.0.0.1:63032
 [laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [50 x 100] (startRow=0) va ma tran B [100 x 100]... OK
 [laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [50 x 100]... OK
 [laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -248,7 +246,7 @@ laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49715
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 50/50 hoan tat)
 [laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 50 dong!... OK
 [laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [50 x 100] vao TaskResult... OK
-[Result] async-x-fcd798bc-3826-4544-9c1e-faf8840124be-task-01 <- laptop-a-worker (1/2)
+[Result] async-mul-725df5c5-c441-4b31-a34c-e21e4017eed6-task-01 <- laptop-a-worker (1/2)
 [laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [50 x 100] (startRow=50) va ma tran B [100 x 100]... OK
 [laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [50 x 100]... OK
 [laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -260,54 +258,54 @@ laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49715
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 50/50 hoan tat)
 [laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 50 dong!... OK
 [laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [50 x 100] vao TaskResult... OK
-[Result] async-x-fcd798bc-3826-4544-9c1e-faf8840124be-task-02 <- laptop-a-worker (2/2)
+[Result] async-mul-725df5c5-c441-4b31-a34c-e21e4017eed6-task-02 <- laptop-a-worker (2/2)
 [MasterHttpServer] Da dung HTTP Server an toan.
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
   </testcase>
-  <testcase name="webMultiplicationUsesBothWorkersAndClampsFiftyTasksToThreeRows" classname="com.pbl4.AsyncMatrixJobTest" time="0.238">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:49761
-[MasterHttpServer] REST API Server san sang tai: http://localhost:49762/api/
-[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:49765 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49765
-[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49765 -> Master 127.0.0.1:49761
-[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:49766 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49766
-[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49766 -> Master 127.0.0.1:49761
+  <testcase name="webMultiplicationUsesBothWorkersAndClampsFiftyTasksToThreeRows" classname="com.pbl4.AsyncMatrixJobTest" time="0.245">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:63045
+[MasterHttpServer] REST API Server san sang tai: http://localhost:63046/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:63047 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:63048 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63047
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63048
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63047 -> Master 127.0.0.1:63045
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63048 -> Master 127.0.0.1:63045
 [laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=0) va ma tran B [3 x 3]... OK
-[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=1) va ma tran B [3 x 3]... OK
-[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 3]... OK
 [laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 3]... OK
 [laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
-[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 3] vao TaskResult... OK
+[laptop-b-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=1) va ma tran B [3 x 3]... OK
+[laptop-b-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 3]... OK
+[laptop-b-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-b-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [laptop-b-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 3] vao TaskResult... OK
-[Result] async-x-ee278a07-6d65-420a-9dd2-a01f17ffd48f-task-02 <- laptop-b-worker (1/3)
-[Result] async-x-ee278a07-6d65-420a-9dd2-a01f17ffd48f-task-01 <- laptop-a-worker (2/3)
+[Result] async-mul-db1b97aa-2721-45b2-98e5-f732d1caeaa0-task-02 <- laptop-b-worker (1/3)
+[Result] async-mul-db1b97aa-2721-45b2-98e5-f732d1caeaa0-task-01 <- laptop-a-worker (2/3)
 [laptop-a-worker]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 3]... OK
 [laptop-a-worker]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 3]... OK
 [laptop-a-worker]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-a-worker]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [laptop-a-worker]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 3] vao TaskResult... OK
-[Result] async-x-ee278a07-6d65-420a-9dd2-a01f17ffd48f-task-03 <- laptop-a-worker (3/3)
+[Result] async-mul-db1b97aa-2721-45b2-98e5-f732d1caeaa0-task-03 <- laptop-a-worker (3/3)
 [MasterHttpServer] Da dung HTTP Server an toan.
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
   </testcase>
-  <testcase name="preservesWorkerComputationErrorInsteadOfGenericTimeout" classname="com.pbl4.AsyncMatrixJobTest" time="0.119">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:49780
-[MasterHttpServer] REST API Server san sang tai: http://localhost:49781/api/
-[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:49785 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:49784 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49784
-[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49785
-[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49784 -> Master 127.0.0.1:49780
-[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49785 -> Master 127.0.0.1:49780
+  <testcase name="preservesWorkerComputationErrorInsteadOfGenericTimeout" classname="com.pbl4.AsyncMatrixJobTest" time="0.12">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:63060
+[MasterHttpServer] REST API Server san sang tai: http://localhost:63061/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:63062 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63062
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:63063 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63063
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63062 -> Master 127.0.0.1:63060
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63063 -> Master 127.0.0.1:63060
 [laptop-a-worker]  |-- [Buoc 1/4] Giai ma ma tran goc [2 x 2] va dai dong can nghich dao [0..1)... OK
 [laptop-a-worker]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
 [laptop-b-worker]  |-- [Buoc 1/4] Giai ma ma tran goc [2 x 2] va dai dong can nghich dao [1..2)... OK
@@ -315,176 +313,177 @@ laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49715
 [MasterHttpServer] Da dung HTTP Server an toan.
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
-    <system-err><![CDATA[[Task failed] laptop-a-worker / async-inv-996ccec7-2bf4-43d7-b712-00ff7a7853e5-task-01: Ma trận suy biến (định thức bằng 0), không thể nghịch đảo!
-[Task failed] laptop-b-worker / async-inv-996ccec7-2bf4-43d7-b712-00ff7a7853e5-task-02: Ma trận suy biến (định thức bằng 0), không thể nghịch đảo!
-[Job] async-inv-996ccec7-2bf4-43d7-b712-00ff7a7853e5: Ma trận suy biến (định thức bằng 0), không thể nghịch đảo!
-[Job] FAILED async-inv-996ccec7-2bf4-43d7-b712-00ff7a7853e5
+    <system-err><![CDATA[[Task failed] laptop-a-worker / async-inv-7aa62b42-3238-4232-88dc-a19094c07baa-task-01: Ma trận suy biến (định thức bằng 0), không thể nghịch đảo!
+[Task failed] laptop-b-worker / async-inv-7aa62b42-3238-4232-88dc-a19094c07baa-task-02: Ma trận suy biến (định thức bằng 0), không thể nghịch đảo!
+[Job] async-inv-7aa62b42-3238-4232-88dc-a19094c07baa: Ma trận suy biến (định thức bằng 0), không thể nghịch đảo!
+[Job] FAILED async-inv-7aa62b42-3238-4232-88dc-a19094c07baa
 ]]></system-err>
   </testcase>
-  <testcase name="rejectsBadDimensionsAndOversizedMatricesBeforeQueuing" classname="com.pbl4.AsyncMatrixJobTest" time="0.051">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:49797
-[MasterHttpServer] REST API Server san sang tai: http://localhost:49798/api/
-[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:49801 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49801
-[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:49802 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49801 -> Master 127.0.0.1:49797
-[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49802
-[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49802 -> Master 127.0.0.1:49797
+  <testcase name="rejectsBadDimensionsAndOversizedMatricesBeforeQueuing" classname="com.pbl4.AsyncMatrixJobTest" time="0.052">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:63074
+[MasterHttpServer] REST API Server san sang tai: http://localhost:63075/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:63076 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63076
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63076 -> Master 127.0.0.1:63074
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:63077 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63077
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63077 -> Master 127.0.0.1:63074
 [MasterHttpServer] Da dung HTTP Server an toan.
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
   </testcase>
-  <testcase name="connectedButPausedWorkersExplainWhyNoComputationStarts" classname="com.pbl4.AsyncMatrixJobTest" time="0.752">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:49810
-[MasterHttpServer] REST API Server san sang tai: http://localhost:49811/api/
-[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:49814 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49814
-[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49814 -> Master 127.0.0.1:49810
-[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:49815 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49815
-[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49815 -> Master 127.0.0.1:49810
+  <testcase name="connectedButPausedWorkersExplainWhyNoComputationStarts" classname="com.pbl4.AsyncMatrixJobTest" time="0.767">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:63083
+[MasterHttpServer] REST API Server san sang tai: http://localhost:63084/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:63085 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:63086 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63085
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63086
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63086 -> Master 127.0.0.1:63083
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63085 -> Master 127.0.0.1:63083
 [MasterHttpServer] Da dung HTTP Server an toan.
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
-    <system-err><![CDATA[[Job] async-x-f816e5b4-4dba-4363-9350-c8831f1e708f: Hết thời gian chờ Worker hoàn thành tác vụ. laptop-a-worker (127.0.0.1:49814): PAUSED; laptop-b-worker (127.0.0.1:49815): PAUSED
-[Job] FAILED async-x-f816e5b4-4dba-4363-9350-c8831f1e708f
+    <system-err><![CDATA[[Job] async-mul-2fd831af-683b-4fdc-9aad-092ceb1563a1: Hết thời gian chờ Worker hoàn thành tác vụ. laptop-a-worker (127.0.0.1:63085): PAUSED; laptop-b-worker (127.0.0.1:63086): PAUSED
+[Job] FAILED async-mul-2fd831af-683b-4fdc-9aad-092ceb1563a1
+[Master] Could not persist Job state async-mul-2fd831af-683b-4fdc-9aad-092ceb1563a1: null
 ]]></system-err>
   </testcase>
-  <testcase name="absentWorkersCauseTimeoutWithoutSpawningLocalWorkers" classname="com.pbl4.AsyncMatrixJobTest" time="0.295">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:49825
-[MasterHttpServer] REST API Server san sang tai: http://localhost:49826/api/
-[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:49829 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49829
-[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:49830 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49829 -> Master 127.0.0.1:49825
-[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49830
-[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49830 -> Master 127.0.0.1:49825
-[Master] Listening 0.0.0.0:49835
+  <testcase name="absentWorkersCauseTimeoutWithoutSpawningLocalWorkers" classname="com.pbl4.AsyncMatrixJobTest" time="0.305">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:63094
+[MasterHttpServer] REST API Server san sang tai: http://localhost:63095/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:63096 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63096
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:63097 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63097
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63096 -> Master 127.0.0.1:63094
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63097 -> Master 127.0.0.1:63094
+[Master] Listening 0.0.0.0:63102
 [Master Server] Da dung hoat dong an toan.
 [MasterHttpServer] Da dung HTTP Server an toan.
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
-    <system-err><![CDATA[[Job] async-x-dc2a2a4d-4293-45f9-83e0-083097bf7114: Hết thời gian chờ Worker hoàn thành tác vụ. Chưa có Worker đăng ký với Master.
-[Job] FAILED async-x-dc2a2a4d-4293-45f9-83e0-083097bf7114
+    <system-err><![CDATA[[Job] async-mul-c547e6ff-bdba-467d-b3d2-b8229444db6f: Hết thời gian chờ Worker hoàn thành tác vụ. Chưa có Worker đăng ký với Master.
+[Job] FAILED async-mul-c547e6ff-bdba-467d-b3d2-b8229444db6f
 ]]></system-err>
   </testcase>
-  <testcase name="otherWebOperationsUseTheSameExactMathAsTheConsole" classname="com.pbl4.AsyncMatrixJobTest" time="1.251">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:49838
-[MasterHttpServer] REST API Server san sang tai: http://localhost:49839/api/
-[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:49842 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49842
-[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49842 -> Master 127.0.0.1:49838
-[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:49843 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49843
-[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:49843 -> Master 127.0.0.1:49838
+  <testcase name="otherWebOperationsUseTheSameExactMathAsTheConsole" classname="com.pbl4.AsyncMatrixJobTest" time="1.28">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:63103
+[MasterHttpServer] REST API Server san sang tai: http://localhost:63104/api/
+[Registry] REGISTER [laptop-a-worker @ 127.0.0.1:63105 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63105
+[Worker] REGISTERED laptop-a-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63105 -> Master 127.0.0.1:63103
+[Registry] REGISTER [laptop-b-worker @ 127.0.0.1:63106 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63106
+[Worker] REGISTERED laptop-b-worker | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:63106 -> Master 127.0.0.1:63103
 [laptop-a-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=1)... OK
 [laptop-a-worker]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
-[laptop-b-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=1, so dong=1)... OK
-[laptop-b-worker]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=1, so dong=1)... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
 [laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] async-+-994d659a-45a3-4890-aec6-758fa49ea80c-task-01 <- laptop-a-worker (1/3)
-[Result] async-+-994d659a-45a3-4890-aec6-758fa49ea80c-task-02 <- laptop-b-worker (2/3)
+[Result] async-add-51446a31-726b-46b3-b03a-b9dab7e3eb37-task-01 <- laptop-a-worker (1/3)
+[Result] async-add-51446a31-726b-46b3-b03a-b9dab7e3eb37-task-02 <- laptop-b-worker (2/3)
 [laptop-a-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=2, so dong=1)... OK
 [laptop-a-worker]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] async-+-994d659a-45a3-4890-aec6-758fa49ea80c-task-03 <- laptop-a-worker (3/3)
+[Result] async-add-51446a31-726b-46b3-b03a-b9dab7e3eb37-task-03 <- laptop-a-worker (3/3)
 [laptop-b-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=1)... OK
 [laptop-b-worker]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
-[laptop-a-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=1, so dong=1)... OK
-[laptop-a-worker]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
 [laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=1, so dong=1)... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] async---6a4dc667-d682-479e-9320-34fd803e5d3d-task-01 <- laptop-b-worker (1/3)
-[Result] async---6a4dc667-d682-479e-9320-34fd803e5d3d-task-02 <- laptop-a-worker (2/3)
+[Result] async-sub-9fa061d5-e183-4419-9be2-f1d7317e4286-task-01 <- laptop-b-worker (1/3)
+[Result] async-sub-9fa061d5-e183-4419-9be2-f1d7317e4286-task-02 <- laptop-a-worker (2/3)
 [laptop-b-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=2, so dong=1)... OK
 [laptop-b-worker]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
 [laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] async---6a4dc667-d682-479e-9320-34fd803e5d3d-task-03 <- laptop-b-worker (3/3)
-[laptop-b-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=1, so dong=1)... OK
-[laptop-b-worker]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[Result] async-sub-9fa061d5-e183-4419-9be2-f1d7317e4286-task-03 <- laptop-b-worker (3/3)
 [laptop-a-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=0, so dong=1)... OK
-[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
-[laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
 [laptop-a-worker]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
 [laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[laptop-b-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=1, so dong=1)... OK
+[laptop-b-worker]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
 [laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] async-%-d3bb5b94-51a0-4127-b19a-38e2b464be69-task-01 <- laptop-a-worker (1/3)
-[Result] async-%-d3bb5b94-51a0-4127-b19a-38e2b464be69-task-02 <- laptop-b-worker (2/3)
+[Result] async-mod-f766899e-f14b-440e-8d55-0cdfa974b6ca-task-01 <- laptop-a-worker (1/3)
+[Result] async-mod-f766899e-f14b-440e-8d55-0cdfa974b6ca-task-02 <- laptop-b-worker (2/3)
 [laptop-a-worker]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=2, so dong=1)... OK
 [laptop-a-worker]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
 [laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] async-%-d3bb5b94-51a0-4127-b19a-38e2b464be69-task-03 <- laptop-a-worker (3/3)
-[laptop-a-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, [1 x 3]) va scalar=2.50... OK
-[laptop-a-worker]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 2.50
+[Result] async-mod-f766899e-f14b-440e-8d55-0cdfa974b6ca-task-03 <- laptop-a-worker (3/3)
 [laptop-b-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, [1 x 3]) va scalar=2.50... OK
 [laptop-b-worker]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 2.50
-[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
-[laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong voi so vo huong... OK
-[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
 [laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong voi so vo huong... OK
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, [1 x 3]) va scalar=2.50... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 2.50
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[laptop-a-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong voi so vo huong... OK
 [laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] async-scalar-7dd81ed6-3a4e-420e-8181-12d778d80083-task-01 <- laptop-b-worker (1/3)
-[Result] async-scalar-7dd81ed6-3a4e-420e-8181-12d778d80083-task-02 <- laptop-a-worker (2/3)
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async-scalar-7cec9311-d246-4447-b2cc-d084ebd89de3-task-01 <- laptop-b-worker (1/3)
+[Result] async-scalar-7cec9311-d246-4447-b2cc-d084ebd89de3-task-02 <- laptop-a-worker (2/3)
 [laptop-b-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, [1 x 3]) va scalar=2.50... OK
 [laptop-b-worker]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: 2.50
 [laptop-b-worker]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [laptop-b-worker]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong voi so vo huong... OK
 [laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] async-scalar-7dd81ed6-3a4e-420e-8181-12d778d80083-task-03 <- laptop-b-worker (3/3)
+[Result] async-scalar-7cec9311-d246-4447-b2cc-d084ebd89de3-task-03 <- laptop-b-worker (3/3)
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, [1 x 3])... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
 [laptop-b-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, [1 x 3])... OK
 [laptop-b-worker]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
 [laptop-b-worker]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [3 x 1])
 [laptop-b-worker]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
-[laptop-a-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, [1 x 3])... OK
-[laptop-a-worker]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
 [laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [3 x 1])
 [laptop-a-worker]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
 [laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
-[Result] async-t-d0cec4dd-5fdd-4ba3-9f4b-e458c4e60464-task-02 <- laptop-b-worker (1/3)
-[Result] async-t-d0cec4dd-5fdd-4ba3-9f4b-e458c4e60464-task-01 <- laptop-a-worker (2/3)
+[Result] async-t-f12a609e-583e-4653-a99a-f3c7e28dd091-task-01 <- laptop-a-worker (1/3)
+[Result] async-t-f12a609e-583e-4653-a99a-f3c7e28dd091-task-02 <- laptop-b-worker (2/3)
 [laptop-a-worker]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, [1 x 3])... OK
 [laptop-a-worker]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:
 [laptop-a-worker]  |    |-- Tien do: [==========] 100% (Chuyen vi thanh cong [3 x 1])
 [laptop-a-worker]  |-- [Buoc 3/4] Hoan tat chuyen vi lat cat... OK
 [laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat chuyen vi vao TaskResult... OK
-[Result] async-t-d0cec4dd-5fdd-4ba3-9f4b-e458c4e60464-task-03 <- laptop-a-worker (3/3)
-[laptop-a-worker]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [1..2)... OK
-[laptop-a-worker]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
-[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
-[laptop-a-worker]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
-[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
+[Result] async-t-f12a609e-583e-4653-a99a-f3c7e28dd091-task-03 <- laptop-a-worker (3/3)
 [laptop-b-worker]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [0..1)... OK
 [laptop-b-worker]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
 [laptop-b-worker]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
 [laptop-b-worker]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
 [laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
-[Result] async-inv-3582a540-b224-45f1-a66e-58c87a2488c6-task-02 <- laptop-a-worker (1/3)
-[Result] async-inv-3582a540-b224-45f1-a66e-58c87a2488c6-task-01 <- laptop-b-worker (2/3)
+[laptop-a-worker]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [1..2)... OK
+[laptop-a-worker]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
+[laptop-a-worker]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
+[laptop-a-worker]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
+[laptop-a-worker]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
+[Result] async-inv-5660db3a-5a49-4c8d-9a29-40ae7435b6fb-task-01 <- laptop-b-worker (1/3)
+[Result] async-inv-5660db3a-5a49-4c8d-9a29-40ae7435b6fb-task-02 <- laptop-a-worker (2/3)
 [laptop-b-worker]  |-- [Buoc 1/4] Giai ma ma tran goc [3 x 3] va dai dong can nghich dao [2..3)... OK
 [laptop-b-worker]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...
 [laptop-b-worker]  |    |-- Tien do: [==========] 100% (Giai xong he phuong trinh cho 1 dong)
 [laptop-b-worker]  |-- [Buoc 3/4] Hoan tat tinh toan 1 dong cua ma tran nghich dao... OK
 [laptop-b-worker]  |-- [Buoc 4/4] Dong goi lat cat ma tran nghich dao vao TaskResult... OK
-[Result] async-inv-3582a540-b224-45f1-a66e-58c87a2488c6-task-03 <- laptop-b-worker (3/3)
+[Result] async-inv-5660db3a-5a49-4c8d-9a29-40ae7435b6fb-task-03 <- laptop-b-worker (3/3)
 [MasterHttpServer] Da dung HTTP Server an toan.
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>

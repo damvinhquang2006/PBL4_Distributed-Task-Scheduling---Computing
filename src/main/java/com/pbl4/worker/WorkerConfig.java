@@ -8,6 +8,21 @@ public class WorkerConfig {
     private String machineName = System.getenv().getOrDefault("COMPUTERNAME", System.getenv().getOrDefault("HOSTNAME", "local-machine"));
     private String machineId = machineName.toLowerCase(java.util.Locale.ROOT).replaceAll("[^a-z0-9._-]", "-");
     private int hostParallelism = Math.max(1, Runtime.getRuntime().availableProcessors() - 1);
+    private String processGroupId = "default";
+    private int groupParallelism = hostParallelism;
+    private boolean supervised;
+    public boolean isSupervised() { return supervised; }
+    public void setSupervised(boolean value) { supervised = value; }
+    public String getProcessGroupId() { return processGroupId; }
+    public void setProcessGroupId(String value) {
+        if (value == null || !value.matches("[a-zA-Z0-9._-]{1,64}")) throw new IllegalArgumentException("Invalid ProcessGroupId");
+        processGroupId = value;
+    }
+    public int getGroupParallelism() { return groupParallelism; }
+    public void setGroupParallelism(int value) {
+        if (value < 1 || value > 1024) throw new IllegalArgumentException("GroupParallelism must be 1-1024");
+        groupParallelism = value;
+    }
     public String getMachineId() { return machineId; }
     public void setMachineId(String value) {
         if (value == null || !value.matches("[a-zA-Z0-9._-]{1,64}")) throw new IllegalArgumentException("MachineId must contain 1-64 letters, digits, dots, dashes or underscores");
@@ -22,6 +37,7 @@ public class WorkerConfig {
     public void setHostParallelism(int value) {
         if (value < 1 || value > 1024) throw new IllegalArgumentException("HostParallelism must be between 1 and 1024");
         hostParallelism = value;
+        if (groupParallelism > value) groupParallelism = value;
     }
     private String bindHost = "0.0.0.0";
     private boolean demoDelay;

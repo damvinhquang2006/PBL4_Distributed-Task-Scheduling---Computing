@@ -1,9 +1,12 @@
 package com.pbl4.master.http;
 
+import com.pbl4.computing.graph.Graph;
+import com.pbl4.computing.graph.ShortestPathAlgorithms;
 import com.pbl4.computing.matrix.Matrix;
 import com.pbl4.computing.matrix.MatrixOperations;
 import com.pbl4.core.model.LoadBalancingPolicy;
 import com.pbl4.core.model.WorkerInfo;
+import com.pbl4.core.model.WorkerStatus;
 import com.pbl4.core.network.JsonUtils;
 import com.pbl4.master.MasterServer;
 import com.sun.net.httpserver.HttpExchange;
@@ -22,6 +25,7 @@ import java.util.concurrent.Executors;
  * Cung cap cac endpoint giam sat cum, can bang tai va giai ma tran truc quan.
  */
 public class MasterHttpServer {
+    private static final int MAX_HTTP_BODY_BYTES = 32 * 1024 * 1024;
     private final MasterServer masterServer;
     private final int port;
     private HttpServer server;
@@ -46,12 +50,55 @@ public class MasterHttpServer {
         server.createContext("/api/compute/async", this::handleComputeAsync);
         server.createContext("/api/jobs/progress", this::handleJobProgress);
         server.createContext("/api/jobs/cancel", this::handleJobCancel);
+        server.createContext("/api/jobs/result", this::handleJobResult);
+        server.createContext("/api/jobs", this::handleJobList);
         server.createContext("/api/cluster/scale50", this::handleScale50);
         server.createContext("/api/cluster/failover-test", this::handleFailoverTest);
         server.createContext("/api/starter", this::handleStarter);
+        server.createContext("/api/workers/limit", this::handleWorkersLimit);
+        server.createContext("/api/benchmark/run", this::handleBenchmarkRun);
 
         server.start();
         System.out.printf("[MasterHttpServer] REST API Server san sang tai: http://localhost:%d/api/%n", port);
+    }
+
+    private void handleJobList(HttpExchange exchange) throws IOException {
+        if (handleCors(exchange)) return;
+        if (!"GET".equalsIgnoreCase(exchange.getRequestMethod())) {
+            sendResponse(exchange, 405, Map.of("error", "Method Not Allowed")); return;
+        }
+        sendResponse(exchange, 200, Map.of("jobs", masterServer.getAsyncJobList()));
+    }
+
+    private void handleJobResult(HttpExchange exchange) throws IOException {
+        if (handleCors(exchange)) return;
+        if (!"GET".equalsIgnoreCase(exchange.getRequestMethod())) {
+            sendResponse(exchange, 405, Map.of("error", "Method Not Allowed")); return;
+        }
+        String jobId = queryValue(exchange, "jobId");
+        if (jobId == null || jobId.isBlank()) { sendResponse(exchange, 400, Map.of("error", "jobId is required")); return; }
+        try {
+            int startRow = Integer.parseInt(Optional.ofNullable(queryValue(exchange, "startRow")).orElse("0"));
+            int rowCount = Integer.parseInt(Optional.ofNullable(queryValue(exchange, "rowCount")).orElse("64"));
+            int startCol = Integer.parseInt(Optional.ofNullable(queryValue(exchange, "startCol")).orElse("0"));
+            int colCount = Integer.parseInt(Optional.ofNullable(queryValue(exchange, "colCount")).orElse("256"));
+            Map<String, Object> page = masterServer.getAsyncResultPage(jobId, startRow, rowCount, startCol, colCount);
+            if (page == null) sendResponse(exchange, 404, Map.of("error", "Job not found"));
+            else sendResponse(exchange, 200, page);
+        } catch (IllegalArgumentException e) {
+            sendResponse(exchange, 400, Map.of("error", "Invalid startRow or rowCount"));
+        }
+    }
+
+    private String queryValue(HttpExchange exchange, String key) {
+        String query = exchange.getRequestURI().getRawQuery();
+        if (query == null) return null;
+        for (String part : query.split("&")) {
+            int equals = part.indexOf('=');
+            if (equals > 0 && key.equals(part.substring(0, equals)))
+                return java.net.URLDecoder.decode(part.substring(equals + 1), StandardCharsets.UTF_8);
+        }
+        return null;
     }
 
     public void stop() {
@@ -135,7 +182,10 @@ public class MasterHttpServer {
         try {
             Map<String, Object> body = parseBody(exchange);
             if (Boolean.TRUE.equals(body.get("isLargeScale"))) {
-                handleLargeScaleCompute(exchange, body);
+                sendResponse(exchange, 410, Map.of(
+                        "error", "API tính toán ước lượng đã bị loại bỏ. Hãy dùng /api/compute/async để chạy phép tính phân tán thật.",
+                        "code", "LEGACY_ESTIMATE_REMOVED",
+                        "use", "/api/compute/async"));
                 return;
             }
             String op = ((String) body.getOrDefault("operation", "+")).trim();
@@ -144,6 +194,7 @@ public class MasterHttpServer {
             boolean compare = Boolean.TRUE.equals(body.get("compareSequential"));
             Number scalarNum = (Number) body.get("scalar");
             double scalar = scalarNum != null ? scalarNum.doubleValue() : 2.0;
+            if (!Double.isFinite(scalar)) throw new IllegalArgumentException("Hệ số phải là số hữu hạn.");
 
             if (rawA == null || rawA.isEmpty()) {
                 sendResponse(exchange, 400, Map.of("error", "matrixA must not be empty"));
@@ -178,6 +229,9 @@ public class MasterHttpServer {
                                 "Kích thước không hợp lệ cho phép Nhân (x): Số cột của A (%d) phải bằng số dòng của B (%d)",
                                 A.getCols(), B.getRows())));
                         return;
+                    }
+                    if ((long) A.getRows() * B.getCols() > 1_000_000) {
+                        sendResponse(exchange, 400, Map.of("error", "Ma trận kết quả hỗ trợ tối đa 1.000.000 phần tử.")); return;
                     }
                 } else {
                     sendResponse(exchange, 400, Map.of("error", "Unsupported operation: " + op));
@@ -286,239 +340,14 @@ public class MasterHttpServer {
 
             sendResponse(exchange, 200, resp);
 
+        } catch (IllegalArgumentException e) {
+            sendResponse(exchange, 400, Map.of("error", e.getMessage() == null ? "Dữ liệu yêu cầu không hợp lệ." : e.getMessage()));
         } catch (Exception e) {
             sendResponse(exchange, 500, Map.of("error", "Error executing computation: " + e.getMessage()));
         }
     }
 
     @SuppressWarnings("unchecked")
-    private void handleLargeScaleCompute(HttpExchange exchange, Map<String, Object> body) throws IOException {
-        try {
-            String op = ((String) body.getOrDefault("operation", "+")).trim();
-            int rowsA = ((Number) body.getOrDefault("rowsA", 3)).intValue();
-            int colsA = ((Number) body.getOrDefault("colsA", 3)).intValue();
-            int rowsB = ((Number) body.getOrDefault("rowsB", 3)).intValue();
-            int colsB = ((Number) body.getOrDefault("colsB", 3)).intValue();
-            Number scalarNum = (Number) body.get("scalar");
-            double scalar = scalarNum != null ? scalarNum.doubleValue() : 2.0;
-
-            Map<String, Object> genA = (Map<String, Object>) body.getOrDefault("genA", Collections.emptyMap());
-            Map<String, Object> genB = (Map<String, Object>) body.getOrDefault("genB", Collections.emptyMap());
-
-            boolean isUnary = "T".equalsIgnoreCase(op) || "transpose".equalsIgnoreCase(op)
-                    || "inv".equalsIgnoreCase(op) || "inverse".equalsIgnoreCase(op)
-                    || "det".equalsIgnoreCase(op) || "determinant".equalsIgnoreCase(op)
-                    || "rank".equalsIgnoreCase(op)
-                    || "scalar".equalsIgnoreCase(op) || "*s".equalsIgnoreCase(op) || "k*A".equalsIgnoreCase(op);
-
-            if (!isUnary) {
-                if ("+".equals(op) || "-".equals(op) || "%".equals(op)) {
-                    if (rowsA != rowsB || colsA != colsB) {
-                        sendResponse(exchange, 400, Map.of("error", String.format(
-                                "Kích thước không khớp cho phép '%s': A là [%d x %d], B là [%d x %d]",
-                                op, rowsA, colsA, rowsB, colsB)));
-                        return;
-                    }
-                } else if ("*".equalsIgnoreCase(op) || "x".equalsIgnoreCase(op)) {
-                    if (colsA != rowsB) {
-                        sendResponse(exchange, 400, Map.of("error", String.format(
-                                "Kích thước không hợp lệ cho phép Nhân (x): Số cột của A (%d) phải bằng số dòng của B (%d)",
-                                colsA, rowsB)));
-                        return;
-                    }
-                }
-            } else {
-                if ("inv".equalsIgnoreCase(op) || "inverse".equalsIgnoreCase(op)
-                        || "det".equalsIgnoreCase(op) || "determinant".equalsIgnoreCase(op)) {
-                    if (rowsA != colsA) {
-                        sendResponse(exchange, 400, Map.of("error", String.format(
-                                "Phép toán '%s' yêu cầu ma trận vuông: A là [%d x %d]",
-                                op, rowsA, colsA)));
-                        return;
-                    }
-                }
-            }
-
-            int resRows = rowsA;
-            int resCols = colsA;
-            if ("*".equalsIgnoreCase(op) || "x".equalsIgnoreCase(op)) {
-                resCols = colsB;
-            } else if ("T".equalsIgnoreCase(op) || "transpose".equalsIgnoreCase(op)) {
-                resRows = colsA;
-                resCols = rowsA;
-            }
-            boolean isScalar = "det".equalsIgnoreCase(op) || "determinant".equalsIgnoreCase(op)
-                    || "rank".equalsIgnoreCase(op);
-
-            long elementsA = (long) rowsA * colsA;
-            long elementsB = isUnary ? 0 : ((long) rowsB * colsB);
-            long elementsC = isScalar ? 1 : ((long) resRows * resCols);
-            long totalElements = elementsA + elementsB + elementsC;
-            double ramPerMatrixGB = (elementsA * 8.0) / (1024.0 * 1024.0 * 1024.0);
-            double totalMemoryGB = (totalElements * 8.0) / (1024.0 * 1024.0 * 1024.0);
-
-            double flops = 0;
-            if ("*".equalsIgnoreCase(op) || "x".equalsIgnoreCase(op)) {
-                flops = 2.0 * (double) rowsA * (double) colsA * (double) colsB;
-            } else if ("+".equals(op) || "-".equals(op) || "%".equals(op) || "scalar".equalsIgnoreCase(op)) {
-                flops = (double) rowsA * (double) colsA;
-            } else if ("det".equalsIgnoreCase(op) || "inv".equalsIgnoreCase(op)) {
-                flops = (2.0 / 3.0) * Math.pow(rowsA, 3);
-            } else if ("rank".equalsIgnoreCase(op)) {
-                flops = (2.0 / 3.0) * Math.min(rowsA, colsA) * Math.pow(Math.max(rowsA, colsA), 2);
-            }
-
-            boolean canFitInMemory = (rowsA <= 1200 && colsA <= 1200 && (isUnary || (rowsB <= 1200 && colsB <= 1200)));
-
-            List<Integer> rowIndices = pickSampleIndices(resRows);
-            List<Integer> colIndices = pickSampleIndices(resCols);
-            List<List<Double>> sampleGrid = new ArrayList<>();
-            Double distScalar = null;
-            double distTimeMs = 0;
-            String execMode = "";
-            int totalChunks = 1;
-            String chunkSizeStr = resRows + " x " + resCols;
-
-            if (canFitInMemory) {
-                execMode = "DISTRIBUTED_DIRECT_RAM";
-                Matrix A = generateMatrix(rowsA, colsA, genA);
-                Matrix B = isUnary ? null : generateMatrix(rowsB, colsB, genB);
-
-                Matrix distMatrix = null;
-                long distStart = System.nanoTime();
-                if ("+".equals(op)) distMatrix = masterServer.runMatrixAddOrSub(A, B, true);
-                else if ("-".equals(op)) distMatrix = masterServer.runMatrixAddOrSub(A, B, false);
-                else if ("%".equals(op)) distMatrix = masterServer.runMatrixModulo(A, B);
-                else if ("*".equalsIgnoreCase(op) || "x".equalsIgnoreCase(op)) distMatrix = masterServer.runMatrixMultiplication(A, B);
-                else if ("scalar".equalsIgnoreCase(op) || "*s".equalsIgnoreCase(op) || "k*A".equalsIgnoreCase(op)) distMatrix = masterServer.runMatrixScalarMultiplication(A, scalar);
-                else if ("T".equalsIgnoreCase(op) || "transpose".equalsIgnoreCase(op)) distMatrix = masterServer.runMatrixTranspose(A);
-                else if ("inv".equalsIgnoreCase(op) || "inverse".equalsIgnoreCase(op)) distMatrix = masterServer.runMatrixInverse(A);
-                else if ("det".equalsIgnoreCase(op) || "determinant".equalsIgnoreCase(op)) distScalar = masterServer.runMatrixDeterminant(A);
-                else if ("rank".equalsIgnoreCase(op)) {
-                    Integer r = masterServer.runMatrixRank(A);
-                    distScalar = r != null ? r.doubleValue() : null;
-                }
-                distTimeMs = (System.nanoTime() - distStart) / 1_000_000.0;
-
-                if (!isScalar && distMatrix != null) {
-                    for (int r : rowIndices) {
-                        List<Double> rowList = new ArrayList<>();
-                        for (int c : colIndices) {
-                            rowList.add(Math.round(distMatrix.get(r, c) * 1000.0) / 1000.0);
-                        }
-                        sampleGrid.add(rowList);
-                    }
-                }
-            } else {
-                execMode = "HPC_TILED_CHUNKED";
-                int blockSize = 1000;
-                int numChunksR = (int) Math.ceil((double) resRows / blockSize);
-                int numChunksC = (int) Math.ceil((double) resCols / blockSize);
-                totalChunks = numChunksR * numChunksC;
-                chunkSizeStr = blockSize + " x " + blockSize;
-
-                int testSize = Math.min(100, Math.min(rowsA, colsA));
-                Matrix testA = generateMatrix(testSize, testSize, genA);
-                Matrix testB = isUnary ? null : generateMatrix(testSize, testSize, genB);
-                long testStart = System.nanoTime();
-                if (isUnary) {
-                    masterServer.runMatrixTranspose(testA);
-                } else {
-                    masterServer.runMatrixMultiplication(testA, testB);
-                }
-                long testDurationNs = System.nanoTime() - testStart;
-                double testDurationMs = Math.max(1.0, testDurationNs / 1_000_000.0);
-
-                distTimeMs = Math.round((testDurationMs * (Math.log(totalChunks + 1) * 2.5 + 1.2)) * 100.0) / 100.0;
-
-                if (isScalar) {
-                    String genTypeA = (String) genA.getOrDefault("generator", genA.getOrDefault("type", "random"));
-                    if ("det".equalsIgnoreCase(op)) {
-                        distScalar = ("identity".equalsIgnoreCase(genTypeA) || "identity-v1".equalsIgnoreCase(genTypeA)) ? 1.0 : 0.0;
-                    } else {
-                        distScalar = (double) Math.min(rowsA, colsA);
-                    }
-                } else {
-                    for (int r : rowIndices) {
-                        List<Double> rowList = new ArrayList<>();
-                        for (int c : colIndices) {
-                            double val = computeSingleCellLargeScale(op, genA, genB, scalar, r, c, rowsA, colsA, rowsB, colsB);
-                            rowList.add(Math.round(val * 1000.0) / 1000.0);
-                        }
-                        sampleGrid.add(rowList);
-                    }
-                }
-            }
-
-            Map<String, Object> resp = new LinkedHashMap<>();
-            resp.put("success", true);
-            resp.put("isLargeScale", true);
-            resp.put("isSampled", true);
-            resp.put("executionMode", execMode);
-            resp.put("operation", op);
-            resp.put("isScalar", isScalar);
-            if (isScalar) {
-                resp.put("resultScalar", distScalar);
-                resp.put("rows", rowsA);
-                resp.put("cols", colsA);
-            } else {
-                resp.put("rows", resRows);
-                resp.put("cols", resCols);
-                resp.put("sampleGrid", sampleGrid);
-                resp.put("rowIndices", rowIndices);
-                resp.put("colIndices", colIndices);
-            }
-            resp.put("elementsPerMatrix", elementsA);
-            resp.put("totalElements", totalElements);
-            resp.put("ramPerMatrixGB", Math.round(ramPerMatrixGB * 100.0) / 100.0);
-            resp.put("totalMemoryGB", Math.round(totalMemoryGB * 100.0) / 100.0);
-            resp.put("flops", flops);
-            resp.put("totalChunks", totalChunks);
-            resp.put("chunkSize", chunkSizeStr);
-            resp.put("distributedTimeMs", Math.round(distTimeMs * 100.0) / 100.0);
-            resp.put("workersOnline", masterServer.getRegistry().getAvailableWorkers().size());
-
-            sendResponse(exchange, 200, resp);
-        } catch (Exception e) {
-            sendResponse(exchange, 500, Map.of("error", "Lỗi xử lý ma trận quy mô lớn: " + e.getMessage()));
-        }
-    }
-
-    private List<Integer> pickSampleIndices(int total) {
-        List<Integer> list = new ArrayList<>();
-        if (total <= 6) {
-            for (int i = 0; i < total; i++) list.add(i);
-            return list;
-        }
-        list.add(0);
-        list.add(1);
-        list.add(2);
-        int mid = total / 2;
-        if (!list.contains(mid) && mid < total - 3) {
-            list.add(mid);
-        }
-        for (int i = Math.max(3, total - 3); i < total; i++) {
-            if (!list.contains(i)) list.add(i);
-        }
-        return list;
-    }
-
-    private Matrix generateMatrix(int rows, int cols, Map<String, Object> gen) {
-        String type = (String) gen.getOrDefault("generator", gen.getOrDefault("type", "random"));
-        long seed = ((Number) gen.getOrDefault("seed", 42L)).longValue();
-        double min = ((Number) gen.getOrDefault("min", 1.0)).doubleValue();
-        double max = ((Number) gen.getOrDefault("max", 10.0)).doubleValue();
-        double val = ((Number) gen.getOrDefault("val", 0.0)).doubleValue();
-
-        Matrix m = new Matrix(rows, cols);
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                m.set(i, j, generateCellValue(type, seed, i, j, min, max, val));
-            }
-        }
-        return m;
-    }
-
     public static double generateCellValue(String genType, long seed, int row, int col, double min, double max, double constVal) {
         if ("identity".equalsIgnoreCase(genType) || "identity-v1".equalsIgnoreCase(genType)) {
             return row == col ? 1.0 : 0.0;
@@ -538,57 +367,6 @@ public class MasterHttpServer {
         double range = max - min;
         if (range <= 0) range = 1.0;
         return min + (h % (long) (range + 1));
-    }
-
-    private double computeSingleCellLargeScale(String op, Map<String, Object> genA, Map<String, Object> genB,
-                                              double scalar, int r, int c, int rA, int cA, int rB, int cB) {
-        String typeA = (String) genA.getOrDefault("generator", genA.getOrDefault("type", "random"));
-        long seedA = ((Number) genA.getOrDefault("seed", 42L)).longValue();
-        double minA = ((Number) genA.getOrDefault("min", 1.0)).doubleValue();
-        double maxA = ((Number) genA.getOrDefault("max", 10.0)).doubleValue();
-        double valA = ((Number) genA.getOrDefault("val", 0.0)).doubleValue();
-
-        String typeB = genB != null ? (String) genB.getOrDefault("generator", genB.getOrDefault("type", "random")) : "random";
-        long seedB = genB != null ? ((Number) genB.getOrDefault("seed", 99L)).longValue() : 99L;
-        double minB = genB != null ? ((Number) genB.getOrDefault("min", 1.0)).doubleValue() : 1.0;
-        double maxB = genB != null ? ((Number) genB.getOrDefault("max", 10.0)).doubleValue() : 10.0;
-        double valB = genB != null ? ((Number) genB.getOrDefault("val", 0.0)).doubleValue() : 0.0;
-
-        if ("+".equals(op)) {
-            return generateCellValue(typeA, seedA, r, c, minA, maxA, valA)
-                    + generateCellValue(typeB, seedB, r, c, minB, maxB, valB);
-        } else if ("-".equals(op)) {
-            return generateCellValue(typeA, seedA, r, c, minA, maxA, valA)
-                    - generateCellValue(typeB, seedB, r, c, minB, maxB, valB);
-        } else if ("%".equals(op)) {
-            double b = generateCellValue(typeB, seedB, r, c, minB, maxB, valB);
-            return b == 0 ? 0 : generateCellValue(typeA, seedA, r, c, minA, maxA, valA) % b;
-        } else if ("scalar".equalsIgnoreCase(op) || "*s".equalsIgnoreCase(op) || "k*A".equalsIgnoreCase(op)) {
-            return generateCellValue(typeA, seedA, r, c, minA, maxA, valA) * scalar;
-        } else if ("T".equalsIgnoreCase(op) || "transpose".equalsIgnoreCase(op)) {
-            return generateCellValue(typeA, seedA, c, r, minA, maxA, valA);
-        } else if ("*".equalsIgnoreCase(op) || "x".equalsIgnoreCase(op)) {
-            if ("identity".equalsIgnoreCase(typeA)) {
-                return generateCellValue(typeB, seedB, r, c, minB, maxB, valB);
-            }
-            if ("identity".equalsIgnoreCase(typeB)) {
-                return generateCellValue(typeA, seedA, r, c, minA, maxA, valA);
-            }
-            int kSteps = Math.min(cA, 40);
-            double sum = 0;
-            for (int k = 0; k < kSteps; k++) {
-                sum += generateCellValue(typeA, seedA, r, k, minA, maxA, valA)
-                        * generateCellValue(typeB, seedB, k, c, minB, maxB, valB);
-            }
-            if (cA > kSteps) {
-                sum = sum * ((double) cA / kSteps);
-            }
-            return sum;
-        } else if ("inv".equalsIgnoreCase(op)) {
-            if ("identity".equalsIgnoreCase(typeA)) return r == c ? 1.0 : 0.0;
-            return r == c ? (1.0 / Math.max(1.0, generateCellValue(typeA, seedA, r, c, minA, maxA, valA))) : 0.0;
-        }
-        return 0;
     }
 
     private void handleStarter(HttpExchange exchange) throws IOException {
@@ -639,11 +417,13 @@ public class MasterHttpServer {
 
             Map<String, Object> genA = (Map<String, Object>) body.getOrDefault("genA", Collections.emptyMap());
             Map<String, Object> genB = (Map<String, Object>) body.getOrDefault("genB", Collections.emptyMap());
+            String idempotencyKey = exchange.getRequestHeaders().getFirst("Idempotency-Key");
 
             MasterServer.AsyncJobRecord rec = masterServer.submitAsyncMatrixJob(
                     op, rowsA, colsA, rowsB, colsB, genA, genB, scalar, taskCount,
                     com.pbl4.core.network.JsonUtils.getMapper().convertValue(body.get("matrixA"), double[][].class),
-                    com.pbl4.core.network.JsonUtils.getMapper().convertValue(body.get("matrixB"), double[][].class));
+                    com.pbl4.core.network.JsonUtils.getMapper().convertValue(body.get("matrixB"), double[][].class),
+                    idempotencyKey);
 
             sendResponse(exchange, 202, Map.of(
                     "success", true,
@@ -741,13 +521,221 @@ public class MasterHttpServer {
         ));
     }
 
+    @SuppressWarnings("unchecked")
+    private void handleWorkersLimit(HttpExchange exchange) throws IOException {
+        if (handleCors(exchange)) return;
+        if (!"POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+            sendResponse(exchange, 405, Map.of("error", "Method Not Allowed"));
+            return;
+        }
+
+        try {
+            Map<String, Object> body = parseBody(exchange);
+            Number countNum = (Number) body.get("count");
+            int count = countNum != null ? countNum.intValue() : 0;
+
+            List<String> activeIds = masterServer.setActiveWorkerLimit(count);
+            List<WorkerInfo> allOnline = masterServer.getRegistry().getAllWorkers().stream()
+                    .filter(w -> w.getStatus() != WorkerStatus.OFFLINE)
+                    .toList();
+
+            sendResponse(exchange, 200, Map.of(
+                    "success", true,
+                    "requestedCount", count,
+                    "activeCount", activeIds.size(),
+                    "activeWorkerIds", activeIds,
+                    "totalOnline", allOnline.size()
+            ));
+        } catch (Exception e) {
+            sendResponse(exchange, 500, Map.of("error", "Lỗi cấu hình số lượng worker: " + e.getMessage()));
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void handleBenchmarkRun(HttpExchange exchange) throws IOException {
+        if (handleCors(exchange)) return;
+        if (!"POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+            sendResponse(exchange, 405, Map.of("error", "Method Not Allowed"));
+            return;
+        }
+
+        try {
+            Map<String, Object> body = parseBody(exchange);
+            String problemType = ((String) body.getOrDefault("problemType", "matrix_multiply")).trim().toLowerCase(Locale.ROOT);
+            int size = ((Number) body.getOrDefault("size", 100)).intValue();
+            int workerCount = ((Number) body.getOrDefault("workerCount", 1)).intValue();
+            boolean compareSequential = Boolean.TRUE.equals(body.getOrDefault("compareSequential", true));
+
+            if (size <= 0) {
+                sendResponse(exchange, 400, Map.of("error", "Kích thước bài toán (size) phải lớn hơn 0"));
+                return;
+            }
+
+            List<WorkerInfo> onlineWorkers = masterServer.getRegistry().getAllWorkers().stream()
+                    .filter(w -> w.getStatus() != WorkerStatus.OFFLINE)
+                    .toList();
+            if (onlineWorkers.isEmpty()) {
+                sendResponse(exchange, 400, Map.of("error", "Chưa có Worker nào kết nối tới Master. Vui lòng bật ít nhất 1 Worker!"));
+                return;
+            }
+
+            // Cau hinh so luong Worker duoc phep tham gia
+            List<String> activeWorkerIds;
+            if (workerCount > 0) {
+                activeWorkerIds = masterServer.setActiveWorkerLimit(workerCount);
+            } else {
+                activeWorkerIds = masterServer.setActiveWorkerLimit(0); // Toan bo worker
+            }
+
+            if (activeWorkerIds.isEmpty()) {
+                sendResponse(exchange, 400, Map.of("error", "Không có Worker nào sẵn sàng nhận tác vụ!"));
+                return;
+            }
+
+            Double seqTimeMs = null;
+            double distTimeMs;
+            boolean computeOk = false;
+
+            if (problemType.equals("graph_dijkstra")) {
+                if (size > 800) {
+                    sendResponse(exchange, 400, Map.of("error", "Bài toán đồ thị hỗ trợ tối đa 800 đỉnh để đảm bảo hiệu năng!"));
+                    return;
+                }
+                Graph g = new Graph(size);
+                Random rng = new Random(42L);
+                for (int i = 0; i < size; i++) {
+                    for (int j = 0; j < size; j++) {
+                        if (i != j && rng.nextDouble() < 0.35) {
+                            double weight = Math.round((1.0 + rng.nextDouble() * 19.0) * 10.0) / 10.0;
+                            g.addEdge(i, j, weight);
+                        }
+                    }
+                }
+
+                if (compareSequential) {
+                    long seqStart = System.nanoTime();
+                    ShortestPathAlgorithms.allPairsDijkstraSequential(g);
+                    seqTimeMs = (System.nanoTime() - seqStart) / 1_000_000.0;
+                }
+
+                long distStart = System.nanoTime();
+                double[][] res = masterServer.runGraphShortestPath(g);
+                distTimeMs = (System.nanoTime() - distStart) / 1_000_000.0;
+                computeOk = (res != null);
+
+            } else {
+                // Bai toan ma tran
+                if ((long) size * size > 1_000_000) {
+                    sendResponse(exchange, 400, Map.of("error", "Kích thước ma trận tối đa 1.000.000 phần tử (1000 x 1000)."));
+                    return;
+                }
+
+                Matrix A = new Matrix(size, size);
+                Matrix B = null;
+                boolean isBinary = problemType.equals("matrix_multiply") || problemType.equals("matrix_add");
+                if (isBinary) {
+                    B = new Matrix(size, size);
+                }
+
+                for (int r = 0; r < size; r++) {
+                    for (int c = 0; c < size; c++) {
+                        A.set(r, c, generateCellValue("random-v1", 42L, r, c, 1.0, 10.0, 0.0));
+                        if (isBinary) {
+                            B.set(r, c, generateCellValue("random-v1", 99L, r, c, 1.0, 10.0, 0.0));
+                        }
+                    }
+                }
+
+                // Neu la phep nghich dao ma tran hoac dinh thuc: tang duong cheo chinh de luon luon kha nghich (strictly diagonally dominant)
+                if (problemType.equals("matrix_inverse") || problemType.equals("matrix_det")) {
+                    for (int i = 0; i < size; i++) {
+                        A.set(i, i, A.get(i, i) + size * 10.0);
+                    }
+                }
+
+                // Đo thoi gian tuan tu neu can
+                if (compareSequential) {
+                    long seqStart = System.nanoTime();
+                    if (problemType.equals("matrix_multiply")) {
+                        MatrixOperations.multiply(A, B);
+                    } else if (problemType.equals("matrix_add")) {
+                        MatrixOperations.add(A, B);
+                    } else if (problemType.equals("matrix_inverse")) {
+                        MatrixOperations.inverse(A);
+                    } else if (problemType.equals("matrix_transpose")) {
+                        MatrixOperations.transpose(A);
+                    } else if (problemType.equals("matrix_det")) {
+                        MatrixOperations.determinant(A);
+                    } else if (problemType.equals("matrix_rank")) {
+                        MatrixOperations.rank(A);
+                    }
+                    seqTimeMs = (System.nanoTime() - seqStart) / 1_000_000.0;
+                }
+
+                // Đo thoi gian phan tan
+                long distStart = System.nanoTime();
+                if (problemType.equals("matrix_multiply")) {
+                    computeOk = (masterServer.runMatrixMultiplication(A, B) != null);
+                } else if (problemType.equals("matrix_add")) {
+                    computeOk = (masterServer.runMatrixAddOrSub(A, B, true) != null);
+                } else if (problemType.equals("matrix_inverse")) {
+                    computeOk = (masterServer.runMatrixInverse(A) != null);
+                } else if (problemType.equals("matrix_transpose")) {
+                    computeOk = (masterServer.runMatrixTranspose(A) != null);
+                } else if (problemType.equals("matrix_det")) {
+                    computeOk = (masterServer.runMatrixDeterminant(A) != null);
+                } else if (problemType.equals("matrix_rank")) {
+                    computeOk = (masterServer.runMatrixRank(A) != null);
+                } else {
+                    sendResponse(exchange, 400, Map.of("error", "Loại bài toán không được hỗ trợ: " + problemType));
+                    return;
+                }
+                distTimeMs = (System.nanoTime() - distStart) / 1_000_000.0;
+            }
+
+            if (!computeOk) {
+                sendResponse(exchange, 500, Map.of("error", "Tính toán phân tán thất bại hoặc bị timeout!"));
+                return;
+            }
+
+            double speedup = (seqTimeMs != null && seqTimeMs > 0 && distTimeMs > 0) ? (seqTimeMs / distTimeMs) : 1.0;
+            int effectiveWorkers = Math.max(1, activeWorkerIds.size());
+            double efficiency = (speedup / effectiveWorkers) * 100.0;
+
+            Map<String, Object> resp = new LinkedHashMap<>();
+            resp.put("success", true);
+            resp.put("problemType", problemType);
+            resp.put("size", size);
+            resp.put("workerCount", effectiveWorkers);
+            resp.put("activeWorkerIds", activeWorkerIds);
+            resp.put("distributedTimeMs", Math.round(distTimeMs * 100.0) / 100.0);
+            resp.put("sequentialTimeMs", seqTimeMs != null ? Math.round(seqTimeMs * 100.0) / 100.0 : null);
+            resp.put("speedup", Math.round(speedup * 1000.0) / 1000.0);
+            resp.put("efficiency", Math.round(efficiency * 10.0) / 10.0);
+            resp.put("timestamp", System.currentTimeMillis());
+
+            sendResponse(exchange, 200, resp);
+
+        } catch (IllegalArgumentException e) {
+            sendResponse(exchange, 400, Map.of("error", e.getMessage() == null ? "Yêu cầu không hợp lệ" : e.getMessage()));
+        } catch (Exception e) {
+            sendResponse(exchange, 500, Map.of("error", "Lỗi Benchmark: " + e.getMessage()));
+        }
+    }
+
     private Matrix toMatrix(List<List<Number>> raw) {
+        if (raw == null || raw.isEmpty()) throw new IllegalArgumentException("Ma trận không được rỗng.");
         int r = raw.size();
+        if (raw.get(0) == null || raw.get(0).isEmpty()) throw new IllegalArgumentException("Ma trận phải có ít nhất một cột.");
         int c = raw.get(0).size();
+        if ((long) r * c > 1_000_000) throw new IllegalArgumentException("Mỗi ma trận hỗ trợ tối đa 1.000.000 phần tử.");
         Matrix m = new Matrix(r, c);
         for (int i = 0; i < r; i++) {
+            if (raw.get(i) == null || raw.get(i).size() != c) throw new IllegalArgumentException("Các dòng ma trận phải có cùng số cột.");
             for (int j = 0; j < c; j++) {
-                m.set(i, j, raw.get(i).get(j).doubleValue());
+                Number value = raw.get(i).get(j);
+                if (value == null || !Double.isFinite(value.doubleValue())) throw new IllegalArgumentException("Phần tử ma trận phải là số hữu hạn.");
+                m.set(i, j, value.doubleValue());
             }
         }
         return m;
@@ -756,7 +744,9 @@ public class MasterHttpServer {
     @SuppressWarnings("unchecked")
     private Map<String, Object> parseBody(HttpExchange exchange) throws IOException {
         try (InputStream in = exchange.getRequestBody()) {
-            String text = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+            byte[] bytes = in.readNBytes(MAX_HTTP_BODY_BYTES + 1);
+            if (bytes.length > MAX_HTTP_BODY_BYTES) throw new IllegalArgumentException("Request vượt quá giới hạn 32 MiB.");
+            String text = new String(bytes, StandardCharsets.UTF_8);
             if (text.isBlank()) return Collections.emptyMap();
             return JsonUtils.fromJson(text, Map.class);
         }
@@ -765,7 +755,7 @@ public class MasterHttpServer {
     private boolean handleCors(HttpExchange exchange) throws IOException {
         exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
         exchange.getResponseHeaders().set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-        exchange.getResponseHeaders().set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+        exchange.getResponseHeaders().set("Access-Control-Allow-Headers", "Content-Type, Authorization, Idempotency-Key");
         if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
             exchange.sendResponseHeaders(204, -1);
             exchange.close();

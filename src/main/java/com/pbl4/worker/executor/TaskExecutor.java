@@ -10,6 +10,8 @@ import com.pbl4.core.network.JsonUtils;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.concurrent.CancellationException;
 
 /**
  * Bo phan giai ma va thuc thi tac vu cu the tren tung Worker Node.
@@ -17,10 +19,50 @@ import java.util.Map;
  */
 public class TaskExecutor {
     public static final ThreadLocal<Boolean> DEMO_DELAY = ThreadLocal.withInitial(() -> false);
+    private static final ThreadLocal<BiConsumer<Integer, Integer>> PROGRESS = new ThreadLocal<>();
+
+    private static int toInt(Object obj) {
+        if (obj == null) return 0;
+        if (obj instanceof Number n) return n.intValue();
+        if (obj instanceof String s) {
+            try { return Integer.parseInt(s.trim()); } catch (NumberFormatException ignored) {}
+        }
+        return 0;
+    }
+
+    private static double toDouble(Object obj) {
+        if (obj == null) return 0.0;
+        if (obj instanceof Number n) return n.doubleValue();
+        if (obj instanceof String s) {
+            try { return Double.parseDouble(s.trim()); } catch (NumberFormatException ignored) {}
+        }
+        return 0.0;
+    }
+
+    private static long toLong(Object obj) {
+        if (obj == null) return 0L;
+        if (obj instanceof Number n) return n.longValue();
+        if (obj instanceof String s) {
+            try { return Long.parseLong(s.trim()); } catch (NumberFormatException ignored) {}
+        }
+        return 0L;
+    }
+
+    public static void setProgressReporter(BiConsumer<Integer, Integer> reporter) { PROGRESS.set(reporter); }
+    public static void clearProgressReporter() { PROGRESS.remove(); }
+    private static void checkCancelled() {
+        if (Thread.currentThread().isInterrupted()) throw new CancellationException("Task attempt was cancelled");
+    }
+    private static void reportProgress(int completed, int total) {
+        checkCancelled();
+        BiConsumer<Integer, Integer> reporter = PROGRESS.get();
+        if (reporter != null) reporter.accept(completed, Math.max(1, total));
+    }
 
     public static TaskResult execute(String workerId, Task task) {
         long start = System.currentTimeMillis();
         try {
+            checkCancelled();
             TaskResult result = TaskResult.success(task.getTaskId(), task.getJobId(), workerId);
 
             if (task.hasPayload("genA")) {
@@ -100,7 +142,7 @@ public class TaskExecutor {
      * Thuc thi phep cong lat cat dong: C_slice = A_slice + B_slice
      */
     private static void executeMatrixAdd(String workerId, Task task, TaskResult result) {
-        int startRow = ((Number) task.getPayloadValue("startRow")).intValue();
+        int startRow = toInt(task.getPayloadValue("startRow"));
         double[][] sliceA = parse2DArray(task.getPayloadValue("sliceA"));
         double[][] sliceB = parse2DArray(task.getPayloadValue("sliceB"));
         int rows = sliceA.length;
@@ -111,6 +153,7 @@ public class TaskExecutor {
         System.out.printf("[%s]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:%n", workerId);
         double[][] sliceC = new double[rows][sliceA[0].length];
         for (int i = 0; i < rows; i++) {
+            reportProgress(i + 1, rows);
             for (int j = 0; j < sliceA[0].length; j++) {
                 sliceC[i][j] = sliceA[i][j] + sliceB[i][j];
             }
@@ -134,7 +177,7 @@ public class TaskExecutor {
      * Thuc thi phep tru lat cat dong: C_slice = A_slice - B_slice
      */
     private static void executeMatrixSub(String workerId, Task task, TaskResult result) {
-        int startRow = ((Number) task.getPayloadValue("startRow")).intValue();
+        int startRow = toInt(task.getPayloadValue("startRow"));
         double[][] sliceA = parse2DArray(task.getPayloadValue("sliceA"));
         double[][] sliceB = parse2DArray(task.getPayloadValue("sliceB"));
         int rows = sliceA.length;
@@ -145,6 +188,7 @@ public class TaskExecutor {
         System.out.printf("[%s]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:%n", workerId);
         double[][] sliceC = new double[rows][sliceA[0].length];
         for (int i = 0; i < rows; i++) {
+            reportProgress(i + 1, rows);
             for (int j = 0; j < sliceA[0].length; j++) {
                 sliceC[i][j] = sliceA[i][j] - sliceB[i][j];
             }
@@ -168,7 +212,7 @@ public class TaskExecutor {
      * Thuc thi phep chia lay du (%) lat cat dong: C_slice = A_slice % B_slice
      */
     private static void executeMatrixMod(String workerId, Task task, TaskResult result) {
-        int startRow = ((Number) task.getPayloadValue("startRow")).intValue();
+        int startRow = toInt(task.getPayloadValue("startRow"));
         double[][] sliceA = parse2DArray(task.getPayloadValue("sliceA"));
         double[][] sliceB = parse2DArray(task.getPayloadValue("sliceB"));
         int rows = sliceA.length;
@@ -179,6 +223,7 @@ public class TaskExecutor {
         System.out.printf("[%s]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:%n", workerId);
         double[][] sliceC = new double[rows][sliceA[0].length];
         for (int i = 0; i < rows; i++) {
+            reportProgress(i + 1, rows);
             for (int j = 0; j < sliceA[0].length; j++) {
                 double bVal = sliceB[i][j];
                 sliceC[i][j] = Math.abs(bVal) < 1e-9 ? 0.0 : (sliceA[i][j] % bVal);
@@ -203,8 +248,8 @@ public class TaskExecutor {
      * Thuc thi phep nhan lat cat dong: C_slice = A_slice * B
      */
     private static void executeMatrixMultiply(String workerId, Task task, TaskResult result) {
-        int startRow = ((Number) task.getPayloadValue("startRow")).intValue();
-        int colsB = ((Number) task.getPayloadValue("colsB")).intValue();
+        int startRow = toInt(task.getPayloadValue("startRow"));
+        int colsB = toInt(task.getPayloadValue("colsB"));
         double[][] sliceA = parse2DArray(task.getPayloadValue("sliceA"));
         double[][] dataB = parse2DArray(task.getPayloadValue("dataB"));
         int sliceRows = sliceA.length;
@@ -222,6 +267,7 @@ public class TaskExecutor {
         double[][] sliceC = new double[sliceRows][colsB];
 
         for (int i = 0; i < sliceRows; i++) {
+            reportProgress(i + 1, sliceRows);
             for (int k = 0; k < kDim; k++) {
                 double aVal = sliceA[i][k];
                 for (int j = 0; j < colsB; j++) {
@@ -260,15 +306,21 @@ public class TaskExecutor {
 
         System.out.printf("[%s]  |-- [Buoc 1/4] Giai ma ma tran vuong [%d x %d] va %d cot cofactor... OK%n",
                 workerId, n, n, columnsRaw.size());
+        if (columnsRaw.isEmpty()) throw new IllegalArgumentException("Determinant task has no assigned columns");
         sleepPacing(30);
 
         double partialDet = 0.0;
         System.out.printf("[%s]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:%n", workerId);
+        int pivotsPerMinor = Math.max(1, n - 1);
         for (int i = 0; i < columnsRaw.size(); i++) {
-            int col = ((Number) columnsRaw.get(i)).intValue();
+            checkCancelled();
+            int cofactorIndex = i;
+            int col = toInt(columnsRaw.get(i));
             double coefficient = matrixData[0][col];
             double cofactorSign = (col % 2 == 0) ? 1.0 : -1.0;
-            double minorDet = (n == 1) ? 1.0 : MatrixOperations.determinant(new Matrix(minor(matrixData, 0, col)));
+            double minorDet = (n == 1) ? 1.0 : MatrixOperations.determinant(new Matrix(minor(matrixData, 0, col)),
+                (completed, total) -> reportProgress(cofactorIndex * pivotsPerMinor + completed, columnsRaw.size() * pivotsPerMinor));
+            reportProgress((i + 1) * pivotsPerMinor, columnsRaw.size() * pivotsPerMinor);
             double term = cofactorSign * coefficient * minorDet;
             partialDet += term;
 
@@ -289,8 +341,8 @@ public class TaskExecutor {
      * Thuc thi rut gon lat cat dong de tao basis cuc bo cho bai toan hang ma tran.
      */
     private static void executeMatrixRank(String workerId, Task task, TaskResult result) {
-        int startRow = ((Number) task.getPayloadValue("startRow")).intValue();
-        int cols = ((Number) task.getPayloadValue("cols")).intValue();
+        int startRow = toInt(task.getPayloadValue("startRow"));
+        int cols = toInt(task.getPayloadValue("cols"));
         double[][] sliceA = parse2DArray(task.getPayloadValue("sliceA"));
 
         System.out.printf("[%s]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=%d, so dong=%d, so cot=%d)... OK%n",
@@ -298,7 +350,7 @@ public class TaskExecutor {
         sleepPacing(30);
 
         System.out.printf("[%s]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...%n", workerId);
-        double[][] localBasis = MatrixOperations.rowBasis(sliceA, cols);
+        double[][] localBasis = MatrixOperations.rowBasis(sliceA, cols, TaskExecutor::reportProgress);
         int percent = 100;
         System.out.printf("[%s]  |    |-- Tien do: %s %3d%% (Basis cuc bo co %d dong doc lap)%n",
                 workerId, getProgressBar(percent), percent, localBasis.length);
@@ -316,7 +368,7 @@ public class TaskExecutor {
      * Thuc thi chuyen vi lat cat dong: T_slice = (A_slice)^T
      */
     private static void executeMatrixTranspose(String workerId, Task task, TaskResult result) {
-        int startRow = ((Number) task.getPayloadValue("startRow")).intValue();
+        int startRow = toInt(task.getPayloadValue("startRow"));
         double[][] sliceA = parse2DArray(task.getPayloadValue("sliceA"));
         int rows = sliceA.length;
         int cols = sliceA[0].length;
@@ -326,7 +378,7 @@ public class TaskExecutor {
         sleepPacing(30);
 
         System.out.printf("[%s]  |-- [Buoc 2/4] Bat dau chuyen vi cac phan tu cua lat cat dong:%n", workerId);
-        double[][] transposedSlice = MatrixOperations.transposeSlice(sliceA);
+        double[][] transposedSlice = MatrixOperations.transposeSlice(sliceA, TaskExecutor::reportProgress);
         int percent = 100;
         System.out.printf("[%s]  |    |-- Tien do: %s %3d%% (Chuyen vi thanh cong [%d x %d])%n",
                 workerId, getProgressBar(percent), percent, cols, rows);
@@ -344,8 +396,8 @@ public class TaskExecutor {
      * Thuc thi nhan lat cat dong voi so vo huong: C_slice = A_slice * scalar
      */
     private static void executeMatrixScalarMul(String workerId, Task task, TaskResult result) {
-        int startRow = ((Number) task.getPayloadValue("startRow")).intValue();
-        double scalar = ((Number) task.getPayloadValue("scalar")).doubleValue();
+        int startRow = toInt(task.getPayloadValue("startRow"));
+        double scalar = toDouble(task.getPayloadValue("scalar"));
         double[][] sliceA = parse2DArray(task.getPayloadValue("sliceA"));
         int rows = sliceA.length;
         int cols = sliceA[0].length;
@@ -357,6 +409,7 @@ public class TaskExecutor {
         System.out.printf("[%s]  |-- [Buoc 2/4] Bat dau nhan tung phan tu voi so vo huong: %.2f%n", workerId, scalar);
         double[][] sliceC = new double[rows][cols];
         for (int i = 0; i < rows; i++) {
+            reportProgress(i + 1, rows);
             for (int j = 0; j < cols; j++) {
                 sliceC[i][j] = sliceA[i][j] * scalar;
             }
@@ -380,17 +433,17 @@ public class TaskExecutor {
      * Thuc thi nghich dao lat cat dong cua ma tran: Giai he phuong trinh A^T * X = I[:, startRow:endRow]
      */
     private static void executeMatrixInverse(String workerId, Task task, TaskResult result) {
-        int startRow = ((Number) task.getPayloadValue("startRow")).intValue();
-        int endRow = ((Number) task.getPayloadValue("endRow")).intValue();
+        int startRow = toInt(task.getPayloadValue("startRow"));
+        int endRow = toInt(task.getPayloadValue("endRow"));
         double[][] matrixData = parse2DArray(task.getPayloadValue("matrixData"));
-        int n = ((Number) task.getPayloadValue("n")).intValue();
+        int n = toInt(task.getPayloadValue("n"));
 
         System.out.printf("[%s]  |-- [Buoc 1/4] Giai ma ma tran goc [%d x %d] va dai dong can nghich dao [%d..%d)... OK%n",
                 workerId, n, n, startRow, endRow);
         sleepPacing(30);
 
         System.out.printf("[%s]  |-- [Buoc 2/4] Chay thuat toan Gauss-Jordan tren ma tran mo rong [A^T | I_slice]...%n", workerId);
-        double[][] invSlice = MatrixOperations.invertRowSlice(matrixData, startRow, endRow);
+        double[][] invSlice = MatrixOperations.invertRowSlice(matrixData, startRow, endRow, TaskExecutor::reportProgress);
         int percent = 100;
         System.out.printf("[%s]  |    |-- Tien do: %s %3d%% (Giai xong he phuong trinh cho %d dong)%n",
                 workerId, getProgressBar(percent), percent, (endRow - startRow));
@@ -412,7 +465,7 @@ public class TaskExecutor {
         List<?> sourcesRaw = (List<?>) task.getPayloadValue("sourceVertices");
         int[] sourceVertices = new int[sourcesRaw.size()];
         for (int i = 0; i < sourcesRaw.size(); i++) {
-            sourceVertices[i] = ((Number) sourcesRaw.get(i)).intValue();
+            sourceVertices[i] = toInt(sourcesRaw.get(i));
         }
 
         System.out.printf("[%s]  |-- [Buoc 1/4] Giai ma cau truc do thi (%d dinh, %d dinh nguon)... OK%n",
@@ -423,8 +476,11 @@ public class TaskExecutor {
         double[][] distances = new double[sourceVertices.length][graph.getVertices()];
 
         for (int i = 0; i < sourceVertices.length; i++) {
+            checkCancelled();
+            int sourceIndex = i;
             int src = sourceVertices[i];
-            distances[i] = ShortestPathAlgorithms.dijkstra(graph, src);
+            distances[i] = ShortestPathAlgorithms.dijkstra(graph, src,
+                (completed, total) -> reportProgress(sourceIndex * total + completed, sourceVertices.length * total));
 
             int percent = (int) Math.round(((i + 1.0) / sourceVertices.length) * 100);
             System.out.printf("[%s]  |    |-- Tien do: %s %3d%% (Hoan thanh Dijkstra dinh %d)%n",
@@ -502,15 +558,15 @@ public class TaskExecutor {
     private static void executeDescriptorTask(String workerId, Task task, TaskResult result) {
         String op = (String) task.getPayloadValue("operation");
         if (op == null || op.isBlank()) op = "+";
-        int startRow = ((Number) task.getPayloadOrDefault("startRow", 0)).intValue();
-        int endRow = ((Number) task.getPayloadOrDefault("endRow", 1)).intValue();
-        int rowsA = ((Number) task.getPayloadOrDefault("rowsA", 1000)).intValue();
-        int colsA = ((Number) task.getPayloadOrDefault("colsA", 1000)).intValue();
-        int rowsB = task.hasPayload("rowsB") ? ((Number) task.getPayloadValue("rowsB")).intValue() : rowsA;
-        int colsB = task.hasPayload("colsB") ? ((Number) task.getPayloadValue("colsB")).intValue() : colsA;
+        int startRow = toInt(task.getPayloadOrDefault("startRow", 0));
+        int endRow = toInt(task.getPayloadOrDefault("endRow", 1));
+        int rowsA = toInt(task.getPayloadOrDefault("rowsA", 1000));
+        int colsA = toInt(task.getPayloadOrDefault("colsA", 1000));
+        int rowsB = task.hasPayload("rowsB") ? toInt(task.getPayloadValue("rowsB")) : rowsA;
+        int colsB = task.hasPayload("colsB") ? toInt(task.getPayloadValue("colsB")) : colsA;
         Map<String, Object> genA = (Map<String, Object>) task.getPayloadValue("genA");
         Map<String, Object> genB = (Map<String, Object>) task.getPayloadValue("genB");
-        double scalar = task.hasPayload("scalar") ? ((Number) task.getPayloadValue("scalar")).doubleValue() : 2.0;
+        double scalar = task.hasPayload("scalar") ? toDouble(task.getPayloadValue("scalar")) : 2.0;
 
         int rowCount = Math.max(1, endRow - startRow);
         System.out.printf("[%s]  |-- [Buoc 1/4] Tiep nhan nhiem vu lat cat [%d..%d) / %d dong (Phep toan: %s)... OK%n",
@@ -523,21 +579,22 @@ public class TaskExecutor {
         System.out.printf("[%s]  |-- [Buoc 3/4] Tinh toan song song cho %d dong:%n", workerId, rowCount);
 
         String typeA = genA != null ? (String) genA.getOrDefault("generator", genA.getOrDefault("type", "random")) : "random";
-        long seedA = genA != null && genA.get("seed") != null ? ((Number) genA.get("seed")).longValue() : 42L;
-        double minA = genA != null && genA.get("min") != null ? ((Number) genA.get("min")).doubleValue() : 1.0;
-        double maxA = genA != null && genA.get("max") != null ? ((Number) genA.get("max")).doubleValue() : 10.0;
-        double valA = genA != null && genA.get("val") != null ? ((Number) genA.get("val")).doubleValue() : 0.0;
+        long seedA = genA != null && genA.get("seed") != null ? toLong(genA.get("seed")) : 42L;
+        double minA = genA != null && genA.get("min") != null ? toDouble(genA.get("min")) : 1.0;
+        double maxA = genA != null && genA.get("max") != null ? toDouble(genA.get("max")) : 10.0;
+        double valA = genA != null && genA.get("val") != null ? toDouble(genA.get("val")) : 0.0;
 
         String typeB = genB != null ? (String) genB.getOrDefault("generator", genB.getOrDefault("type", "random")) : "random";
-        long seedB = genB != null && genB.get("seed") != null ? ((Number) genB.get("seed")).longValue() : 99L;
-        double minB = genB != null && genB.get("min") != null ? ((Number) genB.get("min")).doubleValue() : 1.0;
-        double maxB = genB != null && genB.get("max") != null ? ((Number) genB.get("max")).doubleValue() : 10.0;
-        double valB = genB != null && genB.get("val") != null ? ((Number) genB.get("val")).doubleValue() : 0.0;
+        long seedB = genB != null && genB.get("seed") != null ? toLong(genB.get("seed")) : 99L;
+        double minB = genB != null && genB.get("min") != null ? toDouble(genB.get("min")) : 1.0;
+        double maxB = genB != null && genB.get("max") != null ? toDouble(genB.get("max")) : 10.0;
+        double valB = genB != null && genB.get("val") != null ? toDouble(genB.get("val")) : 0.0;
 
         int sampleCols = Math.min(6, Math.max(1, colsA));
         double[][] partialResult = new double[Math.min(rowCount, 4)][sampleCols];
 
         for (int i = 0; i < rowCount; i++) {
+            reportProgress(i + 1, rowCount);
             int r = startRow + i;
             if (i < partialResult.length) {
                 for (int j = 0; j < sampleCols; j++) {
