@@ -41,10 +41,13 @@ public class WorkerConfig {
     }
     private String bindHost = "0.0.0.0";
     private boolean demoDelay;
+    private boolean startPaused;
     public String getBindHost() { return bindHost; }
     public void setBindHost(String value) { bindHost = value; }
     public boolean isDemoDelay() { return demoDelay; }
     public void setDemoDelay(boolean value) { demoDelay = value; }
+    public boolean isStartPaused() { return startPaused; }
+    public void setStartPaused(boolean value) { startPaused = value; }
     private String host = "127.0.0.1";
     private int port;
     private String masterHost = "127.0.0.1";

@@ -1,3 +1,4 @@
+D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\app\SupervisorLeaseTest.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\AsyncMatrixJobTest.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\BenchmarkActiveWorkersTest.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\DispatcherRecoveryTest.java
@@ -7,6 +8,9 @@ D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\LaptopClusterTest.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\LaptopSchedulingTest.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\LoadBalancingTest.java
+D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\master\LocalWorkerManagerTest.java
+D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\master\MasterStateStoreTest.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\MatrixComputationTest.java
+D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\MultiMachineWebManagementTest.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\ProtocolReliabilityTest.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\test\java\com\pbl4\ResourceSchedulingTest.java

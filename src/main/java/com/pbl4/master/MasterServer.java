@@ -22,12 +22,16 @@ import java.util.function.Supplier;
 public class MasterServer {
     private final int port;
     private final String bindHost;
+    private final Path dataDirectory;
     private final String jarSha256 = com.pbl4.core.network.RuntimeBuild.SHA256;
     private final String session = UUID.randomUUID().toString();
-    private final WorkerRegistry registry = new WorkerRegistry();
-    private final TaskScheduler scheduler = new TaskScheduler(registry);
-    private final JobDispatcher dispatcher = new JobDispatcher(session, scheduler);
+    private final WorkerRegistry registry;
+    private final TaskScheduler scheduler;
+    private final JobDispatcher dispatcher;
     private final MasterStateStore stateStore;
+    private final LocalWorkerManager localWorkerManager;
+    private final ExecutorService asyncJobExecutor;
+    private final ExecutorService workerControlPool;
     private final AtomicBoolean running = new AtomicBoolean();
     private ServerSocket serverSocket;
     private ExecutorService connectionThreadPool;
@@ -38,23 +42,55 @@ public class MasterServer {
     }
     public MasterServer(int port, String bindHost, Path dataDirectory) {
         this.port = port; this.bindHost = bindHost;
-        try { stateStore = new MasterStateStore(dataDirectory); }
+        this.dataDirectory = dataDirectory.toAbsolutePath().normalize();
+        try { stateStore = new MasterStateStore(this.dataDirectory); }
         catch (IOException e) { throw new IllegalStateException("Cannot open durable Master state: " + e.getMessage(), e); }
-        dispatcher.setResultCommitter(result -> {
-            if (result.isSuccess() && stateStore.hasJob(result.getJobId())) stateStore.recordResult(result.getJobId(), result);
-        });
-        dispatcher.setAttemptRecorder(new JobDispatcher.AttemptRecorder() {
-            @Override public void record(Task task, WorkerInfo worker) throws IOException {
-                if (stateStore.hasJob(task.getJobId())) stateStore.recordAttempt(task.getJobId(), task.getTaskId(),
-                    task.attemptId, worker.getWorkerId(), worker.sessionId, session, System.currentTimeMillis());
-            }
-            @Override public void transition(Task task, WorkerInfo worker, String attemptId, String state, String reason) throws IOException {
-                if (stateStore.hasJob(task.getJobId())) stateStore.updateAttemptState(task.getJobId(), task.getTaskId(),
-                    attemptId, state, System.currentTimeMillis(), reason);
-            }
-        });
-        restoreAsyncJobs();
-        registry.setOnWorkerFailedListener(dispatcher::workerFailed);
+        WorkerRegistry initializedRegistry = null;
+        JobDispatcher initializedDispatcher = null;
+        ExecutorService initializedAsyncJobExecutor = null;
+        ExecutorService initializedControlPool = null;
+        try {
+            initializedRegistry = new WorkerRegistry();
+            initializedRegistry.loadAliases(stateStore.aliases());
+            TaskScheduler initializedScheduler = new TaskScheduler(initializedRegistry);
+            initializedDispatcher = new JobDispatcher(session, initializedScheduler);
+            initializedAsyncJobExecutor = Executors.newCachedThreadPool();
+            initializedControlPool = Executors.newFixedThreadPool(8, runnable -> {
+                Thread t = new Thread(runnable, "master-worker-control");
+                t.setDaemon(true);
+                return t;
+            });
+            registry = initializedRegistry;
+            scheduler = initializedScheduler;
+            dispatcher = initializedDispatcher;
+            asyncJobExecutor = initializedAsyncJobExecutor;
+            workerControlPool = initializedControlPool;
+            localWorkerManager = new LocalWorkerManager(this, this.dataDirectory.resolve("managed-workers"));
+
+            dispatcher.setResultCommitter(result -> {
+                if (result.isSuccess() && stateStore.hasJob(result.getJobId())) stateStore.recordResult(result.getJobId(), result);
+            });
+            dispatcher.setAttemptRecorder(new JobDispatcher.AttemptRecorder() {
+                @Override public void record(Task task, WorkerInfo worker) throws IOException {
+                    if (stateStore.hasJob(task.getJobId())) stateStore.recordAttempt(task.getJobId(), task.getTaskId(),
+                        task.attemptId, worker.getWorkerId(), worker.sessionId, session, System.currentTimeMillis());
+                }
+                @Override public void transition(Task task, WorkerInfo worker, String attemptId, String state, String reason) throws IOException {
+                    if (stateStore.hasJob(task.getJobId())) stateStore.updateAttemptState(task.getJobId(), task.getTaskId(),
+                        attemptId, state, System.currentTimeMillis(), reason);
+                }
+            });
+            restoreAsyncJobs();
+            registry.setOnWorkerFailedListener(dispatcher::workerFailed);
+        } catch (RuntimeException | Error startupFailure) {
+            if (initializedControlPool != null) initializedControlPool.shutdownNow();
+            if (initializedAsyncJobExecutor != null) initializedAsyncJobExecutor.shutdownNow();
+            if (initializedDispatcher != null) initializedDispatcher.close();
+            if (initializedRegistry != null) initializedRegistry.shutdown();
+            try { stateStore.close(); }
+            catch (IOException closeError) { startupFailure.addSuppressed(closeError); }
+            throw startupFailure;
+        }
     }
 
     private void restoreAsyncJobs() {
@@ -188,7 +224,19 @@ public class MasterServer {
     }
     public boolean executeJob(Job job, long timeoutMs) { return dispatcher.execute(job, timeoutMs); }
     private int partitions() {
-        return (int) Math.min(256, Math.max(1, 2L * scheduler.effectiveCapacity()));
+        return partitionsForWorkload(0L, Integer.MAX_VALUE);
+    }
+
+    private int partitionsForPlan(MatrixJobPlan plan) {
+        return partitionsForWorkload(plan.maxCells(), plan.a.getRows());
+    }
+
+    private int partitionsForWorkload(long maxCells, int maxRows) {
+        long effectiveCap = Math.max(1L, scheduler.effectiveCapacity());
+        long workerDriven = 2L * effectiveCap;
+        long sizeDriven = maxCells > 1_000_000L ? Math.max(1L, (maxCells + 249_999L) / 250_000L) : 1L;
+        long target = Math.max(workerDriven, sizeDriven);
+        return (int) Math.min(Math.max(1, maxRows), Math.min(1024L, target));
     }
     private <T> T aggregate(Job job, Supplier<T> calculation) {
         try {
@@ -489,6 +537,120 @@ public class MasterServer {
         return true;
     }
 
+    public boolean renameWorker(String workerId, String displayName) {
+        WorkerInfo worker = registry.getWorker(workerId);
+        if (worker == null) return false;
+        String normalized;
+        try {
+            normalized = MasterStateStore.validateDisplayName(displayName);
+            stateStore.recordWorkerAlias(workerId, normalized);
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Invalid worker displayName: " + e.getMessage(), e);
+        }
+        registry.setAlias(workerId, normalized);
+        return true;
+    }
+
+    public String resolveWorkerDisplayName(String workerId) {
+        if (workerId == null || workerId.isBlank()) return workerId;
+        WorkerInfo info = registry.getWorker(workerId);
+        if (info != null && info.displayName != null && !info.displayName.isBlank()) return info.displayName;
+        String alias = registry.getAlias(workerId);
+        return (alias != null && !alias.isBlank()) ? alias : workerId;
+    }
+
+    public Map<String, Object> setWorkersState(String action, List<String> workerIds, String machineId) {
+        String normalizedAction = action == null ? "" : action.trim().toUpperCase(Locale.ROOT);
+        if (!Set.of("PAUSE", "RESUME", "PAUSE_OTHERS", "RESUME_ALL").contains(normalizedAction)) {
+            throw new IllegalArgumentException("action must be PAUSE, RESUME, PAUSE_OTHERS, or RESUME_ALL");
+        }
+        boolean hasWorkerIds = workerIds != null && workerIds.stream().anyMatch(id -> id != null && !id.isBlank());
+        boolean hasMachineId = machineId != null && !machineId.isBlank();
+        if (!"RESUME_ALL".equals(normalizedAction) && !hasWorkerIds && !hasMachineId) {
+            throw new IllegalArgumentException("workerIds or machineId is required for action " + normalizedAction);
+        }
+
+        Set<String> selectedIds = new LinkedHashSet<>();
+        if (workerIds != null) {
+            for (String wid : workerIds) {
+                if (wid != null && !wid.isBlank()) selectedIds.add(wid.strip());
+            }
+        }
+        if (hasMachineId) {
+            String targetMachine = machineId.strip();
+            for (WorkerInfo w : registry.getAllWorkers()) {
+                if (targetMachine.equals(w.machineId)) selectedIds.add(w.getWorkerId());
+            }
+        }
+
+        List<WorkerInfo> targets = new ArrayList<>();
+        List<String> skippedOfflineIds = new ArrayList<>();
+        boolean targetPaused;
+
+        if ("PAUSE".equals(normalizedAction) || "RESUME".equals(normalizedAction)) {
+            targetPaused = "PAUSE".equals(normalizedAction);
+            for (String wid : selectedIds) {
+                WorkerInfo w = registry.getWorker(wid);
+                if (w == null) continue;
+                if (w.getStatus() == WorkerStatus.OFFLINE) skippedOfflineIds.add(wid);
+                else targets.add(w);
+            }
+        } else if ("PAUSE_OTHERS".equals(normalizedAction)) {
+            targetPaused = true;
+            for (WorkerInfo w : registry.getAllWorkers().stream().sorted(Comparator.comparing(WorkerInfo::getWorkerId)).toList()) {
+                if (!selectedIds.contains(w.getWorkerId())) {
+                    if (w.getStatus() == WorkerStatus.OFFLINE) skippedOfflineIds.add(w.getWorkerId());
+                    else targets.add(w);
+                }
+            }
+        } else {
+            targetPaused = false;
+            for (WorkerInfo w : registry.getAllWorkers().stream().sorted(Comparator.comparing(WorkerInfo::getWorkerId)).toList()) {
+                if (w.getStatus() == WorkerStatus.OFFLINE) skippedOfflineIds.add(w.getWorkerId());
+                else targets.add(w);
+            }
+        }
+
+        List<String> updatedWorkerIds = new ArrayList<>(targets.size());
+        List<Future<?>> futures = new ArrayList<>(targets.size());
+        for (WorkerInfo w : targets) {
+            w.paused = targetPaused;
+            updatedWorkerIds.add(w.getWorkerId());
+            futures.add(workerControlPool.submit(() -> {
+                try {
+                    Message req = Message.setWorkerState(w.getWorkerId(), !targetPaused);
+                    req.masterSession = session;
+                    SocketMessenger.sendAndReceive(w.getHost(), w.getPort(), req, 1000);
+                } catch (IOException e) {
+                    System.err.println("[Master] State saved for " + w.getWorkerId() + "; heartbeat will synchronize: " + e.getMessage());
+                }
+            }));
+        }
+        for (Future<?> f : futures) {
+            try { f.get(); }
+            catch (InterruptedException e) { Thread.currentThread().interrupt(); break; }
+            catch (ExecutionException ignored) { }
+        }
+
+        int activeCount = 0;
+        int pausedCount = 0;
+        for (WorkerInfo w : registry.getAllWorkers()) {
+            if (w.getStatus() != WorkerStatus.OFFLINE) {
+                if (w.paused) pausedCount++;
+                else activeCount++;
+            }
+        }
+
+        Map<String, Object> resp = new LinkedHashMap<>();
+        resp.put("success", true);
+        resp.put("action", normalizedAction);
+        resp.put("updatedWorkerIds", updatedWorkerIds);
+        resp.put("skippedOfflineIds", skippedOfflineIds);
+        resp.put("activeCount", activeCount);
+        resp.put("pausedCount", pausedCount);
+        return resp;
+    }
+
     /**
      * Gioi han so luong Worker duoc phep nhan tac vu (phuc vu Benchmark 1 worker vs nhieu worker).
      * Neu count <= 0 hoac >= so worker online: mo khoa (unpause) toan bo.
@@ -523,7 +685,8 @@ public class MasterServer {
     }
     public synchronized void stop() {
         running.set(false);
-
+        localWorkerManager.close();
+        workerControlPool.shutdownNow();
         dispatcher.close(); registry.shutdown();
         asyncJobExecutor.shutdownNow();
         try { stateStore.close(); } catch (IOException e) { System.err.println("[Master] State-store close failed: " + e.getMessage()); }
@@ -540,6 +703,12 @@ public class MasterServer {
         }
         System.out.println("[Master Server] Da dung hoat dong an toan.");
     }
+
+    public Path getDataDirectory() { return dataDirectory; }
+    public String getBindHost() { return bindHost; }
+    public int getActualPort() { ServerSocket s = serverSocket; return s == null ? port : s.getLocalPort(); }
+    public boolean isTcpListening() { ServerSocket s = serverSocket; return running.get() && s != null && !s.isClosed() && s.getLocalPort() > 0; }
+    public LocalWorkerManager getLocalWorkerManager() { return localWorkerManager; }
 
     public WorkerRegistry getRegistry() {
         return registry;
@@ -574,7 +743,7 @@ public class MasterServer {
         public volatile double progressPercent;
         public long totalUnits;
         public volatile long completedUnits;
-        public volatile Map<String, Long> workerCompletedTasks = Map.of();
+        public volatile Map<String, Long> workerCompletedTasks = new LinkedHashMap<>();
         public volatile long durationMs;
         public volatile Object result;
         public volatile Matrix resultMatrix;
@@ -605,9 +774,6 @@ public class MasterServer {
     }
 
     private final ConcurrentMap<String, AsyncJobRecord> asyncJobs = new ConcurrentHashMap<>();
-    private final ExecutorService asyncJobExecutor = Executors.newCachedThreadPool();
-
-
     public String simulateFailoverWorker() {
         List<WorkerInfo> online = registry.getAvailableWorkers().stream()
                 .filter(w -> !w.paused && w.getStatus() == WorkerStatus.ONLINE)
@@ -634,6 +800,13 @@ public class MasterServer {
                                               Map<String, Object> genA, Map<String, Object> genB,
                                               Double scalar, int taskCount, double[][] inputA, double[][] inputB,
                                               String idempotencyKey) {
+        return submitAsyncMatrixJob(op, rowsA, colsA, rowsB, colsB, genA, genB, scalar, taskCount, inputA, inputB, idempotencyKey, false);
+    }
+
+    public synchronized AsyncJobRecord submitAsyncMatrixJob(String op, int rowsA, int colsA, int rowsB, int colsB,
+                                              Map<String, Object> genA, Map<String, Object> genB,
+                                              Double scalar, int taskCount, double[][] inputA, double[][] inputB,
+                                              String idempotencyKey, boolean compareSequential) {
         MatrixJobPlan plan = new MatrixJobPlan(op, rowsA, colsA, rowsB, colsB, genA, genB, scalar, inputA, inputB);
         String safeOp = switch (plan.operation) {
             case "+" -> "add";
@@ -645,8 +818,8 @@ public class MasterServer {
         };
         String jobId = "async-" + safeOp + "-" + UUID.randomUUID();
         String title = String.format("Tinh toan ma tran phan tan [%s]: A [%d x %d]", plan.operation, rowsA, colsA);
-        // Partition work independently of the worker count; never start local workers implicitly.
-        List<Task> tasks = plan.tasks(jobId, taskCount <= 0 ? partitions() : Math.min(256, taskCount));
+        // Partition work dynamically for active workers/machines and matrix scale without implicitly spawning workers.
+        List<Task> tasks = plan.tasks(jobId, taskCount <= 0 ? partitionsForPlan(plan) : Math.min(1024, taskCount));
         Job job = new Job(jobId, title, tasks.get(0).getTaskType());
         job.setTasks(tasks);
         long startedAt = System.currentTimeMillis();
@@ -657,6 +830,7 @@ public class MasterServer {
         request.put("operation", plan.operation); request.put("rowsA", rowsA); request.put("colsA", colsA);
         request.put("rowsB", rowsB); request.put("colsB", colsB); request.put("genA", genA); request.put("genB", genB);
         request.put("scalar", plan.scalar); request.put("taskCount", tasks.size()); request.put("requestedTaskCount", taskCount);
+        request.put("compareSequential", compareSequential);
         request.put("matrixA", inputA); request.put("matrixB", inputB);
         String fingerprint = requestFingerprint(request);
         try {
@@ -755,7 +929,13 @@ public class MasterServer {
             summary.put("totalChunks", rec.totalTasks);
             summary.put("chunkSize", (int) Math.ceil((double) plan.a.getRows() / rec.totalTasks) + " dong / chunk (toi da)");
             summary.put("workersOnline", registry.getAvailableWorkers().size());
-            summary.put("workerIds", job.getResults().values().stream().map(TaskResult::getWorkerId).distinct().sorted().toList());
+            List<String> finishedWorkerIds = job.getResults().values().stream().map(TaskResult::getWorkerId).distinct().sorted().toList();
+            summary.put("workerIds", finishedWorkerIds);
+            Map<String, String> workerDisplayNames = new LinkedHashMap<>();
+            for (String wid : finishedWorkerIds) {
+                workerDisplayNames.put(wid, resolveWorkerDisplayName(wid));
+            }
+            summary.put("workerDisplayNames", workerDisplayNames);
             Map<String, Long> finishedWorkers = new TreeMap<>();
             job.getResults().values().forEach(r -> finishedWorkers.merge(r.getWorkerId(), 1L, Long::sum));
             rec.workerCompletedTasks = Map.copyOf(finishedWorkers);
@@ -794,7 +974,16 @@ public class MasterServer {
                 }
                 rec.result = output;
             }
+            long distElapsedMs = Math.max(1L, System.currentTimeMillis() - rec.startTime);
             summary.put("distributedTimeMs", System.currentTimeMillis() - rec.startTime);
+            if (Boolean.TRUE.equals(rec.request.get("compareSequential"))) {
+                Double seqTimeMs = measureSequentialBaseline(plan, summary);
+                if (seqTimeMs != null) {
+                    summary.put("sequentialTimeMs", Math.round(seqTimeMs * 100.0) / 100.0);
+                    double speedup = seqTimeMs / (double) distElapsedMs;
+                    summary.put("speedup", Math.round(speedup * 1000.0) / 1000.0);
+                }
+            }
             synchronized (rec) {
                 if (rec.status != JobStatus.FAILED) {
                     rec.resultSummary = summary;
@@ -822,6 +1011,90 @@ public class MasterServer {
             rec.endTime = System.currentTimeMillis();
             rec.durationMs = rec.endTime - rec.startTime;
             job.getResults().clear();
+        }
+    }
+
+    private Double measureSequentialBaseline(MatrixJobPlan plan, Map<String, Object> summary) {
+        try {
+            long cells = plan.maxCells();
+            String op = plan.operation;
+            if (cells <= 1_000_000L) {
+                long seqStart = System.nanoTime();
+                switch (op) {
+                    case "+" -> com.pbl4.computing.matrix.MatrixOperations.add(plan.a, plan.b);
+                    case "-" -> com.pbl4.computing.matrix.MatrixOperations.subtract(plan.a, plan.b);
+                    case "%" -> com.pbl4.computing.matrix.MatrixOperations.modulo(plan.a, plan.b);
+                    case "x" -> com.pbl4.computing.matrix.MatrixOperations.multiply(plan.a, plan.b);
+                    case "scalar" -> com.pbl4.computing.matrix.MatrixOperations.multiplyScalar(plan.a, plan.scalar);
+                    case "t" -> com.pbl4.computing.matrix.MatrixOperations.transpose(plan.a);
+                    case "inv" -> com.pbl4.computing.matrix.MatrixOperations.inverse(plan.a);
+                    case "det" -> com.pbl4.computing.matrix.MatrixOperations.determinant(plan.a);
+                    case "rank" -> com.pbl4.computing.matrix.MatrixOperations.rank(plan.a);
+                    default -> { return null; }
+                }
+                summary.put("sequentialEstimated", false);
+                return (System.nanoTime() - seqStart) / 1_000_000.0;
+            }
+            // For matrices > 1M cells up to 50M cells, calibrate sequentially on a representative row slice
+            // without allocating an extra 400 MB matrix or stalling for minutes on O(N^3) operations.
+            if (Set.of("+", "-", "%", "scalar", "t").contains(op)) {
+                int totalRows = plan.a.getRows();
+                int cols = plan.a.getCols();
+                int sampleRows = Math.max(1, Math.min(totalRows, (int) Math.max(1L, 500_000L / Math.max(1, cols))));
+                double[][] aData = plan.a.getData();
+                double[][] bData = plan.b != null ? plan.b.getData() : null;
+                double[] rowBuf = new double[cols];
+                long seqStart = System.nanoTime();
+                for (int r = 0; r < sampleRows; r++) {
+                    double[] ra = aData[r];
+                    if ("+".equals(op)) {
+                        double[] rb = bData[r];
+                        for (int c = 0; c < cols; c++) rowBuf[c] = ra[c] + rb[c];
+                    } else if ("-".equals(op)) {
+                        double[] rb = bData[r];
+                        for (int c = 0; c < cols; c++) rowBuf[c] = ra[c] - rb[c];
+                    } else if ("%".equals(op)) {
+                        double[] rb = bData[r];
+                        for (int c = 0; c < cols; c++) rowBuf[c] = rb[c] == 0 ? 0.0 : ra[c] % rb[c];
+                    } else if ("scalar".equals(op)) {
+                        for (int c = 0; c < cols; c++) rowBuf[c] = ra[c] * plan.scalar;
+                    } else {
+                        for (int c = 0; c < cols; c++) rowBuf[c] = ra[c];
+                    }
+                }
+                double sampleMs = (System.nanoTime() - seqStart) / 1_000_000.0;
+                summary.put("sequentialEstimated", sampleRows < totalRows);
+                return sampleMs * ((double) totalRows / sampleRows);
+            }
+            if ("x".equals(op)) {
+                int totalRows = plan.a.getRows();
+                int inner = plan.a.getCols();
+                int colsB = plan.b.getCols();
+                int sampleRows = Math.max(1, Math.min(totalRows, Math.max(2, (int) (100_000L / Math.max(1, inner)))));
+                double[][] aData = plan.a.getData();
+                double[][] bData = plan.b.getData();
+                double[] rowBuf = new double[colsB];
+                long seqStart = System.nanoTime();
+                for (int r = 0; r < sampleRows; r++) {
+                    Arrays.fill(rowBuf, 0.0);
+                    double[] ra = aData[r];
+                    for (int k = 0; k < inner; k++) {
+                        double aik = ra[k];
+                        if (aik == 0.0) continue;
+                        double[] bk = bData[k];
+                        for (int c = 0; c < colsB; c++) {
+                            rowBuf[c] += aik * bk[c];
+                        }
+                    }
+                }
+                double sampleMs = (System.nanoTime() - seqStart) / 1_000_000.0;
+                summary.put("sequentialEstimated", sampleRows < totalRows);
+                return sampleMs * ((double) totalRows / sampleRows);
+            }
+            summary.put("sequentialNote", "Ma trận > 1.000.000 phần tử bỏ qua chạy tuần tự trực tiếp cho phép tính bậc 3.");
+            return null;
+        } catch (Exception e) {
+            return null;
         }
     }
 
@@ -872,8 +1145,17 @@ public class MasterServer {
             resp.put("etaMs", rec.status == JobStatus.COMPLETED ? 0 : null);
         }
 
-        List<Map<String, Object>> events = new ArrayList<>(dispatcher.getRecentFailoverEvents());
-        events.addAll(rec.failoverLogs);
+        List<Map<String, Object>> rawEvents = new ArrayList<>(dispatcher.getRecentFailoverEvents());
+        rawEvents.addAll(rec.failoverLogs);
+        List<Map<String, Object>> events = new ArrayList<>(rawEvents.size());
+        for (Map<String, Object> raw : rawEvents) {
+            Map<String, Object> copy = new LinkedHashMap<>(raw);
+            Object widObj = copy.get("workerId");
+            if (widObj instanceof String wid) {
+                copy.put("displayName", resolveWorkerDisplayName(wid));
+            }
+            events.add(copy);
+        }
         resp.put("failoverEvents", events);
 
         List<WorkerInfo> allWorkers = registry.getAllWorkers();
@@ -881,6 +1163,7 @@ public class MasterServer {
         for (WorkerInfo w : allWorkers) {
             Map<String, Object> wMap = new LinkedHashMap<>();
             wMap.put("workerId", w.getWorkerId());
+            wMap.put("displayName", w.displayName);
             wMap.put("machineId", w.machineId); wMap.put("machineName", w.machineName);
             wMap.put("hostParallelism", w.hostParallelism);
             wMap.put("processGroupId", w.processGroupId); wMap.put("groupParallelism", w.groupParallelism);
@@ -908,7 +1191,20 @@ public class MasterServer {
 
         if (rec.status == JobStatus.COMPLETED) {
             resp.put("result", rec.result);
-            resp.put("resultSummary", rec.resultSummary);
+            if (rec.resultSummary != null) {
+                Map<String, Object> summaryCopy = new LinkedHashMap<>(rec.resultSummary);
+                Object widsObj = summaryCopy.get("workerIds");
+                if (widsObj instanceof List<?> wids) {
+                    Map<String, String> liveNames = new LinkedHashMap<>();
+                    for (Object o : wids) {
+                        if (o instanceof String wid) liveNames.put(wid, resolveWorkerDisplayName(wid));
+                    }
+                    summaryCopy.put("workerDisplayNames", liveNames);
+                }
+                resp.put("resultSummary", summaryCopy);
+            } else {
+                resp.put("resultSummary", null);
+            }
             resp.put("durationMs", rec.durationMs);
         } else if (rec.status == JobStatus.FAILED || rec.status == JobStatus.CANCELLED) {
             resp.put("error", rec.error);

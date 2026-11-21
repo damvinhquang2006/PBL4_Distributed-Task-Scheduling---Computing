@@ -7,12 +7,16 @@ import com.pbl4.master.MasterServer;
 import com.pbl4.master.scheduler.*;
 import com.pbl4.worker.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LaptopSchedulingTest {
+    @TempDir Path temporaryDirectory;
+
     private WorkerInfo info(String machine, int index, int limit) {
         WorkerInfo w = new WorkerInfo(machine + "-worker-" + index, "127.0.0.1", 5000 + index, 1);
         w.machineId = machine; w.machineName = machine; w.hostParallelism = limit; w.sessionId = w.getWorkerId();
@@ -21,7 +25,7 @@ class LaptopSchedulingTest {
 
     @SuppressWarnings("unchecked")
     @Test void snapshotUsesOnlineLaptopMetadataAfterConfigurationChanges() {
-        MasterServer master = new MasterServer(5000);
+        MasterServer master = new MasterServer(5000, "127.0.0.1", temporaryDirectory);
         try {
             WorkerInfo old = info("a", 0, 2); master.getRegistry().register(old); old.setStatus(WorkerStatus.OFFLINE);
             WorkerInfo current = info("a", 1, 4); current.machineName = "Laptop A new"; master.getRegistry().register(current);

@@ -1,0 +1,1 @@
+{"operation":"x","rowsA":100,"colsA":100,"rowsB":100,"colsB":100,"genA":{"generator":"constant-v1","val":2},"genB":{"generator":"identity-v1"},"scalar":2.0,"taskCount":100,"requestedTaskCount":0,"compareSequential":true,"matrixA":null,"matrixB":null}

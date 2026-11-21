@@ -1,0 +1,2 @@
+{"schemaVersion":1,"type":"CREATE","jobId":"async-mul-99e75cb4-5c86-4db3-ab1f-09026f50ad49","startedAt":1794878532974,"deadlineAt":1794878533224,"totalTasks":3,"inputArtifact":"inputs/async-mul-99e75cb4-5c86-4db3-ab1f-09026f50ad49.json","inputSha256":"16eabb1075f355106fee4d2f2f4e4029827382df09a4cc988f23f3723ad43197"}
+{"schemaVersion":1,"type":"STATE","jobId":"async-mul-99e75cb4-5c86-4db3-ab1f-09026f50ad49","state":"FAILED","error":"Hết thời gian chờ Worker hoàn thành tác vụ. Chưa có Worker đăng ký với Master."}

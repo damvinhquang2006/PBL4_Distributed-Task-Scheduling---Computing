@@ -1,22 +1,26 @@
 {
-  "name": "frontend",
+  "name": "pbl4-master-worker-ui",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node ./node_modules/vite/bin/vite.js",
+    "dev": "node ./node_modules/vite/bin/vite.js --host 0.0.0.0 --port 5173",
     "build": "node ./node_modules/vite/bin/vite.js build",
-    "preview": "node ./node_modules/vite/bin/vite.js preview"
+    "preview": "node ./node_modules/vite/bin/vite.js preview --host 0.0.0.0 --port 5173",
+    "test": "node ./node_modules/vitest/vitest.mjs run"
   },
   "dependencies": {
-    "lucide-react": "^1.57.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "lucide-react": "^0.469.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
-    "@vitejs/plugin-react": "^6.1.1",
-    "vite": "^8.3.0"
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^25.0.1",
+    "rollup": "npm:@rollup/wasm-node@^4.68.5",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
   }
 }

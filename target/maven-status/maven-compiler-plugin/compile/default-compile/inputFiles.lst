@@ -27,6 +27,7 @@ D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\main\java\com
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\main\java\com\pbl4\master\aggregate\ResultAggregator.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\main\java\com\pbl4\master\ClusterSnapshot.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\main\java\com\pbl4\master\http\MasterHttpServer.java
+D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\main\java\com\pbl4\master\LocalWorkerManager.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\main\java\com\pbl4\master\MasterServer.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\main\java\com\pbl4\master\MasterStateStore.java
 D:\New folder (2)\PBL4_Distributed Task Scheduling & Computing\src\main\java\com\pbl4\master\MatrixJobPlan.java

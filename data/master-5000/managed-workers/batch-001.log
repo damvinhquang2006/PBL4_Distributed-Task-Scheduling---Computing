@@ -1,0 +1,715 @@
+[WorkerCluster] laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | opened=3/3 | ports=5201-5203 | compute limit=15 | Master=127.0.0.1:5000
+[WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 0/3 | opened 3/3
+[Worker] REGISTERED desktop-qbgbflp-worker-02 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5202 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-03 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5203 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-01 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5201 -> Master 127.0.0.1:5000
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 3/3 | opened 3/3
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [100 x 1000] (startRow=300) va ma tran B [1000 x 1000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [100 x 1000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [100 x 1000] (startRow=400) va ma tran B [1000 x 1000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [100 x 1000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [----------]   1% (Dong 1/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [----------]   1% (Dong 1/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==--------]  26% (Dong 26/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==--------]  26% (Dong 26/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  51% (Dong 51/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  51% (Dong 51/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  76% (Dong 76/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  76% (Dong 76/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 100/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 100 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [100 x 1000] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 100/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 100 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [100 x 1000] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [100 x 1000] (startRow=900) va ma tran B [1000 x 1000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [100 x 1000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [----------]   1% (Dong 1/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==--------]  26% (Dong 26/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  51% (Dong 51/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [100 x 1000] (startRow=800) va ma tran B [1000 x 1000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [100 x 1000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [----------]   1% (Dong 1/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  76% (Dong 76/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==--------]  26% (Dong 26/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 100/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 100 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [100 x 1000] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  51% (Dong 51/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  76% (Dong 76/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 100/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 100 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [100 x 1000] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [80 x 800] (startRow=320) va ma tran B [800 x 800]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [80 x 800]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [----------]   1% (Dong 1/80 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==--------]  26% (Dong 21/80 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [80 x 800] (startRow=240) va ma tran B [800 x 800]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [80 x 800]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [----------]   1% (Dong 1/80 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  51% (Dong 41/80 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==--------]  26% (Dong 21/80 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  76% (Dong 61/80 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  51% (Dong 41/80 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 80/80 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 80 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [80 x 800] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  76% (Dong 61/80 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 80/80 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 80 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [80 x 800] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [80 x 800] (startRow=560) va ma tran B [800 x 800]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [80 x 800]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [----------]   1% (Dong 1/80 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==--------]  26% (Dong 21/80 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  51% (Dong 41/80 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  76% (Dong 61/80 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 80/80 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 80 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [80 x 800] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [80 x 800] (startRow=640) va ma tran B [800 x 800]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [80 x 800]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [----------]   1% (Dong 1/80 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==--------]  26% (Dong 21/80 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  51% (Dong 41/80 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  76% (Dong 61/80 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 80/80 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 80 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [80 x 800] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [100 x 1000] (startRow=100) va ma tran B [1000 x 1000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [100 x 1000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [100 x 1000] (startRow=200) va ma tran B [1000 x 1000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [100 x 1000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [----------]   1% (Dong 1/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [----------]   1% (Dong 1/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==--------]  26% (Dong 26/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==--------]  26% (Dong 26/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  51% (Dong 51/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  51% (Dong 51/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  76% (Dong 76/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  76% (Dong 76/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 100/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 100 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [100 x 1000] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 100/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 100 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [100 x 1000] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [100 x 1000] (startRow=700) va ma tran B [1000 x 1000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [100 x 1000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [----------]   1% (Dong 1/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==--------]  26% (Dong 26/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  51% (Dong 51/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  76% (Dong 76/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 100/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 100 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [100 x 1000] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [100 x 1000] (startRow=600) va ma tran B [1000 x 1000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [100 x 1000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [----------]   1% (Dong 1/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==--------]  26% (Dong 26/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  51% (Dong 51/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  76% (Dong 76/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 100/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 100 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [100 x 1000] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=9) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=6) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=21) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=24) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=9) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=6) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=24) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=21) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [100 x 1000] (startRow=300) va ma tran B [1000 x 1000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [100 x 1000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [----------]   1% (Dong 1/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [100 x 1000] (startRow=200) va ma tran B [1000 x 1000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [100 x 1000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [----------]   1% (Dong 1/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==--------]  26% (Dong 26/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==--------]  26% (Dong 26/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  51% (Dong 51/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  51% (Dong 51/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  76% (Dong 76/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  76% (Dong 76/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 100/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 100 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [100 x 1000] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 100/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 100 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [100 x 1000] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [100 x 1000] (startRow=700) va ma tran B [1000 x 1000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [100 x 1000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [----------]   1% (Dong 1/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==--------]  26% (Dong 26/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  51% (Dong 51/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  76% (Dong 76/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 100/100 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 100 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [100 x 1000] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [100 x 1000] (startRow=900) va ma tran B [1000 x 1000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [100 x 1000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [----------]   1% (Dong 1/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==--------]  26% (Dong 26/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  51% (Dong 51/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  76% (Dong 76/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 100/100 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 100 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [100 x 1000] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=0) va ma tran B [100 x 100]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=40) va ma tran B [100 x 100]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=50) va ma tran B [100 x 100]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=90) va ma tran B [100 x 100]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=0) va ma tran B [100 x 100]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=40) va ma tran B [100 x 100]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=50) va ma tran B [100 x 100]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=90) va ma tran B [100 x 100]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=12) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=0) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=27) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=15) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=0) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=12) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=15) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [3 x 30] (startRow=27) va ma tran B [30 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 30]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 30] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [3 x 29] (startRow=12) va ma tran B [29 x 29]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 29]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [3 x 29] (startRow=0) va ma tran B [29 x 29]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 29]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 29] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 29] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [3 x 29] (startRow=15) va ma tran B [29 x 29]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [3 x 29]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 1/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [======----]  67% (Dong 2/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 3/3 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 3 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [3 x 29] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [2 x 29] (startRow=27) va ma tran B [29 x 29]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 29]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 1/2 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 29] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=0) va ma tran B [100 x 100]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=40) va ma tran B [100 x 100]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=50) va ma tran B [100 x 100]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=90) va ma tran B [100 x 100]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=---------]  10% (Dong 1/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [===-------]  30% (Dong 3/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  50% (Dong 5/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  70% (Dong 7/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=========-]  90% (Dong 9/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
+[WorkerCluster] laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | opened=10/10 | ports=5201-5210 | compute limit=15 | Master=127.0.0.1:5000
+[WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 0/10 | opened 10/10
+[Worker] REGISTERED desktop-qbgbflp-worker-01 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5201 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-03 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5203 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-07 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5207 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-02 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5202 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-04 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5204 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-06 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5206 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-05 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5205 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-08 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5208 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-09 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5209 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-10 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5210 -> Master 127.0.0.1:5000
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 10/10 | opened 10/10
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-06 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-01 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-02 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-03 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-07 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-08 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-05 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 2/10 | opened 10/10
+[Worker reconnect] desktop-qbgbflp-worker-09 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-10 / desktop-qbgbflp: Read timed out
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 0/10 | opened 10/10
+[Worker] REGISTERED desktop-qbgbflp-worker-07 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5207 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-08 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5208 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-05 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5205 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-03 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5203 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-06 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5206 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-01 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5201 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-02 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5202 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-10 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5210 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-09 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5209 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-04 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5204 -> Master 127.0.0.1:5000
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 10/10 | opened 10/10
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[WorkerCluster] laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | opened=10/10 | ports=5201-5210 | compute limit=15 | Master=127.0.0.1:5000
+[WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 0/10 | opened 10/10
+[Worker] REGISTERED desktop-qbgbflp-worker-08 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5208 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-02 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5202 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-03 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5203 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-01 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5201 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-06 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5206 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-07 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5207 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-04 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5204 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-05 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5205 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-10 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5210 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-09 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5209 -> Master 127.0.0.1:5000
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 10/10 | opened 10/10
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[Worker connection] Read timed out
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 8/10 | opened 10/10
+[Worker reconnect] desktop-qbgbflp-worker-06 / desktop-qbgbflp: An established connection was aborted by the software in your host machine
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: An established connection was aborted by the software in your host machine
+[Worker reconnect] desktop-qbgbflp-worker-05 / desktop-qbgbflp: null
+[desktop-qbgbflp-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [84 x 3000] (startRow=252) va ma tran B [3000 x 3000]... OK
+[desktop-qbgbflp-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [84 x 3000]... OK
+[desktop-qbgbflp-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [84 x 3000] (startRow=336) va ma tran B [3000 x 3000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [84 x 3000]... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 7/10 | opened 10/10
+[Worker] REGISTERED desktop-qbgbflp-worker-06 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5206 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-04 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5204 -> Master 127.0.0.1:5000
+[Worker] REGISTERED desktop-qbgbflp-worker-05 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5205 -> Master 127.0.0.1:5000
+[desktop-qbgbflp-worker-05]  |-- [Buoc 1/5] Nhan lat cat A [84 x 3000] (startRow=588) va ma tran B [3000 x 3000]... OK
+[desktop-qbgbflp-worker-05]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [84 x 3000]... OK
+[desktop-qbgbflp-worker-05]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [84 x 3000] (startRow=420) va ma tran B [3000 x 3000]... OK
+[desktop-qbgbflp-worker-01]  |    |-- Tien do: [----------]   1% (Dong 1/84 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [84 x 3000]... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [----------]   1% (Dong 1/84 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [----------]   1% (Dong 1/84 hoan tat)
+[desktop-qbgbflp-worker-05]  |    |-- Tien do: [----------]   1% (Dong 1/84 hoan tat)
+[desktop-qbgbflp-worker-01]  |    |-- Tien do: [==--------]  26% (Dong 22/84 hoan tat)
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 10/10 | opened 10/10
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==--------]  26% (Dong 22/84 hoan tat)
+[desktop-qbgbflp-worker-05]  |    |-- Tien do: [==--------]  26% (Dong 22/84 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==--------]  26% (Dong 22/84 hoan tat)
+[desktop-qbgbflp-worker-01]  |    |-- Tien do: [=====-----]  51% (Dong 43/84 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=====-----]  51% (Dong 43/84 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=====-----]  51% (Dong 43/84 hoan tat)
+[desktop-qbgbflp-worker-05]  |    |-- Tien do: [=====-----]  51% (Dong 43/84 hoan tat)
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [=======---]  76% (Dong 64/84 hoan tat)
+[desktop-qbgbflp-worker-01]  |    |-- Tien do: [=======---]  76% (Dong 64/84 hoan tat)
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [=======---]  76% (Dong 64/84 hoan tat)
+[desktop-qbgbflp-worker-05]  |    |-- Tien do: [=======---]  76% (Dong 64/84 hoan tat)
+[desktop-qbgbflp-worker-01]  |    |-- Tien do: [==========] 100% (Dong 84/84 hoan tat)
+[desktop-qbgbflp-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 84 dong!... OK
+[desktop-qbgbflp-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [84 x 3000] vao TaskResult... OK
+[desktop-qbgbflp-worker-03]  |    |-- Tien do: [==========] 100% (Dong 84/84 hoan tat)
+[desktop-qbgbflp-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 84 dong!... OK
+[desktop-qbgbflp-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [84 x 3000] vao TaskResult... OK
+[desktop-qbgbflp-worker-05]  |    |-- Tien do: [==========] 100% (Dong 84/84 hoan tat)
+[desktop-qbgbflp-worker-05]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 84 dong!... OK
+[desktop-qbgbflp-worker-05]  |-- [Buoc 5/5] Dong goi lat cat C_slice [84 x 3000] vao TaskResult... OK
+[desktop-qbgbflp-worker-02]  |    |-- Tien do: [==========] 100% (Dong 84/84 hoan tat)
+[desktop-qbgbflp-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 84 dong!... OK
+[desktop-qbgbflp-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [84 x 3000] vao TaskResult... OK
+[Worker connection] An established connection was aborted by the software in your host machine
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: null
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 9/10 | opened 10/10
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+[desktop-qbgbflp-worker-10]  |-- [Buoc 1/5] Nhan lat cat A [83 x 3000] (startRow=1008) va ma tran B [3000 x 3000]... OK
+[desktop-qbgbflp-worker-10]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [83 x 3000]... OK
+[desktop-qbgbflp-worker-10]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-10]  |    |-- Tien do: [----------]   1% (Dong 1/83 hoan tat)
+[desktop-qbgbflp-worker-07]  |-- [Buoc 1/5] Nhan lat cat A [84 x 3000] (startRow=756) va ma tran B [3000 x 3000]... OK
+[desktop-qbgbflp-worker-07]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [84 x 3000]... OK
+[desktop-qbgbflp-worker-07]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-07]  |    |-- Tien do: [----------]   1% (Dong 1/84 hoan tat)
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+[desktop-qbgbflp-worker-10]  |    |-- Tien do: [==--------]  25% (Dong 21/83 hoan tat)
+[desktop-qbgbflp-worker-07]  |    |-- Tien do: [==--------]  26% (Dong 22/84 hoan tat)
+[desktop-qbgbflp-worker-10]  |    |-- Tien do: [====------]  49% (Dong 41/83 hoan tat)
+[desktop-qbgbflp-worker-10]  |    |-- Tien do: [=======---]  73% (Dong 61/83 hoan tat)
+[desktop-qbgbflp-worker-07]  |    |-- Tien do: [=====-----]  51% (Dong 43/84 hoan tat)
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+Exception in thread "Worker-desktop-qbgbflp-worker-04" [Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-09 / desktop-qbgbflp: An established connection was aborted by the software in your host machine
+java.lang.OutOfMemoryError: Java heap space
+[desktop-qbgbflp-worker-10]  |    |-- Tien do: [=========-]  98% (Dong 81/83 hoan tat)
+[desktop-qbgbflp-worker-10]  |    |-- Tien do: [==========] 100% (Dong 83/83 hoan tat)
+[desktop-qbgbflp-worker-10]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 83 dong!... OK
+[desktop-qbgbflp-worker-10]  |-- [Buoc 5/5] Dong goi lat cat C_slice [83 x 3000] vao TaskResult... OK
+[desktop-qbgbflp-worker-07]  |    |-- Tien do: [=======---]  76% (Dong 64/84 hoan tat)
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 8/10 | opened 10/10
+[Worker reconnect] desktop-qbgbflp-worker-09 / desktop-qbgbflp: Read timed out
+[desktop-qbgbflp-worker-08]  |-- [Buoc 1/5] Nhan lat cat A [84 x 3000] (startRow=840) va ma tran B [3000 x 3000]... OK
+[desktop-qbgbflp-worker-08]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [84 x 3000]... OK
+[desktop-qbgbflp-worker-08]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-08]  |    |-- Tien do: [----------]   1% (Dong 1/84 hoan tat)
+[desktop-qbgbflp-worker-07]  |    |-- Tien do: [==========] 100% (Dong 84/84 hoan tat)
+[desktop-qbgbflp-worker-07]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 84 dong!... OK
+[desktop-qbgbflp-worker-07]  |-- [Buoc 5/5] Dong goi lat cat C_slice [84 x 3000] vao TaskResult... OK
+[Worker connection] An established connection was aborted by the software in your host machine
+[desktop-qbgbflp-worker-08]  |    |-- Tien do: [==--------]  26% (Dong 22/84 hoan tat)
+[desktop-qbgbflp-worker-04]  |-- [Buoc 1/5] Nhan lat cat A [83 x 3000] (startRow=1340) va ma tran B [3000 x 3000]... OK
+[desktop-qbgbflp-worker-04]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [83 x 3000]... OK
+[desktop-qbgbflp-worker-04]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-04]  |    |-- Tien do: [----------]   1% (Dong 1/83 hoan tat)
+[desktop-qbgbflp-worker-08]  |    |-- Tien do: [=====-----]  51% (Dong 43/84 hoan tat)
+[desktop-qbgbflp-worker-04]  |    |-- Tien do: [==--------]  25% (Dong 21/83 hoan tat)
+[desktop-qbgbflp-worker-08]  |    |-- Tien do: [=======---]  76% (Dong 64/84 hoan tat)
+[Worker connection] An established connection was aborted by the software in your host machine
+[desktop-qbgbflp-worker-04]  |    |-- Tien do: [====------]  49% (Dong 41/83 hoan tat)
+[desktop-qbgbflp-worker-08]  |    |-- Tien do: [==========] 100% (Dong 84/84 hoan tat)
+[desktop-qbgbflp-worker-08]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 84 dong!... OK
+[desktop-qbgbflp-worker-08]  |-- [Buoc 5/5] Dong goi lat cat C_slice [84 x 3000] vao TaskResult... OK
+[desktop-qbgbflp-worker-04]  |    |-- Tien do: [=======---]  73% (Dong 61/83 hoan tat)
+[Worker reconnect] desktop-qbgbflp-worker-09 / desktop-qbgbflp: Read timed out
+[desktop-qbgbflp-worker-04]  |    |-- Tien do: [=========-]  98% (Dong 81/83 hoan tat)
+[desktop-qbgbflp-worker-04]  |    |-- Tien do: [==========] 100% (Dong 83/83 hoan tat)
+[desktop-qbgbflp-worker-04]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 83 dong!... OK
+[desktop-qbgbflp-worker-04]  |-- [Buoc 5/5] Dong goi lat cat C_slice [83 x 3000] vao TaskResult... OK
+[Worker connection] An established connection was aborted by the software in your host machine
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-09 / desktop-qbgbflp: Read timed out
+[desktop-qbgbflp-worker-04]  |-- [Buoc 1/5] Nhan lat cat A [83 x 3000] (startRow=2834) va ma tran B [3000 x 3000]... OK
+[desktop-qbgbflp-worker-04]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [83 x 3000]... OK
+[desktop-qbgbflp-worker-04]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-04]  |    |-- Tien do: [----------]   1% (Dong 1/83 hoan tat)
+[desktop-qbgbflp-worker-04]  |    |-- Tien do: [==--------]  25% (Dong 21/83 hoan tat)
+[desktop-qbgbflp-worker-04]  |    |-- Tien do: [====------]  49% (Dong 41/83 hoan tat)
+[desktop-qbgbflp-worker-04]  |    |-- Tien do: [=======---]  73% (Dong 61/83 hoan tat)
+[desktop-qbgbflp-worker-04]  |    |-- Tien do: [=========-]  98% (Dong 81/83 hoan tat)
+[desktop-qbgbflp-worker-04]  |    |-- Tien do: [==========] 100% (Dong 83/83 hoan tat)
+[desktop-qbgbflp-worker-04]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 83 dong!... OK
+[desktop-qbgbflp-worker-04]  |-- [Buoc 5/5] Dong goi lat cat C_slice [83 x 3000] vao TaskResult... OK
+[desktop-qbgbflp-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [84 x 3000] (startRow=336) va ma tran B [3000 x 3000]... OK
+[desktop-qbgbflp-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [84 x 3000]... OK
+[desktop-qbgbflp-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[desktop-qbgbflp-worker-01]  |    |-- Tien do: [----------]   1% (Dong 1/84 hoan tat)
+[desktop-qbgbflp-worker-01]  |    |-- Tien do: [==--------]  26% (Dong 22/84 hoan tat)
+[desktop-qbgbflp-worker-01]  |    |-- Tien do: [=====-----]  51% (Dong 43/84 hoan tat)
+[desktop-qbgbflp-worker-01]  |    |-- Tien do: [=======---]  76% (Dong 64/84 hoan tat)
+[desktop-qbgbflp-worker-01]  |    |-- Tien do: [==========] 100% (Dong 84/84 hoan tat)
+[desktop-qbgbflp-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 84 dong!... OK
+[desktop-qbgbflp-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [84 x 3000] vao TaskResult... OK
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+[Worker] REGISTERED desktop-qbgbflp-worker-09 | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:5209 -> Master 127.0.0.1:5000
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 9/10 | opened 10/10
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Read timed out
+[Worker reconnect] desktop-qbgbflp-worker-03 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-05 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-01 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-10 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-07 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-06 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-08 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-02 / desktop-qbgbflp: Connection refused: getsockopt
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 1/10 | opened 10/10
+[Worker reconnect] desktop-qbgbflp-worker-09 / desktop-qbgbflp: Connection refused: getsockopt
+[WorkerCluster] laptop=desktop-qbgbflp | REGISTERED 0/10 | opened 10/10
+[Worker reconnect] desktop-qbgbflp-worker-01 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-05 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-08 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-03 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-07 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-10 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-02 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-06 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-09 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-08 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-07 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-05 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-01 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-03 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-10 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-06 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-02 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-09 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-05 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-03 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-07 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-08 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-01 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-10 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-02 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-06 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-09 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-04 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-05 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-03 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-01 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-08 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-10 / desktop-qbgbflp: Connection refused: getsockopt
+[Worker reconnect] desktop-qbgbflp-worker-07 / desktop-qbgbflp: Connection refused: getsockopt

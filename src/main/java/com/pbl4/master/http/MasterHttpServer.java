@@ -8,6 +8,7 @@ import com.pbl4.core.model.LoadBalancingPolicy;
 import com.pbl4.core.model.WorkerInfo;
 import com.pbl4.core.model.WorkerStatus;
 import com.pbl4.core.network.JsonUtils;
+import com.pbl4.master.LocalWorkerManager;
 import com.pbl4.master.MasterServer;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
+import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.Executors;
@@ -45,6 +47,11 @@ public class MasterHttpServer {
         server.createContext("/api/cluster", this::handleCluster);
         server.createContext("/api/workers", this::handleWorkers);
         server.createContext("/api/workers/toggle", this::handleToggleWorker);
+        server.createContext("/api/workers/rename", this::handleRenameWorker);
+        server.createContext("/api/workers/state", this::handleWorkersState);
+        server.createContext("/api/local-workers", this::handleLocalWorkers);
+        server.createContext("/api/local-workers/start", this::handleLocalWorkersStart);
+        server.createContext("/api/local-workers/stop", this::handleLocalWorkersStop);
         server.createContext("/api/policy", this::handlePolicy);
         server.createContext("/api/compute", this::handleCompute);
         server.createContext("/api/compute/async", this::handleComputeAsync);
@@ -153,6 +160,158 @@ public class MasterHttpServer {
         ));
     }
 
+    private void handleRenameWorker(HttpExchange exchange) throws IOException {
+        if (handleCors(exchange)) return;
+        if (!"POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+            sendResponse(exchange, 405, Map.of("error", "Method Not Allowed"));
+            return;
+        }
+
+        Map<String, Object> body = parseBody(exchange);
+        Object workerIdValue = body.get("workerId");
+        Object displayNameValue = body.get("displayName");
+        if (!(workerIdValue instanceof String workerId) || workerId.isBlank()) {
+            sendResponse(exchange, 400, Map.of("error", "workerId is required"));
+            return;
+        }
+        if (!(displayNameValue instanceof String rawName)) {
+            sendResponse(exchange, 400, Map.of("error", "displayName is required"));
+            return;
+        }
+        String displayName = rawName.strip();
+        if (displayName.isEmpty() || displayName.length() > 64 || displayName.chars().anyMatch(Character::isISOControl)) {
+            sendResponse(exchange, 400, Map.of("error", "displayName must contain 1-64 visible characters"));
+            return;
+        }
+        try {
+            if (!masterServer.renameWorker(workerId, displayName)) {
+                sendResponse(exchange, 404, Map.of("error", "Worker not found: " + workerId));
+                return;
+            }
+            sendResponse(exchange, 200, Map.of("success", true, "workerId", workerId, "displayName", displayName));
+        } catch (IllegalArgumentException e) {
+            sendResponse(exchange, 400, Map.of("error", e.getMessage() == null ? "Invalid displayName" : e.getMessage()));
+        }
+    }
+
+    private void handleWorkersState(HttpExchange exchange) throws IOException {
+        if (handleCors(exchange)) return;
+        if (!"POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+            sendResponse(exchange, 405, Map.of("error", "Method Not Allowed"));
+            return;
+        }
+        try {
+            Map<String, Object> body = parseBody(exchange);
+            Object actionObj = body.get("action");
+            if (!(actionObj instanceof String action) || action.isBlank()) {
+                sendResponse(exchange, 400, Map.of("error", "action is required"));
+                return;
+            }
+            List<String> workerIds = null;
+            Object rawIds = body.get("workerIds");
+            if (rawIds != null) {
+                if (!(rawIds instanceof Collection<?> col)) {
+                    sendResponse(exchange, 400, Map.of("error", "workerIds must be an array of strings"));
+                    return;
+                }
+                workerIds = new ArrayList<>();
+                for (Object item : col) {
+                    if (!(item instanceof String s)) {
+                        sendResponse(exchange, 400, Map.of("error", "workerIds must contain strings only"));
+                        return;
+                    }
+                    workerIds.add(s);
+                }
+            }
+            Object machineObj = body.get("machineId");
+            if (machineObj != null && !(machineObj instanceof String)) {
+                sendResponse(exchange, 400, Map.of("error", "machineId must be a string"));
+                return;
+            }
+            String machineId = (String) machineObj;
+            sendResponse(exchange, 200, masterServer.setWorkersState(action, workerIds, machineId));
+        } catch (IllegalArgumentException e) {
+            sendResponse(exchange, 400, Map.of("error", e.getMessage() == null ? "Invalid request" : e.getMessage()));
+        } catch (Exception e) {
+            sendResponse(exchange, 500, Map.of("error", "Failed to update worker states: " + e.getMessage()));
+        }
+    }
+
+    private void handleLocalWorkers(HttpExchange exchange) throws IOException {
+        if (handleCors(exchange)) return;
+        if (!"GET".equalsIgnoreCase(exchange.getRequestMethod())) {
+            sendResponse(exchange, 405, Map.of("error", "Method Not Allowed"));
+            return;
+        }
+        sendResponse(exchange, 200, masterServer.getLocalWorkerManager().getStatusSnapshot());
+    }
+
+    private void handleLocalWorkersStart(HttpExchange exchange) throws IOException {
+        if (handleCors(exchange)) return;
+        if (!"POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+            sendResponse(exchange, 405, Map.of("error", "Method Not Allowed"));
+            return;
+        }
+        try {
+            Map<String, Object> body = parseBody(exchange);
+            Object countObj = body.get("count");
+            if (!(countObj instanceof Number countNum)) {
+                sendResponse(exchange, 400, Map.of("error", "count is required (1..32)"));
+                return;
+            }
+            Integer startPort = optionalInt(body, "startPort");
+            Integer capacity = optionalInt(body, "capacity");
+            String machineId = optionalString(body, "machineId");
+            String machineName = optionalString(body, "machineName");
+            String displayNamePrefix = optionalString(body, "displayNamePrefix");
+            boolean startPaused = Boolean.TRUE.equals(body.get("startPaused"));
+
+            LocalWorkerManager.StartRequest req = new LocalWorkerManager.StartRequest(
+                    countNum.intValue(), startPort, machineId, machineName, capacity, displayNamePrefix, startPaused);
+            sendResponse(exchange, 200, masterServer.getLocalWorkerManager().startBatch(req));
+        } catch (LocalWorkerManager.MasterNotRunningException e) {
+            sendResponse(exchange, 409, Map.of("error", e.getMessage()));
+        } catch (IllegalArgumentException e) {
+            sendResponse(exchange, 400, Map.of("error", e.getMessage() == null ? "Invalid start request" : e.getMessage()));
+        } catch (Exception e) {
+            sendResponse(exchange, 500, Map.of("error", e.getMessage() == null ? "Failed to start local workers" : e.getMessage()));
+        }
+    }
+
+    private void handleLocalWorkersStop(HttpExchange exchange) throws IOException {
+        if (handleCors(exchange)) return;
+        if (!"POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+            sendResponse(exchange, 405, Map.of("error", "Method Not Allowed"));
+            return;
+        }
+        try {
+            Map<String, Object> body = parseBody(exchange);
+            String batchId = optionalString(body, "batchId");
+            boolean all = Boolean.TRUE.equals(body.get("all"));
+            sendResponse(exchange, 200, masterServer.getLocalWorkerManager().stopBatch(batchId, all));
+        } catch (NoSuchElementException e) {
+            sendResponse(exchange, 404, Map.of("error", e.getMessage()));
+        } catch (IllegalArgumentException e) {
+            sendResponse(exchange, 400, Map.of("error", e.getMessage() == null ? "Invalid stop request" : e.getMessage()));
+        } catch (Exception e) {
+            sendResponse(exchange, 500, Map.of("error", e.getMessage() == null ? "Failed to stop local workers" : e.getMessage()));
+        }
+    }
+
+    private static Integer optionalInt(Map<String, Object> body, String key) {
+        Object value = body.get(key);
+        if (value == null) return null;
+        if (!(value instanceof Number n)) throw new IllegalArgumentException(key + " must be a number");
+        return n.intValue();
+    }
+
+    private static String optionalString(Map<String, Object> body, String key) {
+        Object value = body.get(key);
+        if (value == null) return null;
+        if (!(value instanceof String s)) throw new IllegalArgumentException(key + " must be a string");
+        return s;
+    }
+
     private void handlePolicy(HttpExchange exchange) throws IOException {
         if (handleCors(exchange)) return;
         if (!"POST".equalsIgnoreCase(exchange.getRequestMethod())) {
@@ -230,8 +389,8 @@ public class MasterHttpServer {
                                 A.getCols(), B.getRows())));
                         return;
                     }
-                    if ((long) A.getRows() * B.getCols() > 1_000_000) {
-                        sendResponse(exchange, 400, Map.of("error", "Ma trận kết quả hỗ trợ tối đa 1.000.000 phần tử.")); return;
+                    if ((long) A.getRows() * B.getCols() > 50_000_000L) {
+                        sendResponse(exchange, 400, Map.of("error", "Ma trận kết quả hỗ trợ tối đa 50.000.000 phần tử.")); return;
                     }
                 } else {
                     sendResponse(exchange, 400, Map.of("error", "Unsupported operation: " + op));
@@ -417,13 +576,14 @@ public class MasterHttpServer {
 
             Map<String, Object> genA = (Map<String, Object>) body.getOrDefault("genA", Collections.emptyMap());
             Map<String, Object> genB = (Map<String, Object>) body.getOrDefault("genB", Collections.emptyMap());
+            boolean compareSequential = Boolean.TRUE.equals(body.getOrDefault("compareSequential", true));
             String idempotencyKey = exchange.getRequestHeaders().getFirst("Idempotency-Key");
 
             MasterServer.AsyncJobRecord rec = masterServer.submitAsyncMatrixJob(
                     op, rowsA, colsA, rowsB, colsB, genA, genB, scalar, taskCount,
                     com.pbl4.core.network.JsonUtils.getMapper().convertValue(body.get("matrixA"), double[][].class),
                     com.pbl4.core.network.JsonUtils.getMapper().convertValue(body.get("matrixB"), double[][].class),
-                    idempotencyKey);
+                    idempotencyKey, compareSequential);
 
             sendResponse(exchange, 202, Map.of(
                     "success", true,
@@ -513,12 +673,17 @@ public class MasterHttpServer {
             sendResponse(exchange, 400, Map.of("error", "Không có worker khả dụng để ngắt kết nối!"));
             return;
         }
+        String victimDisplayName = masterServer.resolveWorkerDisplayName(victim);
+        String victimLabel = victimDisplayName.equals(victim)
+                ? "[" + victim + "]"
+                : victimDisplayName + " [" + victim + "]";
 
-        sendResponse(exchange, 200, Map.of(
-                "success", true,
-                "victimWorkerId", victim,
-                "message", "Đã ngắt kết nối Worker [" + victim + "]! Hàng đợi Master sẽ tự động failover sang Worker rảnh tiếp theo."
-        ));
+        Map<String, Object> resp = new LinkedHashMap<>();
+        resp.put("success", true);
+        resp.put("victimWorkerId", victim);
+        resp.put("victimDisplayName", victimDisplayName);
+        resp.put("message", "Đã ngắt kết nối Worker " + victimLabel + "! Hàng đợi Master sẽ tự động failover sang Worker rảnh tiếp theo.");
+        sendResponse(exchange, 200, resp);
     }
 
     @SuppressWarnings("unchecked")
@@ -539,13 +704,17 @@ public class MasterHttpServer {
                     .filter(w -> w.getStatus() != WorkerStatus.OFFLINE)
                     .toList();
 
-            sendResponse(exchange, 200, Map.of(
-                    "success", true,
-                    "requestedCount", count,
-                    "activeCount", activeIds.size(),
-                    "activeWorkerIds", activeIds,
-                    "totalOnline", allOnline.size()
-            ));
+            List<Map<String, String>> activeWorkers = activeIds.stream()
+                    .map(id -> Map.of("workerId", id, "displayName", masterServer.resolveWorkerDisplayName(id)))
+                    .toList();
+            Map<String, Object> resp = new LinkedHashMap<>();
+            resp.put("success", true);
+            resp.put("requestedCount", count);
+            resp.put("activeCount", activeIds.size());
+            resp.put("activeWorkerIds", activeIds);
+            resp.put("activeWorkers", activeWorkers);
+            resp.put("totalOnline", allOnline.size());
+            sendResponse(exchange, 200, resp);
         } catch (Exception e) {
             sendResponse(exchange, 500, Map.of("error", "Lỗi cấu hình số lượng worker: " + e.getMessage()));
         }
@@ -625,8 +794,8 @@ public class MasterHttpServer {
 
             } else {
                 // Bai toan ma tran
-                if ((long) size * size > 1_000_000) {
-                    sendResponse(exchange, 400, Map.of("error", "Kích thước ma trận tối đa 1.000.000 phần tử (1000 x 1000)."));
+                if ((long) size * size > 50_000_000L) {
+                    sendResponse(exchange, 400, Map.of("error", "Kích thước ma trận tối đa 50.000.000 phần tử (tối đa 7071 x 7071)."));
                     return;
                 }
 
@@ -702,12 +871,16 @@ public class MasterHttpServer {
             int effectiveWorkers = Math.max(1, activeWorkerIds.size());
             double efficiency = (speedup / effectiveWorkers) * 100.0;
 
+            List<Map<String, String>> activeWorkers = activeWorkerIds.stream()
+                    .map(id -> Map.of("workerId", id, "displayName", masterServer.resolveWorkerDisplayName(id)))
+                    .toList();
             Map<String, Object> resp = new LinkedHashMap<>();
             resp.put("success", true);
             resp.put("problemType", problemType);
             resp.put("size", size);
             resp.put("workerCount", effectiveWorkers);
             resp.put("activeWorkerIds", activeWorkerIds);
+            resp.put("activeWorkers", activeWorkers);
             resp.put("distributedTimeMs", Math.round(distTimeMs * 100.0) / 100.0);
             resp.put("sequentialTimeMs", seqTimeMs != null ? Math.round(seqTimeMs * 100.0) / 100.0 : null);
             resp.put("speedup", Math.round(speedup * 1000.0) / 1000.0);
@@ -728,7 +901,7 @@ public class MasterHttpServer {
         int r = raw.size();
         if (raw.get(0) == null || raw.get(0).isEmpty()) throw new IllegalArgumentException("Ma trận phải có ít nhất một cột.");
         int c = raw.get(0).size();
-        if ((long) r * c > 1_000_000) throw new IllegalArgumentException("Mỗi ma trận hỗ trợ tối đa 1.000.000 phần tử.");
+        if ((long) r * c > 50_000_000L) throw new IllegalArgumentException("Mỗi ma trận hỗ trợ tối đa 50.000.000 phần tử.");
         Matrix m = new Matrix(r, c);
         for (int i = 0; i < r; i++) {
             if (raw.get(i) == null || raw.get(i).size() != c) throw new IllegalArgumentException("Các dòng ma trận phải có cùng số cột.");
@@ -753,15 +926,36 @@ public class MasterHttpServer {
     }
 
     private boolean handleCors(HttpExchange exchange) throws IOException {
-        exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
-        exchange.getResponseHeaders().set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-        exchange.getResponseHeaders().set("Access-Control-Allow-Headers", "Content-Type, Authorization, Idempotency-Key");
+        String origin = exchange.getRequestHeaders().getFirst("Origin");
+        if (origin != null && !isSameHostOrigin(exchange, origin)) {
+            exchange.sendResponseHeaders(403, -1);
+            exchange.close();
+            return true;
+        }
+        if (origin != null) {
+            exchange.getResponseHeaders().set("Access-Control-Allow-Origin", origin);
+            exchange.getResponseHeaders().set("Vary", "Origin");
+            exchange.getResponseHeaders().set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            exchange.getResponseHeaders().set("Access-Control-Allow-Headers", "Content-Type, Authorization, Idempotency-Key");
+        }
         if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
             exchange.sendResponseHeaders(204, -1);
             exchange.close();
             return true;
         }
         return false;
+    }
+
+    private boolean isSameHostOrigin(HttpExchange exchange, String origin) {
+        try {
+            URI originUri = URI.create(origin);
+            String requestHost = exchange.getRequestHeaders().getFirst("Host");
+            if (requestHost == null || originUri.getHost() == null || !"http".equalsIgnoreCase(originUri.getScheme())) return false;
+            String apiHost = URI.create("http://" + requestHost).getHost();
+            return apiHost != null && apiHost.equalsIgnoreCase(originUri.getHost());
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     private void sendResponse(HttpExchange exchange, int status, Object data) throws IOException {

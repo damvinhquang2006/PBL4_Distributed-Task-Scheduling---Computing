@@ -12,6 +12,7 @@ param(
     [ValidateRange(0,100)][int]$RestartLimit = 5,
     [ValidateRange(1,300)][int]$MaxBackoffSeconds = 30,
     [string]$BindAddress = '0.0.0.0',
+    [switch]$StartPaused,
     [string]$JarPath = (Join-Path $PSScriptRoot '../target/distributed-task-scheduling-1.0.0.jar')
 )
 $ErrorActionPreference = 'Stop'
@@ -22,7 +23,7 @@ $localAddresses = @([Net.NetworkInformation.NetworkInterface]::GetAllNetworkInte
         $_.GetIPProperties().UnicastAddresses | ForEach-Object { $_.Address.ToString() }
     }
 })
-if ($WorkerAddress -notin $localAddresses) { throw 'WorkerAddress is not an active IP of this laptop. Use its Wi-Fi IPv4 from ipconfig.' }
+if ($WorkerAddress -notin $localAddresses) { throw 'WorkerAddress is not an active IP of this laptop. Use an active address from ipconfig, including the Radmin VPN adapter address for a Radmin cluster.' }
 if ($Groups -gt $Count -or $Groups -gt $HostParallelism) { throw 'Groups cannot exceed Worker count or laptop compute limit.' }
 Write-Host ('Laptop: {0} ({1}) | Ports: {2}-{3} | Compute limit for entire laptop: {4}' -f $MachineId,$MachineName,$StartPort,($StartPort+$Count-1),$HostParallelism)
 Write-Host ('JAR SHA256: ' + (Get-FileHash -LiteralPath $JarPath -Algorithm SHA256).Hash)
@@ -31,5 +32,9 @@ $javaArgs = @('-cp',$JarPath,'com.pbl4.app.WorkerProcessSupervisor',
     '--count',$Count,'--groups',$Groups,'--startPort',$StartPort,'--host',$WorkerAddress,'--bindHost',$BindAddress,
     '--masterHost',$MasterAddress,'--masterPort',$MasterPort,'--machineId',$MachineId,'--machineName',$MachineName,
     '--hostParallelism',$HostParallelism,'--capacity',$Capacity,'--restartLimit',$RestartLimit,'--maxBackoffSeconds',$MaxBackoffSeconds)
+if ($StartPaused) {
+    $javaArgs += '--startPaused'
+    Write-Host 'Warm Standby enabled (-StartPaused): workers will register in PAUSED state until resumed from the Web UI.'
+}
 & java @javaArgs
 exit $LASTEXITCODE

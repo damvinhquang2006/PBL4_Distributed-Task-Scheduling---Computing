@@ -1,174 +1,146 @@
-# Chạy tính toán ma trận trên hai laptop Windows qua LAN
+# Chạy cụm nhiều laptop qua Radmin VPN
 
-**Mô hình 50 Worker mỗi laptop:** dùng hướng dẫn mới [LAN-CLUSTER.md](LAN-CLUSTER.md), cùng JAR giao thức 4 và script `start-lan-workers.ps1`. Các phần bên dưới ghi lại cấu hình hai Worker và các bản sửa trước.
+Hướng dẫn này dùng mô hình **Master luôn ở máy A**, Worker chạy trên A và B, một giao diện web do A phục vụ cho người dùng của cả hai máy. Hệ thống gộp Worker theo ID duy nhất vào một cụm chung; người dùng có thể đổi tên hiển thị và tạm dừng/bật lại từng Worker online.
 
-## Bản sửa tính toán Web UI — 27/10/2026
+## 1. Nối hai máy bằng Radmin VPN
 
-**Bản v3:** kết quả có tối đa 10.000 phần tử (bao gồm 3×3, 8×8 và 100×100) được trả và hiển thị đầy đủ, có cuộn hai chiều. Trước đây 8×8 được xem qua 7 dòng/cột chọn mẫu, nên trông như ma trận 7×7. Kết quả lớn hơn 10.000 phần tử ghi rõ là khung xem trước; việc tính toán vẫn thực hiện trên toàn bộ ma trận trong giới hạn cho phép.
+1. Trên A tạo mạng Radmin VPN riêng và đặt mật khẩu.
+2. Trên B tham gia đúng mạng đó.
+3. Xác nhận hai máy xuất hiện trong danh sách thành viên và dùng chức năng Ping của Radmin để kiểm tra A↔B.
+4. Trên mỗi máy chạy `ipconfig` và ghi lại IPv4 của card **Radmin VPN**. Không dùng `127.0.0.1`, địa chỉ Wi-Fi, VMware hoặc địa chỉ của card VPN khác.
 
-Để kiểm tra đúng trường hợp 100×100 trên máy A sau khi hai Worker đăng ký:
+Tham khảo [hướng dẫn chính thức của Radmin VPN](https://www.radmin-vpn.com/help/). Địa chỉ Radmin của mỗi máy có thể thay đổi theo mạng; các lệnh phía dưới dùng `<IP_A_RADMIN>` và `<IP_B_RADMIN>` làm chỗ thay thế.
 
-```powershell
-.\scripts\diagnose-lan.ps1 -TestMatrix -MatrixSize 100
-```
+## 2. Chuẩn bị cùng phiên bản chương trình
 
-`matrixTestPassed: true`, `checkedCells: 10000` xác nhận toàn bộ giá trị của bài toán A×I đã được kiểm tra. `workerIds` cho biết những Worker đã hoàn thành phần việc. Mỗi Worker có `runtimeJarSha256` và `jarMatchesMaster` để so sánh **tiến trình đang chạy** với Master. `false` nghĩa là đang chạy khác JAR; `UNKNOWN` nghĩa là bản cũ không báo mã JAR hoặc tiến trình đang chạy từ thư mục classes. Dừng và mở lại Master/Worker sau khi thay JAR.
-
-Worker ghi `[Task failed]` khi lỗi tính toán và `[Result retry]` khi không gửi kết quả về Master được. Xem hai thông báo này cùng `waitingReason`/`admissionReason` để phân biệt lỗi phép toán, lỗi mạng và tạm hoãn do tải tài nguyên.
-
-Bản v2 sửa thêm trường hợp ma trận nhỏ tính xong nhưng giao diện trống: kết quả đầy đủ có trường `result` cho bảng trực tiếp, giao diện cũng đọc được `sampleGrid` từ bản cũ. Khi không đọc được tiến trình hoặc Master khởi động lại, giao diện báo lỗi thay vì chờ vô hạn.
-
-Để kiểm tra cụm đang chạy, trên **máy A** chạy:
+Trên A, tại thư mục dự án:
 
 ```powershell
-.\scripts\diagnose-lan.ps1 -TestMatrix
+mvn clean package
+Get-FileHash -Algorithm SHA256 .\target\distributed-task-scheduling-1.0.0.jar
 ```
 
-Script in IP từng card mạng, SHA256 của JAR, khả năng kết nối tới Master và từng Worker, trạng thái CPU/RAM/PAUSED, rồi gửi bài toán kiểm tra `[[1,2],[3,4]] × I`. `resultSummary.result` phải là `[[1,2],[3,4]]`. `resultSummary.workerIds` liệt kê các Worker thực sự hoàn thành tác vụ; tùy chính sách và thời điểm, một bài toán rất nhỏ không bảo đảm dùng mọi Worker. Nếu job kiểm tra chờ quá 15 giây, script chỉ hủy job kiểm tra đó. Chạy không có `-TestMatrix` để chỉ đọc trạng thái.
+Trên Windows, dừng Master/Worker cũ chạy từ JAR trong `target` bằng `Ctrl+C` trước khi build; nếu không, JVM có thể khóa JAR khiến Maven `clean` thất bại.
 
-`PAUSED` nghĩa là cần bật lại Worker trong tab Giám Sát Cụm. `CPU_HIGH`, `RAM_HIGH`, `HEAP_HIGH` nghĩa là Worker kết nối nhưng đang bị chính sách RESOURCE_AWARE hoãn nhận thêm việc. `OFFLINE` nghĩa là thiếu heartbeat. IP Wi-Fi có thể đổi khi chuyển mạng; không dùng IP VMware/VPN làm địa chỉ LAN của hai laptop.
+Chép sang B cùng JAR và thư mục `scripts` (giữ cấu trúc thư mục như trên A). Đối chiếu SHA256 để chắc chắn hai máy dùng đúng cùng bản. B cần Java 21 trở lên; không cần Maven nếu chỉ chạy JAR đã chép.
 
-- Web UI dùng các Worker đã đăng ký, không tự tạo thêm 50 Worker khi gửi bài toán. Nút mở rộng 50 Worker vẫn là thao tác demo riêng; không dùng nút này khi cần đúng hai Worker A và B.
-- Số tác vụ tự điều chỉnh theo tổng capacity và tối đa số dòng (hoặc số cột cofactor). Ma trận 3 dòng chỉ có tối đa 3 tác vụ, không có lát cắt `[3..4)`.
-- Nhánh web gửi cùng định dạng dữ liệu cụ thể như console: `sliceA`, `sliceB`, `dataB`... và tổng hợp kết quả thật từ Worker. Giá trị nhập trực tiếp được ưu tiên hơn bộ sinh số.
-- Hiện tính toán đầy đủ tối đa 1.000.000 phần tử cho mỗi ma trận đầu vào và kết quả. Bộ sinh số không thay thế phép tính; chỉ lấy mẫu khi hiển thị ma trận kết quả lớn. Kích thước vượt giới hạn bị từ chối rõ ràng, không báo hoàn thành bằng dữ liệu mô phỏng.
-- Trước khi chạy lại, dừng Master và các Worker cũ bằng Ctrl+C, chép cùng JAR mới sang cả hai máy rồi khởi động lại bằng các lệnh bên dưới. Tải lại giao diện web trên A.
-- Trường `workerIds` trong kết quả API cho biết các Worker thực sự hoàn thành tác vụ.
+## 3. Mở các cổng cần thiết
 
-## Mô hình
+Các cổng mặc định:
 
-- Laptop A: Master TCP 5000, Worker `laptop-a-worker` TCP 5001.
-- Laptop B: Worker `laptop-b-worker` TCP 5001.
-- Cả hai Worker đăng ký vào Master trên A. Master gửi tác vụ trực tiếp đến từng Worker; kết nối phải thông cả hai chiều.
-- Chỉ dùng mạng nội bộ tin cậy. Giao thức hiện tại không có xác thực/TLS; không mở cổng ra Internet.
-- Cùng Java 21+ và cùng JAR giao thức v2 trên cả hai máy. Không trộn với JAR cũ.
+| Máy | Cổng vào | Dùng cho |
+|---|---:|---|
+| A | TCP 5000 | Master nhận Worker, heartbeat và kết quả. |
+| A | TCP 8080 | REST API được hai giao diện trình duyệt dùng chung. |
+| A | TCP 5173 | Web UI được phục vụ tới trình duyệt A và B. |
+| A và B | TCP 5101–5103 | Ba Worker ví dụ trên mỗi máy; Master gọi ngược tới Worker. |
 
-Nếu dùng gói **PBL4-LAN-release.zip**, giải nén trên cả hai máy; gói đã có JAR trong `target/`, script trong `scripts/` và báo cáo kiểm thử. Không cần chạy Maven lại để demo.
-
-## 1. Chuẩn bị
-
-Trong thư mục project trên A:
+Cho phép các kết nối đến từ IP Radmin của máy đối tác trên Windows Firewall. Ví dụ, mở PowerShell với quyền phù hợp trên A (thay IP thật):
 
 ```powershell
-mvn package
-Get-FileHash -Algorithm SHA256 -LiteralPath '.\target\distributed-task-scheduling-1.0.0.jar'
-Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -notlike '127.*' }
+New-NetFirewallRule -DisplayName 'PBL4 Master va Web UI qua Radmin' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 5000,8080,5173 -RemoteAddress '<IP_B_RADMIN>' -Profile Any
 ```
 
-Trên B, cài Java 21+ (`java -version`). Chép thư mục `scripts`, tài liệu này và JAR từ A sang B, giữ cấu trúc `scripts/` và `target/` cạnh nhau; B không cần Maven hoặc mã nguồn. Đối chiếu SHA256 của hai JAR.
-
-Lấy IPv4 của card Wi-Fi/Ethernet đang dùng, không lấy IP VPN hoặc loopback. Trong ví dụ bên dưới **192.168.1.10 là A, 192.168.1.20 là B**; thay bằng IP thật. Dùng địa chỉ ổn định trong thời gian demo. Nếu IP thay đổi, chạy lại Worker với IP mới.
-
-## 2. Mở ba terminal
-
-**Terminal 1 trên A — Master:**
+Trên B, cho phép Master A gọi ngược đến các Worker:
 
 ```powershell
-.\scripts\start-lan-master.ps1
+New-NetFirewallRule -DisplayName 'PBL4 Workers qua Radmin' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 5101-5103 -RemoteAddress '<IP_A_RADMIN>' -Profile Any
 ```
 
-**Terminal 2 trên A — Worker cục bộ:**
+Nếu chạy nhiều hơn ba Worker, mở đúng dải `StartPort` đến `StartPort + Count - 1`. Trên A, các cổng Worker A cũng phải nhận kết nối kiểm tra và giao việc từ Master trên cùng máy. Không tắt toàn bộ firewall; không mở các cổng này ra Internet công cộng.
+
+Kiểm tra đường TCP trước khi chạy demo:
 
 ```powershell
-.\scripts\start-lan-worker.ps1 -MasterAddress 192.168.1.10 -WorkerAddress 192.168.1.10 -WorkerId laptop-a-worker -Capacity 2
+# Từ B tới Master A
+Test-NetConnection '<IP_A_RADMIN>' -Port 5000
+Test-NetConnection '<IP_A_RADMIN>' -Port 8080
+Test-NetConnection '<IP_A_RADMIN>' -Port 5173
+
+# Từ A tới Worker đầu tiên trên B (sau khi Worker B đã chạy)
+Test-NetConnection '<IP_B_RADMIN>' -Port 5101
 ```
 
-**Terminal trên B — Worker từ xa:**
+`TcpTestSucceeded : True` chỉ xác nhận cổng nhận kết nối; điều kiện Worker kết nối hoàn chỉnh là log có `REGISTERED` và Worker xuất hiện ở giao diện.
+
+## 4. Khởi động cụm
+
+Mở các terminal riêng, từ thư mục dự án trên mỗi laptop.
+
+**A — Master** (chạy thường xuyên trong suốt demo):
 
 ```powershell
-.\scripts\start-lan-worker.ps1 -MasterAddress 192.168.1.10 -WorkerAddress 192.168.1.20 -WorkerId laptop-b-worker -Capacity 4
+.\scripts\start-lan-master.ps1 -Port 5000 -BindAddress 0.0.0.0 -Policy ROUND_ROBIN
 ```
 
-Capacity trong ví dụ chỉ là giới hạn tác vụ đồng thời, không khẳng định B nhanh gấp đôi A. Bỏ tham số để dùng mặc định `max(1, số bộ xử lý khả dụng - 1)`. Mỗi máy chỉ cần một Worker; dùng nhiều Worker trên cùng máy không tạo thêm CPU/RAM.
+*(Mặc định có thể dùng `RESOURCE_AWARE`, nhưng nếu máy demo đang sử dụng > 90% RAM, nên dùng `-Policy ROUND_ROBIN` hoặc `LEAST_LOADED` để tránh chặn cấp phát tác vụ do `RAM_HIGH`).*
 
-`-WorkerAddress` là địa chỉ Master phải gọi được; không đặt `127.0.0.1` cho Worker trên B. `-BindAddress` mặc định `0.0.0.0` (lắng nghe các card mạng), không phải địa chỉ để quảng bá.
-
-Script chạy Java ngay trong terminal hiện tại. Ctrl+C dừng tiến trình của terminal đó. Các tham số `-MasterPort`, `-WorkerPort`, `-Port` và `-JarPath` cho phép dùng cổng/đường dẫn khác. Các lệnh localhost cũ vẫn chạy; cấu hình LAN bật `RESOURCE_AWARE` qua script mới.
-
-## 3. Kiểm tra TCP và Windows Firewall
-
-Sau khi các tiến trình đã mở cổng, chạy từ **B đến Master A**:
+**A — ba Worker của máy A:**
 
 ```powershell
-.\scripts\test-lan-connection.ps1 -RemoteAddress 192.168.1.10 -Port 5000
+.\scripts\start-lan-workers.ps1 -MasterAddress '<IP_A_RADMIN>' -WorkerAddress '<IP_A_RADMIN>' -MachineId demo-a -MachineName 'Laptop A' -Count 3 -StartPort 5101
 ```
 
-Chạy từ **A đến Worker B**:
+**B — ba Worker của máy B:**
 
 ```powershell
-.\scripts\test-lan-connection.ps1 -RemoteAddress 192.168.1.20 -Port 5001
+.\scripts\start-lan-workers.ps1 -MasterAddress '<IP_A_RADMIN>' -WorkerAddress '<IP_B_RADMIN>' -MachineId demo-b -MachineName 'Laptop B' -Count 3 -StartPort 5101
 ```
 
-Master tự kiểm tra kết nối ngược khi đăng ký. Ping ICMP không thay thế kiểm tra TCP. Nếu đăng ký bị từ chối, xem log `Worker reconnect`.
+*(Tùy chọn: thêm `-StartPaused` nếu muốn Worker máy B đăng ký sẵn ở trạng thái **Tạm dừng / Warm Standby** để chủ động bấm bật từ Web UI khi demo).*
 
-Nếu cần mở firewall, tự chạy các lệnh phù hợp trong PowerShell Administrator. Ví dụ cho mạng có profile **Private**, giới hạn đúng máy đối tác (thay IP thật trước khi chạy):
+WorkerAddress phải là IP đang có trên chính laptop chạy Worker. `MachineId` A/B phải khác nhau; script tự tạo các `workerId` khác nhau từ MachineId. Tăng `Count` nếu muốn nhiều Worker logic, nhưng nhiều Worker trên một laptop **không tạo thêm CPU hoặc RAM**. `HostParallelism` là giới hạn tính toán chung của laptop.
+
+Đợi thông báo `REGISTERED 3/3` ở cả hai máy. Nếu chỉ thấy `opened` hoặc `BIND`, Worker chưa được Master xác nhận.
+
+## 5. Mở giao diện trên cả hai máy
+
+Trên A, chạy thêm terminal:
 
 ```powershell
-# Trên A: nhận đăng ký/heartbeat/kết quả từ B và Worker A
-New-NetFirewallRule -DisplayName 'PBL4 LAN Master 5000' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 5000 -RemoteAddress 192.168.1.20,192.168.1.10 -Profile Private
-# Trên A: Worker A nhận việc từ Master A
-New-NetFirewallRule -DisplayName 'PBL4 LAN Worker A 5001' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 5001 -RemoteAddress 192.168.1.10 -Profile Private
-# Trên B: Worker B nhận việc từ Master A
-New-NetFirewallRule -DisplayName 'PBL4 LAN Worker B 5001' -Direction Inbound -Action Allow -Protocol TCP -LocalPort 5001 -RemoteAddress 192.168.1.10 -Profile Private
+.\scripts\start-ui.ps1 -HostAddress 0.0.0.0 -Port 5173
 ```
 
-Script không tự thay đổi firewall. Kiểm tra profile bằng `Get-NetConnectionProfile`; nếu mạng đang là Public thì quy tắc Private không áp dụng. Không tắt toàn bộ firewall. Wi-Fi khách có thể bật client isolation khiến hai laptop không truy cập nhau dù cùng SSID; cần mạng cho phép các thiết bị liên lạc.
+Trên trình duyệt của cả A và B, mở cùng URL:
 
-## 4. Quan sát và nhập bài toán
+```text
+http://<IP_A_RADMIN>:5173
+```
 
-Trong menu Master, chọn xem Worker để thấy ID, IP:cổng, trạng thái, capacity, tác vụ, CPU/RAM/heap và `admission`:
+Không mở `localhost:5173` trên B: `localhost` của B trỏ về chính B. Giao diện tự dùng hostname/IP trên URL để gọi API của Master A ở cổng `8080`. Hai người dùng thấy cùng snapshot, danh sách job và trạng thái Worker; cập nhật xuất hiện theo chu kỳ làm mới giao diện.
 
-| Giá trị | Ý nghĩa |
-|---|---|
-| READY | Có thể nhận thêm việc |
-| CAPACITY | Đã đạt số tác vụ đồng thời |
-| CPU_HIGH / RAM_HIGH / HEAP_HIGH | Tạm dừng nhận mới vì tải cao |
-| PAUSED | Người dùng chủ động tạm dừng |
-| OFFLINE | Mất heartbeat |
-| RETRY_BACKOFF | Tạm chờ sau khi giao việc thất bại/từ chối |
-| UNKNOWN trong metrics | Không có số đo hợp lệ, không giả định là 0% |
+Trong giao diện Web (gồm 4 tab: **1. Giải bài toán**, **2. Quản lý Master–Worker**, **3. Benchmark (1 vs N)**, **4. Job, Kết quả & Failover**):
 
-Chọn phép toán ma trận như trước: `+`, `-`, `x`, `%`, `det`, `rank`. Mỗi job được chia tối đa `min(số dòng hoặc số hạng, 4 × tổng capacity, 64)` tác vụ. Máy còn chỗ nhận thêm tác vụ từ hàng đợi, bao gồm máy mới gia nhập. Ma trận quá nhỏ có thể không đủ phần việc cho cả hai máy.
+- Ở tab **Quản lý Master–Worker**:
+  - Tổng Worker bằng tổng số đã đăng ký từ A và B; mỗi laptop có nhóm riêng theo `MachineId`.
+  - Bấm biểu tượng bút chì để đổi tên hiển thị (`displayName`). Tên mới được lưu bền vững và đồng bộ trên cả 4 tab mà không làm gián đoạn kết nối hay mất `workerId`.
+  - Bấm **Tạm dừng** / **Bật lại** trên từng Worker `Online`, hoặc dùng thanh điều phối hàng loạt (**Bật tất cả Worker đang tạm dừng**, **Giữ đã chọn & Tạm dừng còn lại**).
+  - Có thể khởi động/dừng thêm Worker cục bộ trên máy Master A ngay từ giao diện (mặc định dùng cổng từ `5201`).
+  - Có thể đổi chính sách lập lịch, gửi job (lên tới `50.000.000` phần tử) và theo dõi cùng trạng thái Master từ cả hai trình duyệt.
 
-CPU/RAM là số đo toàn máy, heap là bộ nhớ của JVM Worker. Lấy mẫu mỗi giây, trung bình tối đa ba mẫu và gửi mỗi ba giây. `RESOURCE_AWARE` ngừng giao mới tại CPU 85%, RAM 90%, heap 85%; nhận lại khi xuống dưới 75%, 80%, 75%. Tác vụ đang chạy tiếp tục. Chọn Worker theo tải/capacity, rồi CPU, RAM, ID. Nếu tất cả quá tải, job chờ đến khi có tài nguyên hoặc hết timeout.
+## 6. Chẩn đoán và tiêu chí nghiệm thu
 
-Ví dụ tùy chỉnh:
+Trên A, lấy snapshot và kiểm tra cổng/Worker:
 
 ```powershell
-.\scripts\start-lan-master.ps1 -JobTimeoutSeconds 600 -CpuHigh 90 -CpuLow 80 -RamHigh 90 -RamLow 80 -HeapHigh 85 -HeapLow 75
+.\scripts\diagnose-lan.ps1 -MasterAddress '<IP_A_RADMIN>' -MasterPort 5000 -HttpPort 8080
 ```
 
-`-Policy ROUND_ROBIN` hoặc `-Policy LEAST_LOADED` bỏ điều kiện ngưỡng tài nguyên nhưng vẫn giới hạn capacity. Menu đổi chính sách lần lượt qua ba lựa chọn. `-DemoDelay` trên Worker bật lại độ trễ hiển thị; mặc định tắt để tránh làm sai số đo.
-
-## 5. Phục hồi và giới hạn
-
-- Worker tự đăng ký lại với backoff 1, 2, 4, 8, tối đa 10 giây khi mất Master hoặc Master đổi phiên.
-- Master phát hiện mất heartbeat sau ngưỡng 9 giây, kiểm tra mỗi 2 giây; không phải chính xác ở giây thứ 9.
-- Khi Worker mất kết nối, các tác vụ của lần thực thi đó được đưa lại vào hàng đợi, tối đa ba lần thực thi/giao việc không rõ kết quả. Từ chối vì bận chưa tính là một lần thực thi; timeout job vẫn giới hạn thời gian chờ.
-- Worker ACK nhận tác vụ trước khi tính. Gửi lại cùng attempt ID không chạy lại cùng tác vụ trên Worker. Khi giao lại sang Worker khác có thể có hai phép tính thực tế; Master chỉ chấp nhận kết quả của lần hiện hành, không cam kết exactly-once execution.
-- Kết quả chưa ACK được gửi lại tối đa 300 giây. Kết quả trùng/cũ được ACK và bỏ qua. Dữ liệu kết quả được giải phóng sau ACK, khóa chống trùng giữ tối đa 300 giây sau khi hoàn thành.
-- Tạm dừng từ menu không tắt heartbeat và không hủy tác vụ đang chạy; khi bật lại, Worker nhận thêm việc.
-- Master chỉ báo COMPLETED sau khi mọi phần thành công và tổng hợp thành công. Lỗi tính toán kết thúc job; không trả ma trận thiếu phần như kết quả hợp lệ.
-- Master khởi động lại không phục hồi job cũ; nhập lại bài toán. Job timeout giải phóng trạng thái Master, nhưng tác vụ đã gửi có thể vẫn tính xong trên Worker; kết quả muộn sẽ bị bỏ qua.
-- Truyền ma trận B/ma trận định thức theo từng tác vụ còn tốn băng thông và bộ nhớ. Không bảo đảm hai máy nhanh hơn một máy. CPU/RAM chỉ là tín hiệu điều phối, không phải dự báo chính xác bộ nhớ của tác vụ kế tiếp.
-
-## 6. Nghiệm thu hai laptop
-
-1. Đối chiếu JAR, Java, IP và kiểm tra TCP hai chiều.
-2. Master thấy cả `laptop-a-worker` và `laptop-b-worker`; chạy ma trận đủ số dòng. Log `[Result] ... <- worker-id` phải có cả hai ID; đối chiếu kết quả tuần tự trên console.
-3. Thử cộng/trừ/modulo, nhân ma trận chữ nhật, định thức và hạng của ma trận suy biến; thử số dòng không chia hết cho số phần.
-4. Trong một job đủ dài, dừng Worker B. A phải nhận việc được giao lại và trả kết quả đúng trong timeout. Khởi động lại B; B tự gia nhập. Dùng `-DemoDelay` chỉ cho kịch bản sự cố nếu bài toán kết thúc quá nhanh.
-5. Dừng cả hai Worker rồi khởi động lại trước timeout: job chờ và tiếp tục. Để quá timeout: job thất bại rõ ràng.
-6. Tạm dừng B bằng menu: B vẫn ONLINE nhưng PAUSED, heartbeat không tự bật lại. Bật lại để nhận việc.
-7. Khởi động Worker trước Master, sau đó mở Master. Khởi động lại Master và gửi job mới; Worker tự đăng ký lại.
-8. Đo với chỉ A, chỉ B, rồi A+B bằng `LanBenchmarkApp` bên dưới; dùng cùng kích thước/seed, tắt demo delay, giữ số lần warmup và đo giống nhau.
+Để gửi phép nhân kiểm tra và xác nhận kết quả:
 
 ```powershell
-# Chạy thay MasterApp trên A; trước đó dừng Master console để tránh trùng cổng.
-# Mỗi cấu hình dùng đúng tập Worker tương ứng; các Worker tự nối lại Master mới.
-java -cp .\target\distributed-task-scheduling-1.0.0.jar com.pbl4.app.LanBenchmarkApp --port 5000 --workers 2 --size 300 --seed 42 --rounds 3
+.\scripts\diagnose-lan.ps1 -MasterAddress '<IP_A_RADMIN>' -MasterPort 5000 -HttpPort 8080 -TestMatrix -MatrixSize 8
 ```
 
-Ứng dụng benchmark đợi đúng số Worker, dùng cùng dữ liệu cố định, một lượt warmup và in thời gian tuần tự/phân tán, speedup cùng kiểm tra sai số. Cho mỗi cấu hình, đặt `--workers 1` hoặc `2` tương ứng. Không dùng `-DemoDelay` khi đo. Nếu CPU/RAM khiến job chờ, thời gian chờ được tính vào kết quả phân tán.
+Demo nhiều máy được nghiệm thu khi đồng thời đạt các điểm sau:
 
-`mvn test` kiểm tra logic và TCP localhost, không chứng minh firewall/Wi-Fi của laptop B. Chỉ điền số đo LAN sau khi chạy thật; không dùng số đo localhost làm bằng chứng tăng tốc hai laptop.
+1. A và B thấy nhau trong Radmin và kiểm tra TCP hai chiều thành công.
+2. Master A báo đủ đăng ký; snapshot có cả `demo-a` và `demo-b`, tổng Worker bằng tổng Worker đăng ký ở hai máy.
+3. Cả hai trình duyệt truy cập được cùng UI/API bằng IP Radmin A.
+4. Đổi tên một Worker từ A hoặc B và thấy tên mới trên cả hai giao diện, ID không đổi.
+5. Tạm dừng một Worker trên B từ giao diện A; Worker vẫn online nhưng bị tạm dừng. Bật lại từ giao diện B và thấy A cập nhật.
+6. Job kiểm tra trả kết quả đúng; snapshot hoặc tiến độ cho thấy Worker từ A và B đã hoàn thành tác vụ.
+
+Nếu kết nối lỗi: kiểm tra Radmin ping trước, sau đó IP adapter, TCP, Windows Firewall, `MasterAddress`, `WorkerAddress`, cùng JAR và `MachineId` duy nhất. Nếu API hoạt động nhưng UI báo mất Master, xác nhận đã mở UI bằng IP Radmin A (không phải localhost trên B), Master API nghe ở `8080` và script UI đang dùng `--host 0.0.0.0`.
+
+Ứng dụng hiện không có tài khoản hay TLS. Chỉ chia sẻ mạng Radmin với người tin cậy và giới hạn firewall theo đúng IP máy demo. Trạng thái kiểm thử thực tế nằm trong [TESTING.md](TESTING.md); mô phỏng hai địa chỉ trên một máy không thay thế nghiệm thu vật lý A↔B.

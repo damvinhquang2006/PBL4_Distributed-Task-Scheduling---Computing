@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.pbl4.MultiMachineWebManagementTest" time="0.947" tests="2" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="25"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\test-classes;D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\classes;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.0\jackson-databind-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.0\jackson-annotations-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.0\jackson-core-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\net\bytebuddy\byte-buddy\1.14.9\byte-buddy-1.14.9.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.17.0\jackson-datatype-jsr310-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Asia/Bangkok"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="25"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin"/>
+    <property name="sun.java.command" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire16589147692605094104\surefirebooter-20261118004635560_3.jar C:\Users\VINH_QUANG\AppData\Local\Temp\surefire16589147692605094104 2026-11-18T00-46-35_291-jvmRun1 surefire-20261118004635560_1tmp surefire_0-20261118004635560_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\test-classes;D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\classes;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.0\jackson-databind-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.0\jackson-annotations-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.0\jackson-core-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\net\bytebuddy\byte-buddy\1.14.9\byte-buddy-1.14.9.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.17.0\jackson-datatype-jsr310-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\VINH_QUANG"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2026-01-20"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-25.0.2"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire16589147692605094104\surefirebooter-20261118004635560_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="25.0.2+10-LTS-69"/>
+    <property name="user.name" value="VINH_QUANG"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\VINH_QUANG\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\VINH_Q~1\AppData\Local\Temp\"/>
+    <property name="java.version" value="25.0.2"/>
+    <property name="user.dir" value="D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\nodejs;D:\DBeaver;C:\Program Files\apache-maven-3.9.15\bin;C:\MinGW\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files (x86)\cloudflared\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\VINH_QUANG\.local\bin;C:\Users\VINH_QUANG\AppData\Local\agy\bin;C:\Program Files\Java\jdk-25.0.2\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Python\Launcher\;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WindowsApps;C:\Users\VINH_QUANG\AppData\Local\Programs\Antigravity\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VINH_QUANG\.bun\bin;C:\Users\VINH_QUANG\.dotnet\tools;C:\Users\VINH_QUANG\AppData\Local\Programs\Zed\bin;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WinGet\Packages\Ngrok.Ngrok_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;D:\UnityCLI\bin;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="25.0.2+10-LTS-69"/>
+    <property name="stdin.encoding" value="Cp1252"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="69.0"/>
+  </properties>
+  <testcase name="twoMachineFleetIsSharedRenameableAndControllableFromRemoteWebOrigin" classname="com.pbl4.MultiMachineWebManagementTest" time="0.083">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:55882
+[MasterHttpServer] REST API Server san sang tai: http://localhost:55883/api/
+[Registry] REGISTER [b-worker-01 @ 127.0.0.3:55885 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Registry] REGISTER [a-worker-01 @ 127.0.0.2:55884 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.3:55885
+[Master] REGISTERED a-worker-01 | laptop=laptop-a (Laptop A) | 127.0.0.2:55884
+[Worker] REGISTERED b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.3:55885 -> Master 127.0.0.2:55882
+[Worker] REGISTERED a-worker-01 | laptop=laptop-a (Laptop A) | 127.0.0.2:55884 -> Master 127.0.0.2:55882
+[MasterHttpServer] Da dung HTTP Server an toan.
+[Master Server] Da dung hoat dong an toan.
+]]></system-out>
+  </testcase>
+  <testcase name="batchStateControlStartPausedReconnectAndDisplayNamePropagation" classname="com.pbl4.MultiMachineWebManagementTest" time="0.863">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:55893
+[MasterHttpServer] REST API Server san sang tai: http://localhost:55894/api/
+[WorkerCluster] laptop=laptop-c (Laptop C) | opened=1/1 | ports=55898-55898 | compute limit=2 | Master=127.0.0.1:55893
+[WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
+[WorkerCluster] laptop=laptop-c | REGISTERED 0/1 | opened 1/1
+[Registry] REGISTER [a-worker-01 @ 127.0.0.1:55895 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED a-worker-01 | laptop=laptop-a (Laptop A) | 127.0.0.1:55895
+[Registry] REGISTER [b-worker-01 @ 127.0.0.1:55896 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.1:55896
+[Worker] REGISTERED a-worker-01 | laptop=laptop-a (Laptop A) | 127.0.0.1:55895 -> Master 127.0.0.2:55893
+[Worker] REGISTERED b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.1:55896 -> Master 127.0.0.2:55893
+[Registry] REGISTER [laptop-c-worker-01 @ 127.0.0.1:55898 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-c (Laptop C)
+[Master] REGISTERED laptop-c-worker-01 | laptop=laptop-c (Laptop C) | 127.0.0.1:55898
+[Worker] REGISTERED laptop-c-worker-01 | laptop=laptop-c (Laptop C) | 127.0.0.1:55898 -> Master 127.0.0.1:55893
+[WorkerCluster] laptop=laptop-c (Laptop C) | opened=1/1 | ports=55898-55898 | compute limit=2 | Master=127.0.0.1:55893
+[WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
+[WorkerCluster] laptop=laptop-c | REGISTERED 0/1 | opened 1/1
+[Registry] REGISTER [laptop-c-worker-01 @ 127.0.0.1:55898 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-c (Laptop C)
+[Master] REGISTERED laptop-c-worker-01 | laptop=laptop-c (Laptop C) | 127.0.0.1:55898
+[Worker] REGISTERED laptop-c-worker-01 | laptop=laptop-c (Laptop C) | 127.0.0.1:55898 -> Master 127.0.0.1:55893
+
+=== BAT DAU JOB CONG MA TRAN [8 x 8] CHIA THANH 2 TASKS ===
+[a-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=4)... OK
+[a-worker-01]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[a-worker-01]  |    |-- Tien do: [==--------]  25% (Dong 1/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 2/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [=======---]  75% (Dong 3/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 4/4 hoan tat)
+[a-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 4 dong cua lat cat... OK
+[a-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-add-f91c22e4-7a5f-4f04-8ee7-44f56bd39715-task-01 <- a-worker-01 (1/2)
+[a-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=4, so dong=4)... OK
+[a-worker-01]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[a-worker-01]  |    |-- Tien do: [==--------]  25% (Dong 1/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 2/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [=======---]  75% (Dong 3/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 4/4 hoan tat)
+[a-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 4 dong cua lat cat... OK
+[a-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] mat-add-f91c22e4-7a5f-4f04-8ee7-44f56bd39715-task-02 <- a-worker-01 (2/2)
+>>> HOAN THANH Cong MA TRAN TRONG 205 ms!
+[laptop-c-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=4)... OK
+[a-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=4, so dong=4)... OK
+[Dispatcher] REQUEUE async-add-695afa14-48d0-4bc1-a1e7-96d77dd08d45-task-01
+[laptop-c-worker-01]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[a-worker-01]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[laptop-c-worker-01]  |    |-- Tien do: [==--------]  25% (Dong 1/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [==--------]  25% (Dong 1/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 2/4 hoan tat)
+[laptop-c-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 2/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [=======---]  75% (Dong 3/4 hoan tat)
+[laptop-c-worker-01]  |    |-- Tien do: [=======---]  75% (Dong 3/4 hoan tat)
+[laptop-c-worker-01]  |    |-- Tien do: [==========] 100% (Dong 4/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 4/4 hoan tat)
+[laptop-c-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 4 dong cua lat cat... OK
+[laptop-c-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[a-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 4 dong cua lat cat... OK
+[a-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async-add-695afa14-48d0-4bc1-a1e7-96d77dd08d45-task-02 <- a-worker-01 (1/4)
+[a-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=8, so dong=4)... OK
+[a-worker-01]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[a-worker-01]  |    |-- Tien do: [==--------]  25% (Dong 1/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 2/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [=======---]  75% (Dong 3/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 4/4 hoan tat)
+[a-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 4 dong cua lat cat... OK
+[a-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async-add-695afa14-48d0-4bc1-a1e7-96d77dd08d45-task-03 <- a-worker-01 (2/4)
+[a-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=12, so dong=4)... OK
+[a-worker-01]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[a-worker-01]  |    |-- Tien do: [==--------]  25% (Dong 1/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 2/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [=======---]  75% (Dong 3/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 4/4 hoan tat)
+[a-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 4 dong cua lat cat... OK
+[a-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async-add-695afa14-48d0-4bc1-a1e7-96d77dd08d45-task-04 <- a-worker-01 (3/4)
+[a-worker-01]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=4)... OK
+[a-worker-01]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
+[a-worker-01]  |    |-- Tien do: [==--------]  25% (Dong 1/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [=====-----]  50% (Dong 2/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [=======---]  75% (Dong 3/4 hoan tat)
+[a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 4/4 hoan tat)
+[a-worker-01]  |-- [Buoc 3/4] Tinh toan xong toan bo 4 dong cua lat cat... OK
+[a-worker-01]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[Result] async-add-695afa14-48d0-4bc1-a1e7-96d77dd08d45-task-01 <- a-worker-01 (4/4)
+[MasterHttpServer] Da dung HTTP Server an toan.
+[Master Server] Da dung hoat dong an toan.
+]]></system-out>
+  </testcase>
+</testsuite>

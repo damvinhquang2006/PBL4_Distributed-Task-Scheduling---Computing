@@ -196,6 +196,8 @@ public class WorkerNode {
                     info.hostParallelism = config.getHostParallelism();
                     info.processGroupId = config.getProcessGroupId(); info.groupParallelism = config.getGroupParallelism();
                     info.supervised = config.isSupervised();
+                    info.startPaused = config.isStartPaused();
+                    info.paused = config.isStartPaused();
                     info.sessionId = session; info.metrics = runtime.metrics(active.get());
                     Message request = Message.register(info); request.workerSession = session;
                     response = SocketMessenger.sendAndReceive(config.getMasterHost(), config.getMasterPort(), request, 5000);

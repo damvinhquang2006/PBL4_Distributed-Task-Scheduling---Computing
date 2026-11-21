@@ -11,9 +11,16 @@ public final class WorkerProcessSupervisor {
     private WorkerProcessSupervisor() {}
 
     public static void main(String[] args) throws Exception {
+        boolean startPaused = false;
         Map<String, String> options = new HashMap<>();
-        if (args.length % 2 != 0) throw new IllegalArgumentException("Worker supervisor options must be name/value pairs");
-        for (int i = 0; i < args.length; i += 2) options.put(args[i], args[i + 1]);
+        for (int i = 0; i < args.length; i++) {
+            if ("--startPaused".equals(args[i])) {
+                startPaused = true;
+                continue;
+            }
+            if (i + 1 >= args.length) throw new IllegalArgumentException("Missing value for " + args[i]);
+            options.put(args[i], args[++i]);
+        }
         int count = integer(options, "--count", 50), groups = integer(options, "--groups", 1);
         int startPort = integer(options, "--startPort", 5001), masterPort = integer(options, "--masterPort", 5000);
         int hostParallelism = integer(options, "--hostParallelism", Math.max(1, Runtime.getRuntime().availableProcessors() - 1));
@@ -47,7 +54,7 @@ public final class WorkerProcessSupervisor {
         }, "worker-supervisor-shutdown"));
 
         for (int i = 0; i < groups; i++) children[i] = start(groupList.get(i), host, masterHost, masterPort,
-            machineId, machineName, bindHost, hostParallelism, capacity, ownershipFile, lease);
+            machineId, machineName, bindHost, hostParallelism, capacity, ownershipFile, lease, startPaused);
         while (!stopping.get() && lease.isValid()) {
             for (int i = 0; i < groups; i++) {
                 Process child = children[i];
@@ -64,7 +71,7 @@ public final class WorkerProcessSupervisor {
                         groupList.get(i).id(), exit, delay, failures[i], restartLimit);
                 } else if (System.currentTimeMillis() >= restartAt[i] && !stopping.get()) {
                     children[i] = start(groupList.get(i), host, masterHost, masterPort,
-                        machineId, machineName, bindHost, hostParallelism, capacity, ownershipFile, lease);
+                        machineId, machineName, bindHost, hostParallelism, capacity, ownershipFile, lease, startPaused);
                     restartAt[i] = 0;
                 }
             }
@@ -74,7 +81,7 @@ public final class WorkerProcessSupervisor {
 
     private static Process start(Group group, String host, String masterHost, int masterPort, String machineId,
                                  String machineName, String bindHost, int hostParallelism, int capacity,
-                                 Path ownershipFile, SupervisorLease lease) throws Exception {
+                                 Path ownershipFile, SupervisorLease lease, boolean startPaused) throws Exception {
         String java = Path.of(System.getProperty("java.home"), "bin",
             System.getProperty("os.name", "").toLowerCase(Locale.ROOT).contains("win") ? "java.exe" : "java").toString();
         List<String> command = new ArrayList<>(List.of(java, "-cp", System.getProperty("java.class.path"),
@@ -87,6 +94,7 @@ public final class WorkerProcessSupervisor {
         add(command, "--runtimeParallelism", group.parallelism()); add(command, "--groupParallelism", group.parallelism());
         add(command, "--workerOffset", group.workerOffset()); add(command, "--processGroupId", group.id());
         command.add("--requireAll");
+        if (startPaused) command.add("--startPaused");
         add(command, "--supervisorLock", ownershipFile);
         add(command, "--supervisorPid", lease.pid()); add(command, "--supervisorToken", lease.token());
         System.out.printf("[WorkerSupervisor] START %s | workers=%d | ports=%d-%d | compute=%d/%d%n",

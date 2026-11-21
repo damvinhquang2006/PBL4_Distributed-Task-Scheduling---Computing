@@ -9,7 +9,7 @@ import java.util.*;
 
 /** Uses the same concrete task payloads and aggregation for console and web jobs. */
 final class MatrixJobPlan {
-    static final long MAX_MATRIX_CELLS = 1_000_000;
+    static final long MAX_MATRIX_CELLS = 50_000_000L;
     final String operation;
     final Matrix a, b;
     final double scalar;
@@ -44,7 +44,14 @@ final class MatrixJobPlan {
     private static void validateSize(int rows, int cols) {
         if (rows <= 0 || cols <= 0) throw new IllegalArgumentException("Kích thước ma trận phải lớn hơn 0.");
         if ((long) rows * cols > MAX_MATRIX_CELLS)
-            throw new IllegalArgumentException("Tính toán đầy đủ hiện hỗ trợ tối đa 1.000.000 phần tử mỗi ma trận; hãy giảm kích thước.");
+            throw new IllegalArgumentException("Tính toán đầy đủ hiện hỗ trợ tối đa 50.000.000 phần tử mỗi ma trận; hãy giảm kích thước.");
+    }
+
+    long maxCells() {
+        long cellsA = (long) a.getRows() * a.getCols();
+        long cellsB = b == null ? 0L : (long) b.getRows() * b.getCols();
+        long cellsOut = "x".equals(operation) && b != null ? (long) a.getRows() * b.getCols() : cellsA;
+        return Math.max(cellsA, Math.max(cellsB, cellsOut));
     }
 
     private static Matrix matrix(int rows, int cols, Map<String, Object> descriptor, double[][] input) {

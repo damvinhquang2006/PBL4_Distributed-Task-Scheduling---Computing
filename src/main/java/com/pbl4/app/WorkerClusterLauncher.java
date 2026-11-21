@@ -35,11 +35,11 @@ public class WorkerClusterLauncher {
         int runtimeParallelism = -1, workerOffset = 0, groupParallelism = -1;
         String host = "127.0.0.1", masterHost = "127.0.0.1", prefix = "worker-", bindHost = "0.0.0.0";
         String machineId = defaults.getMachineId(), machineName = defaults.getMachineName();
-        String processGroupId = null;
-        String supervisorLock = null;
-        boolean requireAll = false;
+        String processGroupId = null, supervisorLock = null, supervisorToken = null, supervisorPid = null;
+        boolean requireAll = false, startPaused = false;
         for (int i = 0; i < args.length; i++) {
             if ("--requireAll".equals(args[i])) { requireAll = true; continue; }
+            if ("--startPaused".equals(args[i])) { startPaused = true; continue; }
             if (i + 1 >= args.length) throw new IllegalArgumentException("Missing value for " + args[i]);
             String value = args[++i];
             switch (args[i - 1]) {
@@ -56,6 +56,8 @@ public class WorkerClusterLauncher {
                 case "--groupParallelism" -> groupParallelism = Integer.parseInt(value);
                 case "--processGroupId" -> processGroupId = value;
                 case "--supervisorLock" -> supervisorLock = value;
+                case "--supervisorPid" -> supervisorPid = value;
+                case "--supervisorToken" -> supervisorToken = value;
                 case "--idPrefix" -> prefix = value;
                 case "--machineId" -> machineId = value;
                 case "--machineName" -> machineName = value;
@@ -66,10 +68,13 @@ public class WorkerClusterLauncher {
         if (groupParallelism < 0) groupParallelism = runtimeParallelism;
         if (processGroupId == null) processGroupId = machineId + "-group-01";
         Cluster cluster = launch(count, startPort, host, masterHost, masterPort, capacity, prefix, machineId, machineName, bindHost,
-            parallelism, runtimeParallelism, workerOffset, processGroupId, groupParallelism, requireAll, supervisorLock != null);
+            parallelism, runtimeParallelism, workerOffset, processGroupId, groupParallelism, requireAll, supervisorLock != null, startPaused);
         Runtime.getRuntime().addShutdownHook(new Thread(cluster::close));
-        if (supervisorLock != null) cluster.watchSupervisor(Path.of(supervisorLock),
-            Long.parseLong(requiredOption(args, "--supervisorPid")), requiredOption(args, "--supervisorToken"));
+        if (supervisorLock != null) {
+            if (supervisorPid == null || supervisorToken == null || supervisorToken.isBlank())
+                throw new IllegalArgumentException("Incomplete Worker supervisor lease arguments");
+            cluster.watchSupervisor(Path.of(supervisorLock), Long.parseLong(supervisorPid), supervisorToken);
+        }
     }
 
     public static Cluster launch(int count, int startPort, String host, String masterHost, int masterPort,
@@ -99,6 +104,14 @@ public class WorkerClusterLauncher {
                                  int capacity, String prefix, String machineId, String machineName, String bindHost,
                                  int hostParallelism, int runtimeParallelism, int workerOffset,
                                  String processGroupId, int groupParallelism, boolean requireAll, boolean supervised) throws IOException {
+        return launch(count, startPort, host, masterHost, masterPort, capacity, prefix, machineId, machineName, bindHost,
+            hostParallelism, runtimeParallelism, workerOffset, processGroupId, groupParallelism, requireAll, supervised, false);
+    }
+
+    public static Cluster launch(int count, int startPort, String host, String masterHost, int masterPort,
+                                 int capacity, String prefix, String machineId, String machineName, String bindHost,
+                                 int hostParallelism, int runtimeParallelism, int workerOffset,
+                                 String processGroupId, int groupParallelism, boolean requireAll, boolean supervised, boolean startPaused) throws IOException {
         if (count < 1 || count > 1024 || startPort < 1 || (long) startPort + count - 1 > 65535 || masterPort < 1 || masterPort > 65535 || capacity < 1)
             throw new IllegalArgumentException("Invalid worker count, port range or capacity");
         if (hostParallelism < 1 || runtimeParallelism < 1 || runtimeParallelism > hostParallelism
@@ -119,6 +132,7 @@ public class WorkerClusterLauncher {
                 cfg.setCapacity(capacity); cfg.setBindHost(bindHost); cfg.setMachineId(machineId);
                 cfg.setMachineName(machineName); cfg.setHostParallelism(hostParallelism);
                 cfg.setProcessGroupId(processGroupId); cfg.setGroupParallelism(groupParallelism); cfg.setSupervised(supervised);
+                cfg.setStartPaused(startPaused);
                 WorkerNode node = new WorkerNode(cfg, runtime);
                 try { node.start(); workers.add(node); }
                 catch (IOException e) { System.err.printf("[WorkerCluster] BIND FAILED %s / %s:%d: %s%n", id, bindHost, startPort + i, e.getMessage()); }
@@ -147,11 +161,6 @@ public class WorkerClusterLauncher {
         WorkerConfig defaults = new WorkerConfig();
         return startCluster(count, startPort, host, masterHost, masterPort, capacity, prefix,
             defaults.getMachineId(), defaults.getMachineName(), "0.0.0.0", defaults.getHostParallelism());
-    }
-
-    private static String requiredOption(String[] args, String key) {
-        for (int i = 0; i + 1 < args.length; i++) if (key.equals(args[i])) return args[i + 1];
-        throw new IllegalArgumentException("Missing " + key);
     }
 
     public static List<WorkerNode> startCluster(int count, int startPort, String host, String masterHost,

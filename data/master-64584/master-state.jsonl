@@ -1,0 +1,2 @@
+{"schemaVersion":1,"type":"CREATE","jobId":"async-mul-01fd1f43-02ed-4483-a46e-0f0578577c38","startedAt":1794936495525,"deadlineAt":1794936496225,"totalTasks":2,"inputArtifact":"inputs/async-mul-01fd1f43-02ed-4483-a46e-0f0578577c38.json","inputSha256":"e987de1c223c2d67159d531eb60363c1dca6de8e92bdfd9d074abcf5c64c068d"}
+{"schemaVersion":1,"type":"STATE","jobId":"async-mul-01fd1f43-02ed-4483-a46e-0f0578577c38","state":"FAILED","error":"Hết thời gian chờ Worker hoàn thành tác vụ. laptop-a-worker (127.0.0.1:64586): PAUSED; laptop-b-worker (127.0.0.1:64587): PAUSED"}

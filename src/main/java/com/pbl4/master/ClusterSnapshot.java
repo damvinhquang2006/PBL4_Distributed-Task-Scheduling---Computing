@@ -17,7 +17,8 @@ final class ClusterSnapshot {
             boolean connected = w.getStatus() != WorkerStatus.OFFLINE;
             boolean ready = scheduler.eligible(w);
             Map<String, Object> row = new LinkedHashMap<>();
-            row.put("workerId", w.getWorkerId()); row.put("machineId", w.machineId); row.put("machineName", w.machineName);
+            row.put("workerId", w.getWorkerId()); row.put("displayName", w.displayName);
+            row.put("machineId", w.machineId); row.put("machineName", w.machineName);
             row.put("host", w.getHost()); row.put("port", w.getPort()); row.put("capacity", w.getCapacity());
             row.put("hostParallelism", w.hostParallelism); row.put("status", w.getStatus().name()); row.put("connected", connected);
             row.put("processGroupId", w.processGroupId); row.put("groupParallelism", w.groupParallelism); row.put("supervised", w.supervised);

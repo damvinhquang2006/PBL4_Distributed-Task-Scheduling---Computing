@@ -103,7 +103,10 @@ public class TaskScheduler {
         if (workers.isEmpty()) return "Chưa có Worker đăng ký với Master.";
         return workers.stream().sorted(Comparator.comparing(WorkerInfo::getWorkerId)).map(w -> {
             eligible(w);
-            return w.getWorkerId() + " (" + w.getHost() + ":" + w.getPort() + "): " + w.admissionReason;
+            String label = (w.displayName != null && !w.displayName.isBlank() && !w.displayName.equals(w.getWorkerId()))
+                ? w.displayName + " [" + w.getWorkerId() + "]"
+                : w.getWorkerId();
+            return label + " (" + w.getHost() + ":" + w.getPort() + "): " + w.admissionReason;
         }).collect(java.util.stream.Collectors.joining("; "));
     }
     public synchronized WorkerInfo selectWorker() {

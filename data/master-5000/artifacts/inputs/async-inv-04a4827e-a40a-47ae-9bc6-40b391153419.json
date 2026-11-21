@@ -1,0 +1,1 @@
+{"operation":"inv","rowsA":736,"colsA":736,"rowsB":3,"colsB":3,"genA":{"rows":736,"cols":736,"generator":"random-v1","type":"random","seed":42,"min":1,"max":10,"val":1},"genB":{},"scalar":2.0,"taskCount":6,"requestedTaskCount":0,"matrixA":null,"matrixB":null}

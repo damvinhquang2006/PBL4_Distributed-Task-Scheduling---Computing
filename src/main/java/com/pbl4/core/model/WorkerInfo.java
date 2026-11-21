@@ -12,11 +12,13 @@ public class WorkerInfo {
     public String jarSha256;
     public String machineId;
     public String machineName;
+    public volatile String displayName;
     public int hostParallelism;
     public String processGroupId = "default";
     public int groupParallelism;
     public volatile ResourceMetrics metrics = new ResourceMetrics();
     public volatile boolean paused;
+    public volatile boolean startPaused;
     public volatile boolean quarantined;
     public volatile boolean groupRestartRequested;
     public volatile long quarantinedAtMillis;
@@ -49,6 +51,7 @@ public class WorkerInfo {
         this.capacity = capacity > 0 ? capacity : Runtime.getRuntime().availableProcessors();
         this.machineId = workerId;
         this.machineName = workerId;
+        this.displayName = workerId;
         this.hostParallelism = this.capacity;
         this.status = WorkerStatus.ONLINE;
         this.lastHeartbeatTime = System.currentTimeMillis();

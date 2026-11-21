@@ -290,17 +290,23 @@ public class JobDispatcher implements AutoCloseable {
             }
         }
         if (!allowRequeue) { notifyAll(); return; }
-        String reason = "Attempt tại Worker [" + a.worker.getWorkerId() + "] đã dừng; có thể giao lại";
+        String displayName = (a.worker.displayName != null && !a.worker.displayName.isBlank())
+            ? a.worker.displayName : a.worker.getWorkerId();
+        String workerLabel = displayName.equals(a.worker.getWorkerId())
+            ? a.worker.getWorkerId()
+            : displayName + " [" + a.worker.getWorkerId() + "]";
+        String reason = "Attempt tại Worker [" + workerLabel + "] đã dừng; có thể giao lại";
         if (a.retryReason != null) reason += ": " + a.retryReason;
         Map<String, Object> evt = new LinkedHashMap<>();
         evt.put("timestamp", System.currentTimeMillis());
         evt.put("workerId", a.worker.getWorkerId());
+        evt.put("displayName", displayName);
         evt.put("taskId", a.task.getTaskId());
         evt.put("jobId", a.job.getJobId());
         evt.put("retryCount", a.task.getRetryCount());
         evt.put("reason", reason);
         evt.put("message", String.format("Sự cố tại %s: %s -> Hàng đợi tự động REQUEUE [%s] sang Worker tiếp theo đang rảnh!",
-                a.worker.getWorkerId(), reason, a.task.getTaskId()));
+                workerLabel, reason, a.task.getTaskId()));
         failoverEvents.add(evt);
         if (failoverEvents.size() > 100) failoverEvents.remove(0);
 

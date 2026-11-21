@@ -130,18 +130,20 @@ java -cp target/distributed-task-scheduling-1.0.0.jar com.pbl4.app.WorkerApp --i
 
 
 ==================================================================
-Hoặc dùng script tiện ích khởi chạy cả cụm (Master + 50 Workers):
-```powershell
-.\scripts\run-all.ps1
-```
+Tren lap A:
 
-Khởi chạy cả cụm kèm giao diện trực quan Web UI ReactJS:
-```powershell
-.\scripts\run-all.ps1 -WithUI
-```
-Hoặc khởi chạy riêng Web UI:
-```powershell
+# Terminal 1: Chạy Master
+.\scripts\start-lan-master.ps1
+
+# Terminal 2: Chạy cụm Worker của máy A
+.\scripts\start-lan-workers.ps1 -MasterAddress 192.168.1.10 -WorkerAddress 192.168.1.10 -MachineId laptop-a -StartPort 5101
+
+# Terminal 3: Mở Web UI
 .\scripts\start-ui.ps1
+
+
+Tren Lap B:
+.\scripts\start-lan-workers.ps1 -MasterAddress 192.168.1.10 -WorkerAddress 192.168.1.20 -MachineId laptop-b -StartPort 5101
 ```
 ==================================================================
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.pbl4.LaptopClusterTest" time="7.329" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.pbl4.LaptopClusterTest" time="7.119" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564\surefirebooter-20261110003532781_3.jar C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564 2026-11-10T00-35-32_548-jvmRun1 surefire-20261110003532781_1tmp surefire_0-20261110003532781_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire16589147692605094104\surefirebooter-20261118004635560_3.jar C:\Users\VINH_QUANG\AppData\Local\Temp\surefire16589147692605094104 2026-11-18T00-46-35_291-jvmRun1 surefire-20261118004635560_1tmp surefire_0-20261118004635560_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\test-classes;D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\classes;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.0\jackson-databind-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.0\jackson-annotations-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.0\jackson-core-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\net\bytebuddy\byte-buddy\1.14.9\byte-buddy-1.14.9.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.17.0\jackson-datatype-jsr310-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564\surefirebooter-20261110003532781_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire16589147692605094104\surefirebooter-20261118004635560_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.2+10-LTS-69"/>
@@ -50,7 +50,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Users/VINH_QUANG/.gemini/antigravity/bin;C:\Users\VINH_QUANG\AppData\Roaming\Antigravity\bin;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\nodejs;D:\DBeaver;C:\Program Files\apache-maven-3.9.15\bin;C:\MinGW\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files (x86)\cloudflared\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\VINH_QUANG\.local\bin;C:\Users\VINH_QUANG\AppData\Local\agy\bin;C:\Program Files\Java\jdk-25.0.2\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Python\Launcher\;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WindowsApps;C:\Users\VINH_QUANG\AppData\Local\Programs\Antigravity\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VINH_QUANG\.bun\bin;C:\Users\VINH_QUANG\.dotnet\tools;C:\Users\VINH_QUANG\AppData\Local\Programs\Zed\bin;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WinGet\Packages\Ngrok.Ngrok_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;D:\UnityCLI\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\nodejs;D:\DBeaver;C:\Program Files\apache-maven-3.9.15\bin;C:\MinGW\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files (x86)\cloudflared\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\VINH_QUANG\.local\bin;C:\Users\VINH_QUANG\AppData\Local\agy\bin;C:\Program Files\Java\jdk-25.0.2\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Python\Launcher\;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WindowsApps;C:\Users\VINH_QUANG\AppData\Local\Programs\Antigravity\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VINH_QUANG\.bun\bin;C:\Users\VINH_QUANG\.dotnet\tools;C:\Users\VINH_QUANG\AppData\Local\Programs\Zed\bin;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WinGet\Packages\Ngrok.Ngrok_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;D:\UnityCLI\bin;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
@@ -59,45 +59,45 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="lateLaptopTakesPendingWorkWhileExistingLaptopIsBusy" classname="com.pbl4.LaptopClusterTest" time="0.508">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:54627
-[Registry] REGISTER [laptop-a-worker-01 @ 127.0.0.1:54628 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (DESKTOP-QBGBFLP)
-[Master] REGISTERED laptop-a-worker-01 | laptop=laptop-a (DESKTOP-QBGBFLP) | 127.0.0.1:54628
-[Worker] REGISTERED laptop-a-worker-01 | laptop=laptop-a (DESKTOP-QBGBFLP) | 127.0.0.1:54628 -> Master 127.0.0.1:54627
-[WorkerCluster] laptop=laptop-b (Laptop B) | opened=3/3 | ports=23000-23002 | compute limit=2 | Master=127.0.0.1:54627
+  <testcase name="lateLaptopTakesPendingWorkWhileExistingLaptopIsBusy" classname="com.pbl4.LaptopClusterTest" time="0.492">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:55568
+[Registry] REGISTER [laptop-a-worker-01 @ 127.0.0.1:55569 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (DESKTOP-QBGBFLP)
+[Master] REGISTERED laptop-a-worker-01 | laptop=laptop-a (DESKTOP-QBGBFLP) | 127.0.0.1:55569
+[Worker] REGISTERED laptop-a-worker-01 | laptop=laptop-a (DESKTOP-QBGBFLP) | 127.0.0.1:55569 -> Master 127.0.0.1:55568
+[WorkerCluster] laptop=laptop-b (Laptop B) | opened=3/3 | ports=23000-23002 | compute limit=2 | Master=127.0.0.1:55568
 [WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
+[WorkerCluster] laptop=laptop-b | REGISTERED 0/3 | opened 3/3
 [Registry] REGISTER [laptop-b-worker-01 @ 127.0.0.2:23000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.2:23000
-[WorkerCluster] laptop=laptop-b | REGISTERED 0/3 | opened 3/3
-[Worker] REGISTERED laptop-b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.2:23000 -> Master 127.0.0.1:54627
 [Registry] REGISTER [laptop-b-worker-02 @ 127.0.0.2:23001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-02 | laptop=laptop-b (Laptop B) | 127.0.0.2:23001
-[Worker] REGISTERED laptop-b-worker-02 | laptop=laptop-b (Laptop B) | 127.0.0.2:23001 -> Master 127.0.0.1:54627
+[Worker] REGISTERED laptop-b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.2:23000 -> Master 127.0.0.1:55568
+[Worker] REGISTERED laptop-b-worker-02 | laptop=laptop-b (Laptop B) | 127.0.0.2:23001 -> Master 127.0.0.1:55568
 [Registry] REGISTER [laptop-b-worker-03 @ 127.0.0.2:23002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-03 | laptop=laptop-b (Laptop B) | 127.0.0.2:23002
-[Worker] REGISTERED laptop-b-worker-03 | laptop=laptop-b (Laptop B) | 127.0.0.2:23002 -> Master 127.0.0.1:54627
-[laptop-b-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [13 x 100] (startRow=26) va ma tran B [100 x 100]... OK
-[laptop-b-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [13 x 100]... OK
-[laptop-b-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[laptop-b-worker-02]  |    |-- Tien do: [----------]   8% (Dong 1/13 hoan tat)
-[laptop-b-worker-02]  |    |-- Tien do: [===-------]  31% (Dong 4/13 hoan tat)
-[laptop-b-worker-02]  |    |-- Tien do: [=====-----]  54% (Dong 7/13 hoan tat)
-[laptop-b-worker-02]  |    |-- Tien do: [=======---]  77% (Dong 10/13 hoan tat)
+[Worker] REGISTERED laptop-b-worker-03 | laptop=laptop-b (Laptop B) | 127.0.0.2:23002 -> Master 127.0.0.1:55568
 [laptop-b-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [13 x 100] (startRow=13) va ma tran B [100 x 100]... OK
 [laptop-b-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [13 x 100]... OK
 [laptop-b-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [13 x 100] (startRow=26) va ma tran B [100 x 100]... OK
+[laptop-b-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [13 x 100]... OK
+[laptop-b-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker-01]  |    |-- Tien do: [----------]   8% (Dong 1/13 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [----------]   8% (Dong 1/13 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [===-------]  31% (Dong 4/13 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [===-------]  31% (Dong 4/13 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [=====-----]  54% (Dong 7/13 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [=====-----]  54% (Dong 7/13 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [=======---]  77% (Dong 10/13 hoan tat)
+[laptop-b-worker-01]  |    |-- Tien do: [=======---]  77% (Dong 10/13 hoan tat)
 [laptop-b-worker-02]  |    |-- Tien do: [==========] 100% (Dong 13/13 hoan tat)
 [laptop-b-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 13 dong!... OK
 [laptop-b-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [13 x 100] vao TaskResult... OK
-[laptop-b-worker-01]  |    |-- Tien do: [----------]   8% (Dong 1/13 hoan tat)
-[laptop-b-worker-01]  |    |-- Tien do: [===-------]  31% (Dong 4/13 hoan tat)
-[laptop-b-worker-01]  |    |-- Tien do: [=====-----]  54% (Dong 7/13 hoan tat)
-[laptop-b-worker-01]  |    |-- Tien do: [=======---]  77% (Dong 10/13 hoan tat)
 [laptop-b-worker-01]  |    |-- Tien do: [==========] 100% (Dong 13/13 hoan tat)
 [laptop-b-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 13 dong!... OK
 [laptop-b-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [13 x 100] vao TaskResult... OK
-[Result] async-mul-e843fcfd-a617-4cf8-adee-a13b4fed3a7b-task-02 <- laptop-b-worker-01 (1/8)
-[Result] async-mul-e843fcfd-a617-4cf8-adee-a13b4fed3a7b-task-03 <- laptop-b-worker-02 (2/8)
+[Result] async-mul-4cd96912-2849-41fb-8224-af3000619be9-task-02 <- laptop-b-worker-01 (1/8)
+[Result] async-mul-4cd96912-2849-41fb-8224-af3000619be9-task-03 <- laptop-b-worker-02 (2/8)
 [laptop-a-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [13 x 100] (startRow=0) va ma tran B [100 x 100]... OK
 [laptop-a-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [13 x 100]... OK
 [laptop-a-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -108,10 +108,16 @@
 [laptop-a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 13/13 hoan tat)
 [laptop-a-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 13 dong!... OK
 [laptop-a-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [13 x 100] vao TaskResult... OK
-[Result] async-mul-e843fcfd-a617-4cf8-adee-a13b4fed3a7b-task-01 <- laptop-a-worker-01 (3/8)
+[Result] async-mul-4cd96912-2849-41fb-8224-af3000619be9-task-01 <- laptop-a-worker-01 (3/8)
 [laptop-b-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [12 x 100] (startRow=52) va ma tran B [100 x 100]... OK
 [laptop-b-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [12 x 100]... OK
 [laptop-b-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-a-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [13 x 100] (startRow=39) va ma tran B [100 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [13 x 100]... OK
+[laptop-a-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [12 x 100] (startRow=64) va ma tran B [100 x 100]... OK
+[laptop-b-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [12 x 100]... OK
+[laptop-b-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [laptop-b-worker-03]  |    |-- Tien do: [----------]   8% (Dong 1/12 hoan tat)
 [laptop-b-worker-03]  |    |-- Tien do: [===-------]  33% (Dong 4/12 hoan tat)
 [laptop-b-worker-03]  |    |-- Tien do: [=====-----]  58% (Dong 7/12 hoan tat)
@@ -119,368 +125,362 @@
 [laptop-b-worker-03]  |    |-- Tien do: [==========] 100% (Dong 12/12 hoan tat)
 [laptop-b-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 12 dong!... OK
 [laptop-b-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [12 x 100] vao TaskResult... OK
-[laptop-a-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [13 x 100] (startRow=39) va ma tran B [100 x 100]... OK
-[laptop-a-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [13 x 100]... OK
-[laptop-a-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[laptop-a-worker-01]  |    |-- Tien do: [----------]   8% (Dong 1/13 hoan tat)
-[laptop-a-worker-01]  |    |-- Tien do: [===-------]  31% (Dong 4/13 hoan tat)
-[laptop-a-worker-01]  |    |-- Tien do: [=====-----]  54% (Dong 7/13 hoan tat)
-[laptop-a-worker-01]  |    |-- Tien do: [=======---]  77% (Dong 10/13 hoan tat)
-[laptop-a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 13/13 hoan tat)
-[laptop-a-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 13 dong!... OK
-[laptop-a-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [13 x 100] vao TaskResult... OK
-[laptop-b-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [12 x 100] (startRow=64) va ma tran B [100 x 100]... OK
-[laptop-b-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [12 x 100]... OK
-[laptop-b-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [laptop-b-worker-01]  |    |-- Tien do: [----------]   8% (Dong 1/12 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [----------]   8% (Dong 1/13 hoan tat)
 [laptop-b-worker-01]  |    |-- Tien do: [===-------]  33% (Dong 4/12 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [===-------]  31% (Dong 4/13 hoan tat)
 [laptop-b-worker-01]  |    |-- Tien do: [=====-----]  58% (Dong 7/12 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [=====-----]  54% (Dong 7/13 hoan tat)
 [laptop-b-worker-01]  |    |-- Tien do: [========--]  83% (Dong 10/12 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [=======---]  77% (Dong 10/13 hoan tat)
 [laptop-b-worker-01]  |    |-- Tien do: [==========] 100% (Dong 12/12 hoan tat)
 [laptop-b-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 12 dong!... OK
 [laptop-b-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [12 x 100] vao TaskResult... OK
-[Result] async-mul-e843fcfd-a617-4cf8-adee-a13b4fed3a7b-task-05 <- laptop-b-worker-03 (4/8)
-[Result] async-mul-e843fcfd-a617-4cf8-adee-a13b4fed3a7b-task-04 <- laptop-a-worker-01 (5/8)
-[Result] async-mul-e843fcfd-a617-4cf8-adee-a13b4fed3a7b-task-06 <- laptop-b-worker-01 (6/8)
-[laptop-b-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [12 x 100] (startRow=88) va ma tran B [100 x 100]... OK
-[laptop-b-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [12 x 100]... OK
-[laptop-b-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[laptop-b-worker-02]  |    |-- Tien do: [----------]   8% (Dong 1/12 hoan tat)
+[laptop-a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 13/13 hoan tat)
+[laptop-a-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 13 dong!... OK
+[laptop-a-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [13 x 100] vao TaskResult... OK
+[Result] async-mul-4cd96912-2849-41fb-8224-af3000619be9-task-05 <- laptop-b-worker-03 (4/8)
+[Result] async-mul-4cd96912-2849-41fb-8224-af3000619be9-task-04 <- laptop-a-worker-01 (5/8)
+[Result] async-mul-4cd96912-2849-41fb-8224-af3000619be9-task-06 <- laptop-b-worker-01 (6/8)
 [laptop-a-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [12 x 100] (startRow=76) va ma tran B [100 x 100]... OK
 [laptop-a-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [12 x 100]... OK
 [laptop-a-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[laptop-b-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 4/12 hoan tat)
 [laptop-a-worker-01]  |    |-- Tien do: [----------]   8% (Dong 1/12 hoan tat)
-[laptop-b-worker-02]  |    |-- Tien do: [=====-----]  58% (Dong 7/12 hoan tat)
 [laptop-a-worker-01]  |    |-- Tien do: [===-------]  33% (Dong 4/12 hoan tat)
-[laptop-b-worker-02]  |    |-- Tien do: [========--]  83% (Dong 10/12 hoan tat)
-[laptop-b-worker-02]  |    |-- Tien do: [==========] 100% (Dong 12/12 hoan tat)
-[laptop-b-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 12 dong!... OK
 [laptop-a-worker-01]  |    |-- Tien do: [=====-----]  58% (Dong 7/12 hoan tat)
-[laptop-b-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [12 x 100] vao TaskResult... OK
 [laptop-a-worker-01]  |    |-- Tien do: [========--]  83% (Dong 10/12 hoan tat)
 [laptop-a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 12/12 hoan tat)
 [laptop-a-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 12 dong!... OK
 [laptop-a-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [12 x 100] vao TaskResult... OK
-[Result] async-mul-e843fcfd-a617-4cf8-adee-a13b4fed3a7b-task-08 <- laptop-b-worker-02 (7/8)
-[Result] async-mul-e843fcfd-a617-4cf8-adee-a13b4fed3a7b-task-07 <- laptop-a-worker-01 (8/8)
+[laptop-b-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [12 x 100] (startRow=88) va ma tran B [100 x 100]... OK
+[laptop-b-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [12 x 100]... OK
+[laptop-b-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[laptop-b-worker-02]  |    |-- Tien do: [----------]   8% (Dong 1/12 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [===-------]  33% (Dong 4/12 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [=====-----]  58% (Dong 7/12 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [========--]  83% (Dong 10/12 hoan tat)
+[laptop-b-worker-02]  |    |-- Tien do: [==========] 100% (Dong 12/12 hoan tat)
+[laptop-b-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 12 dong!... OK
+[laptop-b-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [12 x 100] vao TaskResult... OK
+[Result] async-mul-4cd96912-2849-41fb-8224-af3000619be9-task-07 <- laptop-a-worker-01 (7/8)
+[Result] async-mul-4cd96912-2849-41fb-8224-af3000619be9-task-08 <- laptop-b-worker-02 (8/8)
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
   </testcase>
-  <testcase name="versionTwoIsRejectedBeforeRegistration" classname="com.pbl4.LaptopClusterTest" time="0.007">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:54653
+  <testcase name="versionTwoIsRejectedBeforeRegistration" classname="com.pbl4.LaptopClusterTest" time="0.006">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:55595
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
   </testcase>
-  <testcase name="fiftyPerLaptopRegistersAndComputesWithoutCreatingWorkers" classname="com.pbl4.LaptopClusterTest" time="0.521">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:54655
-[MasterHttpServer] REST API Server san sang tai: http://localhost:54656/api/
+  <testcase name="fiftyPerLaptopRegistersAndComputesWithoutCreatingWorkers" classname="com.pbl4.LaptopClusterTest" time="0.445">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:55597
+[MasterHttpServer] REST API Server san sang tai: http://localhost:55598/api/
 [Registry] REGISTER [laptop-a-worker-01 @ 127.0.0.1:23000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Registry] REGISTER [laptop-a-worker-02 @ 127.0.0.1:23001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-01 | laptop=laptop-a (Laptop A) | 127.0.0.1:23000
+[Registry] REGISTER [laptop-a-worker-02 @ 127.0.0.1:23001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-02 | laptop=laptop-a (Laptop A) | 127.0.0.1:23001
-[Worker] REGISTERED laptop-a-worker-01 | laptop=laptop-a (Laptop A) | 127.0.0.1:23000 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-a-worker-02 | laptop=laptop-a (Laptop A) | 127.0.0.1:23001 -> Master 127.0.0.1:54655
-[Registry] REGISTER [laptop-a-worker-04 @ 127.0.0.1:23003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Registry] REGISTER [laptop-a-worker-03 @ 127.0.0.1:23002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Master] REGISTERED laptop-a-worker-04 | laptop=laptop-a (Laptop A) | 127.0.0.1:23003
+[Worker] REGISTERED laptop-a-worker-01 | laptop=laptop-a (Laptop A) | 127.0.0.1:23000 -> Master 127.0.0.1:55597
 [Master] REGISTERED laptop-a-worker-03 | laptop=laptop-a (Laptop A) | 127.0.0.1:23002
-[Worker] REGISTERED laptop-a-worker-04 | laptop=laptop-a (Laptop A) | 127.0.0.1:23003 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-a-worker-03 | laptop=laptop-a (Laptop A) | 127.0.0.1:23002 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-02 | laptop=laptop-a (Laptop A) | 127.0.0.1:23001 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-a-worker-03 | laptop=laptop-a (Laptop A) | 127.0.0.1:23002 -> Master 127.0.0.1:55597
+[Registry] REGISTER [laptop-a-worker-04 @ 127.0.0.1:23003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-04 | laptop=laptop-a (Laptop A) | 127.0.0.1:23003
 [Registry] REGISTER [laptop-a-worker-05 @ 127.0.0.1:23004 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Registry] REGISTER [laptop-a-worker-06 @ 127.0.0.1:23005 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-04 | laptop=laptop-a (Laptop A) | 127.0.0.1:23003 -> Master 127.0.0.1:55597
 [Master] REGISTERED laptop-a-worker-05 | laptop=laptop-a (Laptop A) | 127.0.0.1:23004
-[Worker] REGISTERED laptop-a-worker-05 | laptop=laptop-a (Laptop A) | 127.0.0.1:23004 -> Master 127.0.0.1:54655
-[Master] REGISTERED laptop-a-worker-06 | laptop=laptop-a (Laptop A) | 127.0.0.1:23005
-[Worker] REGISTERED laptop-a-worker-06 | laptop=laptop-a (Laptop A) | 127.0.0.1:23005 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-05 | laptop=laptop-a (Laptop A) | 127.0.0.1:23004 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-07 @ 127.0.0.1:23006 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-07 | laptop=laptop-a (Laptop A) | 127.0.0.1:23006
-[Worker] REGISTERED laptop-a-worker-07 | laptop=laptop-a (Laptop A) | 127.0.0.1:23006 -> Master 127.0.0.1:54655
 [Registry] REGISTER [laptop-a-worker-08 @ 127.0.0.1:23007 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-08 | laptop=laptop-a (Laptop A) | 127.0.0.1:23007
+[Registry] REGISTER [laptop-a-worker-06 @ 127.0.0.1:23005 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-07 | laptop=laptop-a (Laptop A) | 127.0.0.1:23006 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-a-worker-08 | laptop=laptop-a (Laptop A) | 127.0.0.1:23007 -> Master 127.0.0.1:55597
+[Master] REGISTERED laptop-a-worker-06 | laptop=laptop-a (Laptop A) | 127.0.0.1:23005
+[Worker] REGISTERED laptop-a-worker-06 | laptop=laptop-a (Laptop A) | 127.0.0.1:23005 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-10 @ 127.0.0.1:23009 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Worker] REGISTERED laptop-a-worker-08 | laptop=laptop-a (Laptop A) | 127.0.0.1:23007 -> Master 127.0.0.1:54655
-[Master] REGISTERED laptop-a-worker-10 | laptop=laptop-a (Laptop A) | 127.0.0.1:23009
-[Worker] REGISTERED laptop-a-worker-10 | laptop=laptop-a (Laptop A) | 127.0.0.1:23009 -> Master 127.0.0.1:54655
-[Registry] REGISTER [laptop-a-worker-11 @ 127.0.0.1:23010 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Master] REGISTERED laptop-a-worker-11 | laptop=laptop-a (Laptop A) | 127.0.0.1:23010
-[Worker] REGISTERED laptop-a-worker-11 | laptop=laptop-a (Laptop A) | 127.0.0.1:23010 -> Master 127.0.0.1:54655
 [Registry] REGISTER [laptop-a-worker-09 @ 127.0.0.1:23008 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-10 | laptop=laptop-a (Laptop A) | 127.0.0.1:23009
 [Master] REGISTERED laptop-a-worker-09 | laptop=laptop-a (Laptop A) | 127.0.0.1:23008
+[Registry] REGISTER [laptop-a-worker-11 @ 127.0.0.1:23010 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-09 | laptop=laptop-a (Laptop A) | 127.0.0.1:23008 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-a-worker-10 | laptop=laptop-a (Laptop A) | 127.0.0.1:23009 -> Master 127.0.0.1:55597
+[Master] REGISTERED laptop-a-worker-11 | laptop=laptop-a (Laptop A) | 127.0.0.1:23010
+[Worker] REGISTERED laptop-a-worker-11 | laptop=laptop-a (Laptop A) | 127.0.0.1:23010 -> Master 127.0.0.1:55597
+[Registry] REGISTER [laptop-a-worker-13 @ 127.0.0.1:23012 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Registry] REGISTER [laptop-a-worker-12 @ 127.0.0.1:23011 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Worker] REGISTERED laptop-a-worker-09 | laptop=laptop-a (Laptop A) | 127.0.0.1:23008 -> Master 127.0.0.1:54655
+[Master] REGISTERED laptop-a-worker-13 | laptop=laptop-a (Laptop A) | 127.0.0.1:23012
 [Master] REGISTERED laptop-a-worker-12 | laptop=laptop-a (Laptop A) | 127.0.0.1:23011
-[Worker] REGISTERED laptop-a-worker-12 | laptop=laptop-a (Laptop A) | 127.0.0.1:23011 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-13 | laptop=laptop-a (Laptop A) | 127.0.0.1:23012 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-a-worker-12 | laptop=laptop-a (Laptop A) | 127.0.0.1:23011 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-14 @ 127.0.0.1:23013 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-14 | laptop=laptop-a (Laptop A) | 127.0.0.1:23013
-[Registry] REGISTER [laptop-a-worker-13 @ 127.0.0.1:23012 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Master] REGISTERED laptop-a-worker-13 | laptop=laptop-a (Laptop A) | 127.0.0.1:23012
-[Worker] REGISTERED laptop-a-worker-14 | laptop=laptop-a (Laptop A) | 127.0.0.1:23013 -> Master 127.0.0.1:54655
 [Registry] REGISTER [laptop-a-worker-15 @ 127.0.0.1:23014 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Worker] REGISTERED laptop-a-worker-13 | laptop=laptop-a (Laptop A) | 127.0.0.1:23012 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-14 | laptop=laptop-a (Laptop A) | 127.0.0.1:23013 -> Master 127.0.0.1:55597
 [Master] REGISTERED laptop-a-worker-15 | laptop=laptop-a (Laptop A) | 127.0.0.1:23014
-[Worker] REGISTERED laptop-a-worker-15 | laptop=laptop-a (Laptop A) | 127.0.0.1:23014 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-15 | laptop=laptop-a (Laptop A) | 127.0.0.1:23014 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-16 @ 127.0.0.1:23015 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-16 | laptop=laptop-a (Laptop A) | 127.0.0.1:23015
-[Worker] REGISTERED laptop-a-worker-16 | laptop=laptop-a (Laptop A) | 127.0.0.1:23015 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-16 | laptop=laptop-a (Laptop A) | 127.0.0.1:23015 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-17 @ 127.0.0.1:23016 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Master] REGISTERED laptop-a-worker-17 | laptop=laptop-a (Laptop A) | 127.0.0.1:23016
-[Worker] REGISTERED laptop-a-worker-17 | laptop=laptop-a (Laptop A) | 127.0.0.1:23016 -> Master 127.0.0.1:54655
 [Registry] REGISTER [laptop-a-worker-18 @ 127.0.0.1:23017 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-17 | laptop=laptop-a (Laptop A) | 127.0.0.1:23016
 [Master] REGISTERED laptop-a-worker-18 | laptop=laptop-a (Laptop A) | 127.0.0.1:23017
-[Worker] REGISTERED laptop-a-worker-18 | laptop=laptop-a (Laptop A) | 127.0.0.1:23017 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-17 | laptop=laptop-a (Laptop A) | 127.0.0.1:23016 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-a-worker-18 | laptop=laptop-a (Laptop A) | 127.0.0.1:23017 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-19 @ 127.0.0.1:23018 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-19 | laptop=laptop-a (Laptop A) | 127.0.0.1:23018
-[Worker] REGISTERED laptop-a-worker-19 | laptop=laptop-a (Laptop A) | 127.0.0.1:23018 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-19 | laptop=laptop-a (Laptop A) | 127.0.0.1:23018 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-20 @ 127.0.0.1:23019 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Master] REGISTERED laptop-a-worker-20 | laptop=laptop-a (Laptop A) | 127.0.0.1:23019
-[Worker] REGISTERED laptop-a-worker-20 | laptop=laptop-a (Laptop A) | 127.0.0.1:23019 -> Master 127.0.0.1:54655
 [Registry] REGISTER [laptop-a-worker-21 @ 127.0.0.1:23020 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-20 | laptop=laptop-a (Laptop A) | 127.0.0.1:23019
 [Master] REGISTERED laptop-a-worker-21 | laptop=laptop-a (Laptop A) | 127.0.0.1:23020
-[Worker] REGISTERED laptop-a-worker-21 | laptop=laptop-a (Laptop A) | 127.0.0.1:23020 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-20 | laptop=laptop-a (Laptop A) | 127.0.0.1:23019 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-a-worker-21 | laptop=laptop-a (Laptop A) | 127.0.0.1:23020 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-22 @ 127.0.0.1:23021 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-22 | laptop=laptop-a (Laptop A) | 127.0.0.1:23021
-[Worker] REGISTERED laptop-a-worker-22 | laptop=laptop-a (Laptop A) | 127.0.0.1:23021 -> Master 127.0.0.1:54655
-[Registry] REGISTER [laptop-a-worker-23 @ 127.0.0.1:23022 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Master] REGISTERED laptop-a-worker-23 | laptop=laptop-a (Laptop A) | 127.0.0.1:23022
+[Worker] REGISTERED laptop-a-worker-22 | laptop=laptop-a (Laptop A) | 127.0.0.1:23021 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-24 @ 127.0.0.1:23023 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Worker] REGISTERED laptop-a-worker-23 | laptop=laptop-a (Laptop A) | 127.0.0.1:23022 -> Master 127.0.0.1:54655
+[Registry] REGISTER [laptop-a-worker-23 @ 127.0.0.1:23022 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-24 | laptop=laptop-a (Laptop A) | 127.0.0.1:23023
-[Worker] REGISTERED laptop-a-worker-24 | laptop=laptop-a (Laptop A) | 127.0.0.1:23023 -> Master 127.0.0.1:54655
+[Master] REGISTERED laptop-a-worker-23 | laptop=laptop-a (Laptop A) | 127.0.0.1:23022
+[Worker] REGISTERED laptop-a-worker-23 | laptop=laptop-a (Laptop A) | 127.0.0.1:23022 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-a-worker-24 | laptop=laptop-a (Laptop A) | 127.0.0.1:23023 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-25 @ 127.0.0.1:23024 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Master] REGISTERED laptop-a-worker-25 | laptop=laptop-a (Laptop A) | 127.0.0.1:23024
-[Worker] REGISTERED laptop-a-worker-25 | laptop=laptop-a (Laptop A) | 127.0.0.1:23024 -> Master 127.0.0.1:54655
 [Registry] REGISTER [laptop-a-worker-26 @ 127.0.0.1:23025 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-25 | laptop=laptop-a (Laptop A) | 127.0.0.1:23024
 [Master] REGISTERED laptop-a-worker-26 | laptop=laptop-a (Laptop A) | 127.0.0.1:23025
-[Worker] REGISTERED laptop-a-worker-26 | laptop=laptop-a (Laptop A) | 127.0.0.1:23025 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-25 | laptop=laptop-a (Laptop A) | 127.0.0.1:23024 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-a-worker-26 | laptop=laptop-a (Laptop A) | 127.0.0.1:23025 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-27 @ 127.0.0.1:23026 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Registry] REGISTER [laptop-a-worker-28 @ 127.0.0.1:23027 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-28 | laptop=laptop-a (Laptop A) | 127.0.0.1:23027
 [Master] REGISTERED laptop-a-worker-27 | laptop=laptop-a (Laptop A) | 127.0.0.1:23026
-[Worker] REGISTERED laptop-a-worker-27 | laptop=laptop-a (Laptop A) | 127.0.0.1:23026 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-28 | laptop=laptop-a (Laptop A) | 127.0.0.1:23027 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-a-worker-27 | laptop=laptop-a (Laptop A) | 127.0.0.1:23026 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-29 @ 127.0.0.1:23028 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-29 | laptop=laptop-a (Laptop A) | 127.0.0.1:23028
-[Registry] REGISTER [laptop-a-worker-28 @ 127.0.0.1:23027 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Worker] REGISTERED laptop-a-worker-29 | laptop=laptop-a (Laptop A) | 127.0.0.1:23028 -> Master 127.0.0.1:54655
-[Master] REGISTERED laptop-a-worker-28 | laptop=laptop-a (Laptop A) | 127.0.0.1:23027
-[Worker] REGISTERED laptop-a-worker-28 | laptop=laptop-a (Laptop A) | 127.0.0.1:23027 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-29 | laptop=laptop-a (Laptop A) | 127.0.0.1:23028 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-30 @ 127.0.0.1:23029 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-30 | laptop=laptop-a (Laptop A) | 127.0.0.1:23029
+[Worker] REGISTERED laptop-a-worker-30 | laptop=laptop-a (Laptop A) | 127.0.0.1:23029 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-31 @ 127.0.0.1:23030 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Worker] REGISTERED laptop-a-worker-30 | laptop=laptop-a (Laptop A) | 127.0.0.1:23029 -> Master 127.0.0.1:54655
 [Master] REGISTERED laptop-a-worker-31 | laptop=laptop-a (Laptop A) | 127.0.0.1:23030
-[Worker] REGISTERED laptop-a-worker-31 | laptop=laptop-a (Laptop A) | 127.0.0.1:23030 -> Master 127.0.0.1:54655
 [Registry] REGISTER [laptop-a-worker-32 @ 127.0.0.1:23031 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-31 | laptop=laptop-a (Laptop A) | 127.0.0.1:23030 -> Master 127.0.0.1:55597
 [Master] REGISTERED laptop-a-worker-32 | laptop=laptop-a (Laptop A) | 127.0.0.1:23031
+[Worker] REGISTERED laptop-a-worker-32 | laptop=laptop-a (Laptop A) | 127.0.0.1:23031 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-33 @ 127.0.0.1:23032 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-33 | laptop=laptop-a (Laptop A) | 127.0.0.1:23032
-[Worker] REGISTERED laptop-a-worker-32 | laptop=laptop-a (Laptop A) | 127.0.0.1:23031 -> Master 127.0.0.1:54655
+[Registry] REGISTER [laptop-a-worker-34 @ 127.0.0.1:23033 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-33 | laptop=laptop-a (Laptop A) | 127.0.0.1:23032 -> Master 127.0.0.1:55597
+[Master] REGISTERED laptop-a-worker-34 | laptop=laptop-a (Laptop A) | 127.0.0.1:23033
 [Registry] REGISTER [laptop-a-worker-35 @ 127.0.0.1:23034 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-34 | laptop=laptop-a (Laptop A) | 127.0.0.1:23033 -> Master 127.0.0.1:55597
 [Master] REGISTERED laptop-a-worker-35 | laptop=laptop-a (Laptop A) | 127.0.0.1:23034
-[Worker] REGISTERED laptop-a-worker-35 | laptop=laptop-a (Laptop A) | 127.0.0.1:23034 -> Master 127.0.0.1:54655
-[Registry] REGISTER [laptop-a-worker-36 @ 127.0.0.1:23035 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-35 | laptop=laptop-a ([Registry] REGISTER [laptop-a-worker-36 @ 127.0.0.1:23035 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+Laptop A) | 127.0.0.1:23034 -> Master 127.0.0.1:55597
 [Master] REGISTERED laptop-a-worker-36 | laptop=laptop-a (Laptop A) | 127.0.0.1:23035
-[Worker] REGISTERED laptop-a-worker-36 | laptop=laptop-a (Laptop A) | 127.0.0.1:23035 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-36 | laptop=laptop-a (Laptop A) | 127.0.0.1:23035 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-37 @ 127.0.0.1:23036 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-37 | laptop=laptop-a (Laptop A) | 127.0.0.1:23036
-[Worker] REGISTERED laptop-a-worker-37[Registry] REGISTER [laptop-a-worker-38 @ 127.0.0.1:23037 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
- | laptop=laptop-a (Laptop A) | 127.0.0.1:23036 -> Master 127.0.0.1:54655
+[Registry] REGISTER [laptop-a-worker-38 @ 127.0.0.1:23037 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-37 | laptop=laptop-a (Laptop A) | 127.0.0.1:23036 -> Master 127.0.0.1:55597
 [Master] REGISTERED laptop-a-worker-38 | laptop=laptop-a (Laptop A) | 127.0.0.1:23037
-[Worker] REGISTERED laptop-a-worker-38 | laptop=laptop-a (Laptop A) | 127.0.0.1:23037 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-38 | laptop=laptop-a (Laptop A) | 127.0.0.1:23037 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-39 @ 127.0.0.1:23038 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-39 | laptop=laptop-a (Laptop A) | 127.0.0.1:23038
-[Worker] REGISTERED laptop-a-worker-39 | laptop=laptop-a (Laptop A) | 127.0.0.1:23038 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-39 | laptop=laptop-a (Laptop A) | 127.0.0.1:23038 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-40 @ 127.0.0.1:23039 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-40 | laptop=laptop-a (Laptop A) | 127.0.0.1:23039
+[Worker] REGISTERED laptop-a-worker-40 | laptop=laptop-a (Laptop A) | 127.0.0.1:23039 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-41 @ 127.0.0.1:23040 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-41 | laptop=laptop-a (Laptop A) | 127.0.0.1:23040
-[Worker] REGISTERED laptop-a-worker-41 | laptop=laptop-a (Laptop A) | 127.0.0.1:23040 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-a-worker-41 | laptop=laptop-a (Laptop A) | 127.0.0.1:23040 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-43 @ 127.0.0.1:23042 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-43 | laptop=laptop-a (Laptop A) | 127.0.0.1:23042
-[Worker] REGISTERED laptop-a-worker-43 | laptop=laptop-a (Laptop A) | 127.0.0.1:23042 -> Master 127.0.0.1:54655
+[Registry] REGISTER [laptop-a-worker-42 @ 127.0.0.1:23041 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Master] REGISTERED laptop-a-worker-42 | laptop=laptop-a (Laptop A) | 127.0.0.1:23041
+[Worker] REGISTERED laptop-a-worker-43 | laptop=laptop-a (Laptop A) | 127.0.0.1:23042 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-a-worker-42 | laptop=laptop-a (Laptop A) | 127.0.0.1:23041 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-44 @ 127.0.0.1:23043 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Registry] REGISTER [laptop-a-worker-45 @ 127.0.0.1:23044 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-44 | laptop=laptop-a (Laptop A) | 127.0.0.1:23043
+[Registry] REGISTER [laptop-a-worker-45 @ 127.0.0.1:23044 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
+[Worker] REGISTERED laptop-a-worker-44 | laptop=laptop-a (Laptop A) | 127.0.0.1:23043 -> Master 127.0.0.1:55597
 [Master] REGISTERED laptop-a-worker-45 | laptop=laptop-a (Laptop A) | 127.0.0.1:23044
-[Worker] REGISTERED laptop-a-worker-44 | laptop=laptop-a (Laptop A) | 127.0.0.1:23043 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-a-worker-45 | laptop=laptop-a (Laptop A) | 127.0.0.1:23044 -> Master 127.0.0.1:54655
-[WorkerCluster] laptop=laptop-a (Laptop A) | opened=50/50 | ports=23000-23049 | compute limit=2 | Master=127.0.0.1:54655
+[WorkerCluster] laptop=laptop-a (Laptop A) | opened=50/50 | ports=23000-23049 | compute limit=2 | Master=127.0.0.1:55597
 [WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
-[WorkerCluster] laptop=laptop-a | REGISTERED 41/50 | opened 50/50
+[Worker] REGISTERED laptop-a-worker-45 | laptop=laptop-a (Laptop A) | 127.0.0.1:23044 -> Master 127.0.0.1:55597
+[WorkerCluster] laptop=laptop-a | REGISTERED 45/50 | opened 50/50
 [Registry] REGISTER [laptop-a-worker-46 @ 127.0.0.1:23045 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-46 | laptop=laptop-a (Laptop A) | 127.0.0.1:23045
+[Worker] REGISTERED laptop-a-worker-46 | laptop=laptop-a (Laptop A) | 127.0.0.1:23045 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-47 @ 127.0.0.1:23046 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-47 | laptop=laptop-a (Laptop A) | 127.0.0.1:23046
+[Worker] REGISTERED laptop-a-worker-47 | laptop=laptop-a (Laptop A) | 127.0.0.1:23046 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-48 @ 127.0.0.1:23047 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Master] REGISTERED laptop-a-worker-48 | laptop=laptop-a (Laptop A) | 127.0.0.1:[Registry] REGISTER [laptop-a-worker-49 @ 127.0.0.1:23048 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-23047
+[Master] REGISTERED laptop-a-worker-48 | laptop=laptop-a (Laptop A) | 127.0.0.1:23047
+[Worker] REGISTERED laptop-a-worker-48 | laptop=laptop-a (Laptop A) | 127.0.0.1:23047 -> Master 127.0.0.1:55597
+[Registry] REGISTER [laptop-a-worker-49 @ 127.0.0.1:23048 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-49 | laptop=laptop-a (Laptop A) | 127.0.0.1:23048
-[Worker] REGISTERED laptop-a-worker-48 | laptop=laptop-a (Laptop A) | 127.0.0.1:23047 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-a-worker-49 | laptop=laptop-a (Laptop A) | 127.0.0.1:23048 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-a-worker-33 | laptop=laptop-a (Laptop A) | 127.0.0.1:23032 -> Master 127.0.0.1:54655
-[Registry] REGISTER [laptop-a-worker-42 @ 127.0.0.1:23041 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-[Worker] REGISTERED laptop-a-worker-40 | laptop=laptop-a (Laptop A) | 127.0.0.1:23039 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-a-worker-46 | laptop=laptop-a (Laptop A) | 127.0.0.1:23045 -> Master 127.0.0.1:54655
-[Master] REGISTERED [Registry] REGISTER [laptop-a-worker-34 @ 127.0.0.1:23033 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
-laptop-a-worker-42 | laptop=laptop-a (Laptop A) | 127.0.0.1:23041
-[Master] REGISTERED laptop-a-worker-34 | laptop=laptop-a (Laptop A) | 127.0.0.1:23033
-[Worker] REGISTERED laptop-a-worker-42 | laptop=laptop-a (Laptop A) | 127.0.0.1:23041 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-a-worker-47 | laptop=laptop-a (Laptop A) | 127.0.0.1:23046 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-a-worker-34 | laptop=laptop-a (Laptop A) | 127.0.0.1:23033 -> Master 127.0.0.1:54655
-[Registry] REGISTER [laptop-b-worker-01 @ 127.0.0.2:23000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-a-worker-49 | laptop=laptop-a (Laptop A) | 127.0.0.1:23048 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-a-worker-50 @ 127.0.0.1:23049 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-a (Laptop A)
 [Master] REGISTERED laptop-a-worker-50 | laptop=laptop-a (Laptop A) | 127.0.0.1:23049
+[Worker] REGISTERED laptop-a-worker-50 | laptop=laptop-a (Laptop A) | 127.0.0.1:23049 -> Master 127.0.0.1:55597
+[Registry] REGISTER [laptop-b-worker-01 @ 127.0.0.2:23000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.2:23000
-[Worker] REGISTERED laptop-a-worker-50 | laptop=laptop-a (Laptop A) | 127.0.0.1:23049 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.2:23000 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-01 | laptop=laptop-b (Laptop B) | 127.0.0.2:23000 -> Master 127.0.0.1:55597
+[Registry] REGISTER [laptop-b-worker-02 @ 127.0.0.2:23001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-02 | laptop=laptop-b (Laptop B) | 127.0.0.2:23001
+[Worker] REGISTERED laptop-b-worker-02 | laptop=laptop-b (Laptop B) | 127.0.0.2:23001 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-03 @ 127.0.0.2:23002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-03 | laptop=laptop-b (Laptop B) | 127.0.0.2:23002
-[Registry] REGISTER [laptop-b-worker-02 @ 127.0.0.2:23001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Registry] REGISTER [laptop-b-worker-04 @ 127.0.0.2:23003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Registry] REGISTER [laptop-b-worker-05 @ 127.0.0.2:23004 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Worker] REGISTERED laptop-b-worker-03 | laptop=laptop-b (Laptop B) | 127.0.0.2:23002 -> Master 127.0.0.1:54655
-[Master] REGISTERED laptop-b-worker-02 | laptop=laptop-b (Laptop B) | 127.0.0.2:23001
-[Master] REGISTERED laptop-b-worker-05 | laptop=laptop-b (Laptop B[Registry] REGISTER [laptop-b-worker-04 @ 127.0.0.2:23003 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-) | 127.0.0.2:23004
 [Master] REGISTERED laptop-b-worker-04 | laptop=laptop-b (Laptop B) | 127.0.0.2:23003
-[Worker] REGISTERED laptop-b-worker-02 | laptop=laptop-b (Laptop B) | 127.0.0.2:23001 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-05 | laptop=laptop-b (Laptop B) | 127.0.0.2:23004 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-04 | laptop=laptop-b (Laptop B) | 127.0.0.2:23003 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-03 | laptop=laptop-b (Laptop B) | 127.0.0.2:23002 -> Master 127.0.0.1:55597
+[Master] REGISTERED laptop-b-worker-05 | laptop=laptop-b (Laptop B) | 127.0.0.2:23004
+[Worker] REGISTERED laptop-b-worker-05 | laptop=laptop-b (Laptop B) | 127.0.0.2:23004 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-b-worker-04 | laptop=laptop-b (Laptop B) | 127.0.0.2:23003 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-06 @ 127.0.0.2:23005 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-06 | laptop=laptop-b (Laptop B) | 127.0.0.2:23005
-[Worker] REGISTERED laptop-b-worker-06 | laptop=laptop-b (Laptop B) | 127.0.0.2:23005 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-06 | laptop=laptop-b (Laptop B) | 127.0.0.2:23005 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-08 @ 127.0.0.2:23007 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Registry] REGISTER [laptop-b-worker-10 @ 127.0.0.2:23009 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Master] REGISTERED laptop-b-worker-08 | laptop=laptop-b (Laptop B) | 127.0.0.2:23007
-[Master] REGISTERED laptop-b-worker-10 | laptop=laptop-b (Laptop B) | 127.0.0.2:23009
-[Worker] REGISTERED laptop-b-worker-08 | laptop=laptop-b (Laptop B) | 127.0.0.2:[Registry] REGISTER [laptop-b-worker-09 @ 127.0.0.2:23008 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-23007 -> Master 127.0.0.1:54655
-[Master] REGISTERED laptop-b-worker-09 | laptop=laptop-b (Laptop B) | 127.0.0.2:23008
-[Worker] REGISTERED laptop-b-worker-10 | laptop=laptop-b (Laptop B) | 127.0.0.2:23009 -> Master 127.0.0.1:54655
 [Registry] REGISTER [laptop-b-worker-07 @ 127.0.0.2:23006 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Worker] REGISTERED laptop-b-worker-09 | laptop=laptop-b (Laptop B) | 127.0.0.2:23008 -> Master 127.0.0.1:54655
+[Master] REGISTERED laptop-b-worker-08 | laptop=laptop-b (Laptop B) | 127.0.0.2:23007
+[Registry] REGISTER [laptop-b-worker-09 @ 127.0.0.2:23008 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-07 | laptop=laptop-b (Laptop B) | 127.0.0.2:23006
-[Worker] REGISTERED laptop-b-worker-07 | laptop=laptop-b (Laptop B) | 127.0.0.2:23006 -> Master 127.0.0.1:54655
+[Master] REGISTERED laptop-b-worker-09 | laptop=laptop-b (Laptop B) | 127.0.0.2:23008
+[Worker] REGISTERED laptop-b-worker-08 | laptop=laptop-b (Laptop B) | 127.0.0.2:23007 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-b-worker-07 | laptop=laptop-b (Laptop B) | 127.0.0.2:23006 -> Master 127.0.0.1:55597
+[Registry] REGISTER [laptop-b-worker-10 @ 127.0.0.2:23009 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-09 | laptop=laptop-b (Laptop B) | 127.0.0.2:23008 -> Master 127.0.0.1:55597
+[Master] REGISTERED laptop-b-worker-10 | laptop=laptop-b (Laptop B) | 127.0.0.2:23009
+[Worker] REGISTERED laptop-b-worker-10 | laptop=laptop-b (Laptop B) | 127.0.0.2:23009 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-11 @ 127.0.0.2:23010 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-11 | laptop=laptop-b (Laptop B) | 127.0.0.2:23010
-[Worker] REGISTERED laptop-b-worker-11 | laptop=laptop-b (Laptop B) | 127.0.0.2:23010 -> Master 127.0.0.1:54655
-[Registry] REGISTER [laptop-b-worker-13 @ 127.0.0.2:23012 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-11 | laptop=laptop-b (Laptop B) | 127.0.0.2:23010 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-12 @ 127.0.0.2:23011 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Master] REGISTERED laptop-b-worker-13 | laptop=laptop-b (Laptop B) | 127.0.0.2:23012
 [Master] REGISTERED laptop-b-worker-12 | laptop=laptop-b (Laptop B) | 127.0.0.2:23011
-[Worker] REGISTERED laptop-b-worker-13 | laptop=laptop-b (Laptop B) | 127.0.0.2:23012 -> Master [Registry] REGISTER [laptop-b-worker-14 @ 127.0.0.2:23013 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-12 | laptop=laptop-b (Laptop B) | 127.0.0.2:[Registry] REGISTER [laptop-b-worker-15 @ 127.0.0.2:23014 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-23011 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-12 | laptop=laptop-b (Laptop B) | 127.0.0.2:23011 -> Master 127.0.0.1:55597
+[Registry] REGISTER [laptop-b-worker-13 @ 127.0.0.2:23012 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-13 | laptop=laptop-b (Laptop B) | 127.0.0.2:23012
+[Worker] REGISTERED laptop-b-worker-13 | laptop=laptop-b (Laptop B) | 127.0.0.2:23012 -> Master 127.0.0.1:55597
+[Registry] REGISTER [laptop-b-worker-14 @ 127.0.0.2:23013 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-14 | laptop=laptop-b (Laptop B) | 127.0.0.2:23013
+[Registry] REGISTER [laptop-b-worker-15 @ 127.0.0.2:23014 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-14 | laptop=laptop-b (Laptop B) | 127.0.0.2:23013 -> Master 127.0.0.1:55597
 [Master] REGISTERED laptop-b-worker-15 | laptop=laptop-b (Laptop B) | 127.0.0.2:23014
-[Worker] REGISTERED laptop-b-worker-14 | laptop=laptop-b (Laptop B) | 127.0.0.2:23013 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-15 | laptop=laptop-b (Laptop B) | 127.0.0.2:23014 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-15 | laptop=laptop-b (Laptop B) | 127.0.0.2:23014 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-16 @ 127.0.0.2:23015 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-16 | laptop=laptop-b (Laptop B) | 127.0.0.2:23015
-[Worker] REGISTERED laptop-b-worker-16 | laptop=laptop-b (Laptop B) | 127.0.0.2:23015 -> Master 127.0.0.1:54655
-[Registry] REGISTER [laptop-b-worker-18 @ 127.0.0.2:23017 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-16 | laptop=laptop-b (Laptop B) | 127.0.0.2:23015 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-17 @ 127.0.0.2:23016 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Master] REGISTERED laptop-b-worker-18 | laptop=laptop-b (Laptop B) | 127.0.0.2:23017
 [Master] REGISTERED laptop-b-worker-17 | laptop=laptop-b (Laptop B) | 127.0.0.2:23016
-[Worker] REGISTERED laptop-b-worker-18 | laptop=laptop-b (Laptop B) | 127.0.0.2:23017 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-17 | laptop=laptop-b (Laptop B) | [Registry] REGISTER [laptop-b-worker-18 @ 127.0.0.2:23017 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+127.0.0.2:23016 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-19 @ 127.0.0.2:23018 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Worker] REGISTERED laptop-b-worker-17 | laptop=laptop-b (Laptop B) | 127.0.0.2:23016 -> Master 127.0.0.1:54655
+[Master] REGISTERED laptop-b-worker-18 | laptop=laptop-b (Laptop B) | 127.0.0.2:23017
 [Master] REGISTERED laptop-b-worker-19 | laptop=laptop-b (Laptop B) | 127.0.0.2:23018
-[Worker] REGISTERED laptop-b-worker-19 | laptop=laptop-b (Laptop B) | 127.0.0.2:23018 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-19 | laptop=laptop-b (Laptop B) | 127.0.0.2:23018 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-b-worker-18 | laptop=laptop-b (Laptop B) | 127.0.0.2:23017 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-20 @ 127.0.0.2:23019 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-20 | laptop=laptop-b (Laptop B) | 127.0.0.2:23019
-[Worker] REGISTERED laptop-b-worker-20 | laptop=laptop-b (Laptop B) | 127.0.0.2:23019 -> Master 127.0.0.1:54655
-[Registry] REGISTER [laptop-b-worker-21 @ 127.0.0.2:23020 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-20 | laptop=laptop-b (Laptop B) | 127.0.0.2:23019 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-22 @ 127.0.0.2:23021 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Master] REGISTERED laptop-b-worker-21 | laptop=laptop-b (Laptop B) | 127.0.0.2:23020
+[Registry] REGISTER [laptop-b-worker-21 @ 127.0.0.2:23020 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-22 | laptop=laptop-b (Laptop B) | 127.0.0.2:23021
-[Worker] REGISTERED laptop-b-worker-21 | laptop=laptop-b (Laptop B) | 127.0.0.2:23020 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-22 | laptop=laptop-b (Laptop B) | 127.0.0.2:23021 -> Master 127.0.0.1:54655
+[Master] REGISTERED laptop-b-worker-21 | laptop=laptop-b (Laptop B) | 127.0.0.2:23020
+[Worker] REGISTERED laptop-b-worker-22 | laptop=laptop-b (Laptop B) | 127.0.0.2:23021 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-b-worker-21 | laptop=laptop-b (Laptop B) | 127.0.0.2:23020 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-23 @ 127.0.0.2:23022 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Registry] REGISTER [laptop-b-worker-24 @ 127.0.0.2:23023 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-23 | laptop=laptop-b (Laptop B) | 127.0.0.2:23022
-[Master] REGISTERED laptop-b-worker-24 | laptop=laptop-b (Laptop B) | 127.0.0.2:23023
-[Worker] REGISTERED laptop-b-worker-24 | laptop=laptop-b (Laptop B) | 127.0.0.2:23023 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-23 | laptop=laptop-b (Laptop B) | 127.0.0.2:23022 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-23 | laptop=laptop-b (Laptop B) | 127.0.0.2:23022 -> Master 127.0.0.1:55597
+[Registry] REGISTER [laptop-b-worker-24 @ 127.0.0.2:23023 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-24 | laptop=laptop-b (Laptop B) | 127.0.0.2:[Registry] REGISTER [laptop-b-worker-26 @ 127.0.0.2:23025 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+23023
+[Registry] REGISTER [laptop-b-worker-25 @ 127.0.0.2:23024 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-26 | laptop=laptop-b (Laptop B) | 127.0.0.2:23025
+[Master] REGISTERED laptop-b-worker-25 | laptop=laptop-b (Laptop B) | 127.0.0.2:23024
+[Worker] REGISTERED laptop-b-worker-24 | laptop=laptop-b (Laptop B) | 127.0.0.2:23023 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-b-worker-25 | laptop=laptop-b (Laptop B) | 127.0.0.2:23024 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-b-worker-26 | laptop=laptop-b (Laptop B) | 127.0.0.2:23025 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-27 @ 127.0.0.2:23026 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-27 | laptop=laptop-b (Laptop B) | 127.0.0.2:23026
-[Registry] REGISTER [laptop-b-worker-25 @ 127.0.0.2:23024 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Worker] REGISTERED laptop-b-worker-27 | laptop=laptop-b (Laptop B) | 127.0.0.2:23026 -> Master 127.0.0.1:54655
-[Master] REGISTERED laptop-b-worker-25 | laptop=laptop-b (Laptop B) | 127.0.0.2:23024
-[Worker] REGISTERED laptop-b-worker-25 | laptop=laptop-b (Laptop B) | 127.0.0.2:23024 -> Master 127.0.0.1:54655
-[Registry] REGISTER [laptop-b-worker-26 @ 127.0.0.2:23025 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Master] REGISTERED laptop-b-worker-26 | laptop=laptop-b (Laptop B) | 127.0.0.2:23025
+[Registry] REGISTER [laptop-b-worker-28 @ 127.0.0.2:23027 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-27 | laptop=laptop-b (Laptop B) | 127.0.0.2:23026 -> Master 127.0.0.1:55597
+[Master] REGISTERED laptop-b-worker-28 | laptop=laptop-b (Laptop B) | 127.0.0.2:23027
+[Worker] REGISTERED laptop-b-worker-28 | laptop=laptop-b (Laptop B) | 127.0.0.2:23027 -> Master 127.0.0.1:55597
+[Registry] REGISTER [laptop-b-worker-29 @ 127.0.0.2:23028 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-29 | laptop=laptop-b (Laptop B) | 127.0.0.2:23028
+[Worker] REGISTERED laptop-b-worker-29 | laptop=laptop-b (Laptop B) | 127.0.0.2:23028 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-30 @ 127.0.0.2:23029 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-30 | laptop=laptop-b (Laptop B) | 127.0.0.2:23029
-[Worker] REGISTERED laptop-b-worker-30 | laptop=laptop-b (Laptop B) | 127.0.0.2:23029 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-26[Registry] REGISTER [laptop-b-worker-31 @ 127.0.0.2:23030 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
- | laptop=laptop-b (Laptop B) | 127.0.0.2:23025 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-30 | laptop=laptop-b (Laptop B) | 127.0.0.2:23029 -> Master 127.0.0.1:55597
+[Registry] REGISTER [laptop-b-worker-31 @ 127.0.0.2:23030 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-31 | laptop=laptop-b (Laptop B) | 127.0.0.2:23030
-[Registry] REGISTER [laptop-b-worker-29 @ 127.0.0.2:23028 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Worker] REGISTERED laptop-b-worker-31 | laptop=laptop-b (Laptop B) | 127.0.0.2:23030 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-31 | laptop=laptop-b (Laptop B) | 127.0.0.2:23030 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-32 @ 127.0.0.2:23031 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Master] REGISTERED laptop-b-worker-29[Registry] REGISTER [laptop-b-worker-28 @ 127.0.0.2:23027 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
- | laptop=laptop-b (Laptop B) | 127.0.0.2:23028
 [Master] REGISTERED laptop-b-worker-32 | laptop=laptop-b (Laptop B) | 127.0.0.2:23031
-[Worker] REGISTERED laptop-b-worker-29 | laptop=laptop-b (Laptop B) | 127.0.0.2:23028 -> Master 127.0.0.1:54655
-[Master] REGISTERED laptop-b-worker-28 | laptop=laptop-b (Laptop B) | 127.0.0.2:23027
-[Worker] REGISTERED laptop-b-worker-32 | laptop=laptop-b (Laptop B) | 127.0.0.2:23031 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-28 | laptop=laptop-b (Laptop B) | 127.0.0.2:23027 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-32 | laptop=laptop-b (Laptop B) | 127.0.0.2:23031 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-33 @ 127.0.0.2:23032 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-33 | laptop=laptop-b (Laptop B) | 127.0.0.2:23032
-[Worker] REGISTERED laptop-b-worker-33 | laptop=laptop-b (Laptop B) | 127.0.0.2:23032 -> Master 127.0.0.1:54655
 [Registry] REGISTER [laptop-b-worker-34 @ 127.0.0.2:23033 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-33 | laptop=laptop-b (Laptop B) | 127.0.0.2:23032 -> Master 127.0.0.1:55597
 [Master] REGISTERED laptop-b-worker-34 | laptop=laptop-b (Laptop B) | 127.0.0.2:23033
-[Worker] REGISTERED laptop-b-worker-34 | laptop=[Registry] REGISTER [laptop-b-worker-35 @ 127.0.0.2:23034 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-laptop-b (Laptop B) | 127.0.0.2:23033 -> Master 127.0.0.1:54655
-[Master] REGISTERED laptop-b-worker-35 | laptop=laptop-b (Laptop B) | 127.0.0.2:23034
-[Worker] REGISTERED laptop-b-worker-35 | laptop=laptop-b (Laptop B) | 127.0.0.2:23034 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-34 | laptop=laptop-b (Laptop B) | 127.0.0.2:23033 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-36 @ 127.0.0.2:23035 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-36 | laptop=laptop-b (Laptop B) | 127.0.0.2:23035
-[Worker] REGISTERED laptop-b-worker-36 | laptop=laptop-b (Laptop B) | 127.0.0.2:23035 -> Master 127.0.0.1:54655
+[Registry] REGISTER [laptop-b-worker-35 @ 127.0.0.2:23034 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-36 | laptop=laptop-b (Laptop B) | 127.0.0.2:23035 -> Master 127.0.0.1:55597
+[Master] REGISTERED laptop-b-worker-35 | laptop=laptop-b (Laptop B) | 127.0.0.2:23034
+[Worker] REGISTERED laptop-b-worker-35 | laptop=laptop-b (Laptop B) | 127.0.0.2:23034 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-37 @ 127.0.0.2:23036 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Master] REGISTERED laptop-b-worker-37 | laptop=laptop-b (Laptop B) | 127.0.0.2:23036
-[Worker] REGISTERED laptop-b-worker-37 | laptop=laptop-b (Laptop B) | 127.0.0.2:23036 -> Master 127.0.0.1:54655
 [Registry] REGISTER [laptop-b-worker-38 @ 127.0.0.2:23037 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-37 | laptop=laptop-b (Laptop B) | 127.0.0.2:23036
 [Master] REGISTERED laptop-b-worker-38 | laptop=laptop-b (Laptop B) | 127.0.0.2:23037
-[Worker] REGISTERED laptop-b-worker-38 | laptop=laptop-b (Laptop B) | 127.0.0.2:23037 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-38 | laptop=laptop-b (Laptop B) | 127.0.0.2:23037 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-b-worker-37 | laptop=laptop-b (Laptop B) | 127.0.0.2:23036 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-39 @ 127.0.0.2:23038 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-39 | laptop=laptop-b (Laptop B) | 127.0.0.2:23038
-[Worker] REGISTERED laptop-b-worker-39 | laptop=laptop-b (Laptop B) | 127.0.0.2:23038 -> Master 127.0.0.1:54655
-[Registry] REGISTER [laptop-b-worker-40 @ 127.0.0.2:23039 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Master] REGISTERED [Registry] REGISTER [laptop-b-worker-41 @ 127.0.0.2:23040 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039
-[Master] REGISTERED laptop-b-worker-41 | laptop=laptop-b (Laptop B) | 127.0.0.2:23040
-[Worker] REGISTERED laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-41 | laptop=laptop-b (Laptop B) | 127.0.0.2:23040 -> Master 127.0.0.1:54655
-[Registry] REGISTER [laptop-b-worker-43 @ 127.0.0.2:23042 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[WorkerCluster] laptop=laptop-b (Laptop B) | opened=50/50 | ports=23000-23049 | compute limit=3 | Master=127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-39 | laptop=laptop-b (Laptop B) | 127.0.0.2:23038 -> Master 127.0.0.1:55597
+[WorkerCluster] laptop=laptop-b (Laptop B) | opened=50/50 | ports=23000-23049 | compute limit=3 | Master=127.0.0.1:55597
 [WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
-[Master] REGISTERED laptop-b-worker-43 | laptop=laptop-b (Laptop B) | 127.0.0.2:23042
-[Worker] REGISTERED laptop-b-worker-43 | laptop=laptop-b (Laptop B) | 127.0.0.2:23042 -> Master 127.0.0.1:54655
-[WorkerCluster] laptop=laptop-b | REGISTERED 42/50 | opened 50/50
+[WorkerCluster] laptop=laptop-b | REGISTERED 39/50 | opened 50/50
+[Registry] REGISTER [laptop-b-worker-40 @ 127.0.0.2:23039 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Registry] REGISTER [laptop-b-worker-41 @ 127.0.0.2:23040 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039
 [Registry] REGISTER [laptop-b-worker-45 @ 127.0.0.2:23044 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-41 | laptop=laptop-b (Laptop B) | 127.0.0.2:23040
+[Registry] REGISTER [laptop-b-worker-43 @ 127.0.0.2:23042 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Master] REGISTERED laptop-b-worker-45 | laptop=laptop-b (Laptop B) | 127.0.0.2:23044
+[Worker] REGISTERED laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-44 @ 127.0.0.2:23043 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Master] REGISTERED laptop-b-worker-45 | laptop=laptop-b (Laptop B[Registry] REGISTER [laptop-b-worker-42 @ 127.0.0.2:23041 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-) | 127.0.0.2:23044
-[Master] REGISTERED laptop-b-worker-42 | laptop=laptop-b (Laptop B) | 127.0.0.2:23041
-[Master] REGISTERED laptop-b-worker-44 | laptop=laptop-b (Laptop B) | 127.0.0.2:23043
-[Worker] REGISTERED laptop-b-worker-44 | laptop=laptop-b (Laptop B) | 127.0.0.2:23043 -> Master 127.0.0.1:54655
+[Master] REGISTERED laptop-b-worker-43 | laptop=laptop-b (Laptop B) | 127.0.0.2:23042
 [Registry] REGISTER [laptop-b-worker-47 @ 127.0.0.2:23046 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Worker] REGISTERED laptop-b-worker-45 | laptop=laptop-b (Laptop B) | 127.0.0.2:23044 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-42 | laptop=laptop-b (Laptop B) | 127.0.0.2:23041 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-41 | laptop=laptop-b (Laptop B) | 127.0.0.2:23040 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-b-worker-45 | laptop=laptop-b (Laptop B) | 127.0.0.2:[Registry] REGISTER [laptop-b-worker-42 @ 127.0.0.2:23041 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+23044 -> Master 127.0.0.1:55597
 [Master] REGISTERED laptop-b-worker-47 | laptop=laptop-b (Laptop B) | 127.0.0.2:23046
-[Worker] REGISTERED laptop-b-worker-47 | laptop=laptop-b (Laptop B) | 127.0.0.2[Registry] REGISTER [laptop-b-worker-46 @ 127.0.0.2:23045 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-:23046 -> Master 127.0.0.1:54655
+[Master] REGISTERED laptop-b-worker-44 | laptop=laptop-b (Laptop B) | 127.0.0.2:23043
+[Registry] REGISTER [laptop-b-worker-46 @ 127.0.0.2:23045 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
+[Worker] REGISTERED laptop-b-worker-44 | laptop=laptop-b (Laptop B) | 127.0.0.2:23043 -> Master 127.0.0.1:55597
+[Master] REGISTERED laptop-b-worker-42 | laptop=laptop-b (Laptop B) | 127.0.0.2:23041
+[Worker] REGISTERED laptop-b-worker-43 | laptop=laptop-b (Laptop B) | 127.0.0.2:23042 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-b-worker-47 | laptop=laptop-b (Laptop B) | 127.0.0.2:23046 -> Master 127.0.0.1:55597
 [Master] REGISTERED laptop-b-worker-46 | laptop=laptop-b (Laptop B) | 127.0.0.2:23045
-[Worker] REGISTERED laptop-b-worker-46 | laptop=laptop-b (Laptop B) | 127.0.0.2:23045 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-42 | laptop=laptop-b (Laptop B) | 127.0.0.2:23041 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-b-worker-46 | laptop=laptop-b (Laptop B) | 127.0.0.2:23045 -> Master 127.0.0.1:55597
 [Registry] REGISTER [laptop-b-worker-48 @ 127.0.0.2:23047 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Registry] REGISTER [laptop-b-worker-49 @ 127.0.0.2:23048 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-[Master] REGISTERED laptop-b-worker-48 | laptop=laptop-b (Laptop B) | 127.0.0.2:[Registry] REGISTER [laptop-b-worker-50 @ 127.0.0.2:23049 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
-23047
+[Master] REGISTERED laptop-b-worker-48 | laptop=laptop-b (Laptop B) | 127.0.0.2:23047
+[Registry] REGISTER [laptop-b-worker-50 @ 127.0.0.2:23049 | Status: ONLINE | Active: 0 | Done: 0] | laptop=laptop-b (Laptop B)
 [Master] REGISTERED laptop-b-worker-49 | laptop=laptop-b (Laptop B) | 127.0.0.2:23048
 [Master] REGISTERED laptop-b-worker-50 | laptop=laptop-b (Laptop B) | 127.0.0.2:23049
-[Worker] REGISTERED laptop-b-worker-48 | laptop=laptop-b (Laptop B) | 127.0.0.2:23047 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-49 | laptop=laptop-b (Laptop B) | 127.0.0.2:23048 -> Master 127.0.0.1:54655
-[Worker] REGISTERED laptop-b-worker-50 | laptop=laptop-b (Laptop B) | 127.0.0.2:23049 -> Master 127.0.0.1:54655
+[Worker] REGISTERED laptop-b-worker-48 | laptop=laptop-b (Laptop B) | 127.0.0.2:23047 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-b-worker-49 | laptop=laptop-b (Laptop B) | 127.0.0.2:23048 -> Master 127.0.0.1:55597
+[Worker] REGISTERED laptop-b-worker-50 | laptop=laptop-b (Laptop B) | 127.0.0.2:23049 -> Master 127.0.0.1:55597
 [laptop-a-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=0) va ma tran B [100 x 100]... OK
 [laptop-a-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
 [laptop-a-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -492,7 +492,6 @@ laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039
 [laptop-a-worker-01]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
 [laptop-a-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
 [laptop-a-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
-[Result] async-mul-953dc302-2315-49e9-b0d8-8d18e751dd81-task-01 <- laptop-a-worker-01 (1/10)
 [laptop-b-worker-01]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=10) va ma tran B [100 x 100]... OK
 [laptop-b-worker-01]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
 [laptop-b-worker-01]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -504,7 +503,6 @@ laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039
 [laptop-b-worker-01]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
 [laptop-b-worker-01]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
 [laptop-b-worker-01]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
-[Result] async-mul-953dc302-2315-49e9-b0d8-8d18e751dd81-task-02 <- laptop-b-worker-01 (2/10)
 [laptop-b-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=20) va ma tran B [100 x 100]... OK
 [laptop-b-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
 [laptop-b-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -516,7 +514,8 @@ laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039
 [laptop-b-worker-02]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
 [laptop-b-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
 [laptop-b-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
-[Result] async-mul-953dc302-2315-49e9-b0d8-8d18e751dd81-task-03 <- laptop-b-worker-02 (3/10)
+[Result] async-mul-6f410312-3eeb-4647-9c38-3ba5bd7e9e4b-task-01 <- laptop-a-worker-01 (1/10)
+[Result] async-mul-6f410312-3eeb-4647-9c38-3ba5bd7e9e4b-task-02 <- laptop-b-worker-01 (2/10)
 [laptop-a-worker-02]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=30) va ma tran B [100 x 100]... OK
 [laptop-a-worker-02]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
 [laptop-a-worker-02]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -528,7 +527,8 @@ laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039
 [laptop-a-worker-02]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
 [laptop-a-worker-02]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
 [laptop-a-worker-02]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
-[Result] async-mul-953dc302-2315-49e9-b0d8-8d18e751dd81-task-04 <- laptop-a-worker-02 (4/10)
+[Result] async-mul-6f410312-3eeb-4647-9c38-3ba5bd7e9e4b-task-03 <- laptop-b-worker-02 (3/10)
+[Result] async-mul-6f410312-3eeb-4647-9c38-3ba5bd7e9e4b-task-04 <- laptop-a-worker-02 (4/10)
 [laptop-b-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=40) va ma tran B [100 x 100]... OK
 [laptop-b-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
 [laptop-b-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -540,7 +540,7 @@ laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039
 [laptop-b-worker-03]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
 [laptop-b-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
 [laptop-b-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
-[Result] async-mul-953dc302-2315-49e9-b0d8-8d18e751dd81-task-05 <- laptop-b-worker-03 (5/10)
+[Result] async-mul-6f410312-3eeb-4647-9c38-3ba5bd7e9e4b-task-05 <- laptop-b-worker-03 (5/10)
 [laptop-b-worker-04]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=50) va ma tran B [100 x 100]... OK
 [laptop-b-worker-04]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
 [laptop-b-worker-04]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -552,7 +552,7 @@ laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039
 [laptop-b-worker-04]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
 [laptop-b-worker-04]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
 [laptop-b-worker-04]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
-[Result] async-mul-953dc302-2315-49e9-b0d8-8d18e751dd81-task-06 <- laptop-b-worker-04 (6/10)
+[Result] async-mul-6f410312-3eeb-4647-9c38-3ba5bd7e9e4b-task-06 <- laptop-b-worker-04 (6/10)
 [laptop-a-worker-03]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=60) va ma tran B [100 x 100]... OK
 [laptop-a-worker-03]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
 [laptop-a-worker-03]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -564,7 +564,7 @@ laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039
 [laptop-a-worker-03]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
 [laptop-a-worker-03]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
 [laptop-a-worker-03]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
-[Result] async-mul-953dc302-2315-49e9-b0d8-8d18e751dd81-task-07 <- laptop-a-worker-03 (7/10)
+[Result] async-mul-6f410312-3eeb-4647-9c38-3ba5bd7e9e4b-task-07 <- laptop-a-worker-03 (7/10)
 [laptop-b-worker-05]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=70) va ma tran B [100 x 100]... OK
 [laptop-b-worker-05]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
 [laptop-b-worker-05]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -576,7 +576,7 @@ laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039
 [laptop-b-worker-05]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
 [laptop-b-worker-05]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
 [laptop-b-worker-05]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
-[Result] async-mul-953dc302-2315-49e9-b0d8-8d18e751dd81-task-08 <- laptop-b-worker-05 (8/10)
+[Result] async-mul-6f410312-3eeb-4647-9c38-3ba5bd7e9e4b-task-08 <- laptop-b-worker-05 (8/10)
 [laptop-b-worker-06]  |-- [Buoc 1/5] Nhan lat cat A [10 x 100] (startRow=80) va ma tran B [100 x 100]... OK
 [laptop-b-worker-06]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [10 x 100]... OK
 [laptop-b-worker-06]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -599,60 +599,60 @@ laptop-b-worker-40 | laptop=laptop-b (Laptop B) | 127.0.0.2:23039
 [laptop-a-worker-04]  |    |-- Tien do: [==========] 100% (Dong 10/10 hoan tat)
 [laptop-a-worker-04]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 10 dong!... OK
 [laptop-a-worker-04]  |-- [Buoc 5/5] Dong goi lat cat C_slice [10 x 100] vao TaskResult... OK
-[Result] async-mul-953dc302-2315-49e9-b0d8-8d18e751dd81-task-09 <- laptop-b-worker-06 (9/10)
-[Result] async-mul-953dc302-2315-49e9-b0d8-8d18e751dd81-task-10 <- laptop-a-worker-04 (10/10)
+[Result] async-mul-6f410312-3eeb-4647-9c38-3ba5bd7e9e4b-task-09 <- laptop-b-worker-06 (9/10)
+[Result] async-mul-6f410312-3eeb-4647-9c38-3ba5bd7e9e4b-task-10 <- laptop-a-worker-04 (10/10)
 [MasterHttpServer] Da dung HTTP Server an toan.
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
   </testcase>
-  <testcase name="pendingClusterRegistersAfterMasterStartsAndReRegistersAfterRestart" classname="com.pbl4.LaptopClusterTest" time="6.288">
-    <system-out><![CDATA[[WorkerCluster] laptop=late-b (Late laptop B) | opened=3/3 | ports=23000-23002 | compute limit=1 | Master=127.0.0.1:54881
+  <testcase name="pendingClusterRegistersAfterMasterStartsAndReRegistersAfterRestart" classname="com.pbl4.LaptopClusterTest" time="6.173">
+    <system-out><![CDATA[[WorkerCluster] laptop=late-b (Late laptop B) | opened=3/3 | ports=23000-23002 | compute limit=1 | Master=127.0.0.1:55829
 [WorkerCluster] Waiting for REGISTER_ACK; opened ports are not confirmed registrations.
 [WorkerCluster] laptop=late-b | REGISTERED 0/3 | opened 3/3
-[Master] Listening 0.0.0.0:54881
+[Master] Listening 0.0.0.0:55829
 [Registry] REGISTER [late-b-worker-02 @ 127.0.0.2:23001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
 [Registry] REGISTER [late-b-worker-03 @ 127.0.0.2:23002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
 [Master] REGISTERED late-b-worker-02 | laptop=late-b (Late laptop B) | 127.0.0.2:23001
 [Master] REGISTERED late-b-worker-03 | laptop=late-b (Late laptop B) | 127.0.0.2:23002
-[Worker] REGISTERED late-b-worker-02 | laptop=late-b (Late laptop B) | 127.0.0.2:23001 -> Master 127.0.0.1:54881
-[Worker] REGISTERED late-b-worker-03 | laptop=late-b (Late laptop B) | 127.0.0.2:23002 -> Master 127.0.0.1:54881
+[Worker] REGISTERED late-b-worker-02 | laptop=late-b (Late laptop B) | 127.0.0.2:23001 -> Master 127.0.0.1:55829
+[Worker] REGISTERED late-b-worker-03 | laptop=late-b (Late laptop B) | 127.0.0.2:23002 -> Master 127.0.0.1:55829
 [WorkerCluster] laptop=late-b | REGISTERED 2/3 | opened 3/3
 [Registry] REGISTER [late-b-worker-01 @ 127.0.0.2:23000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
 [Master] REGISTERED late-b-worker-01 | laptop=late-b (Late laptop B) | 127.0.0.2:23000
-[Worker] REGISTERED late-b-worker-01 | laptop=late-b (Late laptop B) | 127.0.0.2:23000 -> Master 127.0.0.1:54881
+[Worker] REGISTERED late-b-worker-01 | laptop=late-b (Late laptop B) | 127.0.0.2:23000 -> Master 127.0.0.1:55829
 [Master Server] Da dung hoat dong an toan.
-[Master] Listening 0.0.0.0:54881
+[Master] Listening 0.0.0.0:55829
 [WorkerCluster] laptop=late-b | REGISTERED 3/3 | opened 3/3
 [WorkerCluster] laptop=late-b | REGISTERED 1/3 | opened 3/3
 [Registry] REGISTER [late-b-worker-02 @ 127.0.0.2:23001 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
-[Registry] REGISTER [late-b-worker-03 @ 127.0.0.2:23002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
 [Master] REGISTERED late-b-worker-02 | laptop=late-b (Late laptop B) | 127.0.0.2:23001
+[Registry] REGISTER [late-b-worker-03 @ 127.0.0.2:23002 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
+[Worker] REGISTERED late-b-worker-02 | laptop=late-b (Late laptop B) | 127.0.0.2:23001 -> Master 127.0.0.1:55829
 [Master] REGISTERED late-b-worker-03 | laptop=late-b (Late laptop B) | 127.0.0.2:23002
-[Worker] REGISTERED late-b-worker-02 | laptop=late-b (Late laptop B) | 127.0.0.2:23001 -> Master 127.0.0.1:54881
-[Worker] REGISTERED late-b-worker-03 | laptop=late-b (Late laptop B) | 127.0.0.2:23002 -> Master 127.0.0.1:54881
+[Worker] REGISTERED late-b-worker-03 | laptop=late-b (Late laptop B) | 127.0.0.2:23002 -> Master 127.0.0.1:55829
 [WorkerCluster] laptop=late-b | REGISTERED 2/3 | opened 3/3
 [Registry] REGISTER [late-b-worker-01 @ 127.0.0.2:23000 | Status: ONLINE | Active: 0 | Done: 0] | laptop=late-b (Late laptop B)
 [Master] REGISTERED late-b-worker-01 | laptop=late-b (Late laptop B) | 127.0.0.2:23000
-[Worker] REGISTERED late-b-worker-01 | laptop=late-b (Late laptop B) | 127.0.0.2:23000 -> Master 127.0.0.1:54881
+[Worker] REGISTERED late-b-worker-01 | laptop=late-b (Late laptop B) | 127.0.0.2:23000 -> Master 127.0.0.1:55829
 
 === BAT DAU JOB KHOI DAU: (1+2) + (3*2) ===
 [late-b-worker-01]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '1+2'... OK
 [late-b-worker-01]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
 [late-b-worker-01]  |-- [Buoc 3/4] Tinh toan phep toan: 1+2 = 3.00... OK
 [late-b-worker-01]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
-[Result] arithmetic-19eb717c-8186-4e9c-a158-dbfe3e73ba53-task-01 <- late-b-worker-01 (1/2)
+[Result] arithmetic-ebfea2de-110c-49f0-898d-961c4ebc3a3b-task-01 <- late-b-worker-01 (1/2)
 [late-b-worker-02]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '3*2'... OK
 [late-b-worker-02]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
 [late-b-worker-02]  |-- [Buoc 3/4] Tinh toan phep toan: 3*2 = 6.00... OK
 [late-b-worker-02]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
-[Result] arithmetic-19eb717c-8186-4e9c-a158-dbfe3e73ba53-task-02 <- late-b-worker-02 (2/2)
->>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 194 ms)
+[Result] arithmetic-ebfea2de-110c-49f0-898d-961c4ebc3a3b-task-02 <- late-b-worker-02 (2/2)
+>>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 136 ms)
 [Master Server] Da dung hoat dong an toan.
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
     <system-err><![CDATA[[Worker reconnect] late-b-worker-01 / late-b: Connection refused: getsockopt
-[Worker reconnect] late-b-worker-03 / late-b: Registration required
 [Worker reconnect] late-b-worker-02 / late-b: Registration required
+[Worker reconnect] late-b-worker-03 / late-b: Registration required
 [Worker reconnect] late-b-worker-01 / late-b: Registration required
 ]]></system-err>
   </testcase>

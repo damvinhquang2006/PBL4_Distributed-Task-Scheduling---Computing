@@ -49,6 +49,7 @@ final class MasterStateStore implements AutoCloseable {
     private final Map<String, StoredJob> jobs = new LinkedHashMap<>();
     private final Map<String, String> idempotencyKeys = new HashMap<>();
     private final Map<String, String> requestHashes = new HashMap<>();
+    private final Map<String, String> workerAliases = new LinkedHashMap<>();
     private boolean closed;
 
     MasterStateStore(Path directory) throws IOException {
@@ -66,18 +67,47 @@ final class MasterStateStore implements AutoCloseable {
         }
         lock = acquired;
         journal = this.directory.resolve("master-state.jsonl");
+        FileChannel openedChannel = null;
         try {
             replay();
-            channel = FileChannel.open(journal, StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.APPEND);
+            channel = openedChannel = FileChannel.open(journal, StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.APPEND);
             ensureLineBoundary();
             expirePreviousAttempts();
         } catch (IOException | RuntimeException e) {
-            lock.release(); lockChannel.close(); throw e;
+            if (openedChannel != null) {
+                try { openedChannel.close(); } catch (IOException closeError) { e.addSuppressed(closeError); }
+            }
+            try { lock.release(); } catch (IOException releaseError) { e.addSuppressed(releaseError); }
+            try { lockChannel.close(); } catch (IOException closeError) { e.addSuppressed(closeError); }
+            throw e;
         }
     }
 
     synchronized Collection<StoredJob> jobs() { return List.copyOf(jobs.values()); }
     synchronized boolean hasJob(String id) { return jobs.containsKey(id); }
+    synchronized Map<String, String> aliases() { return Map.copyOf(workerAliases); }
+
+    synchronized void recordWorkerAlias(String workerId, String displayName) throws IOException {
+        if (workerId == null || workerId.isBlank()) throw new IOException("workerId is required");
+        String normalized = validateDisplayName(displayName);
+        ObjectNode event = JsonUtils.getMapper().createObjectNode();
+        event.put("schemaVersion", 1);
+        event.put("type", "WORKER_ALIAS");
+        event.put("workerId", workerId);
+        event.put("displayName", normalized);
+        event.put("updatedAt", System.currentTimeMillis());
+        append(event);
+        workerAliases.put(workerId, normalized);
+    }
+
+    static String validateDisplayName(String rawName) throws IOException {
+        if (rawName == null) throw new IOException("displayName is required");
+        String displayName = rawName.strip();
+        if (displayName.isEmpty() || displayName.length() > 64 || displayName.chars().anyMatch(Character::isISOControl)) {
+            throw new IOException("displayName must contain 1-64 visible characters");
+        }
+        return displayName;
+    }
 
     synchronized StoredJob findIdempotent(String key, String requestHash) throws IOException {
         if (key == null || key.isBlank()) return null;
@@ -243,7 +273,18 @@ final class MasterStateStore implements AutoCloseable {
                 }
                 int schemaVersion = e.path("schemaVersion").asInt(0);
                 if (schemaVersion < 0 || schemaVersion > 1) throw new IOException("Unsupported Master journal schema " + schemaVersion + " at line " + lineNo);
-                String type = e.path("type").asText(); String id = e.path("jobId").asText();
+                String type = e.path("type").asText();
+                if ("WORKER_ALIAS".equals(type)) {
+                    String workerId = e.path("workerId").asText();
+                    String displayName = e.path("displayName").asText();
+                    if (workerId == null || workerId.isBlank()) {
+                        throw new IOException("Missing workerId in Master journal line " + lineNo);
+                    }
+                    workerAliases.put(workerId, validateDisplayName(displayName));
+                    validOffset += line.getBytes(StandardCharsets.UTF_8).length + ((reader.ready() || hasTrailingNewline) ? 1L : 0L);
+                    continue;
+                }
+                String id = e.path("jobId").asText();
                 if (id.isBlank()) throw new IOException("Missing jobId in Master journal line " + lineNo);
                 switch (type) {
                     case "CREATE" -> {
@@ -297,9 +338,18 @@ final class MasterStateStore implements AutoCloseable {
 
     private void ensureLineBoundary() throws IOException {
         long size = channel.size(); if (size == 0) return;
-        ByteBuffer last = ByteBuffer.allocate(1); channel.read(last, size - 1); last.flip();
+        ByteBuffer last = ByteBuffer.allocate(1);
+        try (FileChannel input = FileChannel.open(journal, StandardOpenOption.READ)) {
+            long position = size - 1;
+            while (last.hasRemaining()) {
+                int count = input.read(last, position);
+                if (count < 0) throw new IOException("Master journal changed while checking its final line");
+                position += count;
+            }
+        }
+        last.flip();
         if (last.get() != (byte) '\n') {
-            channel.position(size); ByteBuffer newline = StandardCharsets.UTF_8.encode("\n");
+            ByteBuffer newline = StandardCharsets.UTF_8.encode("\n");
             while (newline.hasRemaining()) channel.write(newline); channel.force(true);
         }
     }

@@ -253,4 +253,27 @@ class AsyncMatrixJobTest {
         assertEquals(2.0, result[99][99]);
         assertEquals(List.of("laptop-a-worker"), summary.get("workerIds"));
     }
+
+    @SuppressWarnings("unchecked")
+    @Test void supportsFiftyMillionCellLimitAndSequentialSpeedupComparison() throws Exception {
+        master.setJobTimeoutMs(15_000);
+        // Exceeding 50,000,000 cells must be rejected with 400
+        HttpResponse<String> tooLarge = post(Map.of("operation", "t", "rowsA", 5001, "colsA", 10000,
+            "genA", Map.of("generator", "identity-v1")));
+        assertEquals(400, tooLarge.statusCode(), tooLarge.body());
+
+        // Async job with compareSequential = true records sequentialTimeMs and speedup
+        HttpResponse<String> response = post(Map.of("operation", "x", "rowsA", 40, "colsA", 40,
+            "rowsB", 40, "colsB", 40, "compareSequential", true,
+            "genA", Map.of("generator", "constant-v1", "val", 2),
+            "genB", Map.of("generator", "identity-v1")));
+        assertEquals(202, response.statusCode(), response.body());
+        Map<String, Object> progress = finish((String) json(response.body()).get("jobId"));
+        assertEquals("COMPLETED", progress.get("status"), progress.toString());
+        Map<String, Object> summary = (Map<String, Object>) progress.get("resultSummary");
+        assertNotNull(summary.get("distributedTimeMs"));
+        assertNotNull(summary.get("sequentialTimeMs"));
+        assertNotNull(summary.get("speedup"));
+        assertEquals(false, summary.get("sequentialEstimated"));
+    }
 }

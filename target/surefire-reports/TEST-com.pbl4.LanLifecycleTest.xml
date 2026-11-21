@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.pbl4.LanLifecycleTest" time="7.541" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.pbl4.LanLifecycleTest" time="7.369" tests="5" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564\surefirebooter-20261110003532781_3.jar C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564 2026-11-10T00-35-32_548-jvmRun1 surefire-20261110003532781_1tmp surefire_0-20261110003532781_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire16589147692605094104\surefirebooter-20261118004635560_3.jar C:\Users\VINH_QUANG\AppData\Local\Temp\surefire16589147692605094104 2026-11-18T00-46-35_291-jvmRun1 surefire-20261118004635560_1tmp surefire_0-20261118004635560_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\test-classes;D:\New folder (2)\PBL4_Distributed Task Scheduling &amp; Computing\target\classes;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.17.0\jackson-databind-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.17.0\jackson-annotations-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.17.0\jackson-core-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\net\bytebuddy\byte-buddy\1.14.9\byte-buddy-1.14.9.jar;C:\Users\VINH_QUANG\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.17.0\jackson-datatype-jsr310-2.17.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\VINH_QUANG\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire11436973574194240564\surefirebooter-20261110003532781_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\VINH_QUANG\AppData\Local\Temp\surefire16589147692605094104\surefirebooter-20261118004635560_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.2+10-LTS-69"/>
@@ -50,7 +50,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:/Users/VINH_QUANG/.gemini/antigravity/bin;C:\Users\VINH_QUANG\AppData\Roaming\Antigravity\bin;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\nodejs;D:\DBeaver;C:\Program Files\apache-maven-3.9.15\bin;C:\MinGW\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files (x86)\cloudflared\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\VINH_QUANG\.local\bin;C:\Users\VINH_QUANG\AppData\Local\agy\bin;C:\Program Files\Java\jdk-25.0.2\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Python\Launcher\;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WindowsApps;C:\Users\VINH_QUANG\AppData\Local\Programs\Antigravity\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VINH_QUANG\.bun\bin;C:\Users\VINH_QUANG\.dotnet\tools;C:\Users\VINH_QUANG\AppData\Local\Programs\Zed\bin;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WinGet\Packages\Ngrok.Ngrok_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;D:\UnityCLI\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Java\jdk-25.0.2\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;D:\nodejs;D:\DBeaver;C:\Program Files\apache-maven-3.9.15\bin;C:\MinGW\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files (x86)\cloudflared\;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Users\VINH_QUANG\.local\bin;C:\Users\VINH_QUANG\AppData\Local\agy\bin;C:\Program Files\Java\jdk-25.0.2\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Python\Launcher\;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WindowsApps;C:\Users\VINH_QUANG\AppData\Local\Programs\Antigravity\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\VINH_QUANG\.bun\bin;C:\Users\VINH_QUANG\.dotnet\tools;C:\Users\VINH_QUANG\AppData\Local\Programs\Zed\bin;C:\Users\VINH_QUANG\AppData\Local\Microsoft\WinGet\Packages\Ngrok.Ngrok_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\Users\VINH_QUANG\AppData\Local\Programs\Microsoft VS Code\bin\copilot-shim;D:\UnityCLI\bin;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
@@ -59,24 +59,24 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="rejectsUnreachableAndDuplicateRegistrationAndPreservesPause" classname="com.pbl4.LanLifecycleTest" time="1.548">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:58758
-[Registry] REGISTER [unique @ 127.0.0.1:58759 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED unique | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:58759
-[Worker] REGISTERED unique | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:58759 -> Master 127.0.0.1:58758
+  <testcase name="rejectsUnreachableAndDuplicateRegistrationAndPreservesPause" classname="com.pbl4.LanLifecycleTest" time="1.544">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:61403
+[Registry] REGISTER [unique @ 127.0.0.1:61404 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED unique | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:61404
+[Worker] REGISTERED unique | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:61404 -> Master 127.0.0.1:61403
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
     <system-err><![CDATA[[Worker reconnect] unique / desktop-qbgbflp: Worker ID already active: unique
 ]]></system-err>
   </testcase>
-  <testcase name="realWorkerRestartReceivesNewJobs" classname="com.pbl4.LanLifecycleTest" time="0.111">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:58771
-[Registry] REGISTER [restart @ 127.0.0.1:58772 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED restart | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:58772
-[Worker] REGISTERED restart | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:58772 -> Master 127.0.0.1:58771
-[Registry] REGISTER [restart @ 127.0.0.1:58772 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED restart | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:58772
-[Worker] REGISTERED restart | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:58772 -> Master 127.0.0.1:58771
+  <testcase name="realWorkerRestartReceivesNewJobs" classname="com.pbl4.LanLifecycleTest" time="0.11">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:55318
+[Registry] REGISTER [restart @ 127.0.0.1:55319 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED restart | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55319
+[Worker] REGISTERED restart | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55319 -> Master 127.0.0.1:55318
+[Registry] REGISTER [restart @ 127.0.0.1:55319 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED restart | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55319
+[Worker] REGISTERED restart | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55319 -> Master 127.0.0.1:55318
 
 === BAT DAU JOB KHOI DAU: (1+2) + (3*2) ===
 [restart]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '1+2'... OK
@@ -87,32 +87,32 @@
 [restart]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
 [restart]  |-- [Buoc 3/4] Tinh toan phep toan: 3*2 = 6.00... OK
 [restart]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
-[Result] arithmetic-c59ea306-a291-44fd-94d9-eb9abbc8dae2-task-02 <- restart (1/2)
-[Result] arithmetic-c59ea306-a291-44fd-94d9-eb9abbc8dae2-task-01 <- restart (2/2)
->>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 48 ms)
+[Result] arithmetic-ed6188c2-3c25-4cc5-9345-ee00ca058a24-task-01 <- restart (1/2)
+[Result] arithmetic-ed6188c2-3c25-4cc5-9345-ee00ca058a24-task-02 <- restart (2/2)
+>>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 51 ms)
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
   </testcase>
-  <testcase name="unevenRowsAndAllMatrixOperationsAcrossTwoWorkers" classname="com.pbl4.LanLifecycleTest" time="1.486">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:58781
-[Registry] REGISTER [a @ 127.0.0.1:58782 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED a | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:58782
-[Worker] REGISTERED a | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:58782 -> Master 127.0.0.1:58781
-[Registry] REGISTER [b @ 127.0.0.1:58783 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED b | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:58783
-[Worker] REGISTERED b | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:58783 -> Master 127.0.0.1:58781
+  <testcase name="unevenRowsAndAllMatrixOperationsAcrossTwoWorkers" classname="com.pbl4.LanLifecycleTest" time="1.437">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:55328
+[Registry] REGISTER [a @ 127.0.0.1:55329 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED a | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55329
+[Worker] REGISTERED a | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55329 -> Master 127.0.0.1:55328
+[Registry] REGISTER [b @ 127.0.0.1:55330 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED b | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55330
+[Worker] REGISTERED b | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55330 -> Master 127.0.0.1:55328
 
 === BAT DAU JOB CONG MA TRAN [5 x 3] CHIA THANH 5 TASKS ===
-[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=1, so dong=1)... OK
-[b]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
 [a]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=1)... OK
 [a]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
 [a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=1, so dong=1)... OK
+[b]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
 [b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
 [a]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=2, so dong=1)... OK
 [a]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
 [a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
@@ -123,94 +123,97 @@
 [b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] mat-add-9c4141a4-5346-4eae-b187-6a3b92008dc0-task-02 <- b (1/5)
-[Result] mat-add-9c4141a4-5346-4eae-b187-6a3b92008dc0-task-01 <- a (2/5)
-[Result] mat-add-9c4141a4-5346-4eae-b187-6a3b92008dc0-task-03 <- a (3/5)
-[Result] mat-add-9c4141a4-5346-4eae-b187-6a3b92008dc0-task-04 <- b (4/5)
+[Result] mat-add-7a242908-3901-4426-98cc-33fa59f29987-task-01 <- a (1/5)
+[Result] mat-add-7a242908-3901-4426-98cc-33fa59f29987-task-02 <- b (2/5)
+[Result] mat-add-7a242908-3901-4426-98cc-33fa59f29987-task-03 <- a (3/5)
+[Result] mat-add-7a242908-3901-4426-98cc-33fa59f29987-task-04 <- b (4/5)
 [a]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=4, so dong=1)... OK
 [a]  |-- [Buoc 2/4] Bat dau cong tung phan tu ma tran theo dong:
 [a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] mat-add-9c4141a4-5346-4eae-b187-6a3b92008dc0-task-05 <- a (5/5)
->>> HOAN THANH Cong MA TRAN TRONG 178 ms!
+[Result] mat-add-7a242908-3901-4426-98cc-33fa59f29987-task-05 <- a (5/5)
+>>> HOAN THANH Cong MA TRAN TRONG 182 ms!
 
 === BAT DAU JOB TRU MA TRAN [5 x 3] CHIA THANH 5 TASKS ===
+[a]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=3, so dong=1)... OK
 [b]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=0, so dong=1)... OK
 [b]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
-[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
-[b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=2, so dong=1)... OK
+[a]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
+[b]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
+[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
 [a]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=1, so dong=1)... OK
 [a]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=2, so dong=1)... OK
-[b]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
 [b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
 [b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[a]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=3, so dong=1)... OK
-[a]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
-[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
-[a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
-[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] mat-sub-599f79f2-e5ab-4cb6-8433-090e0fc69f95-task-01 <- b (1/5)
-[Result] mat-sub-599f79f2-e5ab-4cb6-8433-090e0fc69f95-task-04 <- a (2/5)
-[Result] mat-sub-599f79f2-e5ab-4cb6-8433-090e0fc69f95-task-02 <- a (3/5)
-[Result] mat-sub-599f79f2-e5ab-4cb6-8433-090e0fc69f95-task-03 <- b (4/5)
+[Result] mat-sub-df781fe6-af8b-4c96-86ab-0330bff4d246-task-02 <- a (1/5)
+[Result] mat-sub-df781fe6-af8b-4c96-86ab-0330bff4d246-task-04 <- a (2/5)
+[Result] mat-sub-df781fe6-af8b-4c96-86ab-0330bff4d246-task-01 <- b (3/5)
+[Result] mat-sub-df781fe6-af8b-4c96-86ab-0330bff4d246-task-03 <- b (4/5)
 [b]  |-- [Buoc 1/4] Giai ma du lieu lat cat (startRow=4, so dong=1)... OK
 [b]  |-- [Buoc 2/4] Bat dau tru tung phan tu ma tran theo dong:
 [b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong cua lat cat... OK
 [b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] mat-sub-599f79f2-e5ab-4cb6-8433-090e0fc69f95-task-05 <- b (5/5)
->>> HOAN THANH Tru MA TRAN TRONG 207 ms!
+[Result] mat-sub-df781fe6-af8b-4c96-86ab-0330bff4d246-task-05 <- b (5/5)
+>>> HOAN THANH Tru MA TRAN TRONG 203 ms!
 
 === BAT DAU JOB CHIA LAY DU (%) MA TRAN [5 x 3] CHIA THANH 5 TASKS ===
 [b]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=1, so dong=1)... OK
 [b]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
-[a]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=0, so dong=1)... OK
-[a]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
 [b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
-[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=3, so dong=1)... OK
 [b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[a]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=0, so dong=1)... OK
+[a]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
+[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
+[b]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=3, so dong=1)... OK
 [b]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [a]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=2, so dong=1)... OK
 [a]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
 [a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
-[a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
-[a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
-[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
 [b]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
 [a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] mat-mod-404918bc-86b2-4bcd-af51-3122462832d4-task-04 <- b (1/5)
-[Result] mat-mod-404918bc-86b2-4bcd-af51-3122462832d4-task-01 <- a (2/5)
-[Result] mat-mod-404918bc-86b2-4bcd-af51-3122462832d4-task-03 <- a (3/5)
-[Result] mat-mod-404918bc-86b2-4bcd-af51-3122462832d4-task-02 <- b (4/5)
+[Result] mat-mod-36aa0e52-0283-439f-904e-bd91780ef75b-task-02 <- b (1/5)
+[Result] mat-mod-36aa0e52-0283-439f-904e-bd91780ef75b-task-04 <- b (2/5)
+[Result] mat-mod-36aa0e52-0283-439f-904e-bd91780ef75b-task-01 <- a (3/5)
+[Result] mat-mod-36aa0e52-0283-439f-904e-bd91780ef75b-task-03 <- a (4/5)
 [a]  |-- [Buoc 1/4] Giai ma du lieu lat cat modulo (startRow=4, so dong=1)... OK
 [a]  |-- [Buoc 2/4] Bat dau chia lay du tung phan tu ma tran theo dong:
 [a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [a]  |-- [Buoc 3/4] Tinh toan xong toan bo 1 dong modulo cua lat cat... OK
 [a]  |-- [Buoc 4/4] Dong goi lat cat ket qua vao TaskResult... OK
-[Result] mat-mod-404918bc-86b2-4bcd-af51-3122462832d4-task-05 <- a (5/5)
->>> HOAN THANH CHIA LAY DU (%) MA TRAN TRONG 200 ms!
+[Result] mat-mod-36aa0e52-0283-439f-904e-bd91780ef75b-task-05 <- a (5/5)
+>>> HOAN THANH CHIA LAY DU (%) MA TRAN TRONG 202 ms!
 
 === BAT DAU JOB NHAN MA TRAN [5 x 3] * [3 x 2] CHIA THANH 5 TASKS ===
+[a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=1) va ma tran B [3 x 2]... OK
+[a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
 [b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=0) va ma tran B [3 x 2]... OK
 [b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
 [b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
-[a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=1) va ma tran B [3 x 2]... OK
-[a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
-[a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=3) va ma tran B [3 x 2]... OK
 [a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
 [a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -220,24 +223,21 @@
 [b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 2]... OK
 [b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
 [b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
-[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
-[a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
 [b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
-[Result] mat-mul-55350413-5b15-4668-88a7-a3474d3e6ed7-task-03 <- b (1/5)
-[Result] mat-mul-55350413-5b15-4668-88a7-a3474d3e6ed7-task-04 <- a (2/5)
-[Result] mat-mul-55350413-5b15-4668-88a7-a3474d3e6ed7-task-01 <- b (3/5)
-[Result] mat-mul-55350413-5b15-4668-88a7-a3474d3e6ed7-task-02 <- a (4/5)
+[Result] mat-mul-7c412e3d-c4cf-4560-9196-167b26e2bf00-task-01 <- b (1/5)
+[Result] mat-mul-7c412e3d-c4cf-4560-9196-167b26e2bf00-task-02 <- a (2/5)
+[Result] mat-mul-7c412e3d-c4cf-4560-9196-167b26e2bf00-task-04 <- a (3/5)
+[Result] mat-mul-7c412e3d-c4cf-4560-9196-167b26e2bf00-task-03 <- b (4/5)
 [b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=4) va ma tran B [3 x 2]... OK
 [b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
 [b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
-[Result] mat-mul-55350413-5b15-4668-88a7-a3474d3e6ed7-task-05 <- b (5/5)
->>> HOAN THANH NHAN MA TRAN TRONG 203 ms!
+[Result] mat-mul-7c412e3d-c4cf-4560-9196-167b26e2bf00-task-05 <- b (5/5)
+>>> HOAN THANH NHAN MA TRAN TRONG 201 ms!
 
 === BAT DAU NHAN CHUOI 3 MA TRAN PHAN TAN ===
 --- Giai doan 1: Nhan voi ma tran thu 2 [3 x 2] ---
@@ -248,51 +248,51 @@
 [b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
-[b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
 [a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=0) va ma tran B [3 x 2]... OK
 [a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
 [a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
-[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
-[a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
 [a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 2]... OK
 [a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
 [a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=3) va ma tran B [3 x 2]... OK
 [b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
 [b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
-[b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
-[b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
 [a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
-[Result] mat-mul-2c1adce3-8d83-4edd-ad0e-79ad052dc782-task-02 <- b (1/5)
-[Result] mat-mul-2c1adce3-8d83-4edd-ad0e-79ad052dc782-task-01 <- a (2/5)
-[Result] mat-mul-2c1adce3-8d83-4edd-ad0e-79ad052dc782-task-04 <- b (3/5)
-[Result] mat-mul-2c1adce3-8d83-4edd-ad0e-79ad052dc782-task-03 <- a (4/5)
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[Result] mat-mul-23151e83-3122-48c5-95c6-edbf1a11d95a-task-03 <- a (1/5)
+[Result] mat-mul-23151e83-3122-48c5-95c6-edbf1a11d95a-task-04 <- b (2/5)
+[Result] mat-mul-23151e83-3122-48c5-95c6-edbf1a11d95a-task-02 <- b (3/5)
+[Result] mat-mul-23151e83-3122-48c5-95c6-edbf1a11d95a-task-01 <- a (4/5)
 [a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=4) va ma tran B [3 x 2]... OK
 [a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
 [a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
-[Result] mat-mul-2c1adce3-8d83-4edd-ad0e-79ad052dc782-task-05 <- a (5/5)
->>> HOAN THANH NHAN MA TRAN TRONG 216 ms!
+[Result] mat-mul-23151e83-3122-48c5-95c6-edbf1a11d95a-task-05 <- a (5/5)
+>>> HOAN THANH NHAN MA TRAN TRONG 202 ms!
 --- Giai doan 2: Nhan voi ma tran thu 3 [2 x 2] ---
 
 === BAT DAU JOB NHAN MA TRAN [5 x 2] * [2 x 2] CHIA THANH 5 TASKS ===
-[a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 2] (startRow=1) va ma tran B [2 x 2]... OK
-[a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
-[a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
-[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 2] (startRow=0) va ma tran B [2 x 2]... OK
 [b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
 [b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 2] (startRow=1) va ma tran B [2 x 2]... OK
+[a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
+[a]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
 [a]  |-- [Buoc 1/5] Nhan lat cat A [1 x 2] (startRow=3) va ma tran B [2 x 2]... OK
 [a]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
@@ -300,27 +300,32 @@
 [a]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [a]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [a]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
+[Result] mat-mul-3bbb63f1-25c6-4e8f-b30e-39aa1462ae53-task-01 <- b (1/5)
+[Result] mat-mul-3bbb63f1-25c6-4e8f-b30e-39aa1462ae53-task-02 <- a (2/5)
+[Result] mat-mul-3bbb63f1-25c6-4e8f-b30e-39aa1462ae53-task-04 <- a (3/5)
 [b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 2] (startRow=2) va ma tran B [2 x 2]... OK
 [b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
 [b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
-[Result] mat-mul-93f45494-a8af-4561-9518-ed7bc0988105-task-02 <- a (1/5)
-[Result] mat-mul-93f45494-a8af-4561-9518-ed7bc0988105-task-04 <- a (2/5)
-[Result] mat-mul-93f45494-a8af-4561-9518-ed7bc0988105-task-01 <- b (3/5)
-[Result] mat-mul-93f45494-a8af-4561-9518-ed7bc0988105-task-03 <- b (4/5)
+[Result] mat-mul-3bbb63f1-25c6-4e8f-b30e-39aa1462ae53-task-03 <- b (4/5)
 [b]  |-- [Buoc 1/5] Nhan lat cat A [1 x 2] (startRow=4) va ma tran B [2 x 2]... OK
 [b]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 2]... OK
 [b]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
 [b]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
 [b]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
 [b]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 2] vao TaskResult... OK
-[Result] mat-mul-93f45494-a8af-4561-9518-ed7bc0988105-task-05 <- b (5/5)
->>> HOAN THANH NHAN MA TRAN TRONG 217 ms!
->>> HOAN TAT TOAN BO CHUOI NHAN TRONG 435 ms! Kich thuoc cuoi: [5 x 2]
+[Result] mat-mul-3bbb63f1-25c6-4e8f-b30e-39aa1462ae53-task-05 <- b (5/5)
+>>> HOAN THANH NHAN MA TRAN TRONG 209 ms!
+>>> HOAN TAT TOAN BO CHUOI NHAN TRONG 411 ms! Kich thuoc cuoi: [5 x 2]
 
 === BAT DAU JOB TINH DINH THUC MA TRAN [3 x 3] CHIA THANH 3 TASKS ===
+[a]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
+[a]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
+[a]  |    |-- Tien do: [==========] 100% (Cot 2, so hang 6.0000)
+[a]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: 6.000000... OK
+[a]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
 [b]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
 [b]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
 [b]  |    |-- Tien do: [==========] 100% (Cot 1, so hang -4.0000)
@@ -328,59 +333,48 @@
 [b]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
 [a]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
 [a]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
-[a]  |    |-- Tien do: [==========] 100% (Cot 2, so hang 6.0000)
-[a]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: 6.000000... OK
-[a]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
-[a]  |-- [Buoc 1/4] Giai ma ma tran vuong [3 x 3] va 1 cot cofactor... OK
-[a]  |-- [Buoc 2/4] Bat dau tinh cac so hang cofactor duoc giao:
 [a]  |    |-- Tien do: [==========] 100% (Cot 0, so hang -2.0000)
 [a]  |-- [Buoc 3/4] Hoan thanh tong rieng dinh thuc: -2.000000... OK
 [a]  |-- [Buoc 4/4] Dong goi tong rieng dinh thuc vao TaskResult... OK
-[Result] mat-det-0bb7e278-8716-47e8-aea3-024c0dd3bf32-task-02 <- b (1/3)
-[Result] mat-det-0bb7e278-8716-47e8-aea3-024c0dd3bf32-task-03 <- a (2/3)
-[Result] mat-det-0bb7e278-8716-47e8-aea3-024c0dd3bf32-task-01 <- a (3/3)
->>> HOAN THANH TINH DINH THUC TRONG 109 ms!
+[Result] mat-det-306b2407-7967-4bd0-85a7-4f71656798e2-task-01 <- a (1/3)
+[Result] mat-det-306b2407-7967-4bd0-85a7-4f71656798e2-task-03 <- a (2/3)
+[Result] mat-det-306b2407-7967-4bd0-85a7-4f71656798e2-task-02 <- b (3/3)
+>>> HOAN THANH TINH DINH THUC TRONG 99 ms!
 
 === BAT DAU JOB TINH HANG MA TRAN [3 x 3] CHIA THANH 3 TASKS ===
-[b]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, so dong=1, so cot=3)... OK
-[b]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
-[b]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
-[b]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
-[b]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
 [b]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=0, so dong=1, so cot=3)... OK
 [b]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
 [b]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
 [b]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
 [b]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
-[Result] mat-rank-11fa51fd-181c-47be-aad7-3b690f6784d2-task-03 <- b (1/3)
+[b]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=2, so dong=1, so cot=3)... OK
+[b]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
+[b]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
+[b]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
+[b]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
 [a]  |-- [Buoc 1/4] Giai ma lat cat A (startRow=1, so dong=1, so cot=3)... OK
 [a]  |-- [Buoc 2/4] Rut gon lat cat dong thanh basis cuc bo...
 [a]  |    |-- Tien do: [==========] 100% (Basis cuc bo co 1 dong doc lap)
 [a]  |-- [Buoc 3/4] Hoan tat rut gon hang cuc bo... OK
 [a]  |-- [Buoc 4/4] Dong goi basis cuc bo vao TaskResult... OK
-[Result] mat-rank-11fa51fd-181c-47be-aad7-3b690f6784d2-task-01 <- b (2/3)
-[Result] mat-rank-11fa51fd-181c-47be-aad7-3b690f6784d2-task-02 <- a (3/3)
->>> HOAN THANH TINH HANG MA TRAN TRONG 111 ms!
+[Result] mat-rank-3d08524f-a774-4994-b119-904311d4a98c-task-01 <- b (1/3)
+[Result] mat-rank-3d08524f-a774-4994-b119-904311d4a98c-task-02 <- a (2/3)
+[Result] mat-rank-3d08524f-a774-4994-b119-904311d4a98c-task-03 <- b (3/3)
+>>> HOAN THANH TINH HANG MA TRAN TRONG 100 ms!
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
   </testcase>
-  <testcase name="unfinishedTaskSurvivesLossOfAllWorkersAndNewWorkerJoining" classname="com.pbl4.LanLifecycleTest" time="0.226">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:54597
-[Registry] REGISTER [lost @ 127.0.0.1:54598 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED lost | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:54598
-[Worker] REGISTERED lost | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:54598 -> Master 127.0.0.1:54597
+  <testcase name="unfinishedTaskSurvivesLossOfAllWorkersAndNewWorkerJoining" classname="com.pbl4.LanLifecycleTest" time="0.215">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:55536
+[Registry] REGISTER [lost @ 127.0.0.1:55537 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED lost | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55537
+[Worker] REGISTERED lost | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55537 -> Master 127.0.0.1:55536
 
 === BAT DAU JOB NHAN MA TRAN [3 x 3] * [3 x 3] CHIA THANH 2 TASKS ===
-[Dispatcher] REQUEUE mat-mul-02567e8d-86d7-467d-9777-e617cc2bb9ab-task-01
-[Registry] REGISTER [replacement @ 127.0.0.1:54599 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED replacement | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:54599
-[Worker] REGISTERED replacement | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:54599 -> Master 127.0.0.1:54597
-[replacement]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 3]... OK
-[replacement]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 3]... OK
-[replacement]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
-[replacement]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
-[replacement]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
-[replacement]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 3] vao TaskResult... OK
+[Dispatcher] REQUEUE mat-mul-4bf0bb03-5caa-4de5-80bc-9815b2159c7c-task-01
+[Registry] REGISTER [replacement @ 127.0.0.1:55538 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED replacement | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55538
+[Worker] REGISTERED replacement | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55538 -> Master 127.0.0.1:55536
 [replacement]  |-- [Buoc 1/5] Nhan lat cat A [2 x 3] (startRow=0) va ma tran B [3 x 3]... OK
 [replacement]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [2 x 3]... OK
 [replacement]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
@@ -388,19 +382,25 @@
 [replacement]  |    |-- Tien do: [==========] 100% (Dong 2/2 hoan tat)
 [replacement]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 2 dong!... OK
 [replacement]  |-- [Buoc 5/5] Dong goi lat cat C_slice [2 x 3] vao TaskResult... OK
-[Result] mat-mul-02567e8d-86d7-467d-9777-e617cc2bb9ab-task-02 <- replacement (1/2)
-[Result] mat-mul-02567e8d-86d7-467d-9777-e617cc2bb9ab-task-01 <- replacement (2/2)
->>> HOAN THANH NHAN MA TRAN TRONG 178 ms!
+[replacement]  |-- [Buoc 1/5] Nhan lat cat A [1 x 3] (startRow=2) va ma tran B [3 x 3]... OK
+[replacement]  |-- [Buoc 2/5] Khoi tao ma tran dem ket qua [1 x 3]... OK
+[replacement]  |-- [Buoc 3/5] Bat dau tinh tich vo huong tung dong (A_slice x B):
+[replacement]  |    |-- Tien do: [==========] 100% (Dong 1/1 hoan tat)
+[replacement]  |-- [Buoc 4/5] Hoan thanh phep nhan toan bo 1 dong!... OK
+[replacement]  |-- [Buoc 5/5] Dong goi lat cat C_slice [1 x 3] vao TaskResult... OK
+[Result] mat-mul-4bf0bb03-5caa-4de5-80bc-9815b2159c7c-task-01 <- replacement (1/2)
+[Result] mat-mul-4bf0bb03-5caa-4de5-80bc-9815b2159c7c-task-02 <- replacement (2/2)
+>>> HOAN THANH NHAN MA TRAN TRONG 180 ms!
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
-    <system-err><![CDATA[[Task failed] lost / mat-mul-02567e8d-86d7-467d-9777-e617cc2bb9ab-task-01: stopped
+    <system-err><![CDATA[[Task failed] lost / mat-mul-4bf0bb03-5caa-4de5-80bc-9815b2159c7c-task-01: stopped
 ]]></system-err>
   </testcase>
-  <testcase name="startsBeforeMasterAndReconnectsAfterMasterRestart" classname="com.pbl4.LanLifecycleTest" time="4.165">
-    <system-out><![CDATA[[Master] Listening 0.0.0.0:54609
-[Registry] REGISTER [early @ 127.0.0.1:54610 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED early | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:54610
-[Worker] REGISTERED early | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:54610 -> Master 127.0.0.1:54609
+  <testcase name="startsBeforeMasterAndReconnectsAfterMasterRestart" classname="com.pbl4.LanLifecycleTest" time="4.058">
+    <system-out><![CDATA[[Master] Listening 0.0.0.0:55548
+[Registry] REGISTER [early @ 127.0.0.1:55549 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
+[Master] REGISTERED early | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55549
+[Worker] REGISTERED early | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55549 -> Master 127.0.0.1:55548
 
 === BAT DAU JOB KHOI DAU: (1+2) + (3*2) ===
 [early]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '3*2'... OK
@@ -411,27 +411,27 @@
 [early]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
 [early]  |-- [Buoc 3/4] Tinh toan phep toan: 1+2 = 3.00... OK
 [early]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
-[Result] arithmetic-bf08498d-c532-4e7a-8bf1-ca0b3eec24a1-task-01 <- early (1/2)
-[Result] arithmetic-bf08498d-c532-4e7a-8bf1-ca0b3eec24a1-task-02 <- early (2/2)
->>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 38 ms)
+[Result] arithmetic-34b71b7a-f9f4-490e-8ce0-77ea5333d78f-task-01 <- early (1/2)
+[Result] arithmetic-34b71b7a-f9f4-490e-8ce0-77ea5333d78f-task-02 <- early (2/2)
+>>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 102 ms)
 [Master Server] Da dung hoat dong an toan.
-[Master] Listening 0.0.0.0:54609
-[Registry] REGISTER [early @ 127.0.0.1:54610 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
-[Master] REGISTERED early | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:54610
-[Worker] REGISTERED early | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:54610 -> Master 127.0.0.1:54609
+[Master] Listening 0.0.0.0:55548
+[Registry] REGISTER [early @ 127.0.0.1:55549 | Status: ONLINE | Active: 0 | Done: 0] | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP)
 
 === BAT DAU JOB KHOI DAU: (1+2) + (3*2) ===
-[early]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '3*2'... OK
-[early]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
-[early]  |-- [Buoc 3/4] Tinh toan phep toan: 3*2 = 6.00... OK
-[early]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[Master] REGISTERED early | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55549
+[Worker] REGISTERED early | laptop=desktop-qbgbflp (DESKTOP-QBGBFLP) | 127.0.0.1:55549 -> Master 127.0.0.1:55548
 [early]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '1+2'... OK
 [early]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
 [early]  |-- [Buoc 3/4] Tinh toan phep toan: 1+2 = 3.00... OK
 [early]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
-[Result] arithmetic-b0fefa44-c07a-4633-a26f-c86d2a255fdd-task-02 <- early (1/2)
-[Result] arithmetic-b0fefa44-c07a-4633-a26f-c86d2a255fdd-task-01 <- early (2/2)
->>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 98 ms)
+[early]  |-- [Buoc 1/4] Kiem tra bieu thuc dau vao: '3*2'... OK
+[early]  |-- [Buoc 2/4] Phan tich cu phap toan hoc va trich xuat toan tu... OK
+[early]  |-- [Buoc 3/4] Tinh toan phep toan: 3*2 = 6.00... OK
+[early]  |-- [Buoc 4/4] Dong goi TaskResult san sang gui ve Master... OK
+[Result] arithmetic-06157f1c-0905-4741-ba92-fab25db3e28e-task-01 <- early (1/2)
+[Result] arithmetic-06157f1c-0905-4741-ba92-fab25db3e28e-task-02 <- early (2/2)
+>>> KET QUA TONG HOP: Bieu thuc song song: (1+2) + (3*2) = 9.00 (Thoi gian: 45 ms)
 [Master Server] Da dung hoat dong an toan.
 [Master Server] Da dung hoat dong an toan.
 ]]></system-out>
